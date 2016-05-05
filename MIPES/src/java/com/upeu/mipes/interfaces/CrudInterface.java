@@ -10,8 +10,9 @@ import java.util.ArrayList;
 /**
  *
  * @author Andres
+
  */
-public interface CrudInterface {
+public interface CrudInterface{
     
     public boolean agregar(Object o);
     public boolean editar(Object o);

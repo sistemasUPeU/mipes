@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Andres
  */
-public class UsuarioDAO implements CrudInterface{
+public class UsuarioDAO implements CrudInterface {
 
     @Override
     public boolean agregar(Object o) {
