@@ -5,21 +5,42 @@
  */
 package com.upeu.mipes.dao;
 
+import com.upeu.mipes.config.Conexion;
 import com.upeu.mipes.dto.DistritomDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
-
-
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author jevar
  */
-public class DistritomDAO implements CrudInterface<DistritomDTO>{
+public class DistritomDAO implements CrudInterface<DistritomDTO> {
+
+    private Connection c;
+    private Statement st;
+    private ResultSet rs;
+    private String sql;
 
     @Override
     public boolean agregar(DistritomDTO e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        sql="INSERT INTO  distritom(idDISTRITOM,NOMBRE,ESTADO) VALUES ("+e.getIdDistritom()+",'"+e.getNombre()+"','"+e.getEstado()+"')";
+        boolean p = false;
+        try {
+            c = Conexion.getConexion();
+            st = c.createStatement();
+            int a = st.executeUpdate(sql);                  
+            if(a>0){
+                p=true;
+            }                
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error Registrar Distrito: "+e);
+        }
+        return p;        
     }
 
     @Override
@@ -41,7 +62,5 @@ public class DistritomDAO implements CrudInterface<DistritomDTO>{
     public DistritomDTO buscar(Object key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
+
 }
