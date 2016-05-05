@@ -10,7 +10,10 @@ import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,6 +35,7 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
             ps.setString(2, u.getClave());
             ps.setString(3, u.getEstado());
             int r=ps.executeUpdate();
+            cn.close();
             return (r>0);
         } catch (Exception e) {
             System.out.println("Error al insertar Usuario "+e);
@@ -49,6 +53,7 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
             ps.setString(3, u.getEstado());
             ps.setInt(4, u.getIdUsuario());
             int r=ps.executeUpdate();
+            cn.close();
             return (r>0);
         } catch (Exception e) {
             System.out.println("Error al editar Usuario "+e);
@@ -63,6 +68,7 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
             ps=cn.prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(key.toString()));
             int r=ps.executeUpdate();
+            cn.close();
             return (r>0);
         } catch (Exception e) {
             System.out.println("Error al eliminar Usuario "+e);
@@ -84,7 +90,7 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
                 u.setEstado(rs.getString("ESTADO"));
                 list.add(u);
             }
-            
+            cn.close();            
         } catch (Exception e) {
             System.out.println("Error al listar Usuario "+e);
             return null;
