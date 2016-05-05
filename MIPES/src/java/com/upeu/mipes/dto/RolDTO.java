@@ -9,34 +9,25 @@ package com.upeu.mipes.dto;
  *
  * @author USER
  */
-public class EscuelaDTO {
-    private int idEscuela;
-    private int idDistritoM;
+public class RolDTO {
+    private int idRol;
     private String Nombre;
     private String Estado;
 
-    public EscuelaDTO() {
+    public RolDTO() {
     }
 
-    public EscuelaDTO(String Nombre, String Estado) {
+    public RolDTO(String Nombre, String Estado) {
         this.Nombre = Nombre;
         this.Estado = Estado;
     }
 
-    public int getIdEscuela() {
-        return idEscuela;
+    public int getIdRol() {
+        return idRol;
     }
 
-    public void setIdEscuela(int idEscuela) {
-        this.idEscuela = idEscuela;
-    }
-
-    public int getIdDistritoM() {
-        return idDistritoM;
-    }
-
-    public void setIdDistritoM(int idDistritoM) {
-        this.idDistritoM = idDistritoM;
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
     }
 
     public String getNombre() {
@@ -54,5 +45,6 @@ public class EscuelaDTO {
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
-
+    
+    
 }

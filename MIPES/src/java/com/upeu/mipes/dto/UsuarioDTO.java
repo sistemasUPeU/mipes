@@ -10,51 +10,51 @@ package com.upeu.mipes.dto;
  * @author Andres
  */
 public class UsuarioDTO {
-    private int idUSUARIO;
-    private String USUARIO;
-    private String CLAVE;
-    private String ESTADO;
+    private int idUsuario;
+    private String Usuario;
+    private String Clave;
+    private String Estado;
 
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(String USUARIO, String CLAVE, String ESTADO) {
-        this.USUARIO = USUARIO;
-        this.CLAVE = CLAVE;
-        this.ESTADO = ESTADO;
+    public UsuarioDTO(String Usuario, String Clave, String Estado) {
+        this.Usuario = Usuario;
+        this.Clave = Clave;
+        this.Estado = Estado;
     }
 
-    public int getIdUSUARIO() {
-        return idUSUARIO;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdUSUARIO(int idUSUARIO) {
-        this.idUSUARIO = idUSUARIO;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public String getUSUARIO() {
-        return USUARIO;
+    public String getUsuario() {
+        return Usuario;
     }
 
-    public void setUSUARIO(String USUARIO) {
-        this.USUARIO = USUARIO;
+    public void setUsuario(String Usuario) {
+        this.Usuario = Usuario;
     }
 
-    public String getCLAVE() {
-        return CLAVE;
+    public String getClave() {
+        return Clave;
     }
 
-    public void setCLAVE(String CLAVE) {
-        this.CLAVE = CLAVE;
+    public void setClave(String Clave) {
+        this.Clave = Clave;
     }
 
-    public String getESTADO() {
-        return ESTADO;
+    public String getEstado() {
+        return Estado;
     }
 
-    public void setESTADO(String ESTADO) {
-        this.ESTADO = ESTADO;
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
     }
-    
+
     
 }
