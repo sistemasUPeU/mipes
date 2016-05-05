@@ -9,7 +9,7 @@ package com.upeu.mipes.dto;
  *
  * @author USER
  */
-public class IntegrabteDTO {
+public class IntegranteDTO {
     private int idIntegrante;
     private int idGrupo;
     private int idMinisterio;
@@ -22,10 +22,10 @@ public class IntegrabteDTO {
     private String Fecha_bautizmo;
     private String Estado;
 
-    public IntegrabteDTO() {
+    public IntegranteDTO() {
     }
 
-    public IntegrabteDTO(String Nombre, String Apellidos, String Direccion, String Email, String Telefono, String Fecha_nacimiento, String Fecha_bautizmo, String Estado) {
+    public IntegranteDTO(String Nombre, String Apellidos, String Direccion, String Email, String Telefono, String Fecha_nacimiento, String Fecha_bautizmo, String Estado) {
         this.Nombre = Nombre;
         this.Apellidos = Apellidos;
         this.Direccion = Direccion;
