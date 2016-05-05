@@ -1,15 +1,15 @@
 package com.upeu.mipes.dto;
 
-public class DistritoDTO {
+public class DistritomDTO {
     
     private int idDistritom;
     private String nombre;
     private String estado;
 
-    public DistritoDTO() {
+    public DistritomDTO() {
     }
 
-    public DistritoDTO(int idDistritom, String nombre, String estado) {
+    public DistritomDTO(int idDistritom, String nombre, String estado) {
         this.idDistritom = idDistritom;
         this.nombre = nombre;
         this.estado = estado;
