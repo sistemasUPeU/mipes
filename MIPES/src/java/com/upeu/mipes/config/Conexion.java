@@ -16,8 +16,8 @@ public class Conexion {
     private static final String url="jdbc:mysql://localhost:3306/dbmipes";
     private static final String driver="com.mysql.jdbc.Driver";
     private static final String user="root";
-    private static final String clave="12345678";
-    private static Connection cx;
+    private static final String clave="root";
+    private static Connection cx=null;
     
     public static final Connection getConexion(){
         try {
@@ -30,6 +30,10 @@ public class Conexion {
             System.out.println("error: "+e);
         }  
     
-    return cx;
+        return cx;
+    }
+    public void cerrar(){
+        cx = null;
+        
     }
 }

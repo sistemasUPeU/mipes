@@ -10,13 +10,15 @@ import java.util.ArrayList;
 /**
  *
  * @author Andres
+ * @param <Entidad>
 
  */
-public interface CrudInterface{
+public interface CrudInterface <Entidad>{
     
-    public boolean agregar(Object o);
-    public boolean editar(Object o);
-    public boolean eliminar(Object o);
-    public ArrayList<?> listar();
+    public boolean agregar(Entidad e);
+    public boolean editar(Entidad e);
+    public boolean eliminar(Object key);
+    public ArrayList<Entidad> listar();
+    public Entidad buscar(Object key);
     
 }
