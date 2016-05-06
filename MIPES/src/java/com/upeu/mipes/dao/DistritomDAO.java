@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class DistritomDAO implements CrudInterface<DistritomDTO> {
 
-    private Connection c;
+    private Connection conn;
     private Statement st;
     private ResultSet rs;
     private String sql;
@@ -31,8 +31,8 @@ public class DistritomDAO implements CrudInterface<DistritomDTO> {
         sql="INSERT INTO  distritom(idDISTRITOM,NOMBRE,ESTADO) VALUES ("+e.getIdDistritom()+",'"+e.getNombre()+"','"+e.getEstado()+"')";
         boolean p = false;
         try {
-            c = Conexion.getConexion();
-            st = c.createStatement();
+            conn = Conexion.getConexion();
+            st = conn.createStatement();
             int a = st.executeUpdate(sql);                  
             if(a>0){
                 p=true;
