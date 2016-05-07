@@ -45,7 +45,7 @@ public class AsministerioDAO implements CrudInterface<AsministerioDTO>{
 
     @Override
     public boolean editar(AsministerioDTO m) {
-        sql = "UPDATE TABLE ASMINISTERIO SET idASMINISTERIO=?, idMINISTERIO=?, FECHA=?, PRESENTES=?, FALTAS=?, VISITAS=?";
+        sql = "UPDATE TABLE ASMINISTERIO SET idMINISTERIO=?, FECHA=?, PRESENTES=?, FALTAS=?, VISITAS=?";
         try {
             ps = cn.prepareStatement(sql);
             ps.setInt(1, m.getIdAsministerio());

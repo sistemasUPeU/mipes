@@ -16,13 +16,13 @@ import java.util.ArrayList;
  *
  * @author jevar
  */
-public class AsmiembroDao implements CrudInterface<AsmiembroDTO>{
+public class AsmiembroDao implements CrudInterface<AsmiembroDTO> {
 
     private Connection cn;
     private PreparedStatement ps;
     private ResultSet rs;
     private String sql;
-    
+
     @Override
     public boolean agregar(AsmiembroDTO m) {
         sql = "INSERT INTO ASMIEMBRO (idASMIEMBRO, idINTEGRANTE, FECHA, ESTUDIOB, ESTADO) VALUES(null,?,?,?,?)";
@@ -44,7 +44,7 @@ public class AsmiembroDao implements CrudInterface<AsmiembroDTO>{
 
     @Override
     public boolean editar(AsmiembroDTO m) {
-        sql = "UPDATE TABLE ASMIEMBRO SET idASMIEMBRO=?, idINTEGRANTE=?, FECHA=?, ESTUDIOB=?, ESTADO=?";
+        sql = "UPDATE TABLE ASMIEMBRO SET idINTEGRANTE=?, FECHA=?, ESTUDIOB=?, ESTADO=?";
         try {
             ps = cn.prepareStatement(sql);
             ps.setInt(1, m.getIdAsmiembro());
@@ -79,7 +79,7 @@ public class AsmiembroDao implements CrudInterface<AsmiembroDTO>{
     @Override
     public ArrayList<AsmiembroDTO> listar() {
         ArrayList<AsmiembroDTO> list = new ArrayList<>();
-        sql = "SELECT * FROM USUARIO";
+        sql = "SELECT * FROM ASMIEMBRO";
         try {
             rs = cn.prepareStatement(sql).executeQuery();
             while (rs.next()) {
@@ -104,6 +104,4 @@ public class AsmiembroDao implements CrudInterface<AsmiembroDTO>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-    
 }

@@ -36,7 +36,7 @@ public class AsgrupoDao implements CrudInterface<AsgrupoDTO> {
 
     @Override
     public boolean editar(AsgrupoDTO g) {
-        sql = "UPDATE TABLE ASGRUPO SET idASGRUPO=?, idGRUPO=?, FECHA=?, PRESENTES=?, FALTAS=?, VISITAS=?";
+        sql = "UPDATE TABLE ASGRUPO SET idGRUPO=?, FECHA=?, PRESENTES=?, FALTAS=?, VISITAS=?";
         try {
             ps = cn.prepareStatement(sql);
             ps.setInt(1, g.getIdAsgrupo());
@@ -72,7 +72,7 @@ public class AsgrupoDao implements CrudInterface<AsgrupoDTO> {
     @Override
     public ArrayList<AsgrupoDTO> listar() {
         ArrayList<AsgrupoDTO> list = new ArrayList<>();
-        sql = "SELECT * FROM USUARIO";
+        sql = "SELECT * FROM ASGRUPO";
         try {
             rs = cn.prepareStatement(sql).executeQuery();
             while (rs.next()) {
