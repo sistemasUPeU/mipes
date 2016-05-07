@@ -71,7 +71,7 @@ public class AsmiembroDao implements CrudInterface<AsmiembroDTO>{
             cn.close();
             return (r > 0);
         } catch (Exception e) {
-            System.out.println("Error al eliminar Miembro " + e);
+            System.out.println("Error al eliminar AsMiembro " + e);
             return false;
         }
     }

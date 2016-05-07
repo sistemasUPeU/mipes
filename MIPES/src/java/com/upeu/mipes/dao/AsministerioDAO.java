@@ -33,7 +33,7 @@ public class AsministerioDAO implements CrudInterface<AsministerioDTO>{
             ps.setString(3, m.getFecha());
             ps.setInt(4, m.getPresentes());
             ps.setInt(5, m.getFaltas());
-            ps.setInt(5, m.getVisitas());
+            ps.setInt(6, m.getVisitas());
             int r = ps.executeUpdate();
             cn.close();
             return (r > 0);
@@ -44,18 +44,62 @@ public class AsministerioDAO implements CrudInterface<AsministerioDTO>{
     }
 
     @Override
-    public boolean editar(AsministerioDTO e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean editar(AsministerioDTO m) {
+        sql = "UPDATE TABLE ASMINISTERIO SET idASMINISTERIO=?, idMINISTERIO=?, FECHA=?, PRESENTES=?, FALTAS=?, VISITAS=?";
+        try {
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, m.getIdAsministerio());
+            ps.setInt(2, m.getIdMinisterio());
+            ps.setString(3, m.getFecha());
+            ps.setInt(4, m.getPresentes());
+            ps.setInt(5, m.getFaltas());
+            ps.setInt(6, m.getVisitas());
+            int r = ps.executeUpdate();
+            cn.close();
+            return (r > 0);
+        } catch (Exception e) {
+            System.out.println("Error al editar AsMinisterio " + e);
+            return false;
+        }
     }
 
     @Override
     public boolean eliminar(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sql = "DELETE FROM ASMINISTERIO WHERE idASMINISTERIO=?";
+        try {
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, Integer.parseInt(key.toString()));
+            int r = ps.executeUpdate();
+            cn.close();
+            return (r > 0);
+        } catch (Exception e) {
+            System.out.println("Error al eliminar AsMinisterio " + e);
+            return false;
+        }
     }
 
     @Override
     public ArrayList<AsministerioDTO> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<AsministerioDTO> list = new ArrayList<>();
+        sql = "SELECT * FROM ASMINISTERIO";
+        try {
+            rs = cn.prepareStatement(sql).executeQuery();
+            while (rs.next()) {
+                AsministerioDTO u = new AsministerioDTO();
+                u.setIdAsministerio(rs.getInt("idASMINISTERIO"));
+                u.setIdMinisterio(rs.getInt("idMINISTERIO"));
+                u.setFecha(rs.getString("FECHA"));
+                u.setPresentes(rs.getInt("PRESENTES"));
+                u.setFaltas(rs.getInt("FALTAS"));
+                u.setVisitas(rs.getInt("FALTAS"));
+                list.add(u);
+            }
+            cn.close();
+        } catch (Exception e) {
+            System.out.println("Error al listar AsMinisterio " + e);
+            return null;
+        }
+        return list;
     }
 
     @Override
