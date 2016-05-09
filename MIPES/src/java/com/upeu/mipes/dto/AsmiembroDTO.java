@@ -11,8 +11,7 @@ public class AsmiembroDTO {
     public AsmiembroDTO() {
     }
 
-    public AsmiembroDTO(int idAsmiembro, int idIntegrante, String fecha, int estudioB, String estado) {
-        this.idAsmiembro = idAsmiembro;
+    public AsmiembroDTO(int idIntegrante, String fecha, int estudioB, String estado) {
         this.idIntegrante = idIntegrante;
         this.fecha = fecha;
         this.estudioB = estudioB;

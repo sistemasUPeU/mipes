@@ -9,8 +9,7 @@ public class DistritomDTO {
     public DistritomDTO() {
     }
 
-    public DistritomDTO(int idDistritom, String nombre, String estado) {
-        this.idDistritom = idDistritom;
+    public DistritomDTO(String nombre, String estado) {
         this.nombre = nombre;
         this.estado = estado;
     }

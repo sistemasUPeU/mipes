@@ -8,8 +8,7 @@ public class Det_privilegioDTO {
     public Det_privilegioDTO() {
     }
 
-    public Det_privilegioDTO(int idPrivilegio, int idRol) {
-        this.idPrivilegio = idPrivilegio;
+    public Det_privilegioDTO(int idRol) {
         this.idRol = idRol;
     }
 

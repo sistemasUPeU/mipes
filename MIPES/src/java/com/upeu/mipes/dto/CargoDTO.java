@@ -9,8 +9,7 @@ public class CargoDTO {
     public CargoDTO() {
     }
 
-    public CargoDTO(int idCargo, String nombre, String estado) {
-        this.idCargo = idCargo;
+    public CargoDTO(String nombre, String estado) {
         this.nombre = nombre;
         this.estado = estado;
     }

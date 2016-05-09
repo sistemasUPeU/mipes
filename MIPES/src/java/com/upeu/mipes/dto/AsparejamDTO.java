@@ -10,8 +10,7 @@ public class AsparejamDTO {
     public AsparejamDTO() {
     }
 
-    public AsparejamDTO(int idAsparejam, int idParejam, String fecha, String lugar) {
-        this.idAsparejam = idAsparejam;
+    public AsparejamDTO(int idParejam, String fecha, String lugar) {
         this.idParejam = idParejam;
         this.fecha = fecha;
         this.lugar = lugar;

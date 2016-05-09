@@ -12,8 +12,7 @@ public class AsministerioDTO {
     public AsministerioDTO() {
     }
 
-    public AsministerioDTO(int idAsministerio, int idMinisterio, String fecha, int presentes, int faltas, int visitas) {
-        this.idAsministerio = idAsministerio;
+    public AsministerioDTO(int idMinisterio, String fecha, int presentes, int faltas, int visitas) {
         this.idMinisterio = idMinisterio;
         this.fecha = fecha;
         this.presentes = presentes;

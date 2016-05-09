@@ -12,8 +12,7 @@ public class AsgrupoDTO {
     public AsgrupoDTO() {
     }
 
-    public AsgrupoDTO(int idAsgrupo, int idGrupo, String fecha, int presentes, int faltas, int visitas) {
-        this.idAsgrupo = idAsgrupo;
+    public AsgrupoDTO(int idGrupo, String fecha, int presentes, int faltas, int visitas) {
         this.idGrupo = idGrupo;
         this.fecha = fecha;
         this.presentes = presentes;

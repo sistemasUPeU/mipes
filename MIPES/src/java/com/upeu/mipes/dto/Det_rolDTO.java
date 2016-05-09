@@ -8,8 +8,7 @@ public class Det_rolDTO {
     public Det_rolDTO() {
     }
 
-    public Det_rolDTO(int idRol, int idUsuario) {
-        this.idRol = idRol;
+    public Det_rolDTO(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
