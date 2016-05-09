@@ -45,15 +45,15 @@ public class AsministerioDAO implements CrudInterface<AsministerioDTO>{
 
     @Override
     public boolean editar(AsministerioDTO m) {
-        sql = "UPDATE TABLE ASMINISTERIO SET idMINISTERIO=?, FECHA=?, PRESENTES=?, FALTAS=?, VISITAS=?";
+        sql = "UPDATE TABLE ASMINISTERIO SET idMINISTERIO=?, FECHA=?, PRESENTES=?, FALTAS=?, VISITAS=? WHERE idASMINISTERIO=?";
         try {
             ps = cn.prepareStatement(sql);
-            ps.setInt(1, m.getIdAsministerio());
-            ps.setInt(2, m.getIdMinisterio());
-            ps.setString(3, m.getFecha());
-            ps.setInt(4, m.getPresentes());
-            ps.setInt(5, m.getFaltas());
-            ps.setInt(6, m.getVisitas());
+            ps.setInt(1, m.getIdMinisterio());
+            ps.setString(2, m.getFecha());
+            ps.setInt(3, m.getPresentes());
+            ps.setInt(4, m.getFaltas());
+            ps.setInt(5, m.getVisitas());
+            ps.setInt(6, m.getIdAsministerio());
             int r = ps.executeUpdate();
             cn.close();
             return (r > 0);
@@ -91,7 +91,7 @@ public class AsministerioDAO implements CrudInterface<AsministerioDTO>{
                 u.setFecha(rs.getString("FECHA"));
                 u.setPresentes(rs.getInt("PRESENTES"));
                 u.setFaltas(rs.getInt("FALTAS"));
-                u.setVisitas(rs.getInt("FALTAS"));
+                u.setVisitas(rs.getInt("VISITAS"));
                 list.add(u);
             }
             cn.close();

@@ -22,7 +22,7 @@ public class Pruebas {
         }
     }
     public static void insertar(){
-        DistritomDTO d = new DistritomDTO(2, "burgos", "2");
+        DistritomDTO d = new DistritomDTO(2, "jeff", "2");
         if(x.agregar(d)){
             System.out.println("SI");
         }

@@ -29,27 +29,28 @@ public class AsgrupoDao implements CrudInterface<AsgrupoDTO> {
             cn.close();
             return (r > 0);
         } catch (Exception e) {
-            System.out.println("Error al agregar Grupo " + e);
+            System.out.println("Error al agregar AsGrupo " + e);
             return false;
         }
     }
 
     @Override
     public boolean editar(AsgrupoDTO g) {
-        sql = "UPDATE TABLE ASGRUPO SET idGRUPO=?, FECHA=?, PRESENTES=?, FALTAS=?, VISITAS=?";
+        sql = "UPDATE TABLE ASGRUPO SET idGRUPO=?, FECHA=?, PRESENTES=?, FALTAS=?, VISITAS=? WHERE idASGRUPO=?";
         try {
             ps = cn.prepareStatement(sql);
-            ps.setInt(1, g.getIdAsgrupo());
-            ps.setInt(2, g.getIdGrupo());
-            ps.setString(3, g.getFecha());
-            ps.setInt(4, g.getPresentes());
-            ps.setInt(5, g.getFaltas());
-            ps.setInt(6, g.getVisitas());
+            ps.setInt(1, g.getIdGrupo());
+            ps.setString(2, g.getFecha());
+            ps.setInt(3, g.getPresentes());
+            ps.setInt(4, g.getFaltas());
+            ps.setInt(5, g.getVisitas());
+            ps.setInt(6, g.getIdAsgrupo());
+            
             int r = ps.executeUpdate();
             cn.close();
             return (r > 0);
         } catch (Exception e) {
-            System.out.println("Error al editar Grupo " + e);
+            System.out.println("Error al editar AsGrupo " + e);
             return false;
         }
     }
@@ -64,7 +65,7 @@ public class AsgrupoDao implements CrudInterface<AsgrupoDTO> {
             cn.close();
             return (r > 0);
         } catch (Exception e) {
-            System.out.println("Error al eliminar Grupo " + e);
+            System.out.println("Error al eliminar AsGrupo " + e);
             return false;
         }
     }
@@ -87,7 +88,7 @@ public class AsgrupoDao implements CrudInterface<AsgrupoDTO> {
             }
             cn.close();
         } catch (Exception e) {
-            System.out.println("Error al listar Usuario " + e);
+            System.out.println("Error al listar AsGrupo " + e);
             return null;
         }
         return list;

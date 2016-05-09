@@ -44,14 +44,14 @@ public class AsmiembroDao implements CrudInterface<AsmiembroDTO> {
 
     @Override
     public boolean editar(AsmiembroDTO m) {
-        sql = "UPDATE TABLE ASMIEMBRO SET idINTEGRANTE=?, FECHA=?, ESTUDIOB=?, ESTADO=?";
+        sql = "UPDATE TABLE ASMIEMBRO SET idINTEGRANTE=?, FECHA=?, ESTUDIOB=?, ESTADO=? WHERE idASMIEMBRO=?";
         try {
             ps = cn.prepareStatement(sql);
-            ps.setInt(1, m.getIdAsmiembro());
-            ps.setInt(2, m.getIdIntegrante());
-            ps.setString(3, m.getFecha());
-            ps.setInt(4, m.getEstudioB());
-            ps.setString(5, m.getEstado());
+            ps.setInt(1, m.getIdIntegrante());
+            ps.setString(2, m.getFecha());
+            ps.setInt(3, m.getEstudioB());
+            ps.setString(4, m.getEstado());
+            ps.setInt(5, m.getIdAsmiembro());
             int r = ps.executeUpdate();
             cn.close();
             return (r > 0);

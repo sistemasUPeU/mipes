@@ -5,14 +5,12 @@
  */
 package com.upeu.mipes.dao;
 
-import com.upeu.mipes.config.Conexion;
 import com.upeu.mipes.dto.DistritomDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,42 +18,81 @@ import javax.swing.JOptionPane;
  */
 public class DistritomDAO implements CrudInterface<DistritomDTO> {
 
-    private Connection conn;
-    private Statement st;
+    private Connection cn;
+    private PreparedStatement ps;
     private ResultSet rs;
     private String sql;
 
     @Override
-    public boolean agregar(DistritomDTO e) {
+    public boolean agregar(DistritomDTO d) {
         
-        sql="INSERT INTO  distritom(idDISTRITOM,NOMBRE,ESTADO) VALUES ("+e.getIdDistritom()+",'"+e.getNombre()+"','"+e.getEstado()+"')";
-        boolean p = false;
+        sql = "INSERT INTO ASGRUPO (idDISTRITOM, NOMBRE, ESTADO) VALUES(null,?,?)";
         try {
-            conn = Conexion.getConexion();
-            st = conn.createStatement();
-            int a = st.executeUpdate(sql);                  
-            if(a>0){
-                p=true;
-            }                
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error Registrar Distrito: "+e);
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, d.getIdDistritom());
+            ps.setString(2, d.getNombre());
+            ps.setString(3, d.getEstado());
+            int r = ps.executeUpdate();
+            cn.close();
+            return (r > 0);
+        } catch (Exception e) {
+            System.out.println("Error al agregar Distritom " + e);
+            return false;
         }
-        return p;        
     }
 
     @Override
-    public boolean editar(DistritomDTO e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean editar(DistritomDTO d) {
+        sql = "UPDATE TABLE ASGRUPO SET NOMBRE=?, ESTADO=? WHERE idDISTRITOM=?";
+        try {
+            ps = cn.prepareStatement(sql);
+            ps.setString(1, d.getNombre());
+            ps.setString(2, d.getEstado());
+            ps.setInt(3, d.getIdDistritom());
+                       
+            int r = ps.executeUpdate();
+            cn.close();
+            return (r > 0);
+        } catch (Exception e) {
+            System.out.println("Error al editar Distritom " + e);
+            return false;
+        }
     }
 
     @Override
     public boolean eliminar(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sql = "DELETE FROM DISTRITOM WHERE idDISTRITOM=?";
+        try {
+            ps = cn.prepareStatement(sql);
+            ps.setInt(1, Integer.parseInt(key.toString()));
+            int r = ps.executeUpdate();
+            cn.close();
+            return (r > 0);
+        } catch (Exception e) {
+            System.out.println("Error al eliminar Distritom " + e);
+            return false;
+        }
     }
 
     @Override
     public ArrayList<DistritomDTO> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<DistritomDTO> list = new ArrayList<>();
+        sql = "SELECT * FROM ASGRUPO";
+        try {
+            rs = cn.prepareStatement(sql).executeQuery();
+            while (rs.next()) {
+                DistritomDTO d = new DistritomDTO();
+                d.setIdDistritom(rs.getInt("idDISTRITOM"));
+                d.setNombre(rs.getString("NOMBRE"));
+                d.setEstado(rs.getString("ESTADO"));
+                list.add(d);
+            }
+            cn.close();
+        } catch (Exception e) {
+            System.out.println("Error al listar Distritom " + e);
+            return null;
+        }
+        return list;
     }
 
     @Override
