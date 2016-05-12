@@ -7,6 +7,7 @@ package com.upeu.mipes.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -26,7 +27,7 @@ public class Conexion {
                 cx = DriverManager.getConnection(url, user, clave);            
             }             
             
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println("error: "+e);
         }  
     
