@@ -18,23 +18,23 @@ public class Conexion {
     private static final String driver="com.mysql.jdbc.Driver";
     private static final String user="root";
     private static final String clave="root";
-    private static Connection cx=null;
+    private static Connection conn=null;
     
     public static final Connection getConexion(){
         try {
             Class.forName(driver);
-             if(cx==null){
-                cx = DriverManager.getConnection(url, user, clave);            
+             if(conn==null){
+                conn = DriverManager.getConnection(url, user, clave);            
             }             
             
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("error: "+e);
         }  
     
-        return cx;
+        return conn;
     }
     public void cerrar(){
-        cx = null;
+        conn = null;
         
     }
 }
