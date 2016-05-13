@@ -37,7 +37,7 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
             int r=ps.executeUpdate();
             cn.close();
             return (r>0);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al insertar Usuario "+e);
             return false;
         }
@@ -55,7 +55,7 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
             int r=ps.executeUpdate();
             cn.close();
             return (r>0);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al editar Usuario "+e);
             return false;
         }
@@ -70,7 +70,7 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
             int r=ps.executeUpdate();
             cn.close();
             return (r>0);
-        } catch (Exception e) {
+        } catch (SQLException | NumberFormatException e) {
             System.out.println("Error al eliminar Usuario "+e);
             return false;
         }
@@ -91,7 +91,7 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
                 list.add(u);
             }
             cn.close();            
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al listar Usuario "+e);
             return null;
         }
