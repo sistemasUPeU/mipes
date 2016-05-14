@@ -5,6 +5,7 @@
  */
 package com.upeu.mipes.dao;
 
+import com.upeu.mipes.config.Conexion;
 import com.upeu.mipes.dto.UsuarioDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.Connection;
@@ -26,6 +27,25 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
     private ResultSet rs;
     private String sql;
 
+ public boolean validarUser(String user,String pass){
+    sql ="select * from usuario where USUARIO=? and CLAVE=?";
+        try {
+            cn=Conexion.getConexion();
+            ps=cn.prepareStatement(sql);
+            ps.setString(1, user);
+            ps.setString(2, pass);
+            rs=ps.executeQuery();
+            while(rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }   
+    
+    
+    
     @Override
     public boolean agregar(UsuarioDTO u) {
         sql="INSERT INTO USUARIO (idUSUARIO, USUARIO, CLAVE, ESTADO) VALUES(null,?,?,?)";
