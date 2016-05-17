@@ -1,3 +1,10 @@
+<%-- 
+    Document   : login
+    Created on : 16/05/2016, 07:21:59 PM
+    Author     : Andres
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
