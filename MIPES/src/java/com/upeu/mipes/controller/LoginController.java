@@ -19,8 +19,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author USER
  */
 public class LoginController extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
-    UsuarioDAO aO= new UsuarioDAO();
+    UsuarioDAO aO = new UsuarioDAO();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,16 +36,8 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LoginController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+            dispatcher.forward(request, response);
         }
     }
 
@@ -73,30 +67,28 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out=response.getWriter();
-        String a,b,pagina;
-        a=request.getParameter("user");
-        b=request.getParameter("pass");
+        PrintWriter out = response.getWriter();
+        String a, b, pagina;
+        a = request.getParameter("user");
+        b = request.getParameter("pass");
         if (!a.equals("") && !b.equals("")) {
-            if(aO.validarUser(a, b)){
-                pagina="/index.html";
-                RequestDispatcher dispatcher= getServletContext().getRequestDispatcher(pagina);
+            if (aO.validarUser(a, b)) {
+                pagina = "/index.jsp";
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
-            }else{
-                pagina="/login.html";
-                RequestDispatcher dispatcher= getServletContext().getRequestDispatcher(pagina);
+            } else {
+                pagina = "/login.jsp";
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
-                }
-        }else{
-                pagina="/login.html";
-                RequestDispatcher dispatcher= getServletContext().getRequestDispatcher(pagina);
-                dispatcher.forward(request, response);
-                }
-        
-        
-        
+            }
+        } else {
+            pagina = "/login.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+            dispatcher.forward(request, response);
+        }
+
     }
 
     /**
