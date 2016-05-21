@@ -5,6 +5,7 @@
  */
 package com.upeu.mipes.dao;
 
+import static com.upeu.mipes.config.Conexion.getConexion;
 import com.upeu.mipes.dto.DistritomDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.Connection;
@@ -98,6 +99,22 @@ public class DistritomDAO implements CrudInterface<DistritomDTO> {
     @Override
     public DistritomDTO buscar(Object key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public static Connection con;
+    public static ResultSet listaDistritos(String consulta){
+        
+        ResultSet rst=null;
+        PreparedStatement psm=null;
+        
+        try {
+        psm=getConexion().prepareStatement(consulta);
+        rst=psm.executeQuery();
+        } catch (Exception e) {
+        }
+        
+        
+        
+        return rst;
     }
 
 }

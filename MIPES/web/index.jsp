@@ -91,13 +91,17 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-edit"></i> Registros<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="vistas/registro/RegistroIntegrante.jsp" target="frame">Registro Integrante</a>
                                             </li>
                                             <li><a href="vistas/registro/RegistroParejaMisionera.jsp" target="frame">Registro Pareja Misionera</a>
                                             </li>
                                             <li><a href="" target="frame">Registro Trabajo Misionero</a>
+                                            </li>
+                                            <li><a href="vistas/registro/RegistroNewGP.jsp" target="frame">Registro Nuevo Grupo Pequeño</a>
+                                            </li>
+                                            <li><a href="vistas/registro/RegistroAsisGP.jsp" target="frame">Asistencia a Grupo Pequeño</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -337,7 +341,7 @@
 
                 <!-- page content -->
                 <div class="right_col" role="main" >
-                    <iframe name="frame" width="100%" height="750px" style="border: none">
+                    <iframe name="frame" style=" width:100% ;height:750px; border: none">
 
                     </iframe>
 
@@ -624,6 +628,8 @@
             </script>
             <!-- /datepicker -->
             <!-- /footer content -->
+            
+        </div>
     </body>
 
 </html>
