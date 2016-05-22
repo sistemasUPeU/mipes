@@ -18,7 +18,8 @@ public class EscuelaDTO {
     public EscuelaDTO() {
     }
 
-    public EscuelaDTO(String Nombre, String Estado) {
+    public EscuelaDTO(int idDistritoM, String Nombre, String Estado) {
+        this.idDistritoM = idDistritoM;
         this.Nombre = Nombre;
         this.Estado = Estado;
     }
@@ -55,4 +56,5 @@ public class EscuelaDTO {
         this.Estado = Estado;
     }
 
+    
 }

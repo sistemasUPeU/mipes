@@ -99,7 +99,9 @@
                                             </li>
                                             <li><a href="" target="frame">Registro Trabajo Misionero</a>
                                             </li>
-                                            <li><a href="vistas/registro/RegistroNewGP.jsp" target="frame">Registro Nuevo Grupo Pequeño</a>
+                                            <li><a href="vistas/registro/RegistroNewGP.jsp" target="frame">Registrar Nuevo Grupo Pequeño</a>
+                                            </li>
+                                            <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Registrar Nueva Escuela Sabática</a>
                                             </li>
                                             <li><a href="vistas/registro/RegistroAsisGP.jsp" target="frame">Asistencia a Grupo Pequeño</a>
                                             </li>

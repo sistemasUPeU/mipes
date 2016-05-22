@@ -24,7 +24,8 @@ public class Conexion {
         try {
             Class.forName(driver);
              if(conn==null){
-                conn = DriverManager.getConnection(url, user, clave);            
+                conn = DriverManager.getConnection(url, user, clave);
+                
             }             
             
         } catch (ClassNotFoundException | SQLException e) {
@@ -37,4 +38,5 @@ public class Conexion {
         conn = null;
         
     }
+    
 }

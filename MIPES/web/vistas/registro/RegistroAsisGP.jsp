@@ -38,7 +38,7 @@
                 <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
             </ul>
         </div>
-        <div style="width:60%;margin: auto;padding: 5% 2%;box-sizing: border-box;box-shadow: 0 0 20px 0 black" >
+        <div style="width:60%;margin: auto;padding: 5% 2%;box-sizing: border-box" >
             <form method="post" id="data"> 
                 <div class="input-field col s12">
                     <select>
