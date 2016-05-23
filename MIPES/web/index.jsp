@@ -47,7 +47,7 @@
                     <div class="left_col scroll-view">
 
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>MIPES | UPeU</span></a>
+                            <a href="index.jsp" class="site_title"><i class="fa fa-child"></i> <span>MIPES | UPeU</span></a>
                         </div>
                         <div class="clearfix"></div>
 
@@ -74,7 +74,7 @@
                                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
 
-                                            <li><a href="index.html">Dashboard</a>
+                                            <li><a href="index.jsp">Dashboard</a>
                                             </li>
                                             <li><a href="vista/index2.html">Dashboard2</a>
                                             </li>
@@ -82,7 +82,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-edit"></i> Registros<span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-edit"></i>Registrar<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="vistas/registro/RegistroIntegrante.jsp" target="frame">Registro Integrante</a>
                                             </li>
@@ -98,7 +98,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-desktop"></i> Integrante <span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-male"></i>Integrante<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="vistas/registro/RegistroIntegrante.jsp" target="frame">Registrar Integrante</a>
                                             </li>
@@ -110,7 +110,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-table"></i> Pareja Misionera <span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-male"></i><i class="fa fa-female"></i>Pareja Misionera<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="vistas/registro/RegistroParejaMisionera.jsp" target="frame">Registrar Pareja Misionera</a>
                                             </li>
@@ -122,7 +122,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-bar-chart-o"></i> Trabajo Misionero<span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-suitcase"></i> Trabajo Misionero<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="vista/chartjs.html" target="frame">Agregar Trabajo Misionero</a>
                                             </li>
@@ -135,13 +135,13 @@
                                             
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-home"></i>Distrito Misionero<span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-university"></i>Distrito Misionero<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
 
                                             <li><a href="#">Dashboard</a>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-home"></i>Escuela Sabática<span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-book"></i>Escuela Sabática<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
 
                                             <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Registrar Nueva Escuela Sabática</a>
@@ -151,12 +151,19 @@
                                             
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-home"></i>Grupo Pequeño<span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-users"></i>Grupo Pequeño<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="vistas/info/infogp.jsp" target="frame">¿Qué es un Grupo Pequeño?</a>
                                             <li><a href="vistas/registro/RegistroNewGP.jsp" target="frame">Registrar Nuevo Grupo Pequeño</a>
                                             </li>
                                             <li><a href="#">Eliminar G.P.</a>    
+                                            
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-globe"></i>Ministerio<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+                                            
+                                            <li><a href="#">Algo que hace el ministerio</a>    
                                             
                                         </ul>
                                     </li>
