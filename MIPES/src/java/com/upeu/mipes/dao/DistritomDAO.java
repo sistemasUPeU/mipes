@@ -5,12 +5,14 @@
  */
 package com.upeu.mipes.dao;
 
+import com.upeu.mipes.config.Conexion;
 import static com.upeu.mipes.config.Conexion.getConexion;
 import com.upeu.mipes.dto.DistritomDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +25,8 @@ public class DistritomDAO implements CrudInterface<DistritomDTO> {
     private PreparedStatement ps;
     private ResultSet rs;
     private String sql;
+    
+    Conexion cx=new Conexion();
 
     @Override
     public boolean agregar(DistritomDTO d) {
@@ -101,18 +105,12 @@ public class DistritomDAO implements CrudInterface<DistritomDTO> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    
-   
-    public static ResultSet listaDistritos(String consulta){
-        
-        ResultSet rst=null;
-        PreparedStatement psm=null;
-        try {
-        psm=getConexion().prepareStatement(consulta);
-        rst=psm.executeQuery();
-        } catch (Exception e) {
-        }
-        return rst;
-    }
+    public ResultSet listar_Distritos(){
+		String consulta = "SELECT * FROM distritom order by NOMBRE";
+		System.out.println(consulta);
+		ResultSet rst =cx.RecibirDatos(consulta) ;	
+		return rst;
+	}
+ 
 
 }

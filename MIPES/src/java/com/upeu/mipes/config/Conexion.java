@@ -7,7 +7,9 @@ package com.upeu.mipes.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -19,13 +21,14 @@ public class Conexion {
     private static final String user="root";
     private static final String clave="root";
     private static Connection conn=null;
-    
+    public static Statement st=null;
+    public static ResultSet rst=null;
     public static final Connection getConexion(){
         try {
             Class.forName(driver);
              if(conn==null){
                 conn = DriverManager.getConnection(url, user, clave);
-                
+                st=conn.createStatement();
             }             
             
         } catch (ClassNotFoundException | SQLException e) {
@@ -38,5 +41,17 @@ public class Conexion {
         conn = null;
         
     }
+    
+    public ResultSet RecibirDatos(String consulta){
+        
+        try {
+        getConexion();
+        rst = st.executeQuery(consulta);
+        } catch (Exception e) {
+            System.out.println("Error de la consulta "+e.getMessage());
+        }
+        return rst;
+    }
+    
     
 }

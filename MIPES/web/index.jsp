@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,7 +14,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Home | MIPES </title>
+        <title>MIPES</title>
 
         <!-- Bootstrap core CSS -->
 
@@ -32,15 +32,6 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/nprogress.js"></script>
 
-        <!--[if lt IE 9]>
-              <script src="../assets/js/ie8-responsive-file-warning.js"></script>
-              <![endif]-->
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-                <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-                <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-              <![endif]-->
 
     </head>
 
@@ -56,7 +47,7 @@
                     <div class="left_col scroll-view">
 
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+                            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>MIPES | UPeU</span></a>
                         </div>
                         <div class="clearfix"></div>
 
@@ -66,8 +57,8 @@
                                 <img src="images/img.jpg" alt="..." class="img-circle profile_img">
                             </div>
                             <div class="profile_info">
-                                <span>Welcome,</span>
-                                <h2>John Doe</h2>
+                                <span>Bienvenido, </span>
+                                <h2>USUARIO</h2>
                             </div>
                         </div>
                         <!-- /menu prile quick info -->
@@ -109,24 +100,25 @@
                                     </li>
                                     <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="vista/general_elements.html">General Elements</a>
+                                            <li><a href="template/general_elements.html">General Elements</a>
                                             </li>
-                                            <li><a href="vista/media_gallery.html">Media Gallery</a>
+                                            <li><a href="template/media_gallery.html">Media Gallery</a>
                                             </li>
-                                            <li><a href="vista/typography.html">Typography</a>
+                                            <li><a href="template/typography.html">Typography</a>
                                             </li>
-                                            <li><a href="vista/icons.html">Icons</a>
+                                            <li><a href="template/icons.html">Icons</a>
                                             </li>
-                                            <li><a href="vista/glyphicons.html">Glyphicons</a>
+                                            <li><a href="template/glyphicons.html">Glyphicons</a>
                                             </li>
-                                            <li><a href="vista/widgets.html">Widgets</a>
+                                            <li><a href="template/widgets.html">Widgets</a>
                                             </li>
-                                            <li><a href="vista/invoice.html">Invoice</a>
+                                            <li><a href="template/invoice.html">Invoice</a>
                                             </li>
-                                            <li><a href="vista/inbox.html">Inbox</a>
+                                            <li><a href="template/inbox.html">Inbox</a>
                                             </li>
-                                            <li><a href="vista/calendar.html">Calendar</a>
+                                            <li><a href="template/calendar.html">Calendar</a>
                                             </li>
+                                            
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
@@ -149,6 +141,29 @@
                                             </li>
                                             <li><a href="vista/other_charts.html">Other Charts </a>
                                             </li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-home"></i>Distrito Misionero<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+
+                                            <li><a href="index.html">Dashboard</a>
+                                            
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-home"></i>Escuela Sabática<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+
+                                            <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Registrar Nueva Escuela Sabática</a>
+                                            </li>
+                                            
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-home"></i>Grupo Pequeño<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+
+                                            <li><a href="vistas/registro/RegistroNewGP.jsp" target="frame">Registrar Nuevo Grupo Pequeño</a>
+                                            </li>
+                                            
                                         </ul>
                                     </li>
                                 </ul>
@@ -240,7 +255,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="images/img.jpg" alt="">John Doe
+                                        <img src="images/img.jpg" alt="">USUARIO
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -255,7 +270,7 @@
                                         <li>
                                             <a href="javascript:;">Help</a>
                                         </li>
-                                        <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                        <li><a href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Salir</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -342,8 +357,8 @@
 
 
                 <!-- page content -->
-                <div class="right_col" role="main" >
-                    <iframe name="frame" style=" width:100% ;height:750px; border: none">
+                <div class="right_col" role="main" style="max-height: 1000px" >
+                    <iframe name="frame" style=" width:100% ;height:100%; border: none">
 
                     </iframe>
 

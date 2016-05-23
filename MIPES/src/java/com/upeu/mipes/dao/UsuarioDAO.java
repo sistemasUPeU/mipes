@@ -6,6 +6,7 @@
 package com.upeu.mipes.dao;
 
 import com.upeu.mipes.config.Conexion;
+import static com.upeu.mipes.config.Conexion.getConexion;
 import com.upeu.mipes.dto.UsuarioDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.Connection;
@@ -123,6 +124,17 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public static ResultSet listaDistritos(String consulta){
+        
+        ResultSet rst=null;
+        PreparedStatement psm=null;
+        try {
+        psm=getConexion().prepareStatement(consulta);
+        rst=psm.executeQuery();
+        } catch (Exception e) {
+        }
+        return rst;
+    }
     
 
     
