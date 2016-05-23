@@ -82,22 +82,6 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-edit"></i>Registrar<span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">
-                                            <li><a href="vistas/registro/RegistroIntegrante.jsp" target="frame">Registro Integrante</a>
-                                            </li>
-                                            <li><a href="vistas/registro/RegistroParejaMisionera.jsp" target="frame">Registro Pareja Misionera</a>
-                                            </li>
-                                            <li><a href="" target="frame">Registro Trabajo Misionero</a>
-                                            </li>
-                                            <li><a href="vistas/registro/RegistroNewGP.jsp" target="frame">Registrar Nuevo Grupo Pequeño</a>
-                                            </li>
-                                            <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Registrar Nueva Escuela Sabática</a>
-                                            </li>
-                                            <li><a href="vistas/registro/RegistroAsisGP.jsp" target="frame">Asistencia a Grupo Pequeño</a>
-                                            </li>
-                                        </ul>
-                                    </li>
                                     <li><a><i class="fa fa-male"></i>Integrante<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="vistas/registro/RegistroIntegrante.jsp" target="frame">Registrar Integrante</a>
@@ -106,7 +90,7 @@
                                             </li>
                                             <li><a href="template/typography.html" target="frame">Eliminar Integrante</a>
                                             </li>
-                                            <li><a href="template/typography.html" target="frame">Listar Integrantes</a>
+                                            <li><a href="vistas/listado/ListarIntegrante.jsp" target="frame">Listar Integrantes</a>
                                             </li>
                                         </ul>
                                     </li>
