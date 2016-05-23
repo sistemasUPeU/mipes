@@ -146,8 +146,7 @@
                                     <li><a><i class="fa fa-home"></i>Distrito Misionero<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
 
-                                            <li><a href="index.html">Dashboard</a>
-                                            
+                                            <li><a href="#">Dashboard</a>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-home"></i>Escuela Sabática<span class="fa fa-chevron-down"></span></a>
@@ -155,6 +154,8 @@
 
                                             <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Registrar Nueva Escuela Sabática</a>
                                             </li>
+                                            <li><a href="#">Editar Escuela Sabática</a>
+                                            <li><a href="#">Eliminar Escuela Sabática</a>    
                                             
                                         </ul>
                                     </li>
@@ -163,6 +164,8 @@
 
                                             <li><a href="vistas/registro/RegistroNewGP.jsp" target="frame">Registrar Nuevo Grupo Pequeño</a>
                                             </li>
+                                            <li><a href="#">Editar G.P.</a>
+                                            <li><a href="#">Eliminar G.P.</a>    
                                             
                                         </ul>
                                     </li>
