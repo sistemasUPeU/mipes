@@ -19,6 +19,7 @@
     <body>
         <jsp:useBean class="com.upeu.mipes.dao.MinisterioDAO" id="mi" scope="page" ></jsp:useBean>
         <jsp:useBean class="com.upeu.mipes.dao.GrupoDAO" id="gp" scope="page" ></jsp:useBean>
+        <jsp:useBean class="com.upeu.mipes.dao.CargoDAO" id="cg" scope="page" ></jsp:useBean>
             <div class="row ">  
                 <form class="col s10 offset-s1" action="prueba" method="post"> 
                     <h1 style="text-align: center; color: #26A69A">Registro Integrante</h1>
@@ -60,26 +61,27 @@
                         </div>
                     </div>
                     <div class="input-field col s12 m6">
-                        <select>
-                            <option value="" disabled selected>Seleccione Cargo</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                        </select>
-                        <label>Seleccione Cargo</label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                    <%ResultSet rs = mi.listar_Ministerios();%>
-                    <select name="n_ministerio" id="distrito" onchange=" disesc()">
-                        <option value="" disabled selected>Elegir Distrito</option>
+                    <%ResultSet rs = cg.listar_Cargo();%>
+                    <select name="n_cargo" id="cargo" onchange=" disesc()">
+                        <option value="" disabled selected>Elegir Cargo</option>
                         <% while (rs.next()) {%>
-                        <option value="<%= rs.getString("idMINISTERIO")%>"><%= rs.getString("NOMBRE")%></option>
+                        <option value="<%= rs.getString("idCARGO")%>"><%= rs.getString("NOMBRE")%></option>
+                        <% }%>
+                    </select>
+                    <label>Seleccione Cargo</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <%ResultSet rsm = mi.listar_Ministerios();%>
+                    <select name="n_ministerio" id="ministerio" onchange=" disesc()">
+                        <option value="" disabled selected>Elegir Distrito</option>
+                        <% while (rsm.next()) {%>
+                        <option value="<%= rsm.getString("idMINISTERIO")%>"><%= rsm.getString("NOMBRE")%></option>
                         <% }%>
                     </select>
                     <label>Seleccione Ministerio</label>
                 </div>
                 <div class="input-field col s12 m6">
-                   <%ResultSet rsp = gp.listar_GrupoP();%>
+                    <%ResultSet rsp = gp.listar_GrupoP();%>
                     <select name="n_grupo" id="grupo" onchange=" disesc()">
                         <option value="" disabled selected>Elegir Grupo Pequeño</option>
                         <% while (rsp.next()) {%>

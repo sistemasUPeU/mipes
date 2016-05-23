@@ -5,6 +5,7 @@
  */
 package com.upeu.mipes.dao;
 
+import com.upeu.mipes.config.Conexion;
 import com.upeu.mipes.dto.CargoDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.Connection;
@@ -22,7 +23,9 @@ public class CargoDAO implements CrudInterface<CargoDTO>{
     private PreparedStatement ps;
     private ResultSet rs;
     private String sql;
-
+    
+    Conexion cx = new Conexion();
+    
     @Override
     public boolean agregar(CargoDTO c) {
         sql="INSERT INTO CARGO (idCARGO, NOMBRE, ESTADO) VALUES(null,?,?)";
@@ -97,7 +100,13 @@ public class CargoDAO implements CrudInterface<CargoDTO>{
     public CargoDTO buscar(Object key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    public ResultSet listar_Cargo() {
+        String consulta = "SELECT * FROM cargo order by NOMBRE";
+        System.out.println(consulta);
+        ResultSet rst = cx.RecibirDatos(consulta);
+        return rst;
+    }
     
     
 }
