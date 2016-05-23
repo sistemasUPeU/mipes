@@ -12,6 +12,7 @@ package com.upeu.mipes.dto;
 public class IntegranteDTO {
     private int idIntegrante;
     private int idGrupo;
+    private int idCargo;
     private int idMinisterio;
     private String Nombre;
     private String Apellidos;
@@ -122,6 +123,14 @@ public class IntegranteDTO {
 
     public void setEstado(String Estado) {
         this.Estado = Estado;
+    }
+
+    public int getIdCargo() {
+        return idCargo;
+    }
+
+    public void setIdCargo(int idCargo) {
+        this.idCargo = idCargo;
     }
     
     

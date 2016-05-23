@@ -25,12 +25,12 @@ public class DistritomDAO implements CrudInterface<DistritomDTO> {
     private PreparedStatement ps;
     private ResultSet rs;
     private String sql;
-    
-    Conexion cx=new Conexion();
+
+    Conexion cx = new Conexion();
 
     @Override
     public boolean agregar(DistritomDTO d) {
-        
+
         sql = "INSERT INTO ASGRUPO (idDISTRITOM, NOMBRE, ESTADO) VALUES(null,?,?)";
         try {
             ps = cn.prepareStatement(sql);
@@ -54,7 +54,7 @@ public class DistritomDAO implements CrudInterface<DistritomDTO> {
             ps.setString(1, d.getNombre());
             ps.setString(2, d.getEstado());
             ps.setInt(3, d.getIdDistritom());
-                       
+
             int r = ps.executeUpdate();
             cn.close();
             return (r > 0);
@@ -104,13 +104,12 @@ public class DistritomDAO implements CrudInterface<DistritomDTO> {
     public DistritomDTO buscar(Object key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public ResultSet listar_Distritos(){
-		String consulta = "SELECT * FROM distritom order by NOMBRE";
-		System.out.println(consulta);
-		ResultSet rst =cx.RecibirDatos(consulta) ;	
-		return rst;
-	}
- 
+
+    public ResultSet listar_Distritos() {
+        String consulta = "SELECT * FROM distritom order by NOMBRE";
+        System.out.println(consulta);
+        ResultSet rst = cx.RecibirDatos(consulta);
+        return rst;
+    }
 
 }
