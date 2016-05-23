@@ -161,10 +161,9 @@
                                     </li>
                                     <li><a><i class="fa fa-home"></i>Grupo Pequeño<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-
+                                            <li><a href="vistas/info/infogp.jsp" target="frame">¿Qué es un Grupo Pequeño?</a>
                                             <li><a href="vistas/registro/RegistroNewGP.jsp" target="frame">Registrar Nuevo Grupo Pequeño</a>
                                             </li>
-                                            <li><a href="#">Editar G.P.</a>
                                             <li><a href="#">Eliminar G.P.</a>    
                                             
                                         </ul>

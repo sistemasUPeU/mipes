@@ -27,15 +27,17 @@
 
             });
         </script>
+        <jsp:useBean class="com.upeu.mipes.dao.DistritomDAO" id="di" scope="page"></jsp:useBean>
     </head>
     <body>
         <div style="width: 75%; margin: auto">
-        <form method="post" id="data"> 
+        <form method="post" id="data">
+            <h2>Nueva Escuela Sabática</h2>
                 <div class="input-field col s12" >
                     <select name="n_distrito" id="distrito">
                         <option value="" disabled selected>Elegir Distrito</option>
                         <%
-                             ResultSet rs = DistritomDAO.listaDistritos("SELECT * FROM distritom order by NOMBRE");
+                             ResultSet rs = di.listar_Distritos();
                             while (rs.next()) {
                         %>
                         <option value="<%= rs.getString("idDISTRITOM")%>"><%= rs.getString("NOMBRE")%></option>
@@ -49,17 +51,7 @@
                     <input id="n_gp" type="text" class="validate">
                     <label for="n_gp" style="margin-top: 1%">Nombre de la Escuela Sabática</label>
                 </div>
-                <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Información</a>
-                <div id="modal1" class="modal modal-fixed-footer">
-                    <div class="modal-content">
-                        <h4>Escuela Sabática</h4>
-                        <p>Los grupos pequeños (GP) están compuestos por varias personas que se reúnen una vez a la semana con el propósito de estudiar la Biblia. La IASD toma este modelo de la experiencia de los primeros cristianos. Las reuniones son conducidas por un líder, quien dirige el estudio bíblico, apoyado también por una serie de materiales editados por la IASD. Los objetivos de los GP son: a) incentivar a las personas a experimentar el sentido de comunidad creado por Dios; b) vivir la experiencia de evangelizar; c) descubrir y desarrollar los dones espirituales de cada miembro del GP; d) fortalecer a cada miembro de iglesia para disminuir el abandono de la fe, o apostasía; e) promover la multiplicación del grupo con nuevos amigos y futuros miembros de la iglesia.
-                            <br/>La celebración de la Semana Santa en pequeños grupos es una estrategia apropiada, porque permite fortalecer las relaciones interpersonales basadas en la hermandad y la fe, fomenta el desarrollo de los dones espirituales, favorece lazos de amistad entre los participantes por medio del intercambio de ideas y experiencias, desvanece el clima de formalidad y propicia la toma de decisiones más consistentes.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Listo</a>
-                    </div>
-                </div>
+                
 
                 <button class="btn waves-effect waves-light" type="submit" name="action">Registrar
                     <i class="material-icons right">send</i>

@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,10 +26,12 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
     
     private Connection cn;
     private PreparedStatement ps;
+    private Statement st;
     private ResultSet rs;
     private String sql;
 
  public boolean validarUser(String user,String pass){
+    boolean m=false;
     sql ="select * from usuario where USUARIO=? and CLAVE=?";
         try {
             cn=Conexion.getConexion();
@@ -37,31 +40,33 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
             ps.setString(2, pass);
             rs=ps.executeQuery();
             while(rs.next()) {
-                return true;
+                m=true;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return m;
     }   
     
     
     
     @Override
     public boolean agregar(UsuarioDTO u) {
-        sql="INSERT INTO USUARIO (idUSUARIO, USUARIO, CLAVE, ESTADO) VALUES(null,?,?,?)";
+        sql="INSERT INTO USUARIO (idUSUARIO, USUARIO, CLAVE, ESTADO) VALUES("+u.getIdUsuario()+",'"+u.getUsuario()+"','"+u.getClave()+"','"+u.getEstado()+"')";
+        boolean a=false;
         try {
-            ps=cn.prepareStatement(sql);
-            ps.setString(1, u.getUsuario());
-            ps.setString(2, u.getClave());
-            ps.setString(3, u.getEstado());
-            int r=ps.executeUpdate();
-            cn.close();
-            return (r>0);
+            cn=Conexion.getConexion();
+            st=cn.createStatement();
+            int b=st.executeUpdate(sql);
+            if (b>0) {
+                a=true;
+            }
+            
         } catch (SQLException e) {
             System.out.println("Error al insertar Usuario "+e);
-            return false;
+            
         }
+        return a;
     }
 
     @Override

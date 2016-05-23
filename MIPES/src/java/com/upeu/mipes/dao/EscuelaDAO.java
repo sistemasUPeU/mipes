@@ -18,16 +18,15 @@ import java.util.ArrayList;
  * @author USER
  */
 public class EscuelaDAO implements CrudInterface<EscuelaDTO> {
-    
+
     private String sql;
     private Connection cx;
     private PreparedStatement ps;
     private Statement st;
-    
-    
+
     @Override
     public boolean agregar(EscuelaDTO u) {
-        sql = "INSERT INTO escuela (idESCUELA,idDISTRITOM,NOMBRE,ESTADO) VALUES ("+u.getIdEscuela()+","+u.getIdDistritoM()+",'"+u.getNombre()+"','"+u.getEstado()+"')";
+        sql = "INSERT INTO escuela (idESCUELA,idDISTRITOM,NOMBRE,ESTADO) VALUES (" + u.getIdEscuela() + "," + u.getIdDistritoM() + ",'" + u.getNombre() + "','" + u.getEstado() + "')";
         boolean p = false;
         try {
             cx = Conexion.getConexion();
@@ -36,8 +35,8 @@ public class EscuelaDAO implements CrudInterface<EscuelaDTO> {
             if (a > 0) {
                 p = true;
             }
-        } catch (Exception ex) {
-            System.out.println("Error Registrar Escuela Sabática: " + u);
+        } catch (Exception e) {
+            System.out.println("Error Registrar Escuela Sabática: " + e);
         }
         return p;
 
@@ -50,7 +49,19 @@ public class EscuelaDAO implements CrudInterface<EscuelaDTO> {
 
     @Override
     public boolean eliminar(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sql = "delete from escuela where idESCUELA=" + key;
+        boolean p = false;
+        try {
+            cx = Conexion.getConexion();
+            st = cx.createStatement();
+            int a = st.executeUpdate(sql);
+            if (a > 0) {
+                p = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error al Eliminar Escuela Sabatica" + e);
+        }
+        return p;
     }
 
     @Override
@@ -61,6 +72,38 @@ public class EscuelaDAO implements CrudInterface<EscuelaDTO> {
     @Override
     public EscuelaDTO buscar(Object key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean desactivar(int idESC) {
+        sql = "update escuela set estado='0' where idESCUELA=" + idESC;
+        boolean p = false;
+        try {
+            cx = Conexion.getConexion();
+            st = cx.createStatement();
+            int a = st.executeUpdate(sql);
+            if (a > 0) {
+                p = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error al desactivar Escuela Sabatica" + e);
+        }
+        return p;
+    }
+
+    public boolean activar(int idESC) {
+        sql = "update escuela set estado='1' where idESCUELA=" + idESC;
+        boolean p = false;
+        try {
+            cx = Conexion.getConexion();
+            st = cx.createStatement();
+            int a = st.executeUpdate(sql);
+            if (a > 0) {
+                p = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error al activar Escuela Sabatica" + e);
+        }
+        return p;
     }
 
 }
