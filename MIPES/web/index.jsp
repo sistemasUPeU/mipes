@@ -98,49 +98,41 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-desktop"></i> Integrante <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="template/general_elements.html">General Elements</a>
+                                            <li><a href="vistas/registro/RegistroIntegrante.jsp" target="frame">Registrar Integrante</a>
                                             </li>
-                                            <li><a href="template/media_gallery.html">Media Gallery</a>
+                                            <li><a href="template/media_gallery.html" target="frame">Editar Integrante</a>
                                             </li>
-                                            <li><a href="template/typography.html">Typography</a>
+                                            <li><a href="template/typography.html" target="frame">Eliminar Integrante</a>
                                             </li>
-                                            <li><a href="template/icons.html">Icons</a>
+                                            <li><a href="template/typography.html" target="frame">Listar Integrantes</a>
                                             </li>
-                                            <li><a href="template/glyphicons.html">Glyphicons</a>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-table"></i> Pareja Misionera <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+                                            <li><a href="vistas/registro/RegistroParejaMisionera.jsp" target="frame">Registrar Pareja Misionera</a>
                                             </li>
-                                            <li><a href="template/widgets.html">Widgets</a>
+                                            <li><a href="vista/tables_dynamic.html" target="frame">Registrar Pareja Misionera</a>
                                             </li>
-                                            <li><a href="template/invoice.html">Invoice</a>
+                                            <li><a href="vista/tables_dynamic.html" target="frame">Registrar Pareja Misionera</a>
                                             </li>
-                                            <li><a href="template/inbox.html">Inbox</a>
+                                            <li><a href="vista/tables_dynamic.html" target="frame">Registrar Parejas Misioneras</a>
                                             </li>
-                                            <li><a href="template/calendar.html">Calendar</a>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-bar-chart-o"></i> Trabajo Misionero<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+                                            <li><a href="vista/chartjs.html" target="frame">Agregar Trabajo Misionero</a>
+                                            </li>
+                                            <li><a href="vista/chartjs2.html" target="frame">Editar Trabajo Misionero</a>
+                                            </li>
+                                            <li><a href="vista/morisjs.html" target="frame">Eliminar Trabajo Misionero</a>
+                                            </li>
+                                            <li><a href="vista/echarts.html" target="frame">Listar Trabajo Misionero</a>
                                             </li>
                                             
-                                        </ul>
-                                    </li>
-                                    <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">
-                                            <li><a href="vista/tables.html">Tables</a>
-                                            </li>
-                                            <li><a href="vista/tables_dynamic.html">Table Dynamic</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">
-                                            <li><a href="vista/chartjs.html">Chart JS</a>
-                                            </li>
-                                            <li><a href="vista/chartjs2.html">Chart JS2</a>
-                                            </li>
-                                            <li><a href="vista/morisjs.html">Moris JS</a>
-                                            </li>
-                                            <li><a href="vista/echarts.html">ECharts </a>
-                                            </li>
-                                            <li><a href="vista/other_charts.html">Other Charts </a>
-                                            </li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-home"></i>Distrito Misionero<span class="fa fa-chevron-down"></span></a>
