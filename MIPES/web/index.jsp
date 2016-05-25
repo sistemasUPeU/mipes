@@ -116,7 +116,7 @@
                                             </li>
                                             <li><a href="vista/echarts.html" target="frame">Listar Trabajo Misionero</a>
                                             </li>
-                                            
+
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-university"></i>Distrito Misionero<span class="fa fa-chevron-down"></span></a>
@@ -132,7 +132,7 @@
                                             </li>
                                             <li><a href="#">Editar Escuela Sabática</a>
                                             <li><a href="#">Eliminar Escuela Sabática</a>    
-                                            
+
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-users"></i>Grupo Pequeño<span class="fa fa-chevron-down"></span></a>
@@ -141,14 +141,14 @@
                                             <li><a href="vistas/registro/RegistroNewGP.jsp" target="frame">Registrar Nuevo Grupo Pequeño</a>
                                             </li>
                                             <li><a href="#">Eliminar G.P.</a>    
-                                            
+
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-globe"></i>Ministerio<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            
+
                                             <li><a href="#">Algo que hace el ministerio</a>    
-                                            
+
                                         </ul>
                                     </li>
                                 </ul>
@@ -341,13 +341,11 @@
                 <!-- /top navigation -->
 
 
-                <!-- page content -->
+                <!-- contenido recargable -->
                 <div class="right_col" role="main" style="max-height: 1000px" >
                     <iframe name="frame" style=" width:100% ;height:100%; border: none">
-
+                    <%@include file="login.jsp" %>
                     </iframe>
-
-
                 </div>
                 <!-- /page content -->
             </div>
@@ -630,7 +628,7 @@
             </script>
             <!-- /datepicker -->
             <!-- /footer content -->
-            
+
         </div>
     </body>
 

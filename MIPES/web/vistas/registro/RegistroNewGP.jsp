@@ -44,7 +44,7 @@
 
                 <form method="post" id="data" style="margin-top: 5%"> 
                     <div class="input-field col s12"  style="margin-top: 5%">
-                        
+                        <i class="material-icons prefix">group_work</i>
                     <%ResultSet rs = di.listar_Distritos();%>
                     <select name="n_distrito" id="distrito" onchange=" disesc()">
                         <option value="" disabled selected>Elegir Distrito</option>
