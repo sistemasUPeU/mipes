@@ -130,8 +130,8 @@
 
                                             <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Registrar Nueva Escuela Sabática</a>
                                             </li>
-                                            <li><a href="#">Editar Escuela Sabática</a>
-                                            <li><a href="#">Eliminar Escuela Sabática</a>    
+                                            <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Desactivar Escuela Sabática</a>
+                                            </li>   
 
                                         </ul>
                                     </li>
@@ -154,7 +154,7 @@
                                 </ul>
                             </div>
                             <div class="menu_section">
-                                <h3>Live On</h3>
+                                <h3>------</h3>
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
@@ -248,12 +248,12 @@
                                         </li>
                                         <li>
                                             <a href="javascript:;">
-                                                <span class="badge bg-red pull-right">50%</span>
-                                                <span>Settings</span>
+                                                <!--<span class="badge bg-red pull-right">50%</span>-->
+                                                <span>Configuración</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;">Help</a>
+                                            <a href="javascript:;">Ayuda</a>
                                         </li>
                                         <li><a href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Salir</a>
                                         </li>
@@ -263,51 +263,10 @@
                                 <li role="presentation" class="dropdown">
                                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                         <i class="fa fa-envelope-o"></i>
-                                        <span class="badge bg-green">6</span>
+                                        <span class="badge bg-green">1</span>
                                     </a>
                                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                        <li>
-                                            <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                                <span>
-                                                    <span>John Smith</span>
-                                                    <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                                <span>
-                                                    <span>John Smith</span>
-                                                    <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                                <span>
-                                                    <span>John Smith</span>
-                                                    <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                </span>
-                                            </a>
-                                        </li>
+                                        
                                         <li>
                                             <a>
                                                 <span class="image">
@@ -325,7 +284,7 @@
                                         <li>
                                             <div class="text-center">
                                                 <a href="vista/inbox.html">
-                                                    <strong>See All Alerts</strong>
+                                                    <strong>Ver más mensajes</strong>
                                                     <i class="fa fa-angle-right"></i>
                                                 </a>
                                             </div>
@@ -342,9 +301,8 @@
 
 
                 <!-- contenido recargable -->
-                <div class="right_col" role="main" style="max-height: 1000px" >
+                <div class="right_col" role="main" style="height: 100%;padding: 5%;box-sizing: border-box" >
                     <iframe name="frame" style=" width:100% ;height:100%; border: none">
-                    <%@include file="login.jsp" %>
                     </iframe>
                 </div>
                 <!-- /page content -->
@@ -627,7 +585,7 @@
                 NProgress.done();
             </script>
             <!-- /datepicker -->
-            <!-- /footer content -->
+            <!-- /footer content -->           
 
         </div>
     </body>

@@ -21,9 +21,9 @@
         <script src="../../js/jquery.min.js" type="text/javascript"></script>
     </head>
 
-    <body >
+    <body style="background-color: white;width: 100%">
 
-        <div class="x_panel">
+        <div class="x_panel" >
 
             <div id="wizard_verticle" class="form_wizard wizard_verticle">
                 <ul class="list-unstyled wizard_steps">
