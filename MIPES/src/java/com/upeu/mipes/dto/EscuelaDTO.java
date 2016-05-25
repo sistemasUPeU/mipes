@@ -14,14 +14,20 @@ public class EscuelaDTO {
     private int idDistritoM;
     private String Nombre;
     private String Estado;
+    private String Fecha;
+    private String Color;
+    private String Lema;
 
     public EscuelaDTO() {
     }
 
-    public EscuelaDTO(int idDistritoM, String Nombre, String Estado) {
+    public EscuelaDTO(int idDistritoM, String Nombre, String Estado, String Fecha, String Color, String Lema) {
         this.idDistritoM = idDistritoM;
         this.Nombre = Nombre;
         this.Estado = Estado;
+        this.Fecha = Fecha;
+        this.Color = Color;
+        this.Lema = Lema;
     }
 
     public int getIdEscuela() {
@@ -56,5 +62,28 @@ public class EscuelaDTO {
         this.Estado = Estado;
     }
 
-    
+    public String getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(String Fecha) {
+        this.Fecha = Fecha;
+    }
+
+    public String getColor() {
+        return Color;
+    }
+
+    public void setColor(String Color) {
+        this.Color = Color;
+    }
+
+    public String getLema() {
+        return Lema;
+    }
+
+    public void setLema(String Lema) {
+        this.Lema = Lema;
+    }
+
 }

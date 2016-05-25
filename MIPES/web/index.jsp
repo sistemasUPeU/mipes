@@ -121,8 +121,8 @@
                                     </li>
                                     <li><a><i class="fa fa-university"></i>Distrito Misionero<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-
-                                            <li><a href="#">Dashboard</a>
+                                            <li><a href="vistas/listado/ListarES.jsp" target="frame">Lista de Escuelas Sabáticas</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-book"></i>Escuela Sabática<span class="fa fa-chevron-down"></span></a>
@@ -130,6 +130,7 @@
 
                                             <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Registrar Nueva Escuela Sabática</a>
                                             </li>
+
                                             <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Desactivar Escuela Sabática</a>
                                             </li>   
 
@@ -266,7 +267,7 @@
                                         <span class="badge bg-green">1</span>
                                     </a>
                                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                        
+
                                         <li>
                                             <a>
                                                 <span class="image">
@@ -301,7 +302,7 @@
 
 
                 <!-- contenido recargable -->
-                <div class="right_col" role="main" style="height: 100%;padding: 5%;box-sizing: border-box" >
+                <div class="right_col" role="main" style="height: 100%;padding: 3% 0;box-sizing: border-box;" >
                     <iframe name="frame" style=" width:100% ;height:100%; border: none">
                     </iframe>
                 </div>
