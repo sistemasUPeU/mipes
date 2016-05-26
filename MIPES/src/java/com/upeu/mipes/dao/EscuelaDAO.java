@@ -10,6 +10,7 @@ import com.upeu.mipes.dto.EscuelaDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -104,6 +105,12 @@ public class EscuelaDAO implements CrudInterface<EscuelaDTO> {
             System.out.println("Error al activar Escuela Sabatica" + e);
         }
         return p;
+    }
+    public ResultSet listar_escuelas(String consulta) {
+        Conexion cnn = new Conexion();
+        System.out.println(consulta);
+        ResultSet rst = cnn.RecibirDatos(consulta);
+        return rst;
     }
 
 }

@@ -41,7 +41,7 @@
             <div style="width:85%;margin: auto;padding: 5% 2%;box-sizing: border-box">
                 <h2 style="margin: auto; color: #00bfa5">Nuevo Grupo Pequeño</h2>
 
-                <form method="post" id="data" style="margin-top: 5%"> 
+                <form method="post" style="margin-top: 5%"> 
                     <div id="d_distrito" class="input-field col s12"  style="margin-top: 2%">
                         <i class="material-icons prefix">group_work</i>
                     <%ResultSet rs = di.listar_Distritos("SELECT * FROM distritom order by NOMBRE");%>

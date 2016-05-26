@@ -26,7 +26,7 @@ public class DistritomDAO implements CrudInterface<DistritomDTO> {
     private ResultSet rs;
     private String sql;
 
-    Conexion cx = new Conexion();
+    
 
     @Override
     public boolean agregar(DistritomDTO d) {
@@ -106,6 +106,7 @@ public class DistritomDAO implements CrudInterface<DistritomDTO> {
     }
 
     public ResultSet listar_Distritos(String consulta) {
+        Conexion cx = new Conexion();
         System.out.println(consulta);
         ResultSet rst = cx.RecibirDatos(consulta);
         return rst;

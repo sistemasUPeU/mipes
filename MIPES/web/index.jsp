@@ -141,7 +141,7 @@
                                             <li><a href="vistas/info/infogp.jsp" target="frame">¿Qué es un Grupo Pequeño?</a>
                                             <li><a href="vistas/registro/RegistroNewGP.jsp" target="frame">Registrar Nuevo Grupo Pequeño</a>
                                             </li>
-                                            <li><a href="#">Eliminar G.P.</a>    
+                                            <li><a href="vistas/registro/RegistroAsisGP.jsp" target="frame">Registrar Asistencia</a>    
 
                                         </ul>
                                     </li>
