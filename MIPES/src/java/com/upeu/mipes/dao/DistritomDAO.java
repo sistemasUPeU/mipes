@@ -105,8 +105,7 @@ public class DistritomDAO implements CrudInterface<DistritomDTO> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public ResultSet listar_Distritos() {
-        String consulta = "SELECT * FROM distritom order by NOMBRE";
+    public ResultSet listar_Distritos(String consulta) {
         System.out.println(consulta);
         ResultSet rst = cx.RecibirDatos(consulta);
         return rst;

@@ -37,7 +37,7 @@
                         <select name="n_distrito" id="distrito">
                             <option value="" disabled selected>Elegir Distrito</option>
                         <%
-                            ResultSet rs = di.listar_Distritos();
+                            ResultSet rs = di.listar_Distritos("SELECT * FROM distritom order by NOMBRE");
                             while (rs.next()) {
                         %>
                         <option value="<%= rs.getString("idDISTRITOM")%>"><%= rs.getString("NOMBRE")%></option>

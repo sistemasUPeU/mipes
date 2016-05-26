@@ -79,16 +79,16 @@ public class RegESController extends HttpServlet {
         if (!dis.equals("") && !nom.equals("")) {
             EscuelaDTO ed = new EscuelaDTO(Integer.parseInt(dis), nom, est, fec, co, lem);
             if (eA.agregar(ed)) {
-                pagina = "/vistas/registro/RegistroNewGP.jsp";
+                pagina = "/vistas/extras/CongNewES.jsp";
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
             } else {
-                pagina = "/vistas/registro/RegistroIntegrante.jsp";
+                pagina = "#";
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
             }
         } else {
-            pagina = "/vistas/registro/RegistroNewES.jsp";
+            pagina = "#";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
             dispatcher.forward(request, response);
         }
