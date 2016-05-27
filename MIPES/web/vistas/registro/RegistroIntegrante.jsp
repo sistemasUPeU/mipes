@@ -21,7 +21,7 @@
         <jsp:useBean class="com.upeu.mipes.dao.GrupoDAO" id="gp" scope="page" ></jsp:useBean>
         <jsp:useBean class="com.upeu.mipes.dao.CargoDAO" id="cg" scope="page" ></jsp:useBean>
             <div class="row ">  
-                <form class="col s10 offset-s1" action="prueba" method="post"> 
+                <form class="col s10 offset-s1"  method="post"> 
                     <h1 style="text-align: center; color: #26A69A">Registro Integrante</h1>
                     <div class="row">
                         <div class="input-field col s12 m6">
@@ -81,7 +81,7 @@
                     <label>Seleccione Ministerio</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <%ResultSet rsp = gp.listar_GrupoP();%>
+                    <%ResultSet rsp = gp.listar_grupos();%>
                     <select name="n_grupo" id="grupo" onchange=" disesc()">
                         <option value="" disabled selected>Elegir Grupo Pequeño</option>
                         <% while (rsp.next()) {%>
