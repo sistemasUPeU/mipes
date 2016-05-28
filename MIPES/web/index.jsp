@@ -17,9 +17,7 @@
         <title>MIPES</title>
 
         <!-- Bootstrap core CSS -->
-
         <link href="css/bootstrap.min.css" rel="stylesheet">
-
         <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
         <link href="css/animate.min.css" rel="stylesheet">
 
@@ -28,29 +26,24 @@
         <link rel="stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.3.css" />
         <link href="css/icheck/flat/green.css" rel="stylesheet" />
         <link href="css/floatexamples.css" rel="stylesheet" type="text/css" />
-
+        
+        <!--Scripts-->
         <script src="js/jquery.min.js"></script>
         <script src="js/nprogress.js"></script>
-
-
     </head>
-
 
     <body class="nav-md">
 
         <div class="container body">
 
-
             <div class="main_container">
 
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
-
                         <div class="navbar nav_title" style="border: 0;">
                             <a href="index.jsp" class="site_title"><i class="fa fa-child"></i> <span>MIPES | UPeU</span></a>
                         </div>
                         <div class="clearfix"></div>
-
                         <!-- menu prile quick info -->
                         <div class="profile">
                             <div class="profile_pic">
@@ -62,18 +55,14 @@
                             </div>
                         </div>
                         <!-- /menu prile quick info -->
-
                         <br />
-
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-
                             <div class="menu_section">
                                 <h3>General</h3>
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-
                                             <li><a href="index.jsp">Dashboard</a>
                                             </li>
                                             <li><a href="vista/index2.html">Dashboard2</a>
@@ -98,12 +87,12 @@
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="vistas/registro/RegistroParejaMisionera.jsp" target="frame">Registrar Pareja Misionera</a>
                                             </li>
-                                            <li><a href="vista/tables_dynamic.html" target="frame">Registrar Pareja Misionera</a>
+                                            <li><a href="vista/tables_dynamic.html" target="frame">Editar Pareja Misionera</a>
                                             </li>
-                                            <li><a href="vista/tables_dynamic.html" target="frame">Registrar Pareja Misionera</a>
+                                            <li><a href="vista/tables_dynamic.html" target="frame">Eliminar Parejas Misioneras</a>
                                             </li>
-                                            <li><a href="vista/tables_dynamic.html" target="frame">Registrar Parejas Misioneras</a>
-                                            </li>
+                                            <li><a href="vista/tables_dynamic.html" target="frame">Listar Parejas Misioneras</a>
+                                            </li>  
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-suitcase"></i> Trabajo Misionero<span class="fa fa-chevron-down"></span></a>
@@ -116,7 +105,6 @@
                                             </li>
                                             <li><a href="vista/echarts.html" target="frame">Listar Trabajo Misionero</a>
                                             </li>
-
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-university"></i>Distrito Misionero<span class="fa fa-chevron-down"></span></a>
@@ -127,13 +115,10 @@
                                     </li>
                                     <li><a><i class="fa fa-book"></i>Escuela Sabática<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-
                                             <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Registrar Nueva Escuela Sabática</a>
                                             </li>
-
                                             <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Desactivar Escuela Sabática</a>
                                             </li>   
-
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-users"></i>Grupo Pequeño<span class="fa fa-chevron-down"></span></a>
@@ -142,14 +127,11 @@
                                             <li><a href="vistas/registro/RegistroNewGP.jsp" target="frame">Registrar Nuevo Grupo Pequeño</a>
                                             </li>
                                             <li><a href="vistas/registro/RegistroAsisGP.jsp" target="frame">Registrar Asistencia</a>    
-
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-globe"></i>Ministerio<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-
                                             <li><a href="#">Algo que hace el ministerio</a>    
-
                                         </ul>
                                     </li>
                                 </ul>
@@ -206,10 +188,7 @@
                                     </li>
                                 </ul>
                             </div>
-
                         </div>
-                        <!-- /sidebar menu -->
-
                         <!-- /menu footer buttons -->
                         <div class="sidebar-footer hidden-small">
                             <a data-toggle="tooltip" data-placement="top" title="Settings">
@@ -228,16 +207,13 @@
                         <!-- /menu footer buttons -->
                     </div>
                 </div>
-
                 <!-- top navigation -->
                 <div class="top_nav">
-
                     <div class="nav_menu">
                         <nav class="" role="navigation">
                             <div class="nav toggle">
                                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                             </div>
-
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -260,14 +236,12 @@
                                         </li>
                                     </ul>
                                 </li>
-
                                 <li role="presentation" class="dropdown">
                                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                         <i class="fa fa-envelope-o"></i>
                                         <span class="badge bg-green">1</span>
                                     </a>
                                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-
                                         <li>
                                             <a>
                                                 <span class="image">
@@ -292,15 +266,10 @@
                                         </li>
                                     </ul>
                                 </li>
-
                             </ul>
                         </nav>
                     </div>
-
                 </div>
-                <!-- /top navigation -->
-
-
                 <!-- contenido recargable -->
                 <div class="right_col" role="main" style="height: 100%;padding: 3% 0;box-sizing: border-box;" >
                     <iframe name="frame" style=" width:100% ;height:100%; border: none">
@@ -315,9 +284,7 @@
                 <div class="clearfix"></div>
                 <div id="notif-group" class="tabbed_notifications"></div>
             </div>
-
             <script src="js/bootstrap.min.js"></script>
-
             <!-- gauge js -->
             <script type="text/javascript" src="js/gauge/gauge.min.js"></script>
             <script type="text/javascript" src="js/gauge/gauge_demo.js"></script>
@@ -330,9 +297,7 @@
             <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
             <!-- chart js -->
             <script src="js/chartjs/chart.min.js"></script>
-
             <script src="js/custom.js"></script>
-
             <!-- flot js -->
             <!--[if lte IE 8]><script type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
             <script type="text/javascript" src="js/flot/jquery.flot.js"></script>
@@ -587,7 +552,6 @@
             </script>
             <!-- /datepicker -->
             <!-- /footer content -->           
-
         </div>
     </body>
 

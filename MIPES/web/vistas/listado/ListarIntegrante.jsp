@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.upeu.mipes.dto.IntegranteDTO"%>
+<jsp:useBean id="list" scope="session" class="java.util.ArrayList"/>
 <!DOCTYPE html5>
 <html>
     <head>
@@ -20,55 +22,28 @@
                 <input id="search" type="search" required>
                 <label for="search"><i class="material-icons">search</i></label>
                 <i class="material-icons">close</i>
-<!--                <label for="search">Buscar</label>-->
+                <!--                <label for="search">Buscar</label>-->
             </div>
         </form>
-        <table class="responsive-table striped">
-            <thead>
-                <tr>
-                    <th data-field="id">Grupo</th>
-                    <th data-field="name">Cargo</th>
-                    <th data-field="price">Ministerio</th>
-                    <th data-field="id">Nombre</th>
-                    <th data-field="name">Apellidos</th>
-                    <th data-field="id">Email</th>
-                    <th data-field="name">Teléfono</th>
-                    <th data-field="price">Direccion</th>
-                </tr>
-            </thead>
 
-            <tbody>
-                <tr>
-                    <td>Alvin</td>
-                    <td>Eclair</td>
-                    <td>$0.87</td>
-                    <td>Alvin</td>
-                    <td>Eclair</td>
-                    <td>$0.87</td>
-                    <td>Alvin</td>
-                    <td>Eclair</td>
-                </tr>
-                <tr>
-                    <td>Teodoro</td>
-                    <td>Jellybean</td>
-                    <td>$3.76</td>
-                    <td>Teodoro</td>
-                    <td>Jellybean</td>
-                    <td>$3.76</td>
-                    <td>Teodoro</td>
-                    <td>Jellybean</td>
-                </tr>
-                <tr>
-                    <td>Simón</td>
-                    <td>Lollipop</td>
-                    <td>$7.00</td>
-                    <td>Simón</td>
-                    <td>Lollipop</td>
-                    <td>$7.00</td>
-                    <td>Simón</td>
-                    <td>Lollipop</td>
-                </tr>
-            </tbody>
+        <table class="table table-bordered" style="width: 800px;">
+            <tr>
+                <th>Id</th>
+                <th>Departamento</th>
+                <th>Centro Costos</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            <% for (int i = 0; i < list.size(); i++) {
+                    IntegranteDTO integr = new IntegranteDTO();
+                    integr = (IntegranteDTO) list.get(i);
+            %>
+            <tr>
+                <td><%= integr.getNombre()%></td>
+                <td><%= integr.getApellidos()%></td>
+                <td><%= integr.getEmail()%></td>
+            </tr>
+            <%}%>
         </table>
     </body>
 </html>

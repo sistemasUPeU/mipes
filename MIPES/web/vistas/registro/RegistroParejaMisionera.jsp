@@ -4,6 +4,7 @@
     Author     : Andrew
 --%>
 
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,66 +16,45 @@
         <link href="../../css/materialize.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <jsp:useBean class="com.upeu.mipes.dao.MinisterioDAO" id="mi" scope="page" ></jsp:useBean>
+        <jsp:useBean class="com.upeu.mipes.dao.GrupoDAO" id="gp" scope="page" ></jsp:useBean>
+        <jsp:useBean class="com.upeu.mipes.dao.CargoDAO" id="cg" scope="page" ></jsp:useBean>
 
-        <div class="row ">  
-            <form class="col s10 offset-s1">    
-                <h1 style="text-align: center; color: #26A69A">Registro Pareja Misionera</h1>
-                <div class="row">
+        <div class="row">   
+            
+                <form class="col s10 offset-s1">
+                    <h1 style="text-align: center; color: #26A69A">Registro Pareja Misionera</h1>
+                    <!--------------------------------------->
                     <div class="input-field col s12 m6">
+                        <input id="search" type="search" required>
+                        <label for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                          <!--<label for="search">Buscar</label>-->
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="search" type="search" required>
+                        <label for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                          <!--<label for="search">Buscar</label>-->
+                    </div>
+                    <div class="input-field col s6 m6">
                         <i class="material-icons prefix">account_circle</i>
                         <input id="icon_prefix" type="text" class="validate">
                         <label for="icon_prefix">Persona 1</label>
                     </div>
-
-                    <div class="input-field col s12 m6">
+                     
+                    <div class="input-field col s6 m6">
                         <i class="material-icons prefix">account_circle</i>
                         <input id="icon_prefix" type="text" class="validate">
-                        <label for="icon_prefix">Persona2</label>
+                        <label for="icon_prefix">Persona 2</label>
                     </div>
-
-                    <div class="input-field col s12 m6">
-                        <select>
-                            <option value="" disabled selected>Seleccione Cargo</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                        </select>
-                        <label>Seleccione Cargo</label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <select>
-                            <option value="" disabled selected>Seleccione Ministerio</option>
-                            <option value="1">JASS</option>
-                            <option value="2">SOS</option>
-                            <option value="3">Ayuda Urbana</option>
-                            <option value="4">Tomas</option>
-                            <option value="5">Los Milagros Existen</option>
-                            <option value="6">Ministerio de Ingles</option>
-                            <option value="7">Ministerio de Quechua</option>
-                            <option value="8">Ministerio de Música</option>
-                            <option value="9">Ministerio de Cibernética</option>
-                            <option value="10">Ministerio de Manos Ayudadoras</option>
-                            <option value="11">Ministerio Los Pequeñitos de Jesús</option>
-                            <option value="12">Narices de Esperanza</option>
-                        </select>
-                        <label>Seleccione Ministerio</label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <select>
-                            <option value="" disabled selected>Seleccione G.P</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                        </select>
-                        <label>Seleccione Grupo Pequeño</label>
-                    </div>
-                    <div class="col s12 m6"></div>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Registrar
                         <i class="material-icons right">send</i>
                     </button>
-            </form>
+                    <!--------------------------------------->
+                </form>
+            
         </div>
-
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="../../js/materialize.min.js" type="text/javascript"></script>
