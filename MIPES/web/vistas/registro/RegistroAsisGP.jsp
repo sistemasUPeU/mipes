@@ -8,98 +8,108 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no ,initial-scale=1.0 , maximun-scale=1.0, minimun-scale=1.0">
-        <script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
-        <script src="../../js/materialize.js" type="text/javascript"></script>
-        <script src="../../js/materialize.min.js" type="text/javascript"></script>
-        <link href="../../css/materialize.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/materialize.css" rel="stylesheet" type="text/css"/>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <title>Registro de Asistencia</title>
-        <script>
-            $(document).ready(function () {
-                $('select').material_select();
-            });
-        </script>
-        <script>
-            function disesc() {
-                $.post("ComboDistrito.jsp", $("#distrito"), function (data) {
-                    $("#iescuela").html(data);
-                });
-            }
-        </script>
-        <script>
-            function escgp() {
-                $.post("ComboEscuela.jsp", $("#escuela"), function (data) {
-                    $("#igrupo").html(data);
-                });
-            }
-        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="../../fonts/css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/animate.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/custom.css" rel="stylesheet">
+        <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/icheck/flat/green.css" rel="stylesheet">
+        <link href="../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../js/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../js/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../js/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <script src="../../js/jquery.min.js"></script>
+        <title></title>
+
     </head>
     <body>
-        <jsp:useBean class="com.upeu.mipes.dao.DistritomDAO" id="di" scope="page"></jsp:useBean>
-            <div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
-                <a class="btn-floating btn-large red">
-                    <i class="large material-icons">mode_edit</i>
-                </a>
-                <ul>
-                    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-                    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-                    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-                    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Asistencia</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">1</a>
+                            </li>
+                            <li><a href="#">2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
                 </ul>
+                <div class="clearfix"></div>
             </div>
-            <div style="width:60%;margin: auto;padding: 5% 2%;box-sizing: border-box" >
-                <form method="post" id="data"> 
-                    
-                    <h2>Registro de Asistencia a GP</h2>
-                    
-                    <div id="d_distrito" class="input-field col s12"  style="margin-top: 2%">
-                        <i class="material-icons prefix">group_work</i>
-                    <%ResultSet rs = di.listar_Distritos("SELECT * FROM distritom order by NOMBRE");%>
-                    <select name="n_distrito" id="distrito" onchange=" disesc()">
-                        <option value="" disabled selected>Elegir Distrito</option>
-                        <% while (rs.next()) {%>
-                        <option value="<%= rs.getString("idDISTRITOM")%>"><%= rs.getString("NOMBRE")%></option>
-                        <% }%>
-                    </select>
-                    <label>Distrito</label>
-                </div>
+            <div class="x_content">
+                <p class="text-muted font-13 m-b-30">
+                    Lista de integrantes pertenecientes al G.P. "abc" </p>
+                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Nombre(s)</th>
+                            <th>Apellidos</th>
+                            <th>DNI</th>
+                            <th>Celular</th>
+                            <th>...</th>
+                            <th>...</th>
+                            <th>...</th>
+                            <th>Presente</th>
+                            <th>Falta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nombre Nombre</td>
+                            <td>Apellido Apellido</td>
+                            <td>123546</td>
+                            <td>963258741</td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td><div class="radio">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked style="cursor: pointer;margin: auto;">
+                                </div></td>
+                            <td><div class="radio">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" checked style="cursor: pointer;margin: auto;">
+                                </div></td>
+                        </tr>
+                        <tr>
+                            <td>Nombre Nombre</td>
+                            <td>Apellido Apellido</td>
+                            <td>123546</td>
+                            <td>963258741</td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td><div class="radio">
+                                    <input type="radio" name="optionsRadios" value="option1" checked style="cursor: pointer;margin: auto;">
+                                </div></td>
+                            <td><div class="radio">
+                                    <input type="radio" name="optionsRadios" value="option2" checked style="cursor: pointer;margin: auto;">
+                                </div></td>
+                        </tr>
 
-                <div id="iescuela" class="input-field col s12" style="margin-top: 2%">
+                    </tbody>
+                </table>
 
-                    <select name="n_escuela" id="escuela" onchange="escgp()">
-                        <option value="" disabled selected >Elegir Escuela Sabática</option>
-
-                    </select>
-                    <label>Escuela Sabática</label>
-                </div>
-                <div id="igrupo" class="input-field col s12" style="margin-top: 2%" >
-                    <select name="n_grupo" id="grupo">
-                        <option value="" disabled selected>Elegir Grupo Pequeño</option>
-                    </select>
-                    <label>Grupo Pequeño</label>
-                </div>
-
-                <!--<div class="file-field input-field">
-                    <div class="btn">
-                        <span>Archivo</span>
-                        <input type="file">
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
-                    </div>
-                </div>-->
-                <!--
+            </div>
+        </div>
+        <label for="n_vis">Número de Visitas</label>
+        <input id="n_vis" class="form-control" type="number" min="0" placeholder="0"/>
+        <!--</div>
                 <label for="n_asis">Número de Asistentes</label>
                 <input id="n_asis" type="number" min="0" placeholder="0"/>
 
                 <label for="n_vis">Número de Visitas</label>
                 <input id="n_vis" type="number" min="0" placeholder="0"/>
-                -->
+                
 
 
 
@@ -107,7 +117,87 @@
                     <i class="material-icons right">send</i>
                 </button>
 
-            </form>
-        </div>
+        <!--</form>
+    </div>-->
+        <script src="../../js/bootstrap.min.js"></script>
+
+        <!-- bootstrap progress js -->
+        <script src="../../js/progressbar/bootstrap-progressbar.min.js"></script>
+        <!-- icheck -->
+        <script src="../../js/icheck/icheck.min.js"></script>
+
+        <script src="../../js/custom.js"></script>
+
+        <script src="../../js/datatables/jquery.dataTables.min.js"></script>
+        <script src="../../js/datatables/dataTables.bootstrap.js"></script>
+        <script src="../../js/datatables/dataTables.buttons.min.js"></script>
+        <script src="../../js/datatables/buttons.bootstrap.min.js"></script>
+        <script src="../../js/datatables/jszip.min.js"></script>
+        <script src="../../js/datatables/pdfmake.min.js"></script>
+        <script src="../../js/datatables/vfs_fonts.js"></script>
+        <script src="../../js/datatables/buttons.html5.min.js"></script>
+        <script src="../../js/datatables/buttons.print.min.js"></script>
+        <script src="../../js/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="../../js/datatables/dataTables.keyTable.min.js"></script>
+        <script src="../../js/datatables/dataTables.responsive.min.js"></script>
+        <script src="../../js/datatables/responsive.bootstrap.min.js"></script>
+        <script src="../../js/datatables/dataTables.scroller.min.js"></script>
+
+
+        <!-- pace -->
+        <script src="../../js/pace/pace.min.js"></script>
+        <script>
+            var handleDataTableButtons = function () {
+                "use strict";
+                0 !== $("#datatable-buttons").length && $("#datatable-buttons").DataTable({
+                    dom: "Bfrtip",
+                    buttons: [{
+                            extend: "copy",
+                            className: "btn-sm"
+                        }, {
+                            extend: "csv",
+                            className: "btn-sm"
+                        }, {
+                            extend: "excel",
+                            className: "btn-sm"
+                        }, {
+                            extend: "pdf",
+                            className: "btn-sm"
+                        }, {
+                            extend: "print",
+                            className: "btn-sm"
+                        }],
+                    responsive: !0
+                })
+            },
+                    TableManageButtons = function () {
+                        "use strict";
+                        return {
+                            init: function () {
+                                handleDataTableButtons()
+                            }
+                        }
+                    }();
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#datatable').dataTable();
+                $('#datatable-keytable').DataTable({
+                    keys: true
+                });
+                $('#datatable-responsive').DataTable();
+                $('#datatable-scroller').DataTable({
+                    ajax: "../../js/datatables/json/scroller-demo.json",
+                    deferRender: true,
+                    scrollY: 380,
+                    scrollCollapse: true,
+                    scroller: true
+                });
+                var table = $('#datatable-fixed-header').DataTable({
+                    fixedHeader: true
+                });
+            });
+            TableManageButtons.init();
+        </script>
     </body>
 </html>

@@ -11,7 +11,7 @@
 <% String dis = request.getParameter("n_distrito");
 %>
 <div id="iescuela" class="input-field col s12" style="margin-top: 2%;">
-    <% String sql = "SELECT * FROM escuela where iddistritom = " + dis + " order by nombre";
+    <% String sql = "SELECT * FROM escuela where iddistritom = " + dis + " and estado =1 order by nombre";
         ResultSet rs = es.listar_escuelas(sql); %>
 
 

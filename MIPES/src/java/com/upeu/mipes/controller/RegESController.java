@@ -70,11 +70,11 @@ public class RegESController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
         String pagina;
-        String dis = request.getParameter("n_distrito");
-        String nom = request.getParameter("n_es");
-        String fec = request.getParameter("fecha");
-        String co = request.getParameter("color");
-        String lem = request.getParameter("lema");
+        String dis = request.getParameter("n_distrito").toUpperCase();
+        String nom = request.getParameter("n_es").toUpperCase();
+        String fec = request.getParameter("fecha").toUpperCase();
+        String co = request.getParameter("color").toUpperCase();
+        String lem = request.getParameter("lema").toUpperCase();
         String est = "1";
         if (!dis.equals("") && !nom.equals("")) {
             EscuelaDTO ed = new EscuelaDTO(Integer.parseInt(dis), nom, est, fec, co, lem);

@@ -11,7 +11,7 @@
 <% String es = request.getParameter("n_escuela");
 %>
 <div id="igrupo" class="input-field col s12" style="margin-top: 2%;">
-    <% String sql = "SELECT * FROM grupo where idescuela = " + es + " order by nombre";
+    <% String sql = "SELECT * FROM grupo where idescuela = " + es + " order by nombre and estado=1";
         ResultSet rs = gp.listar_grupos(sql); %>
 
 
