@@ -21,7 +21,8 @@
         <jsp:useBean class="com.upeu.mipes.dao.GrupoDAO" id="gp" scope="page" ></jsp:useBean>
         <jsp:useBean class="com.upeu.mipes.dao.CargoDAO" id="cg" scope="page" ></jsp:useBean>
             <div class="row ">  
-                <form class="col s10 offset-s1"  method="post"> 
+                <form class="col s10 offset-s1"  role="form" method="post" action="../../IntCnt"> 
+                    <input type="hidden" name="op" value="1" />
                     <h1 style="text-align: center; color: #26A69A">Registro Integrante</h1>
                     <div class="row">
                         <div class="input-field col s12 m6">
@@ -94,6 +95,7 @@
                 <button class="btn waves-effect waves-light" type="submit" name="action">Registrar
                     <i class="material-icons right">send</i>
                 </button>
+                
             </form>
         </div>
         <!--  Scripts-->

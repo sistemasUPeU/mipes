@@ -10,6 +10,7 @@ package com.upeu.mipes.dto;
  * @author USER
  */
 public class IntegranteDTO {
+
     private int idIntegrante;
     private int idGrupo;
     private int idCargo;
@@ -22,11 +23,13 @@ public class IntegranteDTO {
     private String Fecha_nacimiento;
     private String Fecha_bautizmo;
     private String Estado;
-
+    private String sexo;
+    private String dni;
+    
     public IntegranteDTO() {
     }
 
-    public IntegranteDTO(String Nombre, String Apellidos, String Direccion, String Email, String Telefono, String Fecha_nacimiento, String Fecha_bautizmo, String Estado) {
+    public IntegranteDTO(String Nombre, String Apellidos, String Direccion, String Email, String Telefono, String Fecha_nacimiento, String Fecha_bautizmo, String Estado, String sexo, String dni) {
         this.Nombre = Nombre;
         this.Apellidos = Apellidos;
         this.Direccion = Direccion;
@@ -35,8 +38,11 @@ public class IntegranteDTO {
         this.Fecha_nacimiento = Fecha_nacimiento;
         this.Fecha_bautizmo = Fecha_bautizmo;
         this.Estado = Estado;
+        this.sexo = sexo;
+        this.dni = dni;
     }
 
+    
     public int getIdIntegrante() {
         return idIntegrante;
     }
@@ -131,6 +137,22 @@ public class IntegranteDTO {
 
     public void setIdCargo(int idCargo) {
         this.idCargo = idCargo;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
     
     

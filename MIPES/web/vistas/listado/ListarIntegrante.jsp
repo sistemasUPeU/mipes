@@ -28,10 +28,9 @@
 
         <table class="table table-bordered" style="width: 800px;">
             <tr>
-                <th>Id</th>
-                <th>Departamento</th>
-                <th>Centro Costos</th>
-                <th>Status</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Email</th>
                 <th></th>
             </tr>
             <% for (int i = 0; i < list.size(); i++) {
