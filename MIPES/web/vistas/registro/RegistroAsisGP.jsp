@@ -16,6 +16,8 @@
         <link href="../../css/animate.min.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/custom.css" rel="stylesheet">
         <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/icheck/flat/green.css" rel="stylesheet">
         <link href="../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
         <link href="../../js/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
@@ -27,7 +29,7 @@
         <title></title>
 
     </head>
-    <body>
+    <body style="padding: 5%;box-sizing: border-box;">
         <div class="x_panel">
             <div class="x_title">
                 <h2>Asistencia</h2>
@@ -88,12 +90,8 @@
                             <td>...</td>
                             <td>...</td>
                             <td>...</td>
-                            <td><div class="radio">
-                                    <input type="radio" name="optionsRadios" value="option1" checked style="cursor: pointer;margin: auto;">
-                                </div></td>
-                            <td><div class="radio">
-                                    <input type="radio" name="optionsRadios" value="option2" checked style="cursor: pointer;margin: auto;">
-                                </div></td>
+                            <td>abc</td>
+                            <td>abc</td>
                         </tr>
 
                     </tbody>
@@ -102,7 +100,7 @@
             </div>
         </div>
         <label for="n_vis">Número de Visitas</label>
-        <input id="n_vis" class="form-control" type="number" min="0" placeholder="0"/>
+        <input id="n_vis" class="form-control" type="number" min="0" placeholder="0" style="width: 50%;">
         <!--</div>
                 <label for="n_asis">Número de Asistentes</label>
                 <input id="n_asis" type="number" min="0" placeholder="0"/>
