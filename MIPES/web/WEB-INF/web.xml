@@ -16,6 +16,10 @@
         <servlet-name>IntegranteController</servlet-name>
         <servlet-class>com.upeu.mipes.controller.IntegranteController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EscuelaController</servlet-name>
+        <servlet-class>com.upeu.mipes.controller.EscuelaController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>IntegranteController</servlet-name>
         <url-pattern>/IntCnt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EscuelaController</servlet-name>
+        <url-pattern>/esc</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

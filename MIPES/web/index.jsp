@@ -115,9 +115,9 @@
                                     </li>
                                     <li><a><i class="fa fa-book"></i>Escuela Sabática<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Registrar Nueva Escuela Sabática</a>
+                                            <li><a href="esc?opc=1" target="frame">Registrar Nueva Escuela Sabática</a>
                                             </li>
-                                            <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Desactivar Escuela Sabática</a>
+                                            <li><a href="#" target="frame">Desactivar Escuela Sabática</a>
                                             </li>   
                                         </ul>
                                     </li>
