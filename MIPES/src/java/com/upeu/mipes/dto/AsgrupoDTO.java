@@ -4,20 +4,13 @@ public class AsgrupoDTO {
     
     private int idAsgrupo;
     private int idGrupo;
-    private String fecha;
-    private int presentes;
-    private int faltas;
-    private int visitas;
+    private int idAsistencia;
 
     public AsgrupoDTO() {
     }
-
-    public AsgrupoDTO(int idGrupo, String fecha, int presentes, int faltas, int visitas) {
+    public AsgrupoDTO(int idGrupo, int idAsistencia) {
         this.idGrupo = idGrupo;
-        this.fecha = fecha;
-        this.presentes = presentes;
-        this.faltas = faltas;
-        this.visitas = visitas;
+        this.idAsistencia = idAsistencia;
     }
 
     public int getIdAsgrupo() {
@@ -36,37 +29,16 @@ public class AsgrupoDTO {
         this.idGrupo = idGrupo;
     }
 
-    public String getFecha() {
-        return fecha;
+    public int getIdAsistencia() {
+        return idAsistencia;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public int getPresentes() {
-        return presentes;
-    }
-
-    public void setPresentes(int presentes) {
-        this.presentes = presentes;
-    }
-
-    public int getFaltas() {
-        return faltas;
-    }
-
-    public void setFaltas(int faltas) {
-        this.faltas = faltas;
-    }
-
-    public int getVisitas() {
-        return visitas;
-    }
-
-    public void setVisitas(int visitas) {
-        this.visitas = visitas;
+    public void setIdAsistencia(int idAsistencia) {
+        this.idAsistencia = idAsistencia;
     }
     
+
+    
+
     
 }

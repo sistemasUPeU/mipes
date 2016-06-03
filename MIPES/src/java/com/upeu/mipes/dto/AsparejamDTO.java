@@ -4,16 +4,14 @@ public class AsparejamDTO {
     
     private int idAsparejam;
     private int idParejam;
-    private String fecha;
-    private String lugar;
+    private int idAsistencia;
 
     public AsparejamDTO() {
     }
 
-    public AsparejamDTO(int idParejam, String fecha, String lugar) {
+    public AsparejamDTO(int idParejam, int idAsistencia) {
         this.idParejam = idParejam;
-        this.fecha = fecha;
-        this.lugar = lugar;
+        this.idAsistencia = idAsistencia;
     }
 
     public int getIdAsparejam() {
@@ -32,21 +30,13 @@ public class AsparejamDTO {
         this.idParejam = idParejam;
     }
 
-    public String getFecha() {
-        return fecha;
+    public int getIdAsistencia() {
+        return idAsistencia;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setIdAsistencia(int idAsistencia) {
+        this.idAsistencia = idAsistencia;
     }
 
-    public String getLugar() {
-        return lugar;
-    }
-
-    public void setLugar(String lugar) {
-        this.lugar = lugar;
-    }
-    
     
 }

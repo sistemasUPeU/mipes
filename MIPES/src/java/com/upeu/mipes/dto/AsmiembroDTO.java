@@ -3,19 +3,17 @@ package com.upeu.mipes.dto;
 public class AsmiembroDTO {
     
     private int idAsmiembro;
+    private int idAsistencia;
     private int idIntegrante;
-    private String fecha;
     private int estudioB;
-    private String estado;
 
     public AsmiembroDTO() {
     }
 
-    public AsmiembroDTO(int idIntegrante, String fecha, int estudioB, String estado) {
+    public AsmiembroDTO(int idAsistencia, int idIntegrante, int estudioB) {
+        this.idAsistencia = idAsistencia;
         this.idIntegrante = idIntegrante;
-        this.fecha = fecha;
         this.estudioB = estudioB;
-        this.estado = estado;
     }
 
     public int getIdAsmiembro() {
@@ -26,20 +24,20 @@ public class AsmiembroDTO {
         this.idAsmiembro = idAsmiembro;
     }
 
+    public int getIdAsistencia() {
+        return idAsistencia;
+    }
+
+    public void setIdAsistencia(int idAsistencia) {
+        this.idAsistencia = idAsistencia;
+    }
+
     public int getIdIntegrante() {
         return idIntegrante;
     }
 
     public void setIdIntegrante(int idIntegrante) {
         this.idIntegrante = idIntegrante;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
     }
 
     public int getEstudioB() {
@@ -50,13 +48,5 @@ public class AsmiembroDTO {
         this.estudioB = estudioB;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-    
     
 }

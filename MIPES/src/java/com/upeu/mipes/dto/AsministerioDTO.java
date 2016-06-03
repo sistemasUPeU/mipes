@@ -3,21 +3,16 @@ package com.upeu.mipes.dto;
 public class AsministerioDTO {
     
     private int idAsministerio;
+    private int idAsistencia;
     private int idMinisterio;
-    private String fecha;
-    private int presentes;
-    private int faltas;
-    private int visitas;
+   
 
     public AsministerioDTO() {
     }
 
-    public AsministerioDTO(int idMinisterio, String fecha, int presentes, int faltas, int visitas) {
+    public AsministerioDTO(int idAsistencia, int idMinisterio) {
+        this.idAsistencia = idAsistencia;
         this.idMinisterio = idMinisterio;
-        this.fecha = fecha;
-        this.presentes = presentes;
-        this.faltas = faltas;
-        this.visitas = visitas;
     }
 
     public int getIdAsministerio() {
@@ -28,6 +23,14 @@ public class AsministerioDTO {
         this.idAsministerio = idAsministerio;
     }
 
+    public int getIdAsistencia() {
+        return idAsistencia;
+    }
+
+    public void setIdAsistencia(int idAsistencia) {
+        this.idAsistencia = idAsistencia;
+    }
+
     public int getIdMinisterio() {
         return idMinisterio;
     }
@@ -36,37 +39,5 @@ public class AsministerioDTO {
         this.idMinisterio = idMinisterio;
     }
 
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public int getPresentes() {
-        return presentes;
-    }
-
-    public void setPresentes(int presentes) {
-        this.presentes = presentes;
-    }
-
-    public int getFaltas() {
-        return faltas;
-    }
-
-    public void setFaltas(int faltas) {
-        this.faltas = faltas;
-    }
-
-    public int getVisitas() {
-        return visitas;
-    }
-
-    public void setVisitas(int visitas) {
-        this.visitas = visitas;
-    }
-    
     
 }
