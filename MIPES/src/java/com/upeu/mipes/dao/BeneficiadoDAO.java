@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author Andrew
  */
-public class AsministerioDAO implements CrudInterface<CargoDTO>{
+public class BeneficiadoDAO implements CrudInterface<CargoDTO>{
     
     private String sql;
     private Connection cx;
