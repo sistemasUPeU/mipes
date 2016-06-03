@@ -52,7 +52,7 @@
                                 <div class="clearfix"></div>
                                 <br />
                                 <div>
-                                    <h1><i class="fa fa-paw" style="font-size: 26px;"></i> MIPES</h1>
+                                    <h1><i class="fa fa-group" style="font-size: 26px;"></i> MIPES</h1>
 
                                     <p>©2016 All Rights Reserved.</p>
                                 </div>

@@ -41,7 +41,7 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="index.jsp" class="site_title"><i class="fa fa-child"></i> <span>MIPES | UPeU</span></a>
+                            <a href="index.jsp" class="site_title"><i class="fa fa-group"></i> <span>MIPES | UPeU</span></a>
                         </div>
                         <div class="clearfix"></div>
                         <!-- menu prile quick info -->
@@ -115,7 +115,7 @@
                                     </li>
                                     <li><a><i class="fa fa-book"></i>Escuela Sabática<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="esc?opc=1" target="frame">Registrar Nueva Escuela Sabática</a>
+                                            <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Registrar Nueva Escuela Sabática</a>
                                             </li>
                                             <li><a href="#" target="frame">Desactivar Escuela Sabática</a>
                                             </li>   

@@ -13,16 +13,15 @@ public class GrupoDTO {
     private int idGRUPO;
     private int idESCUELA;
     private String NOMBRE;
-    private String Lugar_reunion;
     private String Fecha_creacion;
     private String Estado;
     
     public GrupoDTO() {
     }
 
-    public GrupoDTO(String NOMBRE, String Lugar_reunion, String Fecha_creacion, String Estado) {
+    public GrupoDTO(int idESCUELA, String NOMBRE, String Fecha_creacion, String Estado) {
+        this.idESCUELA = idESCUELA;
         this.NOMBRE = NOMBRE;
-        this.Lugar_reunion = Lugar_reunion;
         this.Fecha_creacion = Fecha_creacion;
         this.Estado = Estado;
     }
@@ -51,14 +50,6 @@ public class GrupoDTO {
         this.NOMBRE = NOMBRE;
     }
 
-    public String getLugar_reunion() {
-        return Lugar_reunion;
-    }
-
-    public void setLugar_reunion(String Lugar_reunion) {
-        this.Lugar_reunion = Lugar_reunion;
-    }
-
     public String getFecha_creacion() {
         return Fecha_creacion;
     }
@@ -74,7 +65,5 @@ public class GrupoDTO {
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
-    
-    
-    
+
 }

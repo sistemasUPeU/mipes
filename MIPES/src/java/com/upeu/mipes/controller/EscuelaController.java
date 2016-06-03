@@ -26,30 +26,13 @@ public class EscuelaController extends HttpServlet {
     EscuelaDTO eT = new EscuelaDTO();
     EscuelaDAO eD = new EscuelaDAO();
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. 
-             out.println("<!DOCTYPE html>");
-             out.println("<html>");
-             out.println("<head>");
-             out.println("<title>Servlet EscuelaController</title>");            
-             out.println("</head>");
-             out.println("<body>");
-             out.println("<h1>Servlet EscuelaController at " + request.getContextPath() + "</h1>");
-             out.println("</body>");
-             out.println("</html>");*/
-        }
+        /*try (PrintWriter out = response.getWriter()) {
+         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/RegistroNewES.jsp");
+         dispatcher.forward(request, response);
+         }*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,19 +47,19 @@ public class EscuelaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        /*
+         String pagina;
+         RequestDispatcher dispatcher;
+         response.setContentType("text/html;charset=UTF-8");
+         PrintWriter out = response.getWriter();
+         String opc = request.getParameter("opc");
+         switch (Integer.parseInt(opc)) {
+         case 1:
+         pagina = "/vistas/registro/RegistroNewES.jsp";
+         dispatcher = getServletContext().getRequestDispatcher(pagina);
+         dispatcher.forward(request, response);
 
-        String pagina;
-        RequestDispatcher dispatcher;
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        String opc = request.getParameter("opc");
-        switch (Integer.parseInt(opc)) {
-            case 1:
-                pagina = "/vistas/registro/RegistroNewES.jsp";
-                dispatcher = getServletContext().getRequestDispatcher(pagina);
-                dispatcher.forward(request, response);
-            
-        }
+         }*/
 
         processRequest(request, response);
     }
@@ -92,13 +75,11 @@ public class EscuelaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        String pagina;
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        String opc = request.getParameter("opc");
-        switch (Integer.parseInt(opc)) {
-            case 2:
+        response.setContentType("text/html; charset=UTF-8");
+        int opc = Integer.parseInt(request.getParameter("opc"));
+        switch (opc) {
+            case 1://Crear nueva Escuela Sabatica
+                String pagina;
                 String dis = request.getParameter("n_distrito").toUpperCase();
                 String nom = request.getParameter("n_es").toUpperCase();
                 String fec = request.getParameter("fecha").toUpperCase();
@@ -112,16 +93,17 @@ public class EscuelaController extends HttpServlet {
                         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                         dispatcher.forward(request, response);
                     } else {
-                        pagina = "/vistas/extras/CongNewES.jsp";
+                        pagina = "#";
                         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                         dispatcher.forward(request, response);
                     }
                 } else {
-                    pagina = "/vistas/extras/CongNewES.jsp";
+                    pagina = "#";
                     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                 }
         }
+
     }
 
     /**

@@ -21,9 +21,7 @@ import java.util.ArrayList;
  */
 public class GrupoDAO implements CrudInterface<GrupoDTO> {
 
-    private ResultSet rs;
     private Statement st;
-    private PreparedStatement ps;
     private String sql;
     private Connection cnn;
 
@@ -31,7 +29,7 @@ public class GrupoDAO implements CrudInterface<GrupoDTO> {
     
     @Override
     public boolean agregar(GrupoDTO gp) {
-        sql = "INSERT INTO grupo (idGRUPO,idESCUELA,NOMBRE,LUGAR_REUNION,FECHA_CREACION,ESTADO) values(" + gp.getIdGRUPO() + "," + gp.getIdESCUELA() + ",'" + gp.getNOMBRE() + "','" + gp.getLugar_reunion() + "','" + gp.getFecha_creacion() + "','" + gp.getEstado() + "')";
+        sql = "INSERT INTO grupo (idGRUPO,idESCUELA,NOMBRE,FECHA_CREACION,ESTADO) values(" + gp.getIdGRUPO() + "," + gp.getIdESCUELA() + ",'" + gp.getNOMBRE() + "','" + gp.getFecha_creacion() + "','" + gp.getEstado() + "')";
         boolean m = false;
         try {
             cnn = Conexion.getConexion();

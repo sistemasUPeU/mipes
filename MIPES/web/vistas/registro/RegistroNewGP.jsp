@@ -41,7 +41,8 @@
             <div style="width:85%;margin: auto;padding: 5% 2%;box-sizing: border-box">
                 <h2 style="margin: auto; color: #00bfa5">Nuevo Grupo Pequeño</h2>
 
-                <form method="post" style="margin-top: 5%"> 
+                <form method="post" action="../../gp" style="margin-top: 5%">
+                    <input type="hidden" name="opc" value="1">
                     <div id="d_distrito" class="input-field col s12"  style="margin-top: 2%">
                         <i class="material-icons prefix">group_work</i>
                     <%ResultSet rs = di.listar_Distritos("SELECT * FROM distritom order by NOMBRE");%>
@@ -56,21 +57,17 @@
 
                 <div id="iescuela" class="input-field col s12" style="margin-top: 2%">
 
-                    <select name="n_escuela" id="escuela" >
+                    <select name="n_escuela" id="escuela">
                         <option value="" disabled selected >Elegir Escuela Sabática</option>
 
                     </select>
                     <label>Escuela Sabática</label>
                 </div>
                 <div class="input-field col s6" style="margin-top: 2%">
-                    <input id="n_gp" type="text" class="validate">
-                    <!--<input type="hidden" name="f_opc" id="i_opc" value="1">-->
+                    <input id="n_gp" name="n_grupo" type="text" class="validate">
+                    
                     <label for="n_gp" style="margin-top: 1%">Nombre del Grupo Pequeño</label>
                 </div>
-                <div class="input-field col s6" style="margin-top: 2%">
-                    <input id="ilugar" name="nlugar" type="text" class="validate">
-                    <label for="ilugar" style="margin-top: 1%">Lugar de Reunión</label>
-                </div >
                 <div style="margin-top: 2%" >
                     <label for="ifecha" >Fecha de Creación</label>
                     <input name="fecha" id="ifecha" type="date">

@@ -3,10 +3,9 @@ package com.upeu.mipes.test;
 import java.sql.Connection;
 import com.upeu.mipes.config.Conexion;
 import com.upeu.mipes.dao.DistritomDAO;
-import com.upeu.mipes.dao.EscuelaDAO;
+import com.upeu.mipes.dao.GrupoDAO;
 import com.upeu.mipes.dao.UsuarioDAO;
-import com.upeu.mipes.dto.DistritomDTO;
-import com.upeu.mipes.dto.EscuelaDTO;
+import com.upeu.mipes.dto.GrupoDTO;
 import com.upeu.mipes.dto.UsuarioDTO;
 
 public class Pruebas {
@@ -14,10 +13,10 @@ public class Pruebas {
     static Connection cx;
     static DistritomDAO x = new DistritomDAO();
     static UsuarioDAO us = new UsuarioDAO();
-    static EscuelaDAO ed = new EscuelaDAO();
+    static GrupoDAO gd=new GrupoDAO();
 
     public static void main(String[] args) {
-        insertarescuela();
+        insertargrupo();
     }
 
     static void conex() {
@@ -44,28 +43,13 @@ public class Pruebas {
         }
     }
 
-    public static void insertarescuela() {
-        EscuelaDTO d = new EscuelaDTO(1, "ESCUELA", "1","25/05/2016","VERDE","LEMA");
-        if (ed.agregar(d)) {
-            System.out.println("Escuela Sabatica Agregada");
-        } else {
-            System.out.println("Error al Agregar Escuela Sabatica");
-        }
-    }
-
-    public void desactivarescuela() {
-        if (ed.desactivar(12)) {
-            System.out.println("Escuela Sabatica Desactivada");
-        } else {
-            System.out.println("Error al desactivar");
-        }
-    }
-
-    public static void eliminarescuela() {
-        if (ed.eliminar(12)) {
-            System.out.println("Eliminacion correcta");
-        } else {
-            System.out.println("Error al eliminar");
+    
+    public static void insertargrupo(){
+        GrupoDTO gdt=new GrupoDTO(18,"prueba1","2016-08-16","1");
+        if (gd.agregar(gdt)) {
+            System.out.println("Grupo Agredado Correctamente");
+        }else{
+            System.out.println("Error al agregar Grupo");
         }
     }
 }

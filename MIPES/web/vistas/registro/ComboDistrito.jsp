@@ -15,7 +15,7 @@
         ResultSet rs = es.listar_escuelas(sql); %>
 
 
-    <select name="n_escuela" id="escuela">
+        <select name="n_escuela" id="escuela">
         <option value="" disabled selected >Elegir Escuela Sabática</option>
         <%while (rs.next()) {%>
         <option value="<%= rs.getString("idESCUELA")%>"><%= rs.getString("NOMBRE")%></option>
