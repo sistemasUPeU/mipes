@@ -93,12 +93,12 @@ public class EscuelaController extends HttpServlet {
                         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                         dispatcher.forward(request, response);
                     } else {
-                        pagina = "#";
+                        pagina = "/vistas/extras/RegistroNewES.jsp";
                         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                         dispatcher.forward(request, response);
                     }
                 } else {
-                    pagina = "#";
+                    pagina = "/vistas/extras/RegistroNewES.jsp";
                     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                 }

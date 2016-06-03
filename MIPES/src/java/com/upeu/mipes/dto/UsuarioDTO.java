@@ -11,6 +11,7 @@ package com.upeu.mipes.dto;
  */
 public class UsuarioDTO {
     private int idUsuario;
+    private int idPersona;
     private String Usuario;
     private String Clave;
     private String Estado;
@@ -18,7 +19,8 @@ public class UsuarioDTO {
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(String Usuario, String Clave, String Estado) {
+    public UsuarioDTO(int idPersona, String Usuario, String Clave, String Estado) {
+        this.idPersona = idPersona;
         this.Usuario = Usuario;
         this.Clave = Clave;
         this.Estado = Estado;
@@ -30,6 +32,14 @@ public class UsuarioDTO {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public int getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
     }
 
     public String getUsuario() {
@@ -56,5 +66,4 @@ public class UsuarioDTO {
         this.Estado = Estado;
     }
 
-    
 }

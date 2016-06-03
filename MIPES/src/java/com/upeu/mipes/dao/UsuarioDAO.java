@@ -52,7 +52,7 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
     
     @Override
     public boolean agregar(UsuarioDTO u) {
-        sql="INSERT INTO USUARIO (idUSUARIO, USUARIO, CLAVE, ESTADO) VALUES("+u.getIdUsuario()+",'"+u.getUsuario()+"','"+u.getClave()+"','"+u.getEstado()+"')";
+        sql="INSERT INTO USUARIO (idUSUARIO,idPERSONA, USUARIO, CLAVE, ESTADO) VALUES("+u.getIdUsuario()+","+u.getIdPersona()+",'"+u.getUsuario()+"','"+u.getClave()+"','"+u.getEstado()+"')";
         boolean a=false;
         try {
             cn=Conexion.getConexion();

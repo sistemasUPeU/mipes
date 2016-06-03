@@ -18,7 +18,9 @@ public class ParejamDTO {
     public ParejamDTO() {
     }
 
-    public ParejamDTO(String Estado) {
+    public ParejamDTO(int idIntegrante1, int idIntegrante2, String Estado) {
+        this.idIntegrante1 = idIntegrante1;
+        this.idIntegrante2 = idIntegrante2;
         this.Estado = Estado;
     }
 
@@ -53,6 +55,6 @@ public class ParejamDTO {
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
-    
+
     
 }

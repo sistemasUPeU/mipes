@@ -35,7 +35,7 @@ public class Pruebas {
     }
     
     public static void agregarUsuario(){
-        UsuarioDTO ud=new UsuarioDTO("a","123","1");
+        UsuarioDTO ud=new UsuarioDTO(1,"a","123","1");
         if (us.agregar(ud)) {
             System.out.println("Se agrego correctamente");
         }else{

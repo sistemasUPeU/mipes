@@ -19,7 +19,8 @@ public class MinisterioDTO {
     public MinisterioDTO() {
     }
 
-    public MinisterioDTO(String Nombre, String Descripcion, String Estado) {
+    public MinisterioDTO(int idDistritoM, String Nombre, String Descripcion, String Estado) {
+        this.idDistritoM = idDistritoM;
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
         this.Estado = Estado;
@@ -64,6 +65,6 @@ public class MinisterioDTO {
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
-    
+
     
 }

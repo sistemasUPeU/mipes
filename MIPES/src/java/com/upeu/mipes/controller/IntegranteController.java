@@ -38,21 +38,7 @@ public class IntegranteController extends HttpServlet {
         int id;
         //update
         if (op.equals("1")) {
-            pagina = "/vistas/listado/ListarIntegrante.jsp";
-            intDTO.setNombre(request.getParameter("nombre"));
-            intDTO.setApellidos(request.getParameter("apellido"));
-            intDTO.setDireccion(request.getParameter("direccion"));
-            intDTO.setEmail(request.getParameter("email"));
-            intDTO.setTelefono(request.getParameter("telefono"));
-            intDTO.setFecha_nacimiento(request.getParameter("nacimiento"));
-            intDTO.setFecha_bautizmo(request.getParameter("bautizo"));
-            if (intDAO.agregar(intDTO)) {
-                dispatcher = getServletContext().getRequestDispatcher(pagina);
-                dispatcher.forward(request, response);
-                out.println("<h3>Error al Registrar registrodasdas</h3>");
-            } else {
-                out.println("<h3>Error al Registrar registro</h3>");
-            }
+            
         }
         
     }
@@ -72,20 +58,6 @@ public class IntegranteController extends HttpServlet {
         int id;
         //update
         if (op.equals("1")) {
-            pagina = "/vistas/listado/ListarIntegrante.jsp";
-            intDTO.setNombre(request.getParameter("nombre"));
-            intDTO.setApellidos(request.getParameter("apellido"));
-            intDTO.setDireccion(request.getParameter("direccion"));
-            intDTO.setEmail(request.getParameter("email"));
-            intDTO.setTelefono(request.getParameter("telefono"));
-            intDTO.setFecha_nacimiento(request.getParameter("nacimiento"));
-            intDTO.setFecha_bautizmo(request.getParameter("bautizo"));
-            if (intDAO.agregar(intDTO)) {
-                dispatcher = getServletContext().getRequestDispatcher(pagina);
-                dispatcher.forward(request, response);
-            } else {
-                out.println("<h3>Error al Registrar registro</h3>");
-            }
         }
         
 

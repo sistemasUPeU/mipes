@@ -21,7 +21,7 @@ public class EscuelaTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        insertarescuela();
     }
     public static void insertarescuela() {
         EscuelaDTO d = new EscuelaDTO(1, "ESCUELA", "1","25/05/2016","VERDE","LEMA");
