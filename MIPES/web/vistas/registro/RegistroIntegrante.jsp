@@ -74,35 +74,39 @@
                             <label>Sexo</label>
                         </div>
                         <div class="input-field col s12 m6">
-                            <%ResultSet rs = cg.listar_Cargo();%>
-                            <select name="n_cargo" id="cargo" onchange=" disesc()">
-                                <option value="" disabled selected>Elegir Cargo</option>
-                                <% while (rs.next()) {%>
-                                <option value="<%= rs.getString("idCARGO")%>"><%= rs.getString("NOMBRE")%></option>
-                                <% }%>
-                            </select>
-                            <label>Seleccione Cargo</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <%ResultSet rsm = mi.listar_Ministerios();%>
-                            <select name="n_ministerio" id="ministerio" onchange=" disesc()">
-                                <option value="" disabled selected>Elegir Distrito</option>
-                                <% while (rsm.next()) {%>
-                                <option value="<%= rsm.getString("idMINISTERIO")%>"><%= rsm.getString("NOMBRE")%></option>
-                                <% }%>
-                            </select>
-                            <label>Seleccione Ministerio</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <%ResultSet rsp = gp.listar_grupos();%>
-                            <select name="n_grupo" id="grupo" onchange=" disesc()">
-                                <option value="" disabled selected>Elegir Grupo Pequeño</option>
-                                <% while (rsp.next()) {%>
-                                <option value="<%= rsp.getString("idGRUPO")%>"><%= rsp.getString("NOMBRE")%></option>
-                                <% }%>
-                            </select>
-                            <label>Seleccione Grupo Pequeño</label>
-                        </div>
+                        <%ResultSet rs = cg.listar_Cargo();%>
+                        <select name="n_cargo" id="cargo" onchange=" disesc()">
+                            <option value="" disabled selected>Elegir Cargo</option>
+                            <% while (rs.next()) {%>
+                            <option value="<%= rs.getString("idCARGO")%>"><%= rs.getString("NOMCARGO")%></option>
+                            <% }%>
+                        </select>
+                        <label>Seleccione Cargo</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <%ResultSet rsm = mi.listar_Ministerios();%>
+                        <select name="n_ministerio" id="ministerio" onchange=" disesc()">
+                            <option value="" disabled selected>Elegir Distrito</option>
+                            <% while (rsm.next()) {%>
+                            <option value="<%= rsm.getString("idMINISTERIO")%>"><%= rsm.getString("NOMBRE")%></option>
+                            <% }%>
+                        </select>
+                        <label>Seleccione Ministerio</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <%ResultSet rsp = gp.listar_grupos();%>
+                        <select name="n_grupo" id="grupo" onchange=" disesc()">
+                            <option value="" disabled selected>Elegir Grupo Pequeño</option>
+                            <% while (rsp.next()) {%>
+                            <option value="<%= rsp.getString("idGRUPO")%>"><%= rsp.getString("NOMBRE")%></option>
+                            <% }%>
+                        </select>
+                        <label>Seleccione Grupo Pequeño</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <textarea id="ocupacion" name="ocupacion" class="materialize-textarea"></textarea>
+                        <label for="ocupacion">Ocupación</label>
+                    </div>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Registrar
                         <i class="material-icons right">send</i>
                     </button>
@@ -113,10 +117,10 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="../../js/materialize.min.js" type="text/javascript"></script>
         <script>
-                        $('.datepicker').pickadate({
-                            selectMonths: true, // Creates a dropdown to control month
-                            selectYears: 15 // Creates a dropdown of 15 years to control year
-                        });
+                            $('.datepicker').pickadate({
+                                selectMonths: true, // Creates a dropdown to control month
+                                selectYears: 15 // Creates a dropdown of 15 years to control year
+                            });
         </script>
         <script>
             $(document).ready(function () {

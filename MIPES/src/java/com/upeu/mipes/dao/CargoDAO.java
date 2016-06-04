@@ -102,7 +102,7 @@ public class CargoDAO implements CrudInterface<CargoDTO>{
     }
     
     public ResultSet listar_Cargo() {
-        String consulta = "SELECT * FROM cargo order by NOMBRE";
+        String consulta = "SELECT * FROM cargo order by NOMCARGO";
         System.out.println(consulta);
         ResultSet rst = cx.RecibirDatos(consulta);
         return rst;

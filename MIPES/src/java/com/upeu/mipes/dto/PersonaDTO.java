@@ -7,6 +7,7 @@ public class PersonaDTO {
     private String Nombres;
     private String Apellidos;
     private String Direccion;
+    private String email;
     private String Telefono;
     private String Fe_nacimiento;
     private String Fe_bautizmo;
@@ -17,11 +18,12 @@ public class PersonaDTO {
     public PersonaDTO() {
     }
 
-    public PersonaDTO(int idCargo, String Nombres, String Apellidos, String Direccion, String Telefono, String Fe_nacimiento, String Fe_bautizmo, String Sexo, String Dni, String Ocupacion) {
+    public PersonaDTO(int idCargo, String Nombres, String Apellidos, String Direccion, String email, String Telefono, String Fe_nacimiento, String Fe_bautizmo, String Sexo, String Dni, String Ocupacion) {
         this.idCargo = idCargo;
         this.Nombres = Nombres;
         this.Apellidos = Apellidos;
         this.Direccion = Direccion;
+        this.email = email;
         this.Telefono = Telefono;
         this.Fe_nacimiento = Fe_nacimiento;
         this.Fe_bautizmo = Fe_bautizmo;
@@ -29,6 +31,8 @@ public class PersonaDTO {
         this.Dni = Dni;
         this.Ocupacion = Ocupacion;
     }
+
+    
 
     public int getIdPersona() {
         return idPersona;
@@ -116,6 +120,14 @@ public class PersonaDTO {
 
     public void setOcupacion(String Ocupacion) {
         this.Ocupacion = Ocupacion;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     
