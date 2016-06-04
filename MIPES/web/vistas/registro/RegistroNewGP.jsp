@@ -44,7 +44,6 @@
                 <form method="post" action="../../gp" style="margin-top: 5%">
                     <input type="hidden" name="opc" value="1">
                     <div id="d_distrito" class="input-field col s12"  style="margin-top: 2%">
-                        <i class="material-icons prefix">group_work</i>
                     <%ResultSet rs = di.listar_Distritos("SELECT * FROM distritom order by NOMBRE");%>
                     <select name="n_distrito" id="distrito" onchange=" disesc()">
                         <option value="" disabled selected>Elegir Distrito</option>

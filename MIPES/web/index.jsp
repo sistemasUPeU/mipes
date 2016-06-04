@@ -131,7 +131,7 @@
                                     </li>
                                     <li><a><i class="fa fa-globe"></i>Ministerio<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="#">Algo que hace el ministerio</a>    
+                                            <li><a href="vistas/registro/RegistroNewMin.jsp" target="frame">Registrar Ministerio</a>    
                                         </ul>
                                     </li>
                                 </ul>

@@ -25,7 +25,7 @@
             <center>
                 <h1>¡Enhorabuena!</h1>
                 <h2>Se ha registrado correctamente</h2>
-                <button type="button" class="btn waves-effect waves-light"><a href="index.jsp"></a>Inicio</button>
+                <a href="index.jsp"><input type="button" class="btn waves-effect waves-light" value="Inicio"></a>
             </center>
         </div>
     </body>

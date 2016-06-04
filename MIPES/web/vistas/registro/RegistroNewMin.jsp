@@ -1,16 +1,14 @@
 <%-- 
-    Document   : RegistroNewES
-    Created on : 22/05/2016, 12:22:03 PM
+    Document   : RegistroNewMin
+    Created on : 03/06/2016, 04:33:46 PM
     Author     : USER
 --%>
 
-<%@page import="com.upeu.mipes.dao.DistritomDAO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="es">
+<html>
     <head>
-        <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no ,initial-scale=1.0 , maximun-scale=1.0, minimun-scale=1.0">
         <script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
@@ -28,12 +26,14 @@
             });
         </script>
         <jsp:useBean class="com.upeu.mipes.dao.DistritomDAO" id="di" scope="page"></jsp:useBean>
+
+            <title>Registro de ministerio</title>
         </head>
         <body>
-            <div style="width: 75%; margin: auto">
-                <form method="post" action="../../esc" id="data">
+            <div style="width: 80%;margin: auto;padding: 5%;box-sizing: border-box;">
+                <form method="post" action="../../min">
+                    <center><h2>Nuevo Ministerio</h2></center><br/><br/>
                     <input type="hidden" name="opc" value="1">
-                    <h2 style="color:#00bfa5">Nueva Escuela Sabática</h2>
                     <div class="input-field col s12" >
                         <select name="n_distrito" id="distrito">
                             <option value="" disabled selected>Elegir Distrito</option>
@@ -49,38 +49,20 @@
                     <label>Distrito</label>
                 </div>
                 <div class="input-field col s6">
-                    <input id="i_es" name="n_es" type="text" class="validate">
-                    <label for="i_es" style="margin-top: 1%">Nombre de la Escuela Sabática</label>
+                    <input id="i_min" name="n_min" type="text" class="validate">
+                    <label for="i_min" style="margin-top: 1%">Nombre del Ministerio</label>
                 </div>
-                <div >
-                    <label for="ifecha" >Fecha de Creación</label>
-                    <input name="fecha" id="ifecha" type="date">
-
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea name="n_des" id="ides" class="materialize-textarea" length="250"></textarea>
+                        <label for="ides">Descripción</label>
+                    </div>
                 </div>
-                <div class="input-field col s6">
-                    <input id="icolor" name="color" type="text" class="validate">
-                    <label for="icolor"  style="margin-top: 1%">Color Distintivo</label>
-                </div>
-                <div class="input-field col s6">
-                    <input id="ilema" name="lema" type="text" class="validate">
-                    <label for="ilema" style="margin-top: 1%">Lema de la Escuela Sabática</label>
-                </div>
-
+                <br/>    
                 <button class="btn waves-effect waves-light" type="submit" name="action" style="float: right">Registrar
                     <i class="material-icons right">send</i>
                 </button>
-
-
-
             </form>
-
-
-            <script>
-                $(document).ready(function () {
-                    $('select').material_select();
-                });
-            </script>
         </div>
-
     </body>
 </html>
