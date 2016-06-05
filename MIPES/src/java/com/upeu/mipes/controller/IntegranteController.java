@@ -77,7 +77,7 @@ public class IntegranteController extends HttpServlet {
                     dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                 } else {
-                    out.println("<h3>Error AL guardar registro..!!</h3>");
+                    out.println("<h3>Error registrar Integrante..!!</h3>");
                 }
            
         }

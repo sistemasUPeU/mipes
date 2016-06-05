@@ -21,7 +21,7 @@
         <jsp:useBean class="com.upeu.mipes.dao.GrupoDAO" id="gp" scope="page" ></jsp:useBean>
         <jsp:useBean class="com.upeu.mipes.dao.CargoDAO" id="cg" scope="page" ></jsp:useBean>
             <div class="row ">  
-                <form class="col s10 offset-s1"  role="form" method="post" action="../../IntCnt"> 
+                <form class="col s10 offset-s1"  role="form" method="post" action="../../regPer"> 
                     <input type="hidden" name="op" value="1" />
                     <h1 style="text-align: center; color: #26A69A">Registro Integrante</h1>
                     <div class="row">
@@ -74,12 +74,16 @@
                             <label>Sexo</label>
                         </div>
                         <div class="input-field col s12 m6">
-                        <%ResultSet rs = cg.listar_Cargo();%>
-                        <select name="n_cargo" id="cargo" onchange=" disesc()">
+                        <select name="n_cargo" id="cargo" >
                             <option value="" disabled selected>Elegir Cargo</option>
-                            <% while (rs.next()) {%>
+                            <%
+                                ResultSet rs = cg.listar_Cargo("SELECT * FROM cargo order by NOMCARGO");
+                                while (rs.next()) {
+                            %>
                             <option value="<%= rs.getString("idCARGO")%>"><%= rs.getString("NOMCARGO")%></option>
-                            <% }%>
+                        <%
+                            }
+                        %>
                         </select>
                         <label>Seleccione Cargo</label>
                     </div>

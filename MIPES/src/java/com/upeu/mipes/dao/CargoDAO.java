@@ -101,12 +101,13 @@ public class CargoDAO implements CrudInterface<CargoDTO>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public ResultSet listar_Cargo() {
-        String consulta = "SELECT * FROM cargo order by NOMCARGO";
+    public ResultSet listar_Cargo(String consulta) {
+        Conexion cxr = new Conexion();
         System.out.println(consulta);
-        ResultSet rst = cx.RecibirDatos(consulta);
+        ResultSet rst = cxr.RecibirDatos(consulta);
         return rst;
     }
+    
     
     
 }

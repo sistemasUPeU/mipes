@@ -24,6 +24,10 @@
         <servlet-name>MinisterioController</servlet-name>
         <servlet-class>com.upeu.mipes.controller.MinisterioController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PersonaController</servlet-name>
+        <servlet-class>com.upeu.mipes.controller.PersonaController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>MinisterioController</servlet-name>
         <url-pattern>/min</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PersonaController</servlet-name>
+        <url-pattern>/regPer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
