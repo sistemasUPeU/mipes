@@ -26,7 +26,7 @@ public class IntegranteDAO implements CrudInterface<IntegranteDTO>{
 
     @Override
     public boolean agregar(IntegranteDTO in) {
-        sql = "INSERT INTO integrante (idINTEGRANTE,idPERSONA,idGRUPO,idMINISTERIO,ESTADO) VALUES ("+in.getIdIntegrante()+","+in.getIdGrupo()+",'"+in.getIdMinisterio()+"','"+in.getEstado()+"')";
+        sql = "INSERT INTO integrante (idINTEGRANTE,idPERSONA,idGRUPO,idMINISTERIO,ESTADO) VALUES("+in.getIdIntegrante()+","+in.getIdPersona()+","+in.getIdGrupo()+","+in.getIdMinisterio()+",'"+in.getEstado()+"')";
         boolean p = false;
         try {
             cx = Conexion.getConexion();

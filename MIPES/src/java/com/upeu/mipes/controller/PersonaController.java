@@ -1,6 +1,8 @@
 package com.upeu.mipes.controller;
 
+import com.upeu.mipes.dao.IntegranteDAO;
 import com.upeu.mipes.dao.PersonaDAO;
+import com.upeu.mipes.dto.IntegranteDTO;
 import com.upeu.mipes.dto.PersonaDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,10 +21,13 @@ public class PersonaController extends HttpServlet {
     PersonaDTO perDTO = new PersonaDTO();
     PersonaDAO perDAO = new PersonaDAO();
 
+    IntegranteDTO intDTO = new IntegranteDTO();
+    IntegranteDAO intDAO = new IntegranteDAO();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
 //        try (PrintWriter out = response.getWriter()) {
 //            /* TODO output your page here. You may use following sample code. */
 //            out.println("<!DOCTYPE html>");
@@ -64,19 +69,26 @@ public class PersonaController extends HttpServlet {
                 String sexo = request.getParameter("sexo");
                 String dni = request.getParameter("dni");
                 String ocupacion = request.getParameter("ocupacion");
+
                 perDTO = new PersonaDTO(Integer.parseInt(cargo), nombre, apellido, direccion, email, telefono, nacimiento, bautizo, sexo, dni, ocupacion);
+
                 if (perDAO.agregar(perDTO)) {
-                    pagina = "/vistas/extras/CongNewES.jsp";
-                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-                    dispatcher.forward(request, response);
+                    String idGrupo = (request.getParameter("n_grupo"));
+                    int idMinisterio = Integer.parseInt(request.getParameter("n_ministerio"));
+                    String estado = "1";
+                    int idPersona = perDAO.buscarNombre(perDTO.getNombres());
+                    intDTO = new IntegranteDTO(idPersona, Integer.parseInt(idGrupo), idMinisterio, estado);
+                    if (intDAO.agregar(intDTO)) {
+                        pagina = "/vistas/extras/CongNewES.jsp";
+                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                        dispatcher.forward(request, response);
+                    }
                 } else {
                     pagina = "/vistas/registro/RegistroIntegrante.jsp";
                     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                 }
-
         }
-
     }
 
     @Override

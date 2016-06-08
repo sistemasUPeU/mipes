@@ -57,7 +57,7 @@
                         </div>
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix">android</i>
-                            <input name="bautizo" type="date" class="datepicker">
+                            <input name="bautizo" type="date" class="datepicker" >
                             <label>Fecha de Bautizo</label>
                         </div>
                         <div class="input-field col s12 m6">

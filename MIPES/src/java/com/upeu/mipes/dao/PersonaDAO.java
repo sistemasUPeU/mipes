@@ -5,6 +5,7 @@ import com.upeu.mipes.dto.PersonaDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -14,14 +15,15 @@ public class PersonaDAO implements CrudInterface<PersonaDTO> {
     private Connection cx;
     private PreparedStatement ps;
     private Statement st;
-
+    private ResultSet rs;
+    
     @Override
     public boolean agregar(PersonaDTO per) {
-        sql = "INSERT INTO persona(idPERSONA,idCARGO,NOMBRES,APELLIDOS,DIRECCION,EMAIL,TELEFONO,FE_NACIMIENTO,FE_BAUTIZMO,SEXO,DNI,OCUPACION) VALUES("+per.getIdPersona()+","+per.getIdCargo()+",'"+per.getNombres()+"','"+per.getApellidos()+"',"+per.getDireccion()+",'"+per.getEmail()+"','"+per.getTelefono()+"',"+per.getFe_nacimiento()+",'"+per.getFe_bautizmo()+"','"+per.getSexo()+"','"+per.getDni()+"','"+per.getOcupacion()+"')";
+        sql = "INSERT INTO persona(idPERSONA,idCARGO,NOMBRES,APELLIDOS,DIRECCION,EMAIL,TELEFONO,FE_NACIMIENTO,FE_BAUTIZMO,SEXO,DNI,OCUPACION) VALUES("+per.getIdPersona()+","+per.getIdCargo()+",'"+per.getNombres()+"','"+per.getApellidos()+"','"+per.getDireccion()+"','"+per.getEmail()+"','"+per.getTelefono()+"','"+per.getFe_nacimiento()+"','"+per.getFe_bautizmo()+"','"+per.getSexo()+"','"+per.getDni()+"','"+per.getOcupacion()+"')";
         boolean p = false;
         try {
-//            System.out.println("Persona ID"+per.getIdPersona());
-//            System.out.println("Persona cargonombre:"+per.getIdCargo());
+           // System.out.println("Persona ID"+per.getIdPersona());
+            //System.out.println("Persona cargonombre:"+per.getIdCargo());
 //            System.out.println("Persona nombre:"+per.getNombres());
 //            System.out.println("Persona apell"+per.getApellidos());
 //            System.out.println("Persona direcc:"+per.getDireccion());
@@ -41,7 +43,7 @@ public class PersonaDAO implements CrudInterface<PersonaDTO> {
                 p = true;
             }
         } catch (Exception e) {
-            System.out.println("Error Registrar Integrante: " + e);
+            System.out.println("Error Registrar Persona: " + e);
         }
         return p;
     }
@@ -66,4 +68,20 @@ public class PersonaDAO implements CrudInterface<PersonaDTO> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public int  buscarNombre(String nombre){
+        int idPersona=0;
+        sql = "SELECT *FROM persona WHERE NOMBRES = '" + nombre + "'";
+        try {
+            cx = Conexion.getConexion();
+            st = cx.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                idPersona = rs.getInt("idPERSONA");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error Listar Persona (Nombre): " + e);
+        }
+        return idPersona;
+    }
 }
