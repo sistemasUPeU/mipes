@@ -32,7 +32,7 @@
             <script>
             function listesc() {
                 $.post("listescuela.jsp", $("#idis"), function (data) {
-                    $("#datatable-responsive").html(data);
+                    $("#listaesc").html(data);
                 });
             }
         </script>
@@ -69,7 +69,7 @@
                     </ul>
                     <div class="clearfix"></div>
                 </div>
-                <div class="x_content">
+                <div class="x_content" id="ab">
                     <p class="text-muted font-13 m-b-30">
                         Lista de Escuelas Sabáticas</p>
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
