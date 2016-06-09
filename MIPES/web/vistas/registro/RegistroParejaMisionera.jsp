@@ -34,7 +34,7 @@
                 <form class="col s10 offset-s1">
 
                     <!--------------DISTRITO PERSONA 1---------------->
-                    <div id="d_distrito" class="input-field col s12" >
+                    <div id="d_distrito" class="input-field col s12"  style="margin-top: 2%">
                     <%ResultSet rsdis1 = dist.listar_Distritos("SELECT * FROM distritom order by NOMBRE");%>
                     <select name="n_distrito" id="distrito" onchange=" disesc()">
                         <option value="" disabled selected>Elegir Distrito</option>
@@ -44,9 +44,11 @@
                     </select>
                     <label>Distrito</label>
                 </div>
-                <div id="iescuela" class="input-field col s12" >
+                <div id="iescuela" class="input-field col s12" style="margin-top: 2%">
+
                     <select name="n_escuela" id="escuela">
                         <option value="" disabled selected >Elegir Escuela Sabática</option>
+
                     </select>
                     <label>Escuela Sabática</label>
                 </div>

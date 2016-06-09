@@ -77,6 +77,7 @@
                         <th>Lema</th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="itbody">
@@ -88,6 +89,9 @@
                         <td><%= rs.getString("FECHA_CREACION")%></td>
                         <td><%= rs.getString("COLOR")%></td>
                         <td><%= rs.getString("LEMA")%></td>
+                        <td>
+                            <a href="dis?opc=2" class="btn btn-success">Editar</a>
+                        </td>
                         <td>
                             <a href="dis?opc=3" class="btn btn-warning">Desactivar</a>
                         </td>

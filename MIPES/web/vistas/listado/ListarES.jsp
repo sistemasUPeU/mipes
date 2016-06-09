@@ -81,6 +81,7 @@
                                 <th>Lema</th>
                                 <th></th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody id="itbody">
@@ -89,8 +90,8 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>
-                                </td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                             </tr>
                         </tbody>

@@ -38,18 +38,13 @@
                                 <input name="pass" type="password" class="form-control" placeholder="Password"/>
                             </div>
                             <div>
-                                <button type="submit" class="btn btn-default submit">Ingresar</button>
+                                <button type="submit" class="btn btn-success" style="width: 100%;">Ingresar</button>
 
-
-                                <a class="reset_pass" href="#">¿Olvidaste tu contraseña?</a>
                             </div>
                             <div class="clearfix"></div>
                             <div class="separator">
 
-                                <p class="change_link">¿Eres nuevo?
-                                    <a href="#toregister" class="to_register"> Crear una cuenta </a>
-                                </p>
-                                <div class="clearfix"></div>
+                               
                                 <br />
                                 <div>
                                     <h1><i class="fa fa-group" style="font-size: 26px;"></i> MIPES</h1>
@@ -60,39 +55,7 @@
                         </form>
                     </section>
                 </div>
-                <div id="register" class="animate form">
-                    <section class="login_content">
-                        <form>
-                            <h1>Crear una Cuenta</h1>
-                            <div>
-                                <input type="text" class="form-control" placeholder="Username" required="" />
-                            </div>
-                            <div>
-                                <input type="email" class="form-control" placeholder="Email" required="" />
-                            </div>
-                            <div>
-                                <input type="password" class="form-control" placeholder="Password" required="" />
-                            </div>
-                            <div>
-                                <a class="btn btn-default submit" href="index.html">Registrar</a>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="separator">
-
-                                <p class="change_link">¿Ya eres miembro?
-                                    <a href="#tologin" class="to_register"> Ingresar </a>
-                                </p>
-                                <div class="clearfix"></div>
-                                <br />
-                                <div>
-                                    <h1><i class="fa fa-paw" style="font-size: 26px;"></i> MIPES</h1>
-
-                                    <p>©2016 All Rights Reserved.</p>
-                                </div>
-                            </div>
-                        </form>
-                    </section>
-                </div>
+            
             </div>
         </div>
 

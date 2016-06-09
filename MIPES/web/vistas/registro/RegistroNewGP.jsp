@@ -64,7 +64,7 @@
                 </div>
                 <div class="input-field col s6" style="margin-top: 2%">
                     <input id="n_gp" name="n_grupo" type="text" class="validate">
-                    
+
                     <label for="n_gp" style="margin-top: 1%">Nombre del Grupo Pequeño</label>
                 </div>
                 <div style="margin-top: 2%" >

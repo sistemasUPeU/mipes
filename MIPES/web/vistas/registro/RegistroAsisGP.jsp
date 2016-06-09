@@ -30,6 +30,8 @@
 
     </head>
     <body style="padding: 5%;box-sizing: border-box;">
+        <div>
+        <form>
         <div class="x_panel">
             <div class="x_title">
                 <h2>Asistencia</h2>
@@ -67,6 +69,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <% for(int i=0 ; i<10;i++){%>
                         <tr>
                             <td>Nombre Nombre</td>
                             <td>Apellido Apellido</td>
@@ -76,23 +79,11 @@
                             <td>...</td>
                             <td>...</td>
                             <td><div class="radio">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked style="cursor: pointer;margin: auto;">
+                                    <input type="radio"  value="option1"  style="cursor: pointer;margin: auto;">
                                 </div></td>
-                            <td><div class="radio">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" checked style="cursor: pointer;margin: auto;">
-                                </div></td>
+                            <td>...</td>
                         </tr>
-                        <tr>
-                            <td>Nombre Nombre</td>
-                            <td>Apellido Apellido</td>
-                            <td>123546</td>
-                            <td>963258741</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>abc</td>
-                            <td>abc</td>
-                        </tr>
+                        <% }%>
 
                     </tbody>
                 </table>
@@ -100,23 +91,14 @@
             </div>
         </div>
         <label for="n_vis">Número de Visitas</label>
-        <input id="n_vis" class="form-control" type="number" min="0" placeholder="0" style="width: 50%;">
-        <!--</div>
-                <label for="n_asis">Número de Asistentes</label>
-                <input id="n_asis" type="number" min="0" placeholder="0"/>
-
-                <label for="n_vis">Número de Visitas</label>
-                <input id="n_vis" type="number" min="0" placeholder="0"/>
-                
-
-
-
-                <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
-                    <i class="material-icons right">send</i>
-                </button>
-
-        <!--</form>
-    </div>-->
+        <input id="n_vis" class="form-control" type="number" min="0" placeholder="0" style="width: 50%;"><br/><br/>
+        <div style="width: 70%;margin: auto;">
+            <button type="submit" class="btn btn-danger" style="width: 100%;">Registrar</button>
+        </div>
+        </form>
+        </div>
+        
+        
         <script src="../../js/bootstrap.min.js"></script>
 
         <!-- bootstrap progress js -->
