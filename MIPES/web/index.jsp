@@ -33,7 +33,7 @@
         <script>
             $(document).ready(function () {
                 //    window.onload(){
-                        alert("Hey everyone");
+                        parent.frame.location.href='inicio.jsp';
 
                 //opener.$("#idframe").href = 'vistas/extras/home.jsp';
 
@@ -41,6 +41,7 @@
                 //};
             });
         </script>
+        
     </head>
 
     <body class="nav-md">
@@ -52,7 +53,7 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="vistas/extras/home.jsp" target="frame" class="site_title"><i class="fa fa-group"></i> <span>MIPES | UPeU</span></a>
+                            <a href="inicio.jsp" target="frame" class="site_title"><i class="fa fa-group"></i> <span>MIPES | UPeU</span></a>
                         </div>
                         <div class="clearfix"></div>
                         <!-- menu prile quick info -->
@@ -88,6 +89,7 @@
                                             </li>
                                             <li><a href="template/typography.html" target="frame">Eliminar Integrante</a>
                                             </li>
+                                            
                                             <li><a href="vistas/listado/ListarIntegrante.jsp" target="frame">Listar Integrantes</a>
                                             </li>
                                         </ul>
@@ -273,7 +275,7 @@
                     </div>
                 </div>
                 <!-- contenido recargable -->
-                <div class="right_col" role="main" style="height: 100%;padding: 3% 0;box-sizing: border-box;" >
+                <div class="right_col" role="main" style="height: 100%;padding: 0 0;box-sizing: border-box;" >
                     <iframe name="frame" id="idframe" style=" width:100% ;height:100%; border: none">
 
                     </iframe>
