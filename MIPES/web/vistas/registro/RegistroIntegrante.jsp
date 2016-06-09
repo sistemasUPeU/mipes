@@ -82,7 +82,7 @@
                             <label>Sexo</label>
                         </div>
                         
-                   <div class="input-field col s12 m6" style="margin-top: 3%">
+                   <div class="input-field col s12 m6" style="margin-top: 2%">
                         <select name="n_cargo" id="cargo" >
                             <option value="" disabled selected>Elegir Cargo</option>
                             <%
