@@ -37,11 +37,8 @@
                     IntegranteDTO integr = new IntegranteDTO();
                     integr = (IntegranteDTO) list.get(i);
             %>
-            <tr>
-                <td><%= integr.getNombre()%></td>
-                <td><%= integr.getApellidos()%></td>
-                <td><%= integr.getEmail()%></td>
-            </tr>
+           
+           
             <%}%>
         </table>
     </body>

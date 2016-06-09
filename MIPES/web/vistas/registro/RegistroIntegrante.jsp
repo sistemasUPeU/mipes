@@ -15,8 +15,16 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="../../css/materialize.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/materialize.min.css" rel="stylesheet" type="text/css"/>
+        <script>
+            function disesc() {
+                $.post("ComboDistrito.jsp", $("#distrito"), function (data) {
+                    $("#iescuela").html(data);
+                });
+            }
+        </script>
     </head>
     <body>
+        <jsp:useBean class="com.upeu.mipes.dao.DistritomDAO" id="dist" scope="page" ></jsp:useBean>
         <jsp:useBean class="com.upeu.mipes.dao.MinisterioDAO" id="mi" scope="page" ></jsp:useBean>
         <jsp:useBean class="com.upeu.mipes.dao.GrupoDAO" id="gp" scope="page" ></jsp:useBean>
         <jsp:useBean class="com.upeu.mipes.dao.CargoDAO" id="cg" scope="page" ></jsp:useBean>
@@ -65,7 +73,7 @@
                             <input name="nacimiento" type="date"  class="datepicker">
                             <label>Fecha de Nacimiento</label>
                         </div>
-                        <div class="input-field col s12 m6">
+                        <div class="input-field col s12 m6" style="margin-top: 2%">
                             <select name="sexo">
                                 <option value="" disabled selected>Elegir Sexo</option>
                                 <option value="1">Masculino</option>
@@ -73,7 +81,8 @@
                             </select>
                             <label>Sexo</label>
                         </div>
-                        <div class="input-field col s12 m6">
+                        
+                   <div class="input-field col s12 m6" style="margin-top: 3%">
                         <select name="n_cargo" id="cargo" >
                             <option value="" disabled selected>Elegir Cargo</option>
                             <%
@@ -81,33 +90,33 @@
                                 while (rs.next()) {
                             %>
                             <option value="<%= rs.getString("idCARGO")%>"><%= rs.getString("NOMCARGO")%></option>
-                        <%
-                            }
-                        %>
+                            <%
+                                }
+                            %>
                         </select>
                         <label>Seleccione Cargo</label>
                     </div>
-                    <div class="input-field col s12 m6">
-                        <%ResultSet rsm = mi.listar_Ministerios();%>
-                        <select name="n_ministerio" id="ministerio" onchange=" disesc()">
+                    <div class="input-field col s12 m6" style="margin-top: 3%">
+                        <select name="n_ministerio" id="ministerio" >
                             <option value="" disabled selected>Elegir Distrito</option>
-                            <% while (rsm.next()) {%>
+                            <%ResultSet rsm = mi.listar_Ministerios();
+                                while (rsm.next()) {%>
                             <option value="<%= rsm.getString("idMINISTERIO")%>"><%= rsm.getString("NOMBRE")%></option>
                             <% }%>
                         </select>
                         <label>Seleccione Ministerio</label>
                     </div>
-                    <div class="input-field col s12 m6">
-                        <%ResultSet rsp = gp.listar_grupos();%>
-                        <select name="n_grupo" id="grupo" onchange=" disesc()">
+                    <div class="input-field col s12 m6" style="margin-top: 3%">
+                        <select name="n_grupo" id="grupo" >
                             <option value="" disabled selected>Elegir Grupo Pequeño</option>
-                            <% while (rsp.next()) {%>
+                            <%ResultSet rsp = gp.listar_grupos();
+                                while (rsp.next()) {%>
                             <option value="<%= rsp.getString("idGRUPO")%>"><%= rsp.getString("NOMBRE")%></option>
                             <% }%>
                         </select>
                         <label>Seleccione Grupo Pequeño</label>
                     </div>
-                    <div class="input-field col s12">
+                    <div class="input-field col s12 m12" style="margin-top: 3%">
                         <textarea id="ocupacion" name="ocupacion" class="materialize-textarea"></textarea>
                         <label for="ocupacion">Ocupación</label>
                     </div>
