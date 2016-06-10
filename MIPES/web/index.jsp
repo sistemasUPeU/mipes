@@ -277,7 +277,11 @@
                 <!-- contenido recargable -->
                 <div class="right_col" role="main" style="height: 100%;padding: 0 0;box-sizing: border-box;" >
                     <iframe name="frame" id="idframe" style=" width:100% ;height:100%; border: none">
-
+<!--
+aaaaaaaaaa
+aaaaaaaaa
+aaaaaaaaaa
+-->
                     </iframe>
                 </div>
                 <!-- /page content -->
