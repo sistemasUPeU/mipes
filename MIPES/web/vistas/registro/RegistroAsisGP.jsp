@@ -31,74 +31,70 @@
     </head>
     <body style="padding: 5%;box-sizing: border-box;">
         <div>
-        <form>
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Asistencia</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">1</a>
+            <form>
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Asistencia</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">1</a>
+                                    </li>
+                                    <li><a href="#">2</a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li><a href="#">2</a>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
                             </li>
                         </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <p class="text-muted font-13 m-b-30">
-                    Lista de integrantes pertenecientes al G.P. "abc" </p>
-                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>Nombre(s)</th>
-                            <th>Apellidos</th>
-                            <th>DNI</th>
-                            <th>Celular</th>
-                            <th>...</th>
-                            <th>...</th>
-                            <th>...</th>
-                            <th>Presente</th>
-                            <th>Falta</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for(int i=0 ; i<10;i++){%>
-                        <tr>
-                            <td>Nombre Nombre</td>
-                            <td>Apellido Apellido</td>
-                            <td>123546</td>
-                            <td>963258741</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                            <td><div class="radio">
-                                    <input type="radio"  value="option1"  style="cursor: pointer;margin: auto;">
-                                </div></td>
-                            <td>...</td>
-                        </tr>
-                        <% }%>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <p class="text-muted font-13 m-b-30">
+                            Lista de integrantes pertenecientes al G.P. "abc" </p>
+                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Nombre(s)</th>
+                                    <th>Apellidos</th>
+                                    <th>DNI</th>
+                                    <th>Celular</th>
+                                    <th>Presente</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (int i = 0; i < 10; i++) {%>
+                                <tr>
+                                    <td>Nombre Nombre</td>
+                                    <td>Apellido Apellido</td>
+                                    <td>123546</td>
+                                    <td>963258741</td>
+                                    <td>
+                                        <center>
+                                            <div class="radio">
+                                                <input type="radio"  value="option1"  style="cursor: pointer;margin: auto;">
+                                            </div>
+                                        </center>
+                                    </td>
+                                </tr>
+                            <% }%>
 
-                    </tbody>
-                </table>
+                            </tbody>
+                        </table>
 
-            </div>
+                    </div>
+                </div>
+                <label for="n_vis">Número de Visitas</label>
+                <input id="n_vis" class="form-control" type="number" min="0" placeholder="0" style="width: 50%;"><br/><br/>
+                <div style="width: 70%;margin: auto;">
+                    <button type="submit" class="btn btn-danger" style="width: 100%;">Registrar</button>
+                </div>
+            </form>
         </div>
-        <label for="n_vis">Número de Visitas</label>
-        <input id="n_vis" class="form-control" type="number" min="0" placeholder="0" style="width: 50%;"><br/><br/>
-        <div style="width: 70%;margin: auto;">
-            <button type="submit" class="btn btn-danger" style="width: 100%;">Registrar</button>
-        </div>
-        </form>
-        </div>
-        
-        
+
+
         <script src="../../js/bootstrap.min.js"></script>
 
         <!-- bootstrap progress js -->

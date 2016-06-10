@@ -33,7 +33,7 @@
         <script>
             $(document).ready(function () {
                 //    window.onload(){
-                        parent.frame.location.href='inicio.jsp';
+                parent.frame.location.href = 'inicio.jsp';
 
                 //opener.$("#idframe").href = 'vistas/extras/home.jsp';
 
@@ -41,7 +41,7 @@
                 //};
             });
         </script>
-        
+
     </head>
 
     <body class="nav-md">
@@ -50,7 +50,7 @@
 
             <div class="main_container">
 
-                <div class="col-md-3 left_col">
+                <div class="col-md-3 left_col" >
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
                             <a href="inicio.jsp" target="frame" class="site_title"><i class="fa fa-group"></i> <span>MIPES | UPeU</span></a>
@@ -71,7 +71,7 @@
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
-                                <h3>General</h3>
+                                <h3>MENÚ</h3>
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-user"></i>Perfil<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
@@ -89,7 +89,7 @@
                                             </li>
                                             <li><a href="template/typography.html" target="frame">Eliminar Integrante</a>
                                             </li>
-                                            
+
                                             <li><a href="vistas/listado/ListarIntegrante.jsp" target="frame">Listar Integrantes</a>
                                             </li>
                                         </ul>
@@ -148,16 +148,17 @@
                                 </ul>
                             </div>
                             <div class="menu_section">
-                                <h3>------</h3>
                                 <ul class="nav side-menu">
-                                    <li><a><i class="fa fa-bug"></i>Privilegios de Cuenta<span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-plus"></i>Privilegios de Cuenta<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="#">Crear Usuario</a>
                                             </li>
 
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                                    <li><a href="https://www.facebook.com/mipes.upeu/" target="_blank"><i class="fa fa-facebook"></i>Facebook</a>
+                                    </li>
+                                    <!--<li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="vista/page_404.html">404 Error</a>
                                             </li>
@@ -170,8 +171,8 @@
                                             <li><a href="vista/pricing_tables.html">Pricing Tables</a>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
+                                    </li>-->
+                                    <!--<li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="#level1_1">Level One</a>
                                             <li><a>Level One<span class="fa fa-chevron-down"></span></a>
@@ -187,28 +188,14 @@
                                             <li><a href="#level1_2">Level One</a>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a>
-                                    </li>
+                                    </li>-->
+                                    <!--<li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a>
+                                    </li>-->
                                 </ul>
                             </div>
                         </div>
-                        <!-- /menu footer buttons -->
-                        <div class="sidebar-footer hidden-small">
-                            <a data-toggle="tooltip" data-placement="top" title="Settings">
-                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                            </a>
-                            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                            </a>
-                            <a data-toggle="tooltip" data-placement="top" title="Lock">
-                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                            </a>
-                            <a data-toggle="tooltip" data-placement="top" title="Logout">
-                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                            </a>
-                        </div>
-                        <!-- /menu footer buttons -->
+
+
                     </div>
                 </div>
                 <!-- top navigation -->
@@ -225,7 +212,7 @@
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                        <li><a href="javascript:;">  Profile</a>
+                                        <li><a href="javascript:;">Perfil</a>
                                         </li>
                                         <li>
                                             <a href="javascript:;">
@@ -252,11 +239,11 @@
                                                     <img src="images/img.jpg" alt="Profile Image" />
                                                 </span>
                                                 <span>
-                                                    <span>John Smith</span>
-                                                    <span class="time">3 mins ago</span>
+                                                    <span>Usuario</span>
+                                                    <span class="time">Hace 10 minutos</span>
                                                 </span>
                                                 <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                                                    No registraste asistencia al Grupo Pequeño esta semana
                                                 </span>
                                             </a>
                                         </li>
@@ -271,17 +258,13 @@
                                     </ul>
                                 </li>
                             </ul>
+                            
                         </nav>
                     </div>
                 </div>
                 <!-- contenido recargable -->
                 <div class="right_col" role="main" style="height: 100%;padding: 0 0;box-sizing: border-box;" >
                     <iframe name="frame" id="idframe" style=" width:100% ;height:100%; border: none">
-<!--
-aaaaaaaaaa
-aaaaaaaaa
-aaaaaaaaaa
--->
                     </iframe>
                 </div>
                 <!-- /page content -->
