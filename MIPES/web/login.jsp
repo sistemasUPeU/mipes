@@ -49,7 +49,7 @@
                                 <div>
                                     <h1><i class="fa fa-group" style="font-size: 26px;"></i> MIPES</h1>
 
-                                    <p>©2016 All Rights Reserved.</p>
+                                    <p>©2016</p>
                                 </div>
                             </div>
                         </form>

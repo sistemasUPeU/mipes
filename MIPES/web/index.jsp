@@ -129,7 +129,9 @@
                                             <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Registrar Nueva Escuela Sabática</a>
                                             </li>
                                             <li><a href="#" target="frame">Desactivar Escuela Sabática</a>
-                                            </li>   
+                                            </li>
+                                            <li><a href="vistas/listado/ListarGP.jsp" target="frame">Lista de Grupos Pequeños</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-users"></i>Grupo Pequeño<span class="fa fa-chevron-down"></span></a>

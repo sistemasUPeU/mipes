@@ -25,7 +25,6 @@ public class GrupoDAO implements CrudInterface<GrupoDTO> {
     private String sql;
     private Connection cnn;
 
-    Conexion cx = new Conexion();
     
     @Override
     public boolean agregar(GrupoDTO gp) {
@@ -108,8 +107,9 @@ public class GrupoDAO implements CrudInterface<GrupoDTO> {
         return p;
     }
     
-    public ResultSet listar_grupos() {
-        String consulta = "SELECT * FROM grupo order by NOMBRE";
+    
+    public ResultSet listar_grupos(String consulta) {
+        Conexion cx = new Conexion();
         System.out.println(consulta);
         ResultSet rst = cx.RecibirDatos(consulta);
         return rst;
