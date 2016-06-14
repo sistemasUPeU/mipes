@@ -81,10 +81,10 @@
                             </select>
                             <label>Sexo</label>
                         </div>
-                        
-                   <div class="input-field col s12 m6" style="margin-top: 2%">
-                        <select name="n_cargo" id="cargo" >
-                            <option value="" disabled selected>Elegir Cargo</option>
+
+                        <div class="input-field col s12 m6" style="margin-top: 2%">
+                            <select name="n_cargo" id="cargo" >
+                                <option value="" disabled selected>Elegir Cargo</option>
                             <%
                                 ResultSet rs = cg.listar_Cargo("SELECT * FROM cargo order by NOMCARGO");
                                 while (rs.next()) {
@@ -103,7 +103,7 @@
                                 while (rsm.next()) {
                             %>
                             <option value="<%= rsm.getString("idMINISTERIO")%>"><%= rsm.getString("NOMBRE")%></option>
-                            <%   
+                            <%
                                 }
                             %>
                         </select>
@@ -116,8 +116,8 @@
                                 while (rsp.next()) {
                             %>
                             <option value="<%= rsp.getString("idGRUPO")%>"><%= rsp.getString("NOMBRE")%></option>
-                            <%  
-                                }   
+                            <%
+                                }
                             %>
                         </select>
                         <label>Seleccione Grupo Pequeño</label>
@@ -136,10 +136,10 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="../../js/materialize.min.js" type="text/javascript"></script>
         <script>
-                            $('.datepicker').pickadate({
-                                selectMonths: true, // Creates a dropdown to control month
-                                selectYears: 15 // Creates a dropdown of 15 years to control year
-                            });
+            $('.datepicker').pickadate({
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 15 // Creates a dropdown of 15 years to control year
+            });
         </script>
         <script>
             $(document).ready(function () {

@@ -28,7 +28,7 @@ public class GrupoDAO implements CrudInterface<GrupoDTO> {
     
     @Override
     public boolean agregar(GrupoDTO gp) {
-        sql = "INSERT INTO grupo (idGRUPO,idESCUELA,NOMBRE,FECHA_CREACION,ESTADO) values(" + gp.getIdGRUPO() + "," + gp.getIdESCUELA() + ",'" + gp.getNOMBRE() + "','" + gp.getFecha_creacion() + "','" + gp.getEstado() + "')";
+        sql = "INSERT INTO grupo (idGRUPO,idESCUELA,NOMBRE,FECHA_CREACION,COLOR,CANTO,LEMA,VERSICULO,CLASIFICACION,TIPOINTEGRANTE,LUGAR_REUNION,DIA_REUNION,HORA_REUNION,ESTADO) values(" + gp.getIdGRUPO() + "," + gp.getIdESCUELA() + ",'" + gp.getNombre()+ "','" + gp.getFecha_creacion() + "','" + gp.getColor()+ "','" + gp.getCanto()+ "','" + gp.getLema()+ "','" + gp.getVersiculo()+ "','" + gp.getCalificacion()+ "','" + gp.getTipoIntegrante()+ "','" + gp.getLugar_reunion()+ "','" + gp.getDia_reunion()+ "','" + gp.getHora_reunion()+ "','" + gp.getEstado()+ "')";
         boolean m = false;
         try {
             cnn = Conexion.getConexion();
