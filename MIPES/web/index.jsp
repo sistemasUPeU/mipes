@@ -85,11 +85,6 @@
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="vistas/registro/RegistroIntegrante.jsp" target="frame">Registrar Integrante</a>
                                             </li>
-                                            <li><a href="template/media_gallery.html" target="frame">Editar Integrante</a>
-                                            </li>
-                                            <li><a href="template/typography.html" target="frame">Eliminar Integrante</a>
-                                            </li>
-
                                             <li><a href="vistas/listado/ListarIntegrante.jsp" target="frame">Listar Integrantes</a>
                                             </li>
                                         </ul>

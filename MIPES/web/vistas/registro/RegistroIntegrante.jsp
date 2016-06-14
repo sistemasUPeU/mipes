@@ -100,19 +100,25 @@
                         <select name="n_ministerio" id="ministerio" >
                             <option value="" disabled selected>Elegir Distrito</option>
                             <%ResultSet rsm = mi.listar_Ministerios();
-                                while (rsm.next()) {%>
+                                while (rsm.next()) {
+                            %>
                             <option value="<%= rsm.getString("idMINISTERIO")%>"><%= rsm.getString("NOMBRE")%></option>
-                            <% }%>
+                            <%   
+                                }
+                            %>
                         </select>
                         <label>Seleccione Ministerio</label>
                     </div>
                     <div class="input-field col s12 m6" style="margin-top: 3%">
                         <select name="n_grupo" id="grupo" >
                             <option value="" disabled selected>Elegir Grupo Pequeño</option>
-                            <%ResultSet rsp = gp.listar_grupos();
-                                while (rsp.next()) {%>
+                            <%ResultSet rsp = gp.listar_grupos("SELECT * FROM grupo ORDER BY NOMBRE");
+                                while (rsp.next()) {
+                            %>
                             <option value="<%= rsp.getString("idGRUPO")%>"><%= rsp.getString("NOMBRE")%></option>
-                            <% }%>
+                            <%  
+                                }   
+                            %>
                         </select>
                         <label>Seleccione Grupo Pequeño</label>
                     </div>
