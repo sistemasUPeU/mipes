@@ -3,7 +3,9 @@
     Created on : 23/05/2016, 11:10:32 AM
     Author     : Andrew
 --%>
-
+<%@page import="java.sql.ResultSet"%>
+<jsp:useBean class="com.upeu.mipes.dao.PersonaDAO" id="per" scope="page" ></jsp:useBean>
+<%@page import="com.upeu.mipes.dto.PersonaDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.upeu.mipes.dto.IntegranteDTO"%>
 <jsp:useBean id="list" scope="session" class="java.util.ArrayList"/>
@@ -24,22 +26,43 @@
                 <i class="material-icons">close</i>
                 <!--                <label for="search">Buscar</label>-->
             </div>
-        </form>
 
-        <table class="table table-bordered" style="width: 800px;">
-            <tr>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Email</th>
-                <th></th>
-            </tr>
-            <% for (int i = 0; i < list.size(); i++) {
-                    IntegranteDTO integr = new IntegranteDTO();
-                    integr = (IntegranteDTO) list.get(i);
-            %>
-           
-           
-            <%}%>
-        </table>
+            <table class="striped centered responsive-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Bautizmo</th
+                        <th></th
+                        <th></th
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        String sql = "SELECT * FROM persona ORDER BY NOMBRES";
+                        ResultSet rs = per.listarPersonas(sql);
+                        while(rs.next()) {
+                    %>
+                    <tr>
+                        <td><%= rs.getString("NOMBRES")%></td>
+                        <td><%= rs.getString("APELLIDOS")%></td>
+                        <td><%= rs.getString("TELEFONO")%></td>
+                        <td><%= rs.getString("DIRECCION")%></td>
+                        <td><%= rs.getString("FE_BAUTIZMO")%></td>
+                        <td>
+                            <a href="dis?opc=2" class="btn btn-success">Editar</a>
+                        </td>
+                        <td>
+                            <a href="dis?opc=4" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                </tbody>
+            </table>
+        </form>
     </body>
 </html>

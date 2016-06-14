@@ -99,7 +99,9 @@
                             <a href="dis?opc=4" class="btn btn-danger">Eliminar</a>
                         </td>
                     </tr>
-                    <% }%>
+                    <%
+                        }
+                    %>
                 </tbody>
             </table>
         </div>

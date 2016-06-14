@@ -22,20 +22,6 @@ public class PersonaDAO implements CrudInterface<PersonaDTO> {
         sql = "INSERT INTO persona(idPERSONA,idCARGO,NOMBRES,APELLIDOS,DIRECCION,EMAIL,TELEFONO,FE_NACIMIENTO,FE_BAUTIZMO,SEXO,DNI,OCUPACION) VALUES("+per.getIdPersona()+","+per.getIdCargo()+",'"+per.getNombres()+"','"+per.getApellidos()+"','"+per.getDireccion()+"','"+per.getEmail()+"','"+per.getTelefono()+"','"+per.getFe_nacimiento()+"','"+per.getFe_bautizmo()+"','"+per.getSexo()+"','"+per.getDni()+"','"+per.getOcupacion()+"')";
         boolean p = false;
         try {
-           // System.out.println("Persona ID"+per.getIdPersona());
-            //System.out.println("Persona cargonombre:"+per.getIdCargo());
-//            System.out.println("Persona nombre:"+per.getNombres());
-//            System.out.println("Persona apell"+per.getApellidos());
-//            System.out.println("Persona direcc:"+per.getDireccion());
-//            System.out.println("Persona email"+per.getEmail());
-//            System.out.println("Persona telf:"+per.getTelefono());
-//            System.out.println("Persona nac:"+per.getFe_nacimiento());
-//            System.out.println("Persona bau:"+per.getFe_bautizmo());
-//            System.out.println("Persona telf:"+per.getTelefono());
-//            System.out.println("Persona sexo:"+per.getSexo());
-//            System.out.println("Persona dni:"+per.getDni());
-//            System.out.println("Persona ocu:"+per.getOcupacion());
-            
             cx = Conexion.getConexion();
             st = cx.createStatement();
             int a = st.executeUpdate(sql);
@@ -49,13 +35,37 @@ public class PersonaDAO implements CrudInterface<PersonaDTO> {
     }
 
     @Override
-    public boolean editar(PersonaDTO e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean editar(PersonaDTO per) {
+        boolean p = false;
+        sql = "UPDATE persona SET idCARGO='"+per.getIdCargo()+"',NOMBRES='"+per.getNombres()+"',APELLIDOS='"+per.getApellidos()+"',DIRECCION='"+per.getDireccion()+"',EMAIL='"+per.getEmail()+"',TELEFONO='"+per.getTelefono()+"',FE_NACIMIENTO='"+per.getFe_nacimiento()+"',FE_BAUTIZMO='"+per.getFe_bautizmo()+"',SEXO='"+per.getSexo()+"',DNI='"+per.getDni()+"',OCUPACION='"+per.getOcupacion()+"' WHERE idPERSONA=" + per.getIdPersona();
+        try {
+            cx = Conexion.getConexion();
+            st = cx.createStatement();
+            int a = st.executeUpdate(sql);
+            if (a > 0) {
+                p = true;
+            }
+        } catch (Exception ex) {
+            System.out.println("Error Editar Persona: " + ex);
+        }
+        return p;
     }
 
     @Override
     public boolean eliminar(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sql="DELETE FROM  usuario WHERE idusuario ="+ key;
+        boolean p = false;
+        try {
+            cx = Conexion.getConexion();
+            st = cx.createStatement();
+            int a = st.executeUpdate(sql);                  
+            if(a>0){
+                p=true;
+            }                
+        } catch (Exception e) {
+            System.out.println("Error Eliminar Persona: "+e);
+        }
+        return p; 
     }
 
     @Override
@@ -83,5 +93,11 @@ public class PersonaDAO implements CrudInterface<PersonaDTO> {
             System.out.println("Error Listar Persona (Nombre): " + e);
         }
         return idPersona;
+    }
+    public ResultSet listarPersonas(String consulta) {
+        Conexion cnn = new Conexion();
+        System.out.println(consulta);
+        ResultSet rst = cnn.RecibirDatos(consulta);
+        return rst;
     }
 }

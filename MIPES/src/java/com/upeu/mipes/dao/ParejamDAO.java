@@ -1,45 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.upeu.mipes.dao;
 
+import com.upeu.mipes.config.Conexion;
 import com.upeu.mipes.dto.ParejamDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
  *
  * @author USER
  */
-public class ParejamDAO implements CrudInterface<ParejamDTO>{
+public class ParejamDAO implements CrudInterface<ParejamDTO> {
 
-    private Connection cn;
-    private PreparedStatement ps;
-    private ResultSet rs;
     private String sql;
-    
-    
+    private Connection cx;
+    private PreparedStatement ps;
+    private Statement st;
+
     @Override
     //PREGUNTAR POR ESTE METODO
     public boolean agregar(ParejamDTO u) {
-    sql="INSERT INTO USUARIO (idUSUARIO, USUARIO, CLAVE, ESTADO) VALUES(null,?,?,?)";
+        sql = "INSERT INTO USUARIO (idPAREJAM, idINTEGRANTE1, idINTEGRANTE2, ESTADO) VALUES(" + u.getIdParejaM() + "," + u.getIdIntegrante1() + "," + u.getIdIntegrante2() + ",'" + u.getEstado() + "')";
+        boolean p = false;
         try {
-            ps=cn.prepareStatement(sql);
-            ps.setInt(1, u.getIdIntegrante1());
-            ps.setInt(2, u.getIdIntegrante2());
-            ps.setString(3, u.getEstado());
-            int r=ps.executeUpdate();
-            cn.close();
-            return (r>0);
-        } catch (Exception e) {
-            System.out.println("Error al insertar Pareja Misionera "+e);
-            return false;
+            cx = Conexion.getConexion();
+            st = cx.createStatement();
+            int a = st.executeUpdate(sql);
+            if (a > 0) {
+                p = true;
+            }
+        } catch (Exception ex) {
+            System.out.println("Error Registrar Pareja Misionera: " + ex);
         }
+        return p;
     }
 
     @Override
@@ -61,5 +56,5 @@ public class ParejamDAO implements CrudInterface<ParejamDTO>{
     public ParejamDTO buscar(Object key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
