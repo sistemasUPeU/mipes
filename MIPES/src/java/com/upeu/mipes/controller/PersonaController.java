@@ -5,7 +5,6 @@ import com.upeu.mipes.dao.PersonaDAO;
 import com.upeu.mipes.dto.IntegranteDTO;
 import com.upeu.mipes.dto.PersonaDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -88,6 +87,16 @@ public class PersonaController extends HttpServlet {
                     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                 }
+            case 2:
+                int idPersona = perDAO.buscarNombre(perDTO.getNombres());
+                if (perDAO.eliminar(idPersona)) {
+                    System.out.println("Exito al eliminar");
+                    pagina = "/vistas/extras/CongNewES.jsp";
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                }
+            case 3:
+
         }
     }
 

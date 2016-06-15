@@ -1,4 +1,4 @@
-<jsp:useBean class="com.upeu.mipes.dao.EscuelaDAO" id="es" scope="page" ></jsp:useBean>
+<jsp:useBean class="com.upeu.mipes.dao.GrupoDAO" id="gp" scope="page" ></jsp:useBean>
     <link href="../../fonts/css/font-awesome.min.css" rel="stylesheet">
     <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="../../css/animate.min.css" rel="stylesheet" type="text/css"/>
@@ -44,11 +44,11 @@
     <script src="../../js/pace/pace.min.js"></script>
 <%@page import="java.sql.ResultSet"%>
 
-<%String dis = request.getParameter("n_distrito"); %>
-<div id="listaesc">
+<%String esc = request.getParameter("n_escuela"); %>
+<div id="listagp">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Escuelas sabáticas</h2>                    
+            <h2>Grupos Pequeños</h2>                    
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                 <li class="dropdown">
@@ -67,28 +67,24 @@
         </div>
         <div class="x_content" id="ab">
             <p class="text-muted font-13 m-b-30">
-                Lista de Escuelas Sabáticas</p>
+                Lista de Grupos Pequeños</p>
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Nombre</th>
                         <th>Fecha de Creación</th>
-                        <th>Color Distintivo</th>
-                        <th>Lema</th>
                         <th></th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody id="itbody">
-                    <% String sql = "SELECT * FROM escuela where iddistritom =" + dis + " and estado =1 order by nombre";
-                        ResultSet rs = es.listar_escuelas(sql);
+                    <% String sql = "SELECT * FROM grupo where idescuela =" + esc + " and estado =1 order by nombre";
+                        ResultSet rs = gp.listar_grupos(sql);
                         while (rs.next()) {%>
                     <tr>
                         <td><%= rs.getString("NOMBRE")%></td>
                         <td><%= rs.getString("FECHA_CREACION")%></td>
-                        <td><%= rs.getString("COLOR")%></td>
-                        <td><%= rs.getString("LEMA")%></td>
                         <td>
                             <a href="dis?opc=2" class="btn btn-success">Editar</a>
                         </td>
@@ -99,9 +95,7 @@
                             <a href="dis?opc=4" class="btn btn-danger">Eliminar</a>
                         </td>
                     </tr>
-                    <%
-                        }
-                    %>
+                    <% }%>
                 </tbody>
             </table>
         </div>

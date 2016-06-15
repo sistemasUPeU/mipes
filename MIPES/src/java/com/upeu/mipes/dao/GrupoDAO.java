@@ -25,11 +25,10 @@ public class GrupoDAO implements CrudInterface<GrupoDTO> {
     private String sql;
     private Connection cnn;
 
-    Conexion cx = new Conexion();
     
     @Override
     public boolean agregar(GrupoDTO gp) {
-        sql = "INSERT INTO grupo (idGRUPO,idESCUELA,NOMBRE,FECHA_CREACION,ESTADO) values(" + gp.getIdGRUPO() + "," + gp.getIdESCUELA() + ",'" + gp.getNOMBRE() + "','" + gp.getFecha_creacion() + "','" + gp.getEstado() + "')";
+        sql = "INSERT INTO grupo (idGRUPO,idESCUELA,NOMBRE,FECHA_CREACION,COLOR,CANTO,LEMA,VERSICULO,CLASIFICACION,TIPOINTEGRANTE,LUGAR_REUNION,DIA_REUNION,HORA_REUNION,ESTADO) values(" + gp.getIdGRUPO() + "," + gp.getIdESCUELA() + ",'" + gp.getNombre()+ "','" + gp.getFecha_creacion() + "','" + gp.getColor()+ "','" + gp.getCanto()+ "','" + gp.getLema()+ "','" + gp.getVersiculo()+ "','" + gp.getCalificacion()+ "','" + gp.getTipoIntegrante()+ "','" + gp.getLugar_reunion()+ "','" + gp.getDia_reunion()+ "','" + gp.getHora_reunion()+ "','" + gp.getEstado()+ "')";
         boolean m = false;
         try {
             cnn = Conexion.getConexion();
@@ -108,8 +107,9 @@ public class GrupoDAO implements CrudInterface<GrupoDTO> {
         return p;
     }
     
-    public ResultSet listar_grupos() {
-        String consulta = "SELECT * FROM grupo order by NOMBRE";
+    
+    public ResultSet listar_grupos(String consulta) {
+        Conexion cx = new Conexion();
         System.out.println(consulta);
         ResultSet rst = cx.RecibirDatos(consulta);
         return rst;

@@ -81,10 +81,10 @@
                             </select>
                             <label>Sexo</label>
                         </div>
-                        
-                   <div class="input-field col s12 m6" style="margin-top: 2%">
-                        <select name="n_cargo" id="cargo" >
-                            <option value="" disabled selected>Elegir Cargo</option>
+
+                        <div class="input-field col s12 m6" style="margin-top: 2%">
+                            <select name="n_cargo" id="cargo" >
+                                <option value="" disabled selected>Elegir Cargo</option>
                             <%
                                 ResultSet rs = cg.listar_Cargo("SELECT * FROM cargo order by NOMCARGO");
                                 while (rs.next()) {
@@ -100,19 +100,25 @@
                         <select name="n_ministerio" id="ministerio" >
                             <option value="" disabled selected>Elegir Distrito</option>
                             <%ResultSet rsm = mi.listar_Ministerios();
-                                while (rsm.next()) {%>
+                                while (rsm.next()) {
+                            %>
                             <option value="<%= rsm.getString("idMINISTERIO")%>"><%= rsm.getString("NOMBRE")%></option>
-                            <% }%>
+                            <%
+                                }
+                            %>
                         </select>
                         <label>Seleccione Ministerio</label>
                     </div>
                     <div class="input-field col s12 m6" style="margin-top: 3%">
                         <select name="n_grupo" id="grupo" >
                             <option value="" disabled selected>Elegir Grupo Pequeño</option>
-                            <%ResultSet rsp = gp.listar_grupos();
-                                while (rsp.next()) {%>
+                            <%ResultSet rsp = gp.listar_grupos("SELECT * FROM grupo ORDER BY NOMBRE");
+                                while (rsp.next()) {
+                            %>
                             <option value="<%= rsp.getString("idGRUPO")%>"><%= rsp.getString("NOMBRE")%></option>
-                            <% }%>
+                            <%
+                                }
+                            %>
                         </select>
                         <label>Seleccione Grupo Pequeño</label>
                     </div>
@@ -130,10 +136,10 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="../../js/materialize.min.js" type="text/javascript"></script>
         <script>
-                            $('.datepicker').pickadate({
-                                selectMonths: true, // Creates a dropdown to control month
-                                selectYears: 15 // Creates a dropdown of 15 years to control year
-                            });
+            $('.datepicker').pickadate({
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 15 // Creates a dropdown of 15 years to control year
+            });
         </script>
         <script>
             $(document).ready(function () {
