@@ -50,7 +50,6 @@
                         <td><%= rs.getString("APELLIDOS")%></td>
                         <td><%= rs.getString("TELEFONO")%></td>
                         <td><%= rs.getString("DIRECCION")%></td>
-                        <td><%= rs.getString("FE_BAUTIZMO")%></td>
                         <td>
                             <a href="dis?opc=2" class="btn btn-success">Editar</a>
                         </td>

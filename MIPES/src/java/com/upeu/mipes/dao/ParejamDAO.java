@@ -5,6 +5,7 @@ import com.upeu.mipes.dto.ParejamDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class ParejamDAO implements CrudInterface<ParejamDTO> {
     @Override
     //PREGUNTAR POR ESTE METODO
     public boolean agregar(ParejamDTO u) {
-        sql = "INSERT INTO USUARIO (idPAREJAM, idINTEGRANTE1, idINTEGRANTE2, ESTADO) VALUES(" + u.getIdParejaM() + "," + u.getIdIntegrante1() + "," + u.getIdIntegrante2() + ",'" + u.getEstado() + "')";
+        sql = "INSERT INTO parejam (idPAREJAM, idTIPORELACION, CLASIFICACION, ESTADO) VALUES("+u.getIdParejaM()+","+u.getIdTipoRelacion()+",'"+u.getClasificacion()+"','"+u.getEstado()+"')";
         boolean p = false;
         try {
             cx = Conexion.getConexion();
@@ -38,13 +39,36 @@ public class ParejamDAO implements CrudInterface<ParejamDTO> {
     }
 
     @Override
-    public boolean editar(ParejamDTO e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean editar(ParejamDTO u) {
+        sql = "UPDATE TABLE parejam SET idTIPORELACION=?, CLASIFICACION=?, ESTADO=? WHERE idPAREJAM=?";
+        try {
+            ps = cx.prepareStatement(sql);
+            ps.setInt(1, u.getIdParejaM());
+            ps.setInt(2, u.getIdTipoRelacion());
+            ps.setString(3, u.getClasificacion());
+            ps.setString(4, u.getEstado());
+            int r = ps.executeUpdate();
+            cx.close();
+            return (r > 0);
+        } catch (SQLException e) {
+            System.out.println("Error al editar Usuario " + e);
+            return false;
+        }
     }
 
     @Override
     public boolean eliminar(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sql = "DELETE FROM parejam WHERE idPAREJAM=?";
+        try {
+            ps = cx.prepareStatement(sql);
+            ps.setInt(1, Integer.parseInt(key.toString()));
+            int r = ps.executeUpdate();
+            cx.close();
+            return (r > 0);
+        } catch (SQLException | NumberFormatException e) {
+            System.out.println("Error al eliminar ParejaM " + e);
+            return false;
+        }
     }
 
     @Override
