@@ -30,10 +30,11 @@
         <jsp:useBean class="com.upeu.mipes.dao.DistritomDAO" id="di" scope="page"></jsp:useBean>
         </head>
         <body>
-            <div style="width: 75%; margin: auto">
+            <div style="width: 65%; margin: auto">
                 <form method="post" action="../../esc" id="data">
                     <input type="hidden" name="opc" value="1">
-                    <h2 style="color:#00bfa5">Nueva Escuela Sabática</h2>
+                    <center><h2 style="color:#00bfa5">Nueva Escuela Sabática</h2></center>
+                    <br/><br/>
                     <div class="input-field col s12" >
                         <select name="n_distrito" id="distrito">
                             <option value="" disabled selected>Elegir Distrito</option>
@@ -52,7 +53,7 @@
                     <input id="i_es" name="n_es" type="text" class="validate">
                     <label for="i_es" style="margin-top: 1%">Nombre de la Escuela Sabática</label>
                 </div>
-                <div >
+                <!--<div >
                     <label for="ifecha" >Fecha de Creación</label>
                     <input name="fecha" id="ifecha" type="date">
 
@@ -64,14 +65,11 @@
                 <div class="input-field col s6">
                     <input id="ilema" name="lema" type="text" class="validate">
                     <label for="ilema" style="margin-top: 1%">Lema de la Escuela Sabática</label>
-                </div>
-
+                </div>-->
+                <br/><br/>
                 <button class="btn waves-effect waves-light" type="submit" name="action" style="float: right">Registrar
                     <i class="material-icons right">send</i>
                 </button>
-
-
-
             </form>
 
 

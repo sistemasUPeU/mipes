@@ -82,12 +82,13 @@ public class EscuelaController extends HttpServlet {
                 String pagina;
                 String dis = request.getParameter("n_distrito").toUpperCase();
                 String nom = request.getParameter("n_es").toUpperCase();
-                String fec = request.getParameter("fecha").toUpperCase();
+                /*String fec = request.getParameter("fecha").toUpperCase();
                 String co = request.getParameter("color").toUpperCase();
-                String lem = request.getParameter("lema").toUpperCase();
+                String lem = request.getParameter("lema").toUpperCase();*/
                 String est = "1";
+                /*, fec, co, lem*/
                 if (!dis.equals("") && !nom.equals("")) {
-                    EscuelaDTO ed = new EscuelaDTO(Integer.parseInt(dis), nom, est, fec, co, lem);
+                    EscuelaDTO ed = new EscuelaDTO(Integer.parseInt(dis), nom, est);
                     if (eD.agregar(ed)) {
                         pagina = "/vistas/extras/CongNewES.jsp";
                         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);

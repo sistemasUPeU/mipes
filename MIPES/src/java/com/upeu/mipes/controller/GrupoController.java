@@ -40,7 +40,7 @@ public class GrupoController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
     }
 
     @Override
@@ -68,25 +68,28 @@ public class GrupoController extends HttpServlet {
                 String esc = request.getParameter("n_escuela");
                 String gp = request.getParameter("n_grupo");
                 String fecha = request.getParameter("fecha");
+                String color = request.getParameter("n_color");
+                String canto = request.getParameter("n_canto");
+                String lema = request.getParameter("n_lema");
+                String ver = request.getParameter("n_ver");
+                String cali = "1";
+                String tipo = "1";
+                String lugar = request.getParameter("n_lugar");
+                String dia = request.getParameter("n_dia");
+                String hora = request.getParameter("n_hora");
                 String est = "1";
-                if (!esc.equals("") && !gp.equals("")) {
-                    GrupoDTO dt = new GrupoDTO(Integer.parseInt(esc), gp, fecha, est);
-                    if (gD.agregar(dt)) {
-                        pagina = "/vistas/extras/CongNewES.jsp";
-                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-                        dispatcher.forward(request, response);
-                    }else{
-                        pagina = "/vistas/extras/CongNewES.jsp";
-                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-                        dispatcher.forward(request, response);
-                    }
-                } else {
+                GrupoDTO dt = new GrupoDTO(Integer.parseInt(esc), gp, fecha, color, canto, lema, ver, cali, tipo, lugar, dia, hora, est);
+                if (gD.agregar(dt)) {
                     pagina = "/vistas/extras/CongNewES.jsp";
-                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-                        dispatcher.forward(request, response);
-
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                } else {
+                    pagina = "/vistas/extras/Error_Reg.jsp";
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
                 }
 
+            case 2:
         }
 
     }

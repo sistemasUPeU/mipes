@@ -86,7 +86,8 @@
                         <td><%= rs.getString("NOMBRE")%></td>
                         <td><%= rs.getString("FECHA_CREACION")%></td>
                         <td>
-                            <a href="dis?opc=2" class="btn btn-success">Editar</a>
+                            <a href="../editar/editargp.jsp" class="btn btn-success">Editar</a>
+                            <!--"dis?opc=2"-->
                         </td>
                         <td>
                             <a href="dis?opc=3" class="btn btn-warning">Desactivar</a>

@@ -24,7 +24,7 @@ public class EscuelaTest {
         insertarescuela();
     }
     public static void insertarescuela() {
-        EscuelaDTO d = new EscuelaDTO(1, "ESCUELA", "1","25/05/2016","VERDE","LEMA");
+        EscuelaDTO d = new EscuelaDTO(1, "ESCUELA", "1");
         if (ed.agregar(d)) {
             System.out.println("Escuela Sabatica Agregada");
         } else {

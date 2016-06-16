@@ -76,9 +76,6 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Fecha de Creación</th>
-                                <th>Color Distintivo</th>
-                                <th>Lema</th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -86,9 +83,6 @@
                         </thead>
                         <tbody id="itbody">
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>

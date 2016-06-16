@@ -260,8 +260,8 @@
                     </div>
                 </div>
                 <!-- contenido recargable -->
-                <div class="right_col" role="main" style="height: 100%;padding: 0 0;box-sizing: border-box;" >
-                    <iframe name="frame" id="idframe" style=" width:100% ;height:100%; border: none">
+                <div class="right_col" role="main" style="height: 100%;padding: 0;box-sizing: border-box;" >
+                    <iframe name="frame" id="idframe" style=" width:100% ;height:100%; border: none;overflow: hidden;">
                     </iframe>
                 </div>
                 <!-- /page content -->
@@ -471,7 +471,7 @@
                         console.log(start.toISOString(), end.toISOString(), label);
                         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
                         //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
-                    }
+                    };
 
                     var optionSet1 = {
                         startDate: moment().subtract(29, 'days'),
