@@ -32,11 +32,8 @@
                 });
             }
         </script>
-
-
     </head>
     <body style="width: 100%;padding: 5% 2%;box-sizing: border-box;background:#F7F7F7; ">
-
         <jsp:useBean class="com.upeu.mipes.dao.DistritomDAO" id="di" scope="page" ></jsp:useBean>
             <div style="width:75%;margin: auto;">
                 <center><h2 style="margin: auto; color:#009688">Grupo Pequeño</h2></center>
@@ -82,6 +79,7 @@
                     <input placeholder="Escriba el versículo distintivo. Ej. Mateo 2:11" id="iver" name="n_ver" type="text" class="validate">
                     <label for="iver">Versículo</label>
                 </div>
+                <br/><br/>
                 <h5>Datos oficiales de reunión</h5>
                 <div class="input-field col s6">
                     <input id="ilreu" name="n_lugar" type="text" class="validate">
@@ -104,23 +102,17 @@
                     <label>Hora de Reunión</label>
                     <input type="time"  name="n_hora" class="validate">                    
                 </div>
-                <button class="btn waves-effect waves-light" type="submit" name="action" style="margin-top: 2%">Registrar
+                <br/><br/>
+                <button class="btn waves-effect waves-light" type="submit" name="action" style="float:right;">Registrar
                     <i class="material-icons right">send</i>
                 </button>
-
-
             </form>
         </div>
-
-
-
-
         <script>
             $(document).ready(function () {
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
             });
-
         </script>
     </body>
 </html>

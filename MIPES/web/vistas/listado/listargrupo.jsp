@@ -73,7 +73,8 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Fecha de Creación</th>
-                        <th></th>
+                        <th>Color</th>
+                        <th>Lema</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -85,12 +86,11 @@
                     <tr>
                         <td><%= rs.getString("NOMBRE")%></td>
                         <td><%= rs.getString("FECHA_CREACION")%></td>
+                        <td><%= rs.getString("COLOR")%></td>
+                        <td><%= rs.getString("LEMA")%></td>
                         <td>
                             <a href="../editar/editargp.jsp" class="btn btn-success">Editar</a>
                             <!--"dis?opc=2"-->
-                        </td>
-                        <td>
-                            <a href="dis?opc=3" class="btn btn-warning">Desactivar</a>
                         </td>
                         <td>
                             <a href="dis?opc=4" class="btn btn-danger">Eliminar</a>
