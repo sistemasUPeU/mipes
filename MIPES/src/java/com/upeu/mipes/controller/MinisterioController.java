@@ -63,6 +63,30 @@ public class MinisterioController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        String pagina;
+        int id;
+        RequestDispatcher dispatcher;
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        String opc = request.getParameter("opc");
+        switch (Integer.parseInt(opc)) {
+            case 1:
+                pagina = "/vistas/registro/RegistroNewMin.jsp";
+                dispatcher = getServletContext().getRequestDispatcher(pagina);
+                dispatcher.forward(request, response);
+            case 2:
+                pagina = "/vistas/listado/ListarMin.jsp";
+                dispatcher = getServletContext().getRequestDispatcher(pagina);
+                dispatcher.forward(request, response);
+            case 6:
+                id = Integer.parseInt(request.getParameter("id"));
+                pagina = "/min?opc=2";
+                if (mA.eliminar(id)) {
+                    dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                }
+        }
         processRequest(request, response);
     }
 

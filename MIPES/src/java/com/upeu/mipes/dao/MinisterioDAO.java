@@ -49,7 +49,19 @@ public class MinisterioDAO implements CrudInterface<MinisterioDTO> {
 
     @Override
     public boolean eliminar(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sql = "Delete from ministerio where idMINISTERIO=" + key;
+        boolean p = false;
+        try {
+            cx = Conexion.getConexion();
+            st = cx.createStatement();
+            int a = st.executeUpdate(sql);
+            if (a > 0) {
+                p = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error al Eliminar Ministerio" + e);
+        }
+        return p;
     }
 
     @Override
@@ -62,11 +74,10 @@ public class MinisterioDAO implements CrudInterface<MinisterioDTO> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public ResultSet listar_Ministerios() {
-        Conexion cx = new Conexion();
-        String consulta = "SELECT * FROM ministerio order by NOMBRE";
+    public ResultSet listar_ministerios(String consulta) {
+        Conexion cnn = new Conexion();
         System.out.println(consulta);
-        ResultSet rst = cx.RecibirDatos(consulta);
+        ResultSet rst = cnn.RecibirDatos(consulta);
         return rst;
     }
 }

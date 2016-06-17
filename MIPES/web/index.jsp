@@ -121,12 +121,14 @@
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="gp?opc=1" target="frame">Registrar Nuevo Grupo Pequeño</a>
                                             </li>
-                                            <li><a href="vistas/registro/RegistroAsisGP.jsp" target="frame">Registrar Asistencia</a>    
+                                            <li><a href="vistas/registro/RegistroAsisGP.jsp" target="frame">Registrar Asistencia</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-globe"></i>Ministerio<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="vistas/registro/RegistroNewMin.jsp" target="frame">Registrar Ministerio</a>    
+                                            <li><a href="min?opc=1" target="frame">Registrar Ministerio</a></li>
+                                            <li><a href="min?opc=2" target="frame">Lista de Ministerios</a></li>
                                         </ul>
                                     </li>
                                 </ul>

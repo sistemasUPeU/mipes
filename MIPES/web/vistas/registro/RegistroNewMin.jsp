@@ -11,14 +11,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no ,initial-scale=1.0 , maximun-scale=1.0, minimun-scale=1.0">
-        <script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
-        <script src="../../js/jquery-1.11.1.min.js" type="text/javascript"></script>
-        <script src="../../js/md5.js" type="text/javascript"></script>
-        <script src="../../js/materialize.js" type="text/javascript"></script>
-        <script src="../../js/materialize.min.js" type="text/javascript"></script>
-        <link href="../../css/materialize.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/materialize.css" rel="stylesheet" type="text/css"/>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
+        <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+        <jsp:include page="../../jspf/impmaterialize.jspf"></jsp:include>
         <script>
             $(document).ready(function () {
                 $('select').material_select();
@@ -31,7 +26,7 @@
         </head>
         <body>
             <div style="width: 80%;margin: auto;padding: 5%;box-sizing: border-box;">
-                <form method="post" action="../../min">
+                <form method="post" action="min">
                     <center><h2>Nuevo Ministerio</h2></center><br/><br/>
                     <input type="hidden" name="opc" value="1">
                     <div class="input-field col s12" >
