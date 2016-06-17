@@ -1,49 +1,7 @@
 <jsp:useBean class="com.upeu.mipes.dao.GrupoDAO" id="gp" scope="page" ></jsp:useBean>
-    <link href="../../fonts/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="../../css/animate.min.css" rel="stylesheet" type="text/css"/>
-    <link href="../../css/custom.css" rel="stylesheet">
-    <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <link href="../../css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
-    <link href="../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-    <link href="../../css/icheck/flat/green.css" rel="stylesheet">
-    <link href="../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-    <link href="../../js/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <link href="../../js/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="../../js/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="../../js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="../../js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="../../js/jquery.min.js"></script>
 
-    <script src="../../js/bootstrap.min.js"></script>
-
-    <!-- bootstrap progress js -->
-    <script src="../../js/progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- icheck -->
-    <script src="../../js/icheck/icheck.min.js"></script>
-
-    <script src="../../js/custom.js"></script>
-
-    <script src="../../js/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../js/datatables/dataTables.bootstrap.js"></script>
-    <script src="../../js/datatables/dataTables.buttons.min.js"></script>
-    <script src="../../js/datatables/buttons.bootstrap.min.js"></script>
-    <script src="../../js/datatables/jszip.min.js"></script>
-    <script src="../../js/datatables/pdfmake.min.js"></script>
-    <script src="../../js/datatables/vfs_fonts.js"></script>
-    <script src="../../js/datatables/buttons.html5.min.js"></script>
-    <script src="../../js/datatables/buttons.print.min.js"></script>
-    <script src="../../js/datatables/dataTables.fixedHeader.min.js"></script>
-    <script src="../../js/datatables/dataTables.keyTable.min.js"></script>
-    <script src="../../js/datatables/dataTables.responsive.min.js"></script>
-    <script src="../../js/datatables/responsive.bootstrap.min.js"></script>
-    <script src="../../js/datatables/dataTables.scroller.min.js"></script>
-
-
-    <!-- pace -->
-    <script src="../../js/pace/pace.min.js"></script>
 <%@page import="java.sql.ResultSet"%>
-
+<jsp:include page="../../jspf/imptbbootstrap.jspf"></jsp:include>
 <%String esc = request.getParameter("n_escuela"); %>
 <div id="listagp">
     <div class="x_panel">
@@ -84,19 +42,14 @@
                         ResultSet rs = gp.listar_grupos(sql);
                         while (rs.next()) {%>
                     <tr>
-                        <td><%= rs.getString("NOMBRE")%></td>
-                        <td><%= rs.getString("FECHA_CREACION")%></td>
-                        <td><%= rs.getString("COLOR")%></td>
-                        <td><%= rs.getString("LEMA")%></td>
-                        <td>
-                            <a href="../editar/editargp.jsp" class="btn btn-success">Editar</a>
-                            <!--"dis?opc=2"-->
-                        </td>
-                        <td>
-                            <a href="dis?opc=4" class="btn btn-danger">Eliminar</a>
-                        </td>
+                        <td><center><span><%= rs.getString("NOMBRE")%></span></center></td>
+                        <td><center><span><%= rs.getString("FECHA_CREACION")%></span></center></td>
+                        <td><center><span><%= rs.getString("COLOR")%></span></center></td>
+                        <td><center><span><%= rs.getString("LEMA")%></span></center></td>
+                        <td><center><a href="gp?opc=5&id=<%= rs.getString("idgrupo")%>" class="btn btn-success">Editar</a></center></td>
+                        <td><center><a href="gp?opc=6&id=<%= rs.getString("idgrupo")%>" class="btn btn-danger">Eliminar</a></center></td>
                     </tr>
-                    <% }%>
+                <% }%>
                 </tbody>
             </table>
         </div>
@@ -143,7 +96,7 @@
         });
         $('#datatable-responsive').DataTable();
         $('#datatable-scroller').DataTable({
-            ajax: "../../js/datatables/json/scroller-demo.json",
+            ajax: "js/datatables/json/scroller-demo.json",
             deferRender: true,
             scrollY: 380,
             scrollCollapse: true,

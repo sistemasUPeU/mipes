@@ -1,7 +1,7 @@
 <jsp:useBean class="com.upeu.mipes.dao.EscuelaDAO" id="es" scope="page" ></jsp:useBean>
     
 <%@page import="java.sql.ResultSet"%>
-        <jsp:include page="../../jspf/imptbbootstrap.jspf"></jsp:include>
+<jsp:include page="../../jspf/imptbbootstrap.jspf"></jsp:include>
 
 <%String dis = request.getParameter("n_distrito"); %>
 <div id="listaesc">

@@ -47,6 +47,29 @@ public class GrupoController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        String pagina;
+        int id;
+        RequestDispatcher dispatcher;
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        String opc = request.getParameter("opc");
+        switch (Integer.parseInt(opc)) {
+            case 1:
+                pagina = "/vistas/registro/RegistroNewGP.jsp";
+                dispatcher = getServletContext().getRequestDispatcher(pagina);
+                dispatcher.forward(request, response);
+            case 2:
+                pagina = "/vistas/listado/ListarGP.jsp";
+                dispatcher = getServletContext().getRequestDispatcher(pagina);
+                dispatcher.forward(request, response);
+            case 6:
+                id = Integer.parseInt(request.getParameter("id"));
+                pagina = "/gp?opc=2";
+                if (gD.eliminar(id)) {
+                    dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                }
+        }
     }
 
     /**

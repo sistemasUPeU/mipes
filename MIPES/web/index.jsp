@@ -30,17 +30,6 @@
         <!--Scripts-->
         <script src="js/jquery.min.js"></script>
         <script src="js/nprogress.js"></script>
-        <script>
-            $(document).ready(function () {
-                //    window.onload(){
-                parent.frame.location.href = 'inicio.jsp';
-
-                //opener.$("#idframe").href = 'vistas/extras/home.jsp';
-
-                //    $("#idframe").load('vistas/extras/home.jsp');
-                //};
-            });
-        </script>
 
     </head>
 
@@ -124,14 +113,13 @@
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="esc?opc=1" target="frame">Registrar Nueva Escuela Sabática</a>
                                             </li>
-                                            <li><a href="vistas/listado/ListarGP.jsp" target="frame">Lista de Grupos Pequeños</a>
+                                            <li><a href="gp?opc=2" target="frame">Lista de Grupos Pequeños</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-users"></i>Grupo Pequeño<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="vistas/info/infogp.jsp" target="frame">¿Qué es un Grupo Pequeño?</a>
-                                            <li><a href="vistas/registro/RegistroNewGP.jsp" target="frame">Registrar Nuevo Grupo Pequeño</a>
+                                            <li><a href="gp?opc=1" target="frame">Registrar Nuevo Grupo Pequeño</a>
                                             </li>
                                             <li><a href="vistas/registro/RegistroAsisGP.jsp" target="frame">Registrar Asistencia</a>    
                                         </ul>

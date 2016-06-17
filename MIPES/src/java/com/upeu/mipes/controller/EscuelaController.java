@@ -66,10 +66,10 @@ public class EscuelaController extends HttpServlet {
             case 6:
                 id = Integer.parseInt(request.getParameter("id"));
                 pagina = "/esc?opc=2";
-                    if(eD.eliminar(id)){
+                if (eD.eliminar(id)) {
                     dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
-                    }
+                }
         }
 
         processRequest(request, response);

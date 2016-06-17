@@ -11,27 +11,13 @@
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="../../fonts/css/font-awesome.min.css" rel="stylesheet">
-        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/animate.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/custom.css" rel="stylesheet">
-        <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/icheck/flat/green.css" rel="stylesheet">
-        <link href="../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../../js/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-        <link href="../../js/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="../../js/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="../../js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="../../js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <script src="../../js/jquery.min.js"></script>
+        <jsp:include page="../../jspf/imptbbootstrap.jspf"></jsp:include>
         <title></title>
         <jsp:useBean class="com.upeu.mipes.dao.EscuelaDAO" id="es" scope="page" ></jsp:useBean>
         <jsp:useBean class="com.upeu.mipes.dao.DistritomDAO" id="dis" scope="page" ></jsp:useBean>
             <script>
                 function disesc() {
-                    $.post("combodis.jsp", $("#idis"), function (data) {
+                    $.post("vistas/listado/combodis.jsp", $("#idis"), function (data) {
                         $("#ies").html(data);
                     });
                 }
@@ -55,7 +41,7 @@
     <div>
         <script>
             function listgp() {
-                $.post("listargrupo.jsp", $("#ies"), function (data) {
+                $.post("vistas/listado/listargrupo.jsp", $("#ies"), function (data) {
                     $("#listagp").html(data);
                 });
             }
@@ -115,34 +101,6 @@
             </div>
         </div>
     </div>
-
-    <script src="../../js/bootstrap.min.js"></script>
-
-    <!-- bootstrap progress js -->
-    <script src="../../js/progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- icheck -->
-    <script src="../../js/icheck/icheck.min.js"></script>
-
-    <script src="../../js/custom.js"></script>
-
-    <script src="../../js/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../js/datatables/dataTables.bootstrap.js"></script>
-    <script src="../../js/datatables/dataTables.buttons.min.js"></script>
-    <script src="../../js/datatables/buttons.bootstrap.min.js"></script>
-    <script src="../../js/datatables/jszip.min.js"></script>
-    <script src="../../js/datatables/pdfmake.min.js"></script>
-    <script src="../../js/datatables/vfs_fonts.js"></script>
-    <script src="../../js/datatables/buttons.html5.min.js"></script>
-    <script src="../../js/datatables/buttons.print.min.js"></script>
-    <script src="../../js/datatables/dataTables.fixedHeader.min.js"></script>
-    <script src="../../js/datatables/dataTables.keyTable.min.js"></script>
-    <script src="../../js/datatables/dataTables.responsive.min.js"></script>
-    <script src="../../js/datatables/responsive.bootstrap.min.js"></script>
-    <script src="../../js/datatables/dataTables.scroller.min.js"></script>
-
-
-    <!-- pace -->
-    <script src="../../js/pace/pace.min.js"></script>
     <script>
             var handleDataTableButtons = function () {
                 "use strict";
@@ -184,7 +142,7 @@
             });
             $('#datatable-responsive').DataTable();
             $('#datatable-scroller').DataTable({
-                ajax: "../../js/datatables/json/scroller-demo.json",
+                ajax: "js/datatables/json/scroller-demo.json",
                 deferRender: true,
                 scrollY: 380,
                 scrollCollapse: true,
