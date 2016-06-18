@@ -27,7 +27,8 @@ public class EscuelaDAO implements CrudInterface<EscuelaDTO> {
 
     @Override
     public boolean agregar(EscuelaDTO u) {
-        sql = "INSERT INTO escuela (idESCUELA,idDISTRITOM,NOMBRE,ESTADO,FECHA_CREACION,COLOR,LEMA) VALUES (" + u.getIdEscuela() + "," + u.getIdDistritoM() + ",'" + u.getNombre() + "','" + u.getEstado() + "','"+u.getFecha()+"','"+u.getColor()+"','"+u.getLema()+"')";
+        sql = "INSERT INTO escuela (idESCUELA,idDISTRITOM,NOMBRE,ESTADO) VALUES (" + u.getIdEscuela() + "," + u.getIdDistritoM() + ",'" + u.getNombre() + "','" + u.getEstado() + "')";
+        //,FECHA_CREACION,COLOR,LEMA    '"+u.getFecha()+"','"+u.getColor()+"','"+u.getLema()+"'
         boolean p = false;
         try {
             cx = Conexion.getConexion();

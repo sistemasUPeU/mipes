@@ -30,17 +30,6 @@
         <!--Scripts-->
         <script src="js/jquery.min.js"></script>
         <script src="js/nprogress.js"></script>
-        <script>
-            $(document).ready(function () {
-                //    window.onload(){
-                parent.frame.location.href = 'inicio.jsp';
-
-                //opener.$("#idframe").href = 'vistas/extras/home.jsp';
-
-                //    $("#idframe").load('vistas/extras/home.jsp');
-                //};
-            });
-        </script>
 
     </head>
 
@@ -115,31 +104,31 @@
                                     </li>
                                     <li><a><i class="fa fa-university"></i>Distrito Misionero<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="vistas/listado/ListarES.jsp" target="frame">Lista de Escuelas Sabáticas</a>
+                                            <li><a href="esc?opc=2" target="frame">Lista de Escuelas Sabáticas</a>
+                                                
                                             </li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-book"></i>Escuela Sabática<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="vistas/registro/RegistroNewES.jsp" target="frame">Registrar Nueva Escuela Sabática</a>
+                                            <li><a href="esc?opc=1" target="frame">Registrar Nueva Escuela Sabática</a>
                                             </li>
-                                            <li><a href="#" target="frame">Desactivar Escuela Sabática</a>
-                                            </li>
-                                            <li><a href="vistas/listado/ListarGP.jsp" target="frame">Lista de Grupos Pequeños</a>
+                                            <li><a href="gp?opc=2" target="frame">Lista de Grupos Pequeños</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-users"></i>Grupo Pequeño<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="vistas/info/infogp.jsp" target="frame">¿Qué es un Grupo Pequeño?</a>
-                                            <li><a href="vistas/registro/RegistroNewGP.jsp" target="frame">Registrar Nuevo Grupo Pequeño</a>
+                                            <li><a href="gp?opc=1" target="frame">Registrar Nuevo Grupo Pequeño</a>
                                             </li>
-                                            <li><a href="vistas/registro/RegistroAsisGP.jsp" target="frame">Registrar Asistencia</a>    
+                                            <li><a href="vistas/registro/RegistroAsisGP.jsp" target="frame">Registrar Asistencia</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-globe"></i>Ministerio<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="vistas/registro/RegistroNewMin.jsp" target="frame">Registrar Ministerio</a>    
+                                            <li><a href="min?opc=1" target="frame">Registrar Ministerio</a></li>
+                                            <li><a href="min?opc=2" target="frame">Lista de Ministerios</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -260,8 +249,8 @@
                     </div>
                 </div>
                 <!-- contenido recargable -->
-                <div class="right_col" role="main" style="height: 100%;padding: 0 0;box-sizing: border-box;" >
-                    <iframe name="frame" id="idframe" style=" width:100% ;height:100%; border: none">
+                <div class="right_col" role="main" style="height: 100%;padding: 0;box-sizing: border-box;" >
+                    <iframe name="frame" id="idframe" style=" width:100% ;height:100%; border: none;overflow: hidden;">
                     </iframe>
                 </div>
                 <!-- /page content -->
@@ -471,7 +460,7 @@
                         console.log(start.toISOString(), end.toISOString(), label);
                         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
                         //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
-                    }
+                    };
 
                     var optionSet1 = {
                         startDate: moment().subtract(29, 'days'),

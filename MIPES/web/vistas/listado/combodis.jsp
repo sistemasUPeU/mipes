@@ -1,8 +1,6 @@
 <jsp:useBean class="com.upeu.mipes.dao.EscuelaDAO" id="es" scope="page" ></jsp:useBean>
 
 <%@page import="java.sql.ResultSet"%>
-
-
 <% String dis = request.getParameter("n_distrito");
 %>
 <% String sql = "SELECT * FROM escuela where iddistritom = " + dis + " and estado =1 order by nombre";

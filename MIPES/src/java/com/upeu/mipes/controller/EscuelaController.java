@@ -47,19 +47,30 @@ public class EscuelaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /*
-         String pagina;
-         RequestDispatcher dispatcher;
-         response.setContentType("text/html;charset=UTF-8");
-         PrintWriter out = response.getWriter();
-         String opc = request.getParameter("opc");
-         switch (Integer.parseInt(opc)) {
-         case 1:
-         pagina = "/vistas/registro/RegistroNewES.jsp";
-         dispatcher = getServletContext().getRequestDispatcher(pagina);
-         dispatcher.forward(request, response);
 
-         }*/
+        String pagina;
+        int id;
+        RequestDispatcher dispatcher;
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        String opc = request.getParameter("opc");
+        switch (Integer.parseInt(opc)) {
+            case 1:
+                pagina = "/vistas/registro/RegistroNewES.jsp";
+                dispatcher = getServletContext().getRequestDispatcher(pagina);
+                dispatcher.forward(request, response);
+            case 2:
+                pagina = "/vistas/listado/ListarES.jsp";
+                dispatcher = getServletContext().getRequestDispatcher(pagina);
+                dispatcher.forward(request, response);
+            case 6:
+                id = Integer.parseInt(request.getParameter("id"));
+                pagina = "/esc?opc=2";
+                if (eD.eliminar(id)) {
+                    dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                }
+        }
 
         processRequest(request, response);
     }
@@ -82,12 +93,13 @@ public class EscuelaController extends HttpServlet {
                 String pagina;
                 String dis = request.getParameter("n_distrito").toUpperCase();
                 String nom = request.getParameter("n_es").toUpperCase();
-                String fec = request.getParameter("fecha").toUpperCase();
-                String co = request.getParameter("color").toUpperCase();
-                String lem = request.getParameter("lema").toUpperCase();
+                /*String fec = request.getParameter("fecha").toUpperCase();
+                 String co = request.getParameter("color").toUpperCase();
+                 String lem = request.getParameter("lema").toUpperCase();*/
                 String est = "1";
+                /*, fec, co, lem*/
                 if (!dis.equals("") && !nom.equals("")) {
-                    EscuelaDTO ed = new EscuelaDTO(Integer.parseInt(dis), nom, est, fec, co, lem);
+                    EscuelaDTO ed = new EscuelaDTO(Integer.parseInt(dis), nom, est);
                     if (eD.agregar(ed)) {
                         pagina = "/vistas/extras/CongNewES.jsp";
                         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);

@@ -1,12 +1,13 @@
-<jsp:useBean class="com.upeu.mipes.dao.GrupoDAO" id="gp" scope="page" ></jsp:useBean>
-
+<jsp:useBean class="com.upeu.mipes.dao.MinisterioDAO" id="min" scope="page" ></jsp:useBean>
+    
 <%@page import="java.sql.ResultSet"%>
 <jsp:include page="../../jspf/imptbbootstrap.jspf"></jsp:include>
-<%String esc = request.getParameter("n_escuela"); %>
-<div id="listagp">
+
+<%String dis = request.getParameter("n_distrito"); %>
+<div id="listaesc">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Grupos Pequeños</h2>                    
+            <h2>Ministerios</h2>                    
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                 <li class="dropdown">
@@ -25,31 +26,31 @@
         </div>
         <div class="x_content" id="ab">
             <p class="text-muted font-13 m-b-30">
-                Lista de Grupos Pequeños</p>
+                Lista de Ministerios</p>
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Fecha de Creación</th>
-                        <th>Color</th>
-                        <th>Lema</th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody id="itbody">
-                    <% String sql = "SELECT * FROM grupo where idescuela =" + esc + " and estado =1 order by nombre";
-                        ResultSet rs = gp.listar_grupos(sql);
+                    <% String sql = "SELECT * FROM ministerio where iddistritom =" + dis + " and estado =1 order by nombre";
+                        ResultSet rs = min.listar_ministerios(sql);
                         while (rs.next()) {%>
                     <tr>
-                        <td><center><span><%= rs.getString("NOMBRE")%></span></center></td>
-                        <td><center><span><%= rs.getString("FECHA_CREACION")%></span></center></td>
-                        <td><center><span><%= rs.getString("COLOR")%></span></center></td>
-                        <td><center><span><%= rs.getString("LEMA")%></span></center></td>
-                        <td><center><a href="gp?opc=5&id=<%= rs.getString("idgrupo")%>" class="btn btn-success">Editar</a></center></td>
-                        <td><center><a href="gp?opc=6&id=<%= rs.getString("idgrupo")%>" class="btn btn-danger">Eliminar</a></center></td>
+                        <td><%= rs.getString("NOMBRE")%></td>
+                <td>
+                <center><a href="min?opc=5&id=<%= rs.getString("idministerio") %>" class="btn btn-success">Editar</a></center>
+                        </td>
+                       <td>
+                       <center><a href="min?opc=6&id=<%= rs.getString("idministerio") %>" class="btn btn-danger">Eliminar</a></center>
+                        </td>
                     </tr>
-                <% }%>
+                    <%
+                        }
+                    %>
                 </tbody>
             </table>
         </div>

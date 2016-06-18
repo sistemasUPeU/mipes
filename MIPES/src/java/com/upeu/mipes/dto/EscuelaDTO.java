@@ -14,20 +14,20 @@ public class EscuelaDTO {
     private int idDistritoM;
     private String Nombre;
     private String Estado;
-    private String Fecha;
+    /*private String Fecha;
     private String Color;
-    private String Lema;
+    private String Lema;*/
 
     public EscuelaDTO() {
     }
 
-    public EscuelaDTO(int idDistritoM, String Nombre, String Estado, String Fecha, String Color, String Lema) {
+    public EscuelaDTO(int idDistritoM, String Nombre, String Estado/*,String Fecha, String Color, String Lema*/) {
         this.idDistritoM = idDistritoM;
         this.Nombre = Nombre;
         this.Estado = Estado;
-        this.Fecha = Fecha;
+        /*this.Fecha = Fecha;
         this.Color = Color;
-        this.Lema = Lema;
+        this.Lema = Lema;*/
     }
 
     public int getIdEscuela() {
@@ -62,7 +62,7 @@ public class EscuelaDTO {
         this.Estado = Estado;
     }
 
-    public String getFecha() {
+    /*public String getFecha() {
         return Fecha;
     }
 
@@ -84,6 +84,6 @@ public class EscuelaDTO {
 
     public void setLema(String Lema) {
         this.Lema = Lema;
-    }
+    }*/
 
 }

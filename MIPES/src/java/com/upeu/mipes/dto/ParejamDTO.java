@@ -11,16 +11,16 @@ package com.upeu.mipes.dto;
  */
 public class ParejamDTO {
     private int idParejaM;
-    private int idIntegrante1;
-    private int idIntegrante2;
+    private int idTipoRelacion;
+    private String clasificacion;
     private String Estado;
 
     public ParejamDTO() {
     }
 
-    public ParejamDTO(int idIntegrante1, int idIntegrante2, String Estado) {
-        this.idIntegrante1 = idIntegrante1;
-        this.idIntegrante2 = idIntegrante2;
+    public ParejamDTO(int idTipoRelacion, String clasificacion, String Estado) {
+        this.idTipoRelacion = idTipoRelacion;
+        this.clasificacion = clasificacion;
         this.Estado = Estado;
     }
 
@@ -32,20 +32,20 @@ public class ParejamDTO {
         this.idParejaM = idParejaM;
     }
 
-    public int getIdIntegrante1() {
-        return idIntegrante1;
+    public int getIdTipoRelacion() {
+        return idTipoRelacion;
     }
 
-    public void setIdIntegrante1(int idIntegrante1) {
-        this.idIntegrante1 = idIntegrante1;
+    public void setIdTipoRelacion(int idTipoRelacion) {
+        this.idTipoRelacion = idTipoRelacion;
     }
 
-    public int getIdIntegrante2() {
-        return idIntegrante2;
+    public String getClasificacion() {
+        return clasificacion;
     }
 
-    public void setIdIntegrante2(int idIntegrante2) {
-        this.idIntegrante2 = idIntegrante2;
+    public void setClasificacion(String clasificacion) {
+        this.clasificacion = clasificacion;
     }
 
     public String getEstado() {
@@ -56,5 +56,5 @@ public class ParejamDTO {
         this.Estado = Estado;
     }
 
-    
+   
 }

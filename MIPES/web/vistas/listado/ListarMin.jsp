@@ -17,7 +17,7 @@
         <jsp:useBean class="com.upeu.mipes.dao.DistritomDAO" id="dis" scope="page" ></jsp:useBean>
             <script>
                 function listesc() {
-                    $.post("vistas/listado/listescuela.jsp", $("#idis"), function (data) {
+                    $.post("vistas/listado/listmin.jsp", $("#idis"), function (data) {
                         $("#listaesc").html(data);
                     });
                 }
