@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +40,8 @@ public class AsistenciaController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         Map<String, Object> r = new HashMap<>();
         String opc = request.getParameter("opc");
@@ -52,7 +54,7 @@ public class AsistenciaController extends HttpServlet {
 
                 }
                 if (opc.equals(lISTINTEGRANTEGP)) {
-                    ArrayList<Map<String, ?>> lista = adao.listaIntegranteGPEnable();
+                    List<Map<String, ?>> lista = adao.listaIntegranteGPEnable();
                     r.put("lista", lista);
                 }
 
@@ -60,7 +62,7 @@ public class AsistenciaController extends HttpServlet {
                 r.put("error", e.getMessage());
             }
             Gson gson = new Gson();
-            out.print(gson.toJson(r));
+            out.println(gson.toJson(r));
             out.flush();
             out.close();
         } else {

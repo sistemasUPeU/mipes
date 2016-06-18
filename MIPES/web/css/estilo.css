@@ -7,79 +7,8 @@ and open the template in the editor.
     Created on : 15/06/2016, 03:49:39 PM
     Author     : Andres
 */
-@import "../js/chosen/chosen.css";
 
-.chosen-container{
-    border: none;
-    padding: 0px;
-    border-bottom: #ddd solid 1px;
-}
-.chosen-container a{
-    background: #fff;
-}
-
-.chosen-single{
-    background: #fff;
-}
-
-.chosen-default{
-    background: #fff;
-}
-
-.chosen-container a span{
-    background: #fff;
-    color: #000;
-}
-
-chosen-container chosen-container-single chosen-container-active{
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
     width: 100%;
-}
-
-.chosen-container-single .chosen-single div {
-  padding-top: 5px;
-}
-
-.chosen-container-active.chosen-with-drop .chosen-single{
-    border: none;
-    background: #fff;
-}
-
-
-.chosen-container-single .chosen-single{
-    border: none;
-    border-radius: 0px;
-    background: #fff;
-    height: 35px;
-    box-shadow: none;
-    padding-top: 5px;
-}
-
-
-.chosen-container .chosen-drop{
-    border: none;
-    background: #fff;
-    padding: 0px;
-}
-
-.chosen-container .chosen-drop .chosen-search{
-    border: none;
-    background: #fff;
-}
-
-.chosen-container .chosen-drop .chosen-search input{
-    border: none;
-    border-bottom: #ddd solid 1px;
-    height: 35px;
-    background: #fff;
-}
-
-
-.chosen-container .chosen-results li.highlighted{
-    border: none;
-    background: #eee;
-    color: #6b6b6b;
-}
-
-.chosen-results li{
-    height: 35px;
+    margin-bottom: 14px;
 }
