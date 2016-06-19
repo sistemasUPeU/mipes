@@ -5,6 +5,7 @@ import com.upeu.mipes.dto.ParejamDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -81,4 +82,10 @@ public class ParejamDAO implements CrudInterface<ParejamDTO> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public ResultSet listar_pareja(String consulta) {
+        Conexion cx = new Conexion();
+        System.out.println(consulta);
+        ResultSet rst = cx.RecibirDatos(consulta);
+        return rst;
+    }
 }

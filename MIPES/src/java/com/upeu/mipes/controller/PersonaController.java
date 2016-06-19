@@ -64,7 +64,7 @@ public class PersonaController extends HttpServlet {
                 String email = request.getParameter("email");
                 String telefono = request.getParameter("telefono");
                 String nacimiento = request.getParameter("nacimiento");
-                String bautizo = request.getParameter("bautizo");
+                String bautizo = request.getParameter("bautizmo");
                 String sexo = request.getParameter("sexo");
                 String dni = request.getParameter("dni");
                 String ocupacion = request.getParameter("ocupacion");

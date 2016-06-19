@@ -82,11 +82,7 @@
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="vistas/registro/RegistroParejaMisionera.jsp" target="frame">Registrar Pareja Misionera</a>
                                             </li>
-                                            <li><a href="vista/tables_dynamic.html" target="frame">Editar Pareja Misionera</a>
-                                            </li>
-                                            <li><a href="vista/tables_dynamic.html" target="frame">Eliminar Parejas Misioneras</a>
-                                            </li>
-                                            <li><a href="vista/tables_dynamic.html" target="frame">Listar Parejas Misioneras</a>
+                                             <li><a href="vistas/listado/ListarPM.jsp" target="frame">Listar Parejas Misioneras</a>
                                             </li>  
                                         </ul>
                                     </li>

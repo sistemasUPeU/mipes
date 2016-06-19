@@ -63,17 +63,15 @@
                             <input id="dni" name="dni" type="text" class="validate">
                             <label for="dni">Dni</label>
                         </div>
-                        <div class="input-field col s12 m6">
-                            <i class="material-icons prefix">android</i>
-                            <input name="bautizo" type="date" class="datepicker" >
-                            <label>Fecha de Bautizo</label>
+                        <div class="col s12 m6">
+                            <label for="inacimiento" >Fecha de Nacimiento</label>
+                            <input name="nacimiento" id="inacimiento" type="date">
+                        </div>
+                        <div class="col s12 m6">
+                            <label for="ibautizmo" >Fecha de Bautizmo</label>
+                            <input name="bautizmo" id="ibautizmo" type="date">
                         </div>
                         <div class="input-field col s12 m6">
-                            <i class="material-icons prefix">android</i>
-                            <input name="nacimiento" type="date"  class="datepicker">
-                            <label>Fecha de Nacimiento</label>
-                        </div>
-                        <div class="input-field col s12 m6" style="margin-top: 2%">
                             <select name="sexo">
                                 <option value="" disabled selected>Elegir Sexo</option>
                                 <option value="1">Masculino</option>
@@ -81,8 +79,7 @@
                             </select>
                             <label>Sexo</label>
                         </div>
-
-                        <div class="input-field col s12 m6" style="margin-top: 2%">
+                        <div class="input-field col s12 m6" >
                             <select name="n_cargo" id="cargo" >
                                 <option value="" disabled selected>Elegir Cargo</option>
                             <%
@@ -96,10 +93,10 @@
                         </select>
                         <label>Seleccione Cargo</label>
                     </div>
-                    <div class="input-field col s12 m6" style="margin-top: 3%">
+                    <div class="input-field col s12 m6">
                         <select name="n_ministerio" id="ministerio" >
                             <option value="" disabled selected>Elegir Distrito</option>
-                            <%ResultSet rsm = mi.listar_Ministerios();
+                            <%ResultSet rsm = mi.listar_ministerios("SELECT * FROM ministerio ORDER BY NOMBRE");
                                 while (rsm.next()) {
                             %>
                             <option value="<%= rsm.getString("idMINISTERIO")%>"><%= rsm.getString("NOMBRE")%></option>
@@ -109,7 +106,7 @@
                         </select>
                         <label>Seleccione Ministerio</label>
                     </div>
-                    <div class="input-field col s12 m6" style="margin-top: 3%">
+                    <div class="input-field col s12 m6">
                         <select name="n_grupo" id="grupo" >
                             <option value="" disabled selected>Elegir Grupo Pequeño</option>
                             <%ResultSet rsp = gp.listar_grupos("SELECT * FROM grupo ORDER BY NOMBRE");
@@ -122,7 +119,7 @@
                         </select>
                         <label>Seleccione Grupo Pequeño</label>
                     </div>
-                    <div class="input-field col s12 m12" style="margin-top: 3%">
+                    <div class="input-field col s12 m12" >
                         <textarea id="ocupacion" name="ocupacion" class="materialize-textarea"></textarea>
                         <label for="ocupacion">Ocupación</label>
                     </div>
