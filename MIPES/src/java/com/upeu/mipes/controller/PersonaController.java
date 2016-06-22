@@ -56,7 +56,7 @@ public class PersonaController extends HttpServlet {
         String pagina;
 
         switch (op) {
-            case 1:
+            case 1://AGREGAR
                 String cargo = request.getParameter("n_cargo");
                 String nombre = request.getParameter("nombre");
                 String apellido = request.getParameter("apellido");
@@ -87,17 +87,21 @@ public class PersonaController extends HttpServlet {
                     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                 }
-            case 2:
-                int idPersona = perDAO.buscarNombre(perDTO.getNombres());
+            case 2://EDITAR
+
+            case 3://ELIMINAR
+
+                int idPersona = Integer.parseInt(request.getParameter("id"));;
                 if (perDAO.eliminar(idPersona)) {
                     System.out.println("Exito al eliminar");
-                    pagina = "/vistas/extras/CongNewES.jsp";
+                    pagina = "/vistas/listado/ListarIntegrante.jsp";
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                } else {
+                    pagina = "inicio.jsp";
                     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                 }
-            case 3:
-                
-
         }
     }
 
