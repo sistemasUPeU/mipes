@@ -68,12 +68,6 @@
                 </button>
             </form>
 
-
-            <script>
-                $(document).ready(function () {
-                    $('select').material_select();
-                });
-            </script>
         </div>
 
     </body>
