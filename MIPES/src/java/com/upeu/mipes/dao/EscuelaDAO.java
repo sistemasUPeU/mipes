@@ -48,8 +48,20 @@ public class EscuelaDAO implements CrudInterface<EscuelaDTO> {
     }
 
     @Override
-    public boolean editar(EscuelaDTO e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean editar(EscuelaDTO u) {
+        sql = "UPDATE escuela SET iddistritom="+u.getIdDistritoM()+",nombre = '" + u.getNombre() + "',estado=" + u.getEstado() + " where idescuela="+u.getIdEscuela()+" ";
+        boolean p = false;
+        try {
+            cx = Conexion.getConexion();
+            st = cx.createStatement();
+            int a = st.executeUpdate(sql);
+            if (a > 0) {
+                p = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error al Editar Escuela: " + e);
+        }
+        return p;
     }
 
     @Override
@@ -71,7 +83,11 @@ public class EscuelaDAO implements CrudInterface<EscuelaDTO> {
 
     @Override
     public ArrayList<EscuelaDTO> listar() {
-        sql = "SELECT * FROM escuela";
+        return null;
+    }
+    
+    public ArrayList<EscuelaDTO> listared(int id) {
+        sql = "SELECT * FROM escuela where idescuela="+id;
         ArrayList<EscuelaDTO> list = new ArrayList<>();
         try {
             cx = Conexion.getConexion();

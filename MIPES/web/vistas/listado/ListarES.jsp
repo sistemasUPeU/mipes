@@ -25,7 +25,10 @@
         </head>
         <body style="padding: 5%;box-sizing: border-box;">
             <div style="width: 95%;margin: auto;padding: 3%;box-sizing: border-box;overflow: hidden;">
+                <h2>Lista de Escuelas Sabáticas por Distrito</h2>
+                <br/><br/>
             <div>
+                <label>Distrito</label>
                 <select class="form-control" id="idis" name="n_distrito" onchange="listesc()">
                     <option class="hidden">Elegir Distrito</option>
                 <% String sqld = "SELECT * FROM distritom order by nombre";
@@ -34,6 +37,7 @@
                 <option value="<%= rsd.getString("iddistritom")%>"><%= rsd.getString("NOMBRE")%> </option>
                 <% }%>
             </select>
+            
         </div><br/><br/>
         <div id="listaesc">
             <div class="x_panel">
@@ -61,14 +65,15 @@
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
+                                <th><span style="color: #999999;">Escuela Sabática</span></th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody id="itbody">
                             <tr>
-                                
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
