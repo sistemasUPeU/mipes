@@ -7,6 +7,8 @@ package com.upeu.mipes.test;
 
 import com.upeu.mipes.dao.EscuelaDAO;
 import com.upeu.mipes.dto.EscuelaDTO;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,15 +16,15 @@ import com.upeu.mipes.dto.EscuelaDTO;
  */
 public class EscuelaTest {
 
-    
-    
     static EscuelaDAO ed = new EscuelaDAO();
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        insertarescuela();
+        listar();
     }
+
     public static void insertarescuela() {
         EscuelaDTO d = new EscuelaDTO(1, "ESCUELA", "1");
         if (ed.agregar(d)) {
@@ -47,5 +49,16 @@ public class EscuelaTest {
             System.out.println("Error al eliminar");
         }
     }
-    
+
+    public static void listar() {
+        ArrayList<EscuelaDTO> list = ed.listar();
+        if (list != null) {
+            System.out.println("Lista de escuelas");
+            for (int i = 0; i < list.size(); i++) {
+                System.out.println("Nombre : " + list.get(i).getNombre() + "  ID:" + list.get(i).getIdEscuela());
+            }
+        } else {
+            System.out.println("falla");
+        }
+    }
 }

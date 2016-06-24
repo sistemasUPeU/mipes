@@ -11,8 +11,10 @@ import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,6 +26,7 @@ public class EscuelaDAO implements CrudInterface<EscuelaDTO> {
     private Connection cx;
     private PreparedStatement ps;
     private Statement st;
+    private ResultSet rs;
 
     @Override
     public boolean agregar(EscuelaDTO u) {
@@ -68,7 +71,24 @@ public class EscuelaDAO implements CrudInterface<EscuelaDTO> {
 
     @Override
     public ArrayList<EscuelaDTO> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sql = "SELECT * FROM escuela";
+        ArrayList<EscuelaDTO> list = new ArrayList<>();
+        try {
+            cx = Conexion.getConexion();
+            ps=cx.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                EscuelaDTO esc = new EscuelaDTO();
+                esc.setIdEscuela(rs.getInt("idescuela"));
+                esc.setIdDistritoM(rs.getInt("iddistritom"));
+                esc.setNombre(rs.getString("nombre"));
+                esc.setEstado(rs.getString("estado"));
+                list.add(esc);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error "+e);
+        } 
+        return list;
     }
 
     @Override
