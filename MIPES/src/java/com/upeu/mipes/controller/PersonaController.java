@@ -28,6 +28,7 @@ public class PersonaController extends HttpServlet {
     Det_Int_GPDTO detIntDTO = new Det_Int_GPDTO();
     Det_Int_GPDAO detIntDAO = new Det_Int_GPDAO();
 
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
