@@ -15,8 +15,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="../../css/materialize.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/materialize.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <form>
@@ -26,7 +26,7 @@
                 <i class="material-icons">close</i>
                 <!--<label for="search">Buscar</label>-->
             </div>
-            <table class="striped centered responsive-table">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>

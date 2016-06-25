@@ -13,8 +13,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="../../css/materialize.css" rel="stylesheet" type="text/css"/>
         <link href="../../css/materialize.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/materialize.css" rel="stylesheet" type="text/css"/>
         <script>
             function disesc() {
                 $.post("ComboDistrito.jsp", $("#distrito"), function (data) {
@@ -79,23 +79,9 @@
                             </select>
                             <label>Sexo</label>
                         </div>
-                        <div class="input-field col s12 m6" >
-                            <select name="n_cargo" id="cargo" >
-                                <option value="" disabled selected>Elegir Cargo</option>
-                            <%
-                                ResultSet rs = cg.listar_Cargo("SELECT * FROM cargo order by NOMCARGO");
-                                while (rs.next()) {
-                            %>
-                            <option value="<%= rs.getString("idCARGO")%>"><%= rs.getString("NOMCARGO")%></option>
-                            <%
-                                }
-                            %>
-                        </select>
-                        <label>Seleccione Cargo</label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <select name="n_ministerio" id="ministerio" >
-                            <option value="" disabled selected>Elegir Distrito</option>
+                        <div class="input-field col s12 m6">
+                            <select name="n_ministerio" id="ministerio" >
+                                <option value="" disabled selected>Elegir Distrito</option>
                             <%ResultSet rsm = mi.listar_ministerios("SELECT * FROM ministerio ORDER BY NOMBRE");
                                 while (rsm.next()) {
                             %>
