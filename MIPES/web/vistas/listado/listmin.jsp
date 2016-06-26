@@ -37,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody id="itbody">
-                    <% String sql = "SELECT * FROM ministerio where iddistritom =" + dis + " and estado =1 order by nombre";
+                    <% String sql = "SELECT * FROM ministerio where iddistritom =" + dis + " order by nombre";
                         ResultSet rs = min.listar_ministerios(sql);
                         while (rs.next()) {
                             String a = rs.getString("estado");

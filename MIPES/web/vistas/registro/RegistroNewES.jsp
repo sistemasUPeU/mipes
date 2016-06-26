@@ -16,13 +16,13 @@
         <script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
         <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
         <jsp:include page="../../jspf/impmaterialize.jspf"></jsp:include>
-    
-        <script>
-            $(document).ready(function () {
-                $('select').material_select();
 
-            });
-        </script>
+            <script>
+                $(document).ready(function () {
+                    $('select').material_select();
+
+                });
+            </script>
         <jsp:useBean class="com.upeu.mipes.dao.DistritomDAO" id="di" scope="page"></jsp:useBean>
         </head>
         <body>
@@ -33,7 +33,7 @@
                     <br/><br/>
                     <div class="input-field col s12" >
                         <select name="n_distrito" id="distrito">
-                            <option value="" disabled selected>Elegir Distrito</option>
+                            <option value="0" disabled selected>Elegir Distrito</option>
                         <%
                             ResultSet rs = di.listar_Distritos("SELECT * FROM distritom order by NOMBRE");
                             while (rs.next()) {
@@ -56,6 +56,5 @@
             </form>
 
         </div>
-
     </body>
 </html>

@@ -110,6 +110,38 @@ public class MinisterioDAO implements CrudInterface<MinisterioDTO> {
     public MinisterioDTO buscar(Object key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public boolean desactivar(int id) {
+        sql = "update MINISTERIO set estado='0' where idMINISTERIO=" + id;
+        boolean p = false;
+        try {
+            cx = Conexion.getConexion();
+            st = cx.createStatement();
+            int a = st.executeUpdate(sql);
+            if (a > 0) {
+                p = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error al desactivar Ministerio" + e);
+        }
+        return p;
+    }
+
+    public boolean activar(int id) {
+        sql = "update MINISTERIO set estado='1' where idMINISTERIO=" + id;
+        boolean p = false;
+        try {
+            cx = Conexion.getConexion();
+            st = cx.createStatement();
+            int a = st.executeUpdate(sql);
+            if (a > 0) {
+                p = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error al activar Ministerio" + e);
+        }
+        return p;
+    }
 
     public ResultSet listar_ministerios(String consulta) {
         Conexion cnn = new Conexion();

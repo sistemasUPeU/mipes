@@ -1,12 +1,5 @@
 <jsp:useBean class="com.upeu.mipes.dao.EscuelaDAO" id="es" scope="page" ></jsp:useBean>
-    <script src="../../js/jquery-2.2.3.min.js" type="text/javascript"></script>
-    <script src="../../js/md5.js" type="text/javascript"></script>
-    <script src="../../js/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="../../js/materialize.js" type="text/javascript"></script>
-    <script src="../../js/materialize.min.js" type="text/javascript"></script>
-    <link href="../../css/materialize.min.css" rel="stylesheet" type="text/css"/>
-    <link href="../../css/materialize.css" rel="stylesheet" type="text/css"/>
-
+<jsp:include page="../../jspf/impmaterialize.jspf"></jsp:include>
 <%@page import="java.sql.ResultSet"%>
 <% String dis = request.getParameter("n_distrito");
 %>

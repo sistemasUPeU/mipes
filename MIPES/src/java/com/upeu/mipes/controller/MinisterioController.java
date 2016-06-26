@@ -90,6 +90,22 @@ public class MinisterioController extends HttpServlet {
                 dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
                 break;
+            case 4:
+                id = Integer.parseInt(request.getParameter("id"));
+                if(mA.desactivar(id)){
+                    pagina = "/min?opc=2";
+                    dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                }
+                break;
+            case 5:
+                id = Integer.parseInt(request.getParameter("id"));
+                if(mA.activar(id)){
+                    pagina = "/min?opc=2";
+                    dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                }
+                break;
             case 6:
                 id = Integer.parseInt(request.getParameter("id"));
                 pagina = "/min?opc=2";

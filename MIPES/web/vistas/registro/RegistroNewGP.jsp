@@ -15,20 +15,21 @@
         <script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
         <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
         <jsp:include page="../../jspf/impmaterialize.jspf"></jsp:include>
-        <script>
-            $(document).ready(function () {
-                $('select').material_select();
-            });
-        </script>
-        <script>
-            function disesc() {
-                $.post("ComboDistrito.jsp", $("#distrito"), function (data) {
-                    $("#iescuela").html(data);
+            <script>
+                $(document).ready(function () {
+                    $('select').material_select();
                 });
-            }
-        </script>
-    </head>
-    <body style="width: 100%;padding: 5% 2%;box-sizing: border-box;background:#F7F7F7; ">
+            </script>
+            <script>
+                function disesc() {
+                    $.post("vistas/registro/ComboDistrito.jsp", $("#distrito"), function (data) {
+                        $("#iescuela").html(data);
+                    });
+                }
+            </script>
+
+        </head>
+        <body style="width: 100%;padding: 5% 2%;box-sizing: border-box;background:#F7F7F7; ">
         <jsp:useBean class="com.upeu.mipes.dao.DistritomDAO" id="di" scope="page" ></jsp:useBean>
             <div style="width:75%;margin: auto;">
                 <center><h2 style="margin: auto; color:#009688">Grupo Pequeño</h2></center>
@@ -36,6 +37,7 @@
                 <form method="post" action="gp">
                     <h5>Datos Generales</h5>
                     <input type="hidden" name="opc" value="1">
+                    
                     <div id="d_distrito" class="input-field col s12">
                     <%ResultSet rs = di.listar_Distritos("SELECT * FROM distritom order by NOMBRE");%>
                     <select name="n_distrito" id="distrito" onchange=" disesc()">
@@ -44,12 +46,15 @@
                         <option value="<%= rs.getString("idDISTRITOM")%>"><%= rs.getString("NOMBRE")%></option>
                         <% }%>
                     </select>
-                </div>
+                    </div>
                 <div id="iescuela" class="input-field col s12">
                     <select name="n_escuela" id="escuela">
                         <option value="" disabled selected >Elegir Escuela Sabática</option>
                     </select>
                 </div>
+
+
+
                 <div class="input-field col s6">
                     <input id="igp" name="n_grupo" type="text" class="validate">
                     <label for="igp">Nombre del Grupo Pequeño</label>
