@@ -3,7 +3,6 @@ package com.upeu.mipes.dto;
 
 public class PersonaDTO {
     private int idPersona;
-    private int idCargo;
     private String Nombres;
     private String Apellidos;
     private String Direccion;
@@ -18,8 +17,7 @@ public class PersonaDTO {
     public PersonaDTO() {
     }
 
-    public PersonaDTO(int idCargo, String Nombres, String Apellidos, String Direccion, String email, String Telefono, String Fe_nacimiento, String Fe_bautizmo, String Sexo, String Dni, String Ocupacion) {
-        this.idCargo = idCargo;
+    public PersonaDTO(String Nombres, String Apellidos, String Direccion, String email, String Telefono, String Fe_nacimiento, String Fe_bautizmo, String Sexo, String Dni, String Ocupacion) {
         this.Nombres = Nombres;
         this.Apellidos = Apellidos;
         this.Direccion = Direccion;
@@ -40,14 +38,6 @@ public class PersonaDTO {
 
     public void setIdPersona(int idPersona) {
         this.idPersona = idPersona;
-    }
-
-    public int getIdCargo() {
-        return idCargo;
-    }
-
-    public void setIdCargo(int idCargo) {
-        this.idCargo = idCargo;
     }
 
     public String getNombres() {
@@ -129,7 +119,6 @@ public class PersonaDTO {
     public void setEmail(String email) {
         this.email = email;
     }
-    
     
     
 }

@@ -35,20 +35,37 @@
                         <th>Lema</th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="itbody">
                     <% String sql = "SELECT * FROM grupo where idescuela =" + esc + " and estado =1 order by nombre";
                         ResultSet rs = gp.listar_grupos(sql);
-                        while (rs.next()) {%>
+                        while (rs.next()) {
+                            String a = rs.getString("estado");
+                            String estado = "";
+                            String clase = "";
+                            String opcion = "";
+                            if (a.equals("1")) {
+                                estado = "Desactivar";
+                                clase = "primary";
+                                opcion = "4";
+                            } else {
+                                estado = "Activar";
+                                clase = "info";
+                                opcion = "5";
+                            }
+
+                    %>
                     <tr>
                         <td><center><span><%= rs.getString("NOMBRE")%></span></center></td>
-                        <td><center><span><%= rs.getString("FECHA_CREACION")%></span></center></td>
-                        <td><center><span><%= rs.getString("COLOR")%></span></center></td>
-                        <td><center><span><%= rs.getString("LEMA")%></span></center></td>
-                        <td><center><a href="gp?opc=5&id=<%= rs.getString("idgrupo")%>" class="btn btn-success">Editar</a></center></td>
-                        <td><center><a href="gp?opc=6&id=<%= rs.getString("idgrupo")%>" class="btn btn-danger">Eliminar</a></center></td>
-                    </tr>
+                <td><center><span><%= rs.getString("FECHA_CREACION")%></span></center></td>
+                <td><center><span><%= rs.getString("COLOR")%></span></center></td>
+                <td><center><span><%= rs.getString("LEMA")%></span></center></td>
+                <td><center><a href="gp?opc=3&id=<%= rs.getString("idgrupo")%>" class="btn btn-success">Editar</a></center></td>
+                <td><center><a href="gp?opc=<%=opcion%>&id=<%= rs.getString("idgrupo")%>" class="btn btn-<%=clase%>" ><%=estado%></a></center></td>
+                <td><center><a href="gp?opc=6&id=<%= rs.getString("idgrupo")%>" class="btn btn-danger">Eliminar</a></center></td>
+                </tr>
                 <% }%>
                 </tbody>
             </table>

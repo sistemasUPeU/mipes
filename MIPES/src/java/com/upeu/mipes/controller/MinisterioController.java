@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -69,16 +70,42 @@ public class MinisterioController extends HttpServlet {
         RequestDispatcher dispatcher;
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession(true);
         String opc = request.getParameter("opc");
         switch (Integer.parseInt(opc)) {
             case 1:
                 pagina = "/vistas/registro/RegistroNewMin.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
+                break;
             case 2:
                 pagina = "/vistas/listado/ListarMin.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
+                break;
+            case 3:
+                id = Integer.parseInt(request.getParameter("id"));
+                pagina = "/vistas/editar/EditarMin.jsp";
+                session.setAttribute("list_e", mA.listared(id));
+                dispatcher = getServletContext().getRequestDispatcher(pagina);
+                dispatcher.forward(request, response);
+                break;
+            case 4:
+                id = Integer.parseInt(request.getParameter("id"));
+                if(mA.desactivar(id)){
+                    pagina = "/min?opc=2";
+                    dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                }
+                break;
+            case 5:
+                id = Integer.parseInt(request.getParameter("id"));
+                if(mA.activar(id)){
+                    pagina = "/min?opc=2";
+                    dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                }
+                break;
             case 6:
                 id = Integer.parseInt(request.getParameter("id"));
                 pagina = "/min?opc=2";
@@ -86,6 +113,7 @@ public class MinisterioController extends HttpServlet {
                     dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                 }
+                break;
         }
         processRequest(request, response);
     }
@@ -104,28 +132,43 @@ public class MinisterioController extends HttpServlet {
         processRequest(request, response);
         int opc = Integer.parseInt(request.getParameter("opc"));
         String pagina;
+        int  id;
+        int dis = Integer.parseInt(request.getParameter("n_distrito"));
+        String min = request.getParameter("n_min");
+        String des = request.getParameter("n_des");
+        String es = "1";
         switch (opc) {
             case 1:
-                String dis = request.getParameter("n_distrito");
-                String min = request.getParameter("n_min");
-                String des = request.getParameter("n_des");
-                String es = "1";
-                if (!dis.equals("") && !min.equals("") && !des.equals("")) {
-                    MinisterioDTO mT = new MinisterioDTO(Integer.parseInt(dis), min, des, es);
-                    if (mA.agregar(mT)) {
-                        pagina = "/vistas/extras/CongNewES.jsp";
-                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-                        dispatcher.forward(request, response);
-                    } else {
-                        pagina = "/vistas/extras/CongNewES.jsp";
-                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-                        dispatcher.forward(request, response);
-                    }
+                MinisterioDTO mT = new MinisterioDTO(dis, min, des, es);
+                if (mA.agregar(mT)) {
+                    pagina = "/vistas/extras/CongNewES.jsp";
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
                 } else {
                     pagina = "/vistas/extras/CongNewES.jsp";
                     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                 }
+                break;
+            case 2:
+                id=Integer.parseInt(request.getParameter("id"));
+                MinisterioDTO mn = new MinisterioDTO();
+                mn.setIdMinisterio(id);
+                mn.setIdDistritoM(dis);
+                mn.setNombre(min);
+                mn.setDescripcion(des);
+                mn.setEstado(es);
+                if (mA.editar(mn)) {
+                    pagina = "/vistas/extras/CongNewES.jsp";
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                } else {
+                    pagina = "/min?opc=3";
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                }
+
+                break;
         }
     }
 

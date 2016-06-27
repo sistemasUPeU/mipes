@@ -4,7 +4,7 @@
     Author     : Andrew
 --%>
 <%@page import="java.sql.ResultSet"%>
-<jsp:useBean class="com.upeu.mipes.dao.PersonaDAO" id="per" scope="page" ></jsp:useBean>
+<jsp:useBean class="com.upeu.mipes.dao.PersonaDAO" id="per" scope="page"></jsp:useBean>
 <%@page import="com.upeu.mipes.dto.PersonaDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.upeu.mipes.dto.IntegranteDTO"%>
@@ -15,8 +15,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="../../css/materialize.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/materialize.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <form>
@@ -24,19 +24,18 @@
                 <input id="search" type="search" required>
                 <label for="search"><i class="material-icons">search</i></label>
                 <i class="material-icons">close</i>
-                <!--                <label for="search">Buscar</label>-->
+                <!--<label for="search">Buscar</label>-->
             </div>
-
-            <table class="striped centered responsive-table">
+            <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nombre</th>
                         <th>Apellidos</th>
                         <th>Teléfono</th>
                         <th>Dirección</th>
-                        <th>Bautizmo</th
-                        <th></th
-                        <th></th
+                        <th>Bautizmo</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,15 +45,16 @@
                         while(rs.next()) {
                     %>
                     <tr>
+                        <td><%= rs.getString("idPERSONA")%></td>
                         <td><%= rs.getString("NOMBRES")%></td>
                         <td><%= rs.getString("APELLIDOS")%></td>
                         <td><%= rs.getString("TELEFONO")%></td>
                         <td><%= rs.getString("DIRECCION")%></td>
                         <td>
-                            <a href="dis?opc=2" class="btn btn-success">Editar</a>
+                            <a href="regPer?op=2&id=<%= rs.getString("idPERSONA") %>" class="btn btn-success">Editar</a>
                         </td>
                         <td>
-                            <a href="dis?opc=4" class="btn btn-danger">Eliminar</a>
+                            <a href="../../regPer?op=3&id=<%= rs.getString("idPERSONA") %>" class="btn btn-danger">Eliminar</a>
                         </td>
                     </tr>
                     <%

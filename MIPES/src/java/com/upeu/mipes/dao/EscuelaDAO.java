@@ -11,8 +11,10 @@ import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,6 +26,7 @@ public class EscuelaDAO implements CrudInterface<EscuelaDTO> {
     private Connection cx;
     private PreparedStatement ps;
     private Statement st;
+    private ResultSet rs;
 
     @Override
     public boolean agregar(EscuelaDTO u) {
@@ -45,8 +48,20 @@ public class EscuelaDAO implements CrudInterface<EscuelaDTO> {
     }
 
     @Override
-    public boolean editar(EscuelaDTO e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean editar(EscuelaDTO u) {
+        sql = "UPDATE escuela SET iddistritom="+u.getIdDistritoM()+",nombre = '" + u.getNombre() + "',estado=" + u.getEstado() + " where idescuela="+u.getIdEscuela()+" ";
+        boolean p = false;
+        try {
+            cx = Conexion.getConexion();
+            st = cx.createStatement();
+            int a = st.executeUpdate(sql);
+            if (a > 0) {
+                p = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error al Editar Escuela: " + e);
+        }
+        return p;
     }
 
     @Override
@@ -68,7 +83,28 @@ public class EscuelaDAO implements CrudInterface<EscuelaDTO> {
 
     @Override
     public ArrayList<EscuelaDTO> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
+    }
+    
+    public ArrayList<EscuelaDTO> listared(int id) {
+        sql = "SELECT * FROM escuela where idescuela="+id;
+        ArrayList<EscuelaDTO> list = new ArrayList<>();
+        try {
+            cx = Conexion.getConexion();
+            ps=cx.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                EscuelaDTO esc = new EscuelaDTO();
+                esc.setIdEscuela(rs.getInt("idescuela"));
+                esc.setIdDistritoM(rs.getInt("iddistritom"));
+                esc.setNombre(rs.getString("nombre"));
+                esc.setEstado(rs.getString("estado"));
+                list.add(esc);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error "+e);
+        } 
+        return list;
     }
 
     @Override

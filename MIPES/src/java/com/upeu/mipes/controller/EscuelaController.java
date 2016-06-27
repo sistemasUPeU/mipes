@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -53,16 +54,42 @@ public class EscuelaController extends HttpServlet {
         RequestDispatcher dispatcher;
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession(true);
         String opc = request.getParameter("opc");
         switch (Integer.parseInt(opc)) {
             case 1:
                 pagina = "/vistas/registro/RegistroNewES.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
+                break;
             case 2:
                 pagina = "/vistas/listado/ListarES.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
+                break;
+            case 3:
+                id = Integer.parseInt(request.getParameter("id"));
+                pagina = "/vistas/editar/EditarES.jsp";
+                session.setAttribute("list_e", eD.listared(id));
+                dispatcher = getServletContext().getRequestDispatcher(pagina);
+                dispatcher.forward(request, response);
+                break;
+            case 4:
+                id = Integer.parseInt(request.getParameter("id"));
+                if (eD.desactivar(id)) {
+                    pagina = "/esc?opc=2";
+                    dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                }
+                break;
+            case 5:
+                id = Integer.parseInt(request.getParameter("id"));
+                if (eD.activar(id)) {
+                    pagina = "/esc?opc=2";
+                    dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                }
+                break;
             case 6:
                 id = Integer.parseInt(request.getParameter("id"));
                 pagina = "/esc?opc=2";
@@ -70,6 +97,7 @@ public class EscuelaController extends HttpServlet {
                     dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                 }
+                break;
         }
 
         processRequest(request, response);
@@ -88,32 +116,49 @@ public class EscuelaController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
         int opc = Integer.parseInt(request.getParameter("opc"));
+        String pagina;
+        int dis;
+        String nom;
+        String est;
+        int id;
         switch (opc) {
             case 1://Crear nueva Escuela Sabatica
-                String pagina;
-                String dis = request.getParameter("n_distrito").toUpperCase();
-                String nom = request.getParameter("n_es").toUpperCase();
-                /*String fec = request.getParameter("fecha").toUpperCase();
-                 String co = request.getParameter("color").toUpperCase();
-                 String lem = request.getParameter("lema").toUpperCase();*/
-                String est = "1";
-                /*, fec, co, lem*/
-                if (!dis.equals("") && !nom.equals("")) {
-                    EscuelaDTO ed = new EscuelaDTO(Integer.parseInt(dis), nom, est);
-                    if (eD.agregar(ed)) {
-                        pagina = "/vistas/extras/CongNewES.jsp";
-                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-                        dispatcher.forward(request, response);
-                    } else {
-                        pagina = "/vistas/extras/RegistroNewES.jsp";
-                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-                        dispatcher.forward(request, response);
-                    }
+                dis = Integer.parseInt(request.getParameter("n_distrito"));
+                nom = request.getParameter("n_es").toUpperCase();
+                est = "1";
+                EscuelaDTO ed = new EscuelaDTO(dis, nom, est);
+                if (eD.agregar(ed)) {
+                    pagina = "/vistas/extras/CongNewES.jsp";
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
                 } else {
                     pagina = "/vistas/extras/RegistroNewES.jsp";
                     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                 }
+
+                break;
+            case 2:
+                id = Integer.parseInt(request.getParameter("id"));
+                dis = Integer.parseInt(request.getParameter("n_distrito"));
+                nom = request.getParameter("n_es").toUpperCase();
+                est = "1";
+                EscuelaDTO es = new EscuelaDTO();
+                es.setIdEscuela(id);
+                es.setIdDistritoM(dis);
+                es.setNombre(nom);
+                es.setEstado(est);                
+                if (eD.editar(es)) {
+                    pagina = "/vistas/extras/CongNewES.jsp";
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                } else {
+                    pagina = "/esc?opc=3";
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                }
+
+                break;
         }
 
     }

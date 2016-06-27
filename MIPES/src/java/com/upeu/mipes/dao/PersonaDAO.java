@@ -19,7 +19,7 @@ public class PersonaDAO implements CrudInterface<PersonaDTO> {
     
     @Override
     public boolean agregar(PersonaDTO per) {
-        sql = "INSERT INTO persona(idPERSONA,idCARGO,NOMBRES,APELLIDOS,DIRECCION,EMAIL,TELEFONO,FE_NACIMIENTO,FE_BAUTIZMO,SEXO,DNI,OCUPACION) VALUES("+per.getIdPersona()+","+per.getIdCargo()+",'"+per.getNombres()+"','"+per.getApellidos()+"','"+per.getDireccion()+"','"+per.getEmail()+"','"+per.getTelefono()+"','"+per.getFe_nacimiento()+"','"+per.getFe_bautizmo()+"','"+per.getSexo()+"','"+per.getDni()+"','"+per.getOcupacion()+"')";
+        sql = "INSERT INTO persona(idPERSONA,NOMBRES,APELLIDOS,DIRECCION,EMAIL,TELEFONO,FE_NACIMIENTO,FE_BAUTIZMO,SEXO,DNI,OCUPACION) VALUES("+per.getIdPersona()+",'"+per.getNombres()+"','"+per.getApellidos()+"','"+per.getDireccion()+"','"+per.getEmail()+"','"+per.getTelefono()+"','"+per.getFe_nacimiento()+"','"+per.getFe_bautizmo()+"','"+per.getSexo()+"','"+per.getDni()+"','"+per.getOcupacion()+"')";
         boolean p = false;
         try {
             cx = Conexion.getConexion();
@@ -37,7 +37,7 @@ public class PersonaDAO implements CrudInterface<PersonaDTO> {
     @Override
     public boolean editar(PersonaDTO per) {
         boolean p = false;
-        sql = "UPDATE persona SET idCARGO='"+per.getIdCargo()+"',NOMBRES='"+per.getNombres()+"',APELLIDOS='"+per.getApellidos()+"',DIRECCION='"+per.getDireccion()+"',EMAIL='"+per.getEmail()+"',TELEFONO='"+per.getTelefono()+"',FE_NACIMIENTO='"+per.getFe_nacimiento()+"',FE_BAUTIZMO='"+per.getFe_bautizmo()+"',SEXO='"+per.getSexo()+"',DNI='"+per.getDni()+"',OCUPACION='"+per.getOcupacion()+"' WHERE idPERSONA=" + per.getIdPersona();
+        sql = "UPDATE persona SET NOMBRES='"+per.getNombres()+"',APELLIDOS='"+per.getApellidos()+"',DIRECCION='"+per.getDireccion()+"',EMAIL='"+per.getEmail()+"',TELEFONO='"+per.getTelefono()+"',FE_NACIMIENTO='"+per.getFe_nacimiento()+"',FE_BAUTIZMO='"+per.getFe_bautizmo()+"',SEXO='"+per.getSexo()+"',DNI='"+per.getDni()+"',OCUPACION='"+per.getOcupacion()+"' WHERE idPERSONA=" + per.getIdPersona();
         try {
             cx = Conexion.getConexion();
             st = cx.createStatement();
@@ -53,7 +53,7 @@ public class PersonaDAO implements CrudInterface<PersonaDTO> {
 
     @Override
     public boolean eliminar(Object key) {
-        sql="DELETE FROM  usuario WHERE idusuario ="+ key;
+        sql="DELETE FROM persona WHERE idPERSONA ="+ key;
         boolean p = false;
         try {
             cx = Conexion.getConexion();

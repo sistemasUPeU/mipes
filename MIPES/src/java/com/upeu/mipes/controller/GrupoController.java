@@ -58,10 +58,18 @@ public class GrupoController extends HttpServlet {
                 pagina = "/vistas/registro/RegistroNewGP.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
+                break;
             case 2:
                 pagina = "/vistas/listado/ListarGP.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
             case 6:
                 id = Integer.parseInt(request.getParameter("id"));
                 pagina = "/gp?opc=2";
@@ -69,6 +77,7 @@ public class GrupoController extends HttpServlet {
                     dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                 }
+            break;
         }
     }
 

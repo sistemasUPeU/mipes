@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="../../jspf/imptbbootstrap.jspf"></jsp:include>
-        <title></title>
+            <title></title>
         <jsp:useBean class="com.upeu.mipes.dao.EscuelaDAO" id="es" scope="page" ></jsp:useBean>
         <jsp:useBean class="com.upeu.mipes.dao.DistritomDAO" id="dis" scope="page" ></jsp:useBean>
             <script>
@@ -29,6 +29,7 @@
         </center>
         <br/><br/>
         <div>
+            <label>Elegir Distrito</label>
             <select class="form-control" id="idis" name="n_distrito" onchange="disesc()">
                 <option class="hidden">Elegir Distrito</option>
             <% String sqld = "SELECT * FROM distritom order by nombre";
@@ -84,10 +85,12 @@
                             <th>Lema</th>
                             <th></th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody id="itbody">
                         <tr>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -102,37 +105,37 @@
         </div>
     </div>
     <script>
-            var handleDataTableButtons = function () {
-                "use strict";
-                0 !== $("#datatable-buttons").length && $("#datatable-buttons").DataTable({
-                    dom: "Bfrtip",
-                    buttons: [{
-                            extend: "copy",
-                            className: "btn-sm"
-                        }, {
-                            extend: "csv",
-                            className: "btn-sm"
-                        }, {
-                            extend: "excel",
-                            className: "btn-sm"
-                        }, {
-                            extend: "pdf",
-                            className: "btn-sm"
-                        }, {
-                            extend: "print",
-                            className: "btn-sm"
-                        }],
-                    responsive: !0
-                })
-            },
-                    TableManageButtons = function () {
-                        "use strict";
-                        return {
-                            init: function () {
-                                handleDataTableButtons()
-                            }
+        var handleDataTableButtons = function () {
+            "use strict";
+            0 !== $("#datatable-buttons").length && $("#datatable-buttons").DataTable({
+                dom: "Bfrtip",
+                buttons: [{
+                        extend: "copy",
+                        className: "btn-sm"
+                    }, {
+                        extend: "csv",
+                        className: "btn-sm"
+                    }, {
+                        extend: "excel",
+                        className: "btn-sm"
+                    }, {
+                        extend: "pdf",
+                        className: "btn-sm"
+                    }, {
+                        extend: "print",
+                        className: "btn-sm"
+                    }],
+                responsive: !0
+            })
+        },
+                TableManageButtons = function () {
+                    "use strict";
+                    return {
+                        init: function () {
+                            handleDataTableButtons()
                         }
-                    }();
+                    }
+                }();
     </script>
     <script type="text/javascript">
         $(document).ready(function () {

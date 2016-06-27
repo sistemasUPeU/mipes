@@ -1,5 +1,5 @@
 <jsp:useBean class="com.upeu.mipes.dao.EscuelaDAO" id="es" scope="page" ></jsp:useBean>
-    
+
 <%@page import="java.sql.ResultSet"%>
 <jsp:include page="../../jspf/imptbbootstrap.jspf"></jsp:include>
 
@@ -25,37 +25,59 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content" id="ab">
+
             <p class="text-muted font-13 m-b-30">
                 Lista de Escuelas Sabáticas</p>
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
+                        <th>Escuela Sabática</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody id="itbody">
-                    <% String sql = "SELECT * FROM escuela where iddistritom =" + dis + " and estado =1 order by nombre";
+                    <% String sql = "SELECT * FROM escuela where iddistritom =" + dis + "  order by nombre";
                         ResultSet rs = es.listar_escuelas(sql);
-                        while (rs.next()) {%>
+                        while (rs.next()) {
+                            String a = rs.getString("estado");
+                            String estado = "";
+                            String clase ="";
+                            String opcion="";
+                            if (a.equals("1")) {
+                                estado = "Desactivar";
+                                clase = "primary";
+                                opcion="4";
+                            } else {
+                                estado = "Activar";
+                                clase = "info";
+                                opcion="5";
+                            }
+                    %>
                     <tr>
                         <td><%= rs.getString("NOMBRE")%></td>
-                <td>
-                <center><a href="esc?opc=5&id=<%= rs.getString("idescuela") %>" class="btn btn-success">Editar</a></center>
+                        <td>
+                <center><a href="esc?opc=3&id=<%= rs.getString("idescuela")%>" class="btn btn-success">Editar</a></center>
                         </td>
-                       <td>
-                       <center><a href="esc?opc=6&id=<%= rs.getString("idescuela") %>" class="btn btn-danger">Eliminar</a></center>
+                        <td>
+                            <center><a href="esc?opc=<%=opcion%>&id=<%= rs.getString("idescuela")%>" class="btn btn-<%=clase%>" ><%=estado%></a></center>
+                        </td>
+                        <td>
+                            <center><a href="esc?opc=6&id=<%= rs.getString("idescuela")%>" class="btn btn-danger">Eliminar</a></center>
                         </td>
                     </tr>
-                    <%
-                        }
-                    %>
+                <%
+                    }
+                %>
                 </tbody>
+
             </table>
+
         </div>
     </div>
 </div>
+
 <script>
     var handleDataTableButtons = function () {
         "use strict";

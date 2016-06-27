@@ -1,7 +1,9 @@
 package com.upeu.mipes.controller;
 
+import com.upeu.mipes.dao.Det_Int_GPDAO;
 import com.upeu.mipes.dao.IntegranteDAO;
 import com.upeu.mipes.dao.PersonaDAO;
+import com.upeu.mipes.dto.Det_Int_GPDTO;
 import com.upeu.mipes.dto.IntegranteDTO;
 import com.upeu.mipes.dto.PersonaDTO;
 import java.io.IOException;
@@ -23,6 +25,10 @@ public class PersonaController extends HttpServlet {
     IntegranteDTO intDTO = new IntegranteDTO();
     IntegranteDAO intDAO = new IntegranteDAO();
 
+    Det_Int_GPDTO detIntDTO = new Det_Int_GPDTO();
+    Det_Int_GPDAO detIntDAO = new Det_Int_GPDAO();
+
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -56,8 +62,7 @@ public class PersonaController extends HttpServlet {
         String pagina;
 
         switch (op) {
-            case 1:
-                String cargo = request.getParameter("n_cargo");
+            case 1://AGREGAR
                 String nombre = request.getParameter("nombre");
                 String apellido = request.getParameter("apellido");
                 String direccion = request.getParameter("direccion");
@@ -69,7 +74,7 @@ public class PersonaController extends HttpServlet {
                 String dni = request.getParameter("dni");
                 String ocupacion = request.getParameter("ocupacion");
 
-                perDTO = new PersonaDTO(Integer.parseInt(cargo), nombre, apellido, direccion, email, telefono, nacimiento, bautizo, sexo, dni, ocupacion);
+                perDTO = new PersonaDTO(nombre, apellido, direccion, email, telefono, nacimiento, bautizo, sexo, dni, ocupacion);
 
                 if (perDAO.agregar(perDTO)) {
                     String idGrupo = (request.getParameter("n_grupo"));
@@ -77,7 +82,8 @@ public class PersonaController extends HttpServlet {
                     String estado = "1";
                     int idPersona = perDAO.buscarNombre(perDTO.getNombres());
                     intDTO = new IntegranteDTO(idPersona, Integer.parseInt(idGrupo), idMinisterio, estado);
-                    if (intDAO.agregar(intDTO)) {
+                    detIntDTO = new Det_Int_GPDTO(idPersona, Integer.parseInt(idGrupo), nacimiento);
+                    if (detIntDAO.agregar(detIntDTO)) {
                         pagina = "/vistas/extras/CongNewES.jsp";
                         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                         dispatcher.forward(request, response);
@@ -87,17 +93,23 @@ public class PersonaController extends HttpServlet {
                     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                 }
-            case 2:
-                int idPersona = perDAO.buscarNombre(perDTO.getNombres());
+                break;
+
+            case 3://ELIMINAR
+
+                int idPersona = Integer.parseInt(request.getParameter("id"));
+                System.out.println("IDPERSONA: " + idPersona);
                 if (perDAO.eliminar(idPersona)) {
                     System.out.println("Exito al eliminar");
+                    pagina = "/vistas/listado/ListarIntegrante.jsp";
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                    dispatcher.forward(request, response);
+                } else {
                     pagina = "/vistas/extras/CongNewES.jsp";
                     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                     dispatcher.forward(request, response);
                 }
-            case 3:
-                
-
+                break;
         }
     }
 

@@ -20,7 +20,7 @@ public class Pruebas {
     static GrupoDAO gd = new GrupoDAO();
 
     public static void main(String[] args) {
-        insertarpersona();
+        
     }
 
     static void conex() {
@@ -44,26 +44,5 @@ public class Pruebas {
     static PersonaDAO pA = new PersonaDAO();
     static IntegranteDAO intDAO = new IntegranteDAO();
 
-    public static void insertarpersona() {
-        PersonaDTO pT = new PersonaDTO(1, "Persona728", "apellidom", "direc", "email", "telef", "nacimi", "bau", "M", "sallllll", "sa");
-        if (pA.agregar(pT)) {
-            System.out.println("Agregado persona");
-            System.out.println("IDPERSONA" + String.valueOf((pT.getIdPersona())));
-            System.out.println("Nombre Persona:" + pT.getNombres());
-            int idPersona = pA.buscarNombre(pT.getNombres());
-
-//            IntegranteDTO intDTO = new IntegranteDTO(idPersona, 8, 11, "1");
-//            if (intDAO.agregar(intDTO)) {
-//                System.out.println("Agregado");
-//            }
-//        }
-            try {
-                pA.editar(pT);
-                System.out.println("assa");
-            } catch (Exception e) {
-                System.out.println("Error editar " + e);
-            }
-
-        }
-    }
+    
 }

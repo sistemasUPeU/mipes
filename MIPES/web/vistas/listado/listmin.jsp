@@ -1,5 +1,5 @@
 <jsp:useBean class="com.upeu.mipes.dao.MinisterioDAO" id="min" scope="page" ></jsp:useBean>
-    
+
 <%@page import="java.sql.ResultSet"%>
 <jsp:include page="../../jspf/imptbbootstrap.jspf"></jsp:include>
 
@@ -33,24 +33,44 @@
                         <th>Nombre</th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="itbody">
-                    <% String sql = "SELECT * FROM ministerio where iddistritom =" + dis + " and estado =1 order by nombre";
+                    <% String sql = "SELECT * FROM ministerio where iddistritom =" + dis + " order by nombre";
                         ResultSet rs = min.listar_ministerios(sql);
-                        while (rs.next()) {%>
+                        while (rs.next()) {
+                            String a = rs.getString("estado");
+                            String estado = "";
+                            String clase = "";
+                            String opcion = "";
+                            if (a.equals("1")) {
+                                estado = "Desactivar";
+                                clase = "primary";
+                                opcion = "4";
+                            } else {
+                                estado = "Activar";
+                                clase = "info";
+                                opcion = "5";
+                            }
+                    %>
                     <tr>
                         <td><%= rs.getString("NOMBRE")%></td>
+                        <td>
+                <center><a href="min?opc=3&id=<%= rs.getString("idministerio")%>" class="btn btn-success">Editar</a></center>
+                </td>
                 <td>
-                <center><a href="min?opc=5&id=<%= rs.getString("idministerio") %>" class="btn btn-success">Editar</a></center>
-                        </td>
-                       <td>
-                       <center><a href="min?opc=6&id=<%= rs.getString("idministerio") %>" class="btn btn-danger">Eliminar</a></center>
-                        </td>
-                    </tr>
-                    <%
-                        }
-                    %>
+                <center>
+                    <a href="min?opc=<%=opcion%>&id=<%= rs.getString("idministerio")%>" class="btn btn-<%=clase%>" ><%=estado%></a>
+                </center>
+                </td>
+                <td>
+                <center><a href="min?opc=6&id=<%= rs.getString("idministerio")%>" class="btn btn-danger">Eliminar</a></center>
+                </td>
+                </tr>
+                <%
+                    }
+                %>
                 </tbody>
             </table>
         </div>
