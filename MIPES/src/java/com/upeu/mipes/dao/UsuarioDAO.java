@@ -4,12 +4,15 @@ import com.upeu.mipes.config.Conexion;
 import static com.upeu.mipes.config.Conexion.getConexion;
 import com.upeu.mipes.dto.UsuarioDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,26 +24,36 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
 
     private Connection cn;
     private PreparedStatement ps;
+    private CallableStatement cs;
     private Statement st;
     private ResultSet rs;
     private String sql;
 
-    public boolean validarUser(String user, String pass) {
-        boolean m = false;
-        sql = "select * from usuario where USUARIO=? and CLAVE=?";
+    public Map<String, Object> validarUser(String user, String pass) {
+        Map<String, Object> r= new HashMap<>();
+        sql = "{CALL LOGIN(?,?)}";
         try {
             cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
-            ps.setString(1, user);
-            ps.setString(2, pass);
-            rs = ps.executeQuery();
+            cs= cn.prepareCall(sql);
+            cs.setString(1, user);
+            cs.setString(2, pass);
+            rs = cs.executeQuery();
             while (rs.next()) {
-                m = true;
+                r.put("idpersona", rs.getInt("IDPERSONA"));
+                r.put("iduser", rs.getInt("IDUSUARIO"));
+                r.put("idfoto", rs.getInt("IDFOTO"));
+                r.put("nombres", rs.getString("NOMBRES"));
+                r.put("apellidos", rs.getString("APELLIDOS"));
+                r.put("usuario", rs.getString("USUARIO"));
+                r.put("nomfoto", rs.getString("NOMBRE_FOTO"));
+                r.put("linkfoto", rs.getString("LINK"));
+                return r;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-        return m;
+        return null;
     }
 
     @Override

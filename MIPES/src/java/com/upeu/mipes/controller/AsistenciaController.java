@@ -58,7 +58,7 @@ public class AsistenciaController extends HttpServlet {
                     
                 }
                 if (opc.equals(lISTINTEGRANTEGP)) {
-                    List<Map<String, ?>> lista = adao.listaIntegranteGPEnable();
+                    List<Map<String, ?>> lista = adao.listaIntegranteGPEnable(1);
                     r.put("lista", lista);
                 }
 

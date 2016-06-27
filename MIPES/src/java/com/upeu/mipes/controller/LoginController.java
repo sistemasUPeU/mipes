@@ -8,11 +8,13 @@ package com.upeu.mipes.controller;
 import com.upeu.mipes.dao.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -74,7 +76,18 @@ public class LoginController extends HttpServlet {
         a = request.getParameter("user");
         b = request.getParameter("pass");
         if (!a.equals("") && !b.equals("")) {
-            if (aO.validarUser(a, b)) {
+            Map<String, Object> r= aO.validarUser(a, b);
+            
+            if (r !=null) {
+                HttpSession session= request.getSession(true);
+                session.setAttribute("idpersona", r.get("idpersona"));
+                session.setAttribute("iduser", r.get("iduser"));
+                session.setAttribute("idfoto", r.get("idfoto"));
+                session.setAttribute("nombres", r.get("nombres"));
+                session.setAttribute("apellidos", r.get("apellidos"));
+                session.setAttribute("usuario", r.get("usuario"));
+                session.setAttribute("nomfoto", r.get("nomfoto"));
+                session.setAttribute("linkfoto", r.get("linkfoto"));
                 pagina = "/index.jsp";
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);

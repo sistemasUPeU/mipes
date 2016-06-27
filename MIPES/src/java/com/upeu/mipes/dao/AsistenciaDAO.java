@@ -8,6 +8,7 @@ package com.upeu.mipes.dao;
 import com.upeu.mipes.config.Conexion;
 import com.upeu.mipes.dto.CargoDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +26,7 @@ public class AsistenciaDAO implements CrudInterface<CargoDTO>{
     private String sql;
     private Connection cx;
     private PreparedStatement ps;
+    private CallableStatement cs;
     private ResultSet rs;
 
     @Override
@@ -53,31 +55,23 @@ public class AsistenciaDAO implements CrudInterface<CargoDTO>{
     }
     
     //Asistencia Integrante GP
-    public ArrayList<Map<String,?>> listaIntegranteGPEnable(){
-        sql="SELECT * FROM VINTEGRANTE WHERE ESTADO='1'";
+    public ArrayList<Map<String,?>> listaIntegranteGPEnable(Object idGrupo){
+        sql="{CALL LIST_ASISTENCIA(?)}";
         ArrayList<Map<String,?>> lista= new ArrayList<>();
         try {
             cx=Conexion.getConexion();
-            ps=cx.prepareStatement(sql);
-            rs=ps.executeQuery();
+            cs= cx.prepareCall(sql);
+            cs.setInt(1, Integer.parseInt(idGrupo.toString()));
+            rs=cs.executeQuery();
             while (rs.next()) {                
                 Map<String,Object> m= new HashMap<>();
-                m.put("idintegrantegp", rs.getInt("idintegrantegp"));
+                m.put("idintgp", rs.getInt("IDDET_INT_GP"));
                 m.put("idGrupo", rs.getInt("idGrupo"));
-                m.put("nombre", rs.getString("nombre"));
-                m.put("nomcargo", rs.getString("nomcargo"));
                 m.put("idPERSONA", rs.getInt("idPERSONA"));
-                m.put("idCARGO", rs.getInt("idCARGO"));
                 m.put("NOMBRES", rs.getString("NOMBRES"));
                 m.put("APELLIDOS", rs.getString("APELLIDOS"));
-                m.put("DIRECCION", rs.getString("DIRECCION"));
-                m.put("EMAIL", rs.getString("EMAIL"));
-                m.put("TELEFONO", rs.getString("TELEFONO"));
-                m.put("FE_NACIMIENTO", rs.getDate("FE_NACIMIENTO"));
-                m.put("FE_BAUTIZMO", rs.getDate("FE_BAUTIZMO"));
-                m.put("SEXO", rs.getString("SEXO"));
-                m.put("DNI", rs.getString("DNI"));
-                m.put("OCUPACION", rs.getString("OCUPACION"));
+                m.put("CUMPLE", rs.getDate("CUMPLEANIOS"));
+                m.put("PORCENTAJE", rs.getDate("PORCENTAJE"));
                 lista.add(m);
             }
             //cx.close();
