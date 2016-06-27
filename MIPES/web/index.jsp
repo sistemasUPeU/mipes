@@ -4,7 +4,11 @@
     Author     : Andres
 --%>
 
+<%@page import="com.upeu.mipes.controller.MainController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    MainController.validateSession(request, response);
+%>
 <!DOCTYPE html5>
 <html lang="es">
     <head>
@@ -48,11 +52,17 @@
                         <!-- menu prile quick info -->
                         <div class="profile">
                             <div class="profile_pic">
-                                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                                <img src="images/default.png" alt="..." class="img-circle profile_img">
                             </div>
                             <div class="profile_info">
-                                <span>Bienvenido, </span>
-                                <h2>USUARIO</h2>
+                                <span>Bienvenido(a)</span>
+                                <% String nombre, apellido, usuario;
+                                nombre= request.getSession().getAttribute("nombres").toString();
+                                apellido= request.getSession().getAttribute("apellidos").toString();
+                                usuario= request.getSession().getAttribute("usuario").toString();
+                                %>
+                                <h2><%=nombre+" "+ apellido%></h2>
+                                
                             </div>
                         </div>
                         <!-- /menu prile quick info -->
@@ -190,7 +200,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="images/img.jpg" alt="">USUARIO
+                                        <img src="images/default.png" alt=""><%=usuario%>
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">

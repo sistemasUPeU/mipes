@@ -5,10 +5,8 @@
  */
 package com.upeu.mipes.controller;
 
-import com.upeu.mipes.dao.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,12 +16,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author USER
+ * @author Andres
  */
-public class LoginController extends HttpServlet {
-
-    private static final long serialVersionUID = 1L;
-    UsuarioDAO aO = new UsuarioDAO();
+public class MainController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,8 +33,23 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
-            dispatcher.forward(request, response);
+            /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession();
+            if (session.getAttribute("iduser") != null) {
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                response.sendRedirect("login");
+            }
+
+        }
+    }
+
+    public static void validateSession(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("iduser") == null) {
+            response.sendRedirect("login");
         }
     }
 
@@ -69,37 +79,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        String a, b, pagina;
-        a = request.getParameter("user");
-        b = request.getParameter("pass");
-        if (!a.equals("") && !b.equals("")) {
-            Map<String, Object> r= aO.validarUser(a, b);
-            if (r !=null) {
-                HttpSession session= request.getSession();
-                session.setAttribute("idpersona", r.get("idpersona"));
-                session.setAttribute("iduser", r.get("iduser"));
-                session.setAttribute("idfoto", r.get("idfoto"));
-                session.setAttribute("nombres", r.get("nombres"));
-                session.setAttribute("apellidos", r.get("apellidos"));
-                session.setAttribute("usuario", r.get("usuario"));
-                session.setAttribute("nomfoto", r.get("nomfoto"));
-                session.setAttribute("linkfoto", r.get("linkfoto"));
-                pagina = "home";
-                response.sendRedirect(pagina);
-            } else {
-                pagina = "/login.jsp";
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-                dispatcher.forward(request, response);
-            }
-        } else {
-            pagina = "/login.jsp";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-            dispatcher.forward(request, response);
-        }
-
+        processRequest(request, response);
     }
 
     /**
