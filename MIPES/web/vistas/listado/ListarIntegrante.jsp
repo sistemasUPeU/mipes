@@ -3,6 +3,7 @@
     Created on : 23/05/2016, 11:10:32 AM
     Author     : Andrew
 --%>
+
 <%@page import="java.sql.ResultSet"%>
 <jsp:useBean class="com.upeu.mipes.dao.PersonaDAO" id="per" scope="page"></jsp:useBean>
 <%@page import="com.upeu.mipes.dto.PersonaDTO"%>
@@ -34,8 +35,7 @@
                         <th>Apellidos</th>
                         <th>Teléfono</th>
                         <th>Dirección</th>
-                        <th>Bautizmo</th>
-                        <th></th>
+                        <th colspan="2">Operaciones</th>
                     </tr>
                 </thead>
                 <tbody>
