@@ -71,7 +71,7 @@ public class AsistenciaDAO implements CrudInterface<CargoDTO>{
                 m.put("NOMBRES", rs.getString("NOMBRES"));
                 m.put("APELLIDOS", rs.getString("APELLIDOS"));
                 m.put("CUMPLE", rs.getDate("CUMPLEANIOS"));
-                m.put("PORCENTAJE", rs.getDate("PORCENTAJE"));
+                m.put("PORCENTAJE", rs.getDouble("PORCENTAJE"));
                 lista.add(m);
             }
             //cx.close();

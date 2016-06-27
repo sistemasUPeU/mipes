@@ -79,7 +79,15 @@ public class MainController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("application/json;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        String opc= request.getParameter("opc");
+        try {
+            if (opc.equals("")) {
+                
+            }
+        } catch (Exception e) {
+        }
     }
 
     /**

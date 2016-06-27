@@ -4,10 +4,21 @@
     Author     : Andres
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Map"%>
+<%@page import="com.upeu.mipes.dao.UsuarioDAO"%>
+<%@page import="com.upeu.mipes.dao.AsistenciaDAO"%>
 <%@page import="com.upeu.mipes.controller.MainController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     MainController.validateSession(request, response);
+    String nombre, apellido, usuario, nfoto, linkfoto;
+    nombre = request.getSession().getAttribute("nombres").toString();
+    apellido = request.getSession().getAttribute("apellidos").toString();
+    usuario = request.getSession().getAttribute("usuario").toString();
+    nfoto = request.getSession().getAttribute("nomfoto").toString();
+    linkfoto = request.getSession().getAttribute("linkfoto").toString();
 %>
 <!DOCTYPE html5>
 <html lang="es">
@@ -46,23 +57,19 @@
                 <div class="col-md-3 left_col" >
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="inicio.jsp" target="frame" class="site_title"><i class="fa fa-group"></i> <span>MIPES | UPeU</span></a>
+                            <a href="home" class="site_title"><i class="fa fa-group"></i> <span>MIPES | UPeU</span></a>
                         </div>
                         <div class="clearfix"></div>
                         <!-- menu prile quick info -->
                         <div class="profile">
                             <div class="profile_pic">
-                                <img src="images/default.png" alt="..." class="img-circle profile_img">
+                                <img src="<%=linkfoto%>" alt="<%=nfoto%>" class="img-circle profile_img">
                             </div>
                             <div class="profile_info">
                                 <span>Bienvenido(a)</span>
-                                <% String nombre, apellido, usuario;
-                                nombre= request.getSession().getAttribute("nombres").toString();
-                                apellido= request.getSession().getAttribute("apellidos").toString();
-                                usuario= request.getSession().getAttribute("usuario").toString();
-                                %>
-                                <h2><%=nombre+" "+ apellido%></h2>
-                                
+
+                                <h2><%=nombre + " " + apellido%></h2>
+
                             </div>
                         </div>
                         <!-- /menu prile quick info -->
@@ -70,13 +77,44 @@
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
-                                <h3>MENÚ</h3>
+                                <h3>Menú</h3>
+                                <ul class="nav side-menu">
+                                    <%
+                                        UsuarioDAO ud = new UsuarioDAO();
+                                        ArrayList<Map<String, Object>> priv = ud.getPriv(request.getSession().getAttribute("iduser"));
+                                        for (int i = 0; i < priv.size(); i++) {
+                                            ArrayList<Map<String, Object>> link = ud.getLinks(priv.get(i).get("idprivilegio"));
+                                    %>
+                                    <li>
+                                        <a>
+                                            <i class="<%=priv.get(i).get("icon")%>"></i><%=priv.get(i).get("nombrep")%>
+                                            <span class="fa fa-chevron-down"></span>
+                                        </a>
+                                        <ul class="nav child_menu" style="display: none">
+
+                                            <%
+                                                for (int j = 0; j < link.size(); j++) {
+                                            %>
+                                            <li>
+                                                <a href="<%=link.get(j).get("link") %>" target="frame">
+                                                    <i class="<%=link.get(j).get("icon") %>"></i><%=link.get(j).get("nombrelink") %>
+                                                </a>
+                                            </li>
+                                            <%}%>
+                                        </ul>
+                                    </li>
+                                    <%}%>
+                                </ul>
+
+
+                            </div>
+                            <div class="menu_section">
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-user"></i>Perfil<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="index.jsp">Ver Perfil</a>
                                             </li>
-                                            <li><a href="vista/index2.html">Editar Perfil</a>
+                                            <li><a href="vista/index2.html"><i class="fa fa-user"></i>Editar Perfil</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -92,7 +130,7 @@
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="vistas/registro/RegistroParejaMisionera.jsp" target="frame">Registrar Pareja Misionera</a>
                                             </li>
-                                             <li><a href="vistas/listado/ListarPM.jsp" target="frame">Listar Parejas Misioneras</a>
+                                            <li><a href="vistas/listado/ListarPM.jsp" target="frame">Listar Parejas Misioneras</a>
                                             </li>  
                                         </ul>
                                     </li>
@@ -111,7 +149,7 @@
                                     <li><a><i class="fa fa-university"></i>Distrito Misionero<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="esc?opc=2" target="frame">Lista de Escuelas Sabáticas</a>
-                                                
+
                                             </li>
                                         </ul>
                                     </li>
@@ -200,7 +238,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="images/default.png" alt=""><%=usuario%>
+                                        <img src="<%=linkfoto%>" alt="<%=nfoto%>"><%=usuario%>
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -228,7 +266,7 @@
                                         <li>
                                             <a>
                                                 <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                    <img src="<%=linkfoto%>" alt="<%=nfoto%>" />
                                                 </span>
                                                 <span>
                                                     <span>Usuario</span>
@@ -250,7 +288,7 @@
                                     </ul>
                                 </li>
                             </ul>
-                            
+
                         </nav>
                     </div>
                 </div>
@@ -294,80 +332,80 @@
             <script type="text/javascript" src="js/flot/curvedLines.js"></script>
             <script type="text/javascript" src="js/flot/jquery.flot.resize.js"></script>
             <script>
-            $(document).ready(function () {
-                // [17, 74, 6, 39, 20, 85, 7]
-                //[82, 23, 66, 9, 99, 6, 2]
-                var data1 = [
-                    [gd(2012, 1, 1), 17],
-                    [gd(2012, 1, 2), 74],
-                    [gd(2012, 1, 3), 6],
-                    [gd(2012, 1, 4), 39],
-                    [gd(2012, 1, 5), 20],
-                    [gd(2012, 1, 6), 85],
-                    [gd(2012, 1, 7), 7]
-                ];
+                $(document).ready(function () {
+                    // [17, 74, 6, 39, 20, 85, 7]
+                    //[82, 23, 66, 9, 99, 6, 2]
+                    var data1 = [
+                        [gd(2012, 1, 1), 17],
+                        [gd(2012, 1, 2), 74],
+                        [gd(2012, 1, 3), 6],
+                        [gd(2012, 1, 4), 39],
+                        [gd(2012, 1, 5), 20],
+                        [gd(2012, 1, 6), 85],
+                        [gd(2012, 1, 7), 7]
+                    ];
 
-                var data2 = [
-                    [gd(2012, 1, 1), 82],
-                    [gd(2012, 1, 2), 23],
-                    [gd(2012, 1, 3), 66],
-                    [gd(2012, 1, 4), 9],
-                    [gd(2012, 1, 5), 119],
-                    [gd(2012, 1, 6), 6],
-                    [gd(2012, 1, 7), 9]
-                ];
-                $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-                    data1, data2
-                ], {
-                    series: {
-                        lines: {
-                            show: false,
-                            fill: true
+                    var data2 = [
+                        [gd(2012, 1, 1), 82],
+                        [gd(2012, 1, 2), 23],
+                        [gd(2012, 1, 3), 66],
+                        [gd(2012, 1, 4), 9],
+                        [gd(2012, 1, 5), 119],
+                        [gd(2012, 1, 6), 6],
+                        [gd(2012, 1, 7), 9]
+                    ];
+                    $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+                        data1, data2
+                    ], {
+                        series: {
+                            lines: {
+                                show: false,
+                                fill: true
+                            },
+                            splines: {
+                                show: true,
+                                tension: 0.4,
+                                lineWidth: 1,
+                                fill: 0.4
+                            },
+                            points: {
+                                radius: 0,
+                                show: true
+                            },
+                            shadowSize: 2
                         },
-                        splines: {
-                            show: true,
-                            tension: 0.4,
-                            lineWidth: 1,
-                            fill: 0.4
+                        grid: {
+                            verticalLines: true,
+                            hoverable: true,
+                            clickable: true,
+                            tickColor: "#d5d5d5",
+                            borderWidth: 1,
+                            color: '#fff'
                         },
-                        points: {
-                            radius: 0,
-                            show: true
+                        colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+                        xaxis: {
+                            tickColor: "rgba(51, 51, 51, 0.06)",
+                            mode: "time",
+                            tickSize: [1, "day"],
+                            //tickLength: 10,
+                            axisLabel: "Date",
+                            axisLabelUseCanvas: true,
+                            axisLabelFontSizePixels: 12,
+                            axisLabelFontFamily: 'Verdana, Arial',
+                            axisLabelPadding: 10
+                                    //mode: "time", timeformat: "%m/%d/%y", minTickSize: [1, "day"]
                         },
-                        shadowSize: 2
-                    },
-                    grid: {
-                        verticalLines: true,
-                        hoverable: true,
-                        clickable: true,
-                        tickColor: "#d5d5d5",
-                        borderWidth: 1,
-                        color: '#fff'
-                    },
-                    colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-                    xaxis: {
-                        tickColor: "rgba(51, 51, 51, 0.06)",
-                        mode: "time",
-                        tickSize: [1, "day"],
-                        //tickLength: 10,
-                        axisLabel: "Date",
-                        axisLabelUseCanvas: true,
-                        axisLabelFontSizePixels: 12,
-                        axisLabelFontFamily: 'Verdana, Arial',
-                        axisLabelPadding: 10
-                                //mode: "time", timeformat: "%m/%d/%y", minTickSize: [1, "day"]
-                    },
-                    yaxis: {
-                        ticks: 8,
-                        tickColor: "rgba(51, 51, 51, 0.06)",
-                    },
-                    tooltip: false
+                        yaxis: {
+                            ticks: 8,
+                            tickColor: "rgba(51, 51, 51, 0.06)",
+                        },
+                        tooltip: false
+                    });
+
+                    function gd(year, month, day) {
+                        return new Date(year, month - 1, day).getTime();
+                    }
                 });
-
-                function gd(year, month, day) {
-                    return new Date(year, month - 1, day).getTime();
-                }
-            });
             </script>
 
             <!-- worldmap -->
@@ -378,41 +416,41 @@
             <!-- pace -->
             <script src="js/pace/pace.min.js"></script>
             <script>
-            $(function () {
-                $('#world-map-gdp').vectorMap({
-                    map: 'world_mill_en',
-                    backgroundColor: 'transparent',
-                    zoomOnScroll: false,
-                    series: {
-                        regions: [{
-                                values: gdpData,
-                                scale: ['#E6F2F0', '#149B7E'],
-                                normalizeFunction: 'polynomial'
-                            }]
-                    },
-                    onRegionTipShow: function (e, el, code) {
-                        el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
-                    }
+                $(function () {
+                    $('#world-map-gdp').vectorMap({
+                        map: 'world_mill_en',
+                        backgroundColor: 'transparent',
+                        zoomOnScroll: false,
+                        series: {
+                            regions: [{
+                                    values: gdpData,
+                                    scale: ['#E6F2F0', '#149B7E'],
+                                    normalizeFunction: 'polynomial'
+                                }]
+                        },
+                        onRegionTipShow: function (e, el, code) {
+                            el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+                        }
+                    });
                 });
-            });
             </script>
             <!-- skycons -->
             <script src="js/skycons/skycons.min.js"></script>
             <script>
-            var icons = new Skycons({
-                "color": "#73879C"
-            }),
-                    list = [
-                        "clear-day", "clear-night", "partly-cloudy-day",
-                        "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
-                        "fog"
-                    ],
-                    i;
+                var icons = new Skycons({
+                    "color": "#73879C"
+                }),
+                        list = [
+                            "clear-day", "clear-night", "partly-cloudy-day",
+                            "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+                            "fog"
+                        ],
+                        i;
 
-            for (i = list.length; i--; )
-                icons.set(list[i], list[i]);
+                for (i = list.length; i--; )
+                    icons.set(list[i], list[i]);
 
-            icons.play();
+                icons.play();
             </script>
 
             <!-- Doughnut Chart -->

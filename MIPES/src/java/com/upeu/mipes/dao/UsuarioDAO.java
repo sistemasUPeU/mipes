@@ -55,6 +55,55 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
         }
         return null;
     }
+    
+    public ArrayList<Map<String, Object>> getLinks(Object idPrivilegio) {
+        ArrayList<Map<String, Object>> lista= new ArrayList<>();
+        sql = "{CALL GET_LINK(?)}";
+        try {
+            cn = Conexion.getConexion();
+            cs= cn.prepareCall(sql);
+            cs.setInt(1, Integer.parseInt(idPrivilegio.toString()));
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                Map<String, Object> r= new HashMap<>();
+                r.put("idlink", rs.getInt("IDLINK"));
+                r.put("idprivilegio", rs.getInt("IDPRIVILEGIO"));
+                r.put("nombrelink", rs.getString("NOMBRE_LINK"));
+                r.put("link", rs.getString("LINK"));
+                r.put("icon", rs.getString("ICON"));
+                r.put("orden", rs.getString("ORDEN"));
+                r.put("estado", rs.getString("ESTADO"));
+                lista.add(r);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return lista;
+    }
+    
+    public ArrayList<Map<String, Object>> getPriv(Object idUser) {
+        ArrayList<Map<String, Object>> lista= new ArrayList<>();
+        sql = "{CALL GET_PRIV(?)}";
+        try {
+            cn = Conexion.getConexion();
+            cs= cn.prepareCall(sql);
+            cs.setInt(1, Integer.parseInt(idUser.toString()));
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                Map<String, Object> r= new HashMap<>();
+                r.put("idprivilegio", rs.getInt("IDPRIVILEGIO"));
+                r.put("nombrep", rs.getString("NOMBRE"));
+                r.put("icon", rs.getString("ICON"));
+                r.put("estado", rs.getString("ESTADO"));
+                lista.add(r);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return lista;
+    }
 
     @Override
     public boolean agregar(UsuarioDTO u) {
