@@ -1,8 +1,8 @@
 <jsp:useBean class="com.upeu.mipes.dao.EscuelaDAO" id="es" scope="page" ></jsp:useBean>
 
 <%@page import="java.sql.ResultSet"%>
-<jsp:include page="../../jspf/imptbbootstrap.jspf"></jsp:include>
 
+<jsp:include page="../../jspf/imptbbootstrap.jspf"></jsp:include>
 <%String dis = request.getParameter("n_distrito"); %>
 <div id="listaesc">
     <div class="x_panel">
@@ -43,30 +43,30 @@
                         while (rs.next()) {
                             String a = rs.getString("estado");
                             String estado = "";
-                            String clase ="";
-                            String opcion="";
+                            String clase = "";
+                            String opcion = "";
                             if (a.equals("1")) {
                                 estado = "Desactivar";
                                 clase = "primary";
-                                opcion="4";
+                                opcion = "4";
                             } else {
                                 estado = "Activar";
                                 clase = "info";
-                                opcion="5";
+                                opcion = "5";
                             }
                     %>
                     <tr>
                         <td><%= rs.getString("NOMBRE")%></td>
                         <td>
                 <center><a href="esc?opc=3&id=<%= rs.getString("idescuela")%>" class="btn btn-success">Editar</a></center>
-                        </td>
-                        <td>
-                            <center><a href="esc?opc=<%=opcion%>&id=<%= rs.getString("idescuela")%>" class="btn btn-<%=clase%>" ><%=estado%></a></center>
-                        </td>
-                        <td>
-                            <center><a href="esc?opc=6&id=<%= rs.getString("idescuela")%>" class="btn btn-danger">Eliminar</a></center>
-                        </td>
-                    </tr>
+                </td>
+                <td>
+                <center><a href="esc?opc=<%=opcion%>&id=<%= rs.getString("idescuela")%>" class="btn btn-<%=clase%>" ><%=estado%></a></center>
+                </td>
+                <td>
+                <center><a onclick="confirmDel(<%= rs.getString("idescuela")%>)" class="btn btn-danger">Eliminar</a></center>
+                </td>
+                </tr>
                 <%
                     }
                 %>
@@ -77,7 +77,34 @@
         </div>
     </div>
 </div>
+<script>
+    function confirmDel(dir) {
+        swal({
+            title: "¿Seguro que desea eliminar esta Escuela Sabática?",
+            text: "Se eliminará definitivamente esta Escuela Sabática",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Sí, ¡eliminalo!",
+            cancelButtonText: "No, deseo cancenlar",
+            closeOnConfirm: false,
+            closeOnCancel: false},
+        function (isConfirm) {
+            if (isConfirm) {
+                swal({
+                    title: "¡Escuela Sabátca eliminada!",
+                    text: "La Escuela Sabática fue eliminada correctamente del sistema",
+                    button: "success"},
+                function () {
+                    location.href = 'esc?opc=6&id=' + dir;
+                });
 
+            } else {
+                swal("Eliminación cancelada", "La eliminación de la Escuela Sabática fue cancelada", "error");
+            }
+        });
+    }
+</script>
 <script>
     var handleDataTableButtons = function () {
         "use strict";
