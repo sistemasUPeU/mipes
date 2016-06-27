@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AsistenciaController extends HttpServlet {
 
     public static final String ASINTEGRANTEGP = "asintgp";
+    public static final String ASGP = "asistencia";
     public static final String lISTINTEGRANTEGP = "listintgp";
 
     private AsistenciaDAO adao = new AsistenciaDAO();
@@ -51,7 +52,10 @@ public class AsistenciaController extends HttpServlet {
                 /* TODO output your page here. You may use following sample code. */
 
                 if (opc.equals(ASINTEGRANTEGP)) {
-
+                    
+                }
+                if (opc.equals(ASGP)) {
+                    
                 }
                 if (opc.equals(lISTINTEGRANTEGP)) {
                     List<Map<String, ?>> lista = adao.listaIntegranteGPEnable();

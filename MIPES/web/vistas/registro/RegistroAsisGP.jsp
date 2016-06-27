@@ -40,8 +40,8 @@
                     <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <select title="Seleccione Distrito Misionero" class="selectpicker" data-live-search="true">
-                                <option>Shadai</option>
-                                <option>Kerigma</option>
+                                <option value="1">Shadai</option>
+                                <option value="2">Kerigma</option>
                                 <option>Adonai</option>
                                 <option>Adultos</option>
                             </select>
@@ -160,7 +160,7 @@
                                 t += '<td><center><label style="width: auto" ';
                                 t += 'class="mdl-switch mdl-js-switch mdl-js-ripple-effect"';
                                 t += 'for="switch-' + i + '">';
-                                t += '<input type="checkbox" id="switch-' + i + '" class="mdl-switch__input">';
+                                t += '<input type="checkbox" id="switch-' + i + '" class="mdl-switch__input chk">';
                                 t += '</label></center></td>';
                                 t += "</tr>";
                             }
@@ -171,6 +171,11 @@
                                 "pageLength": 100,
                                 "bLengthChange": false
                             });
+                            $('.chk').click(function (){
+                                alert($(this).attr("id"));
+                                
+                            });
+                            
                         } else {
                             alert('0');
                         }

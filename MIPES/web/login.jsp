@@ -39,7 +39,6 @@
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-success" style="width: 100%;">Ingresar</button>
-
                             </div>
                             <div class="clearfix"></div>
                             <div class="separator">
