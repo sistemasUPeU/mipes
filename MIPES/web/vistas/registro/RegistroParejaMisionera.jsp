@@ -30,7 +30,7 @@
         <jsp:useBean class="com.upeu.mipes.dao.MinisterioDAO" id="mi" scope="page" ></jsp:useBean>
         <jsp:useBean class="com.upeu.mipes.dao.GrupoDAO" id="gp" scope="page" ></jsp:useBean>
         <jsp:useBean class="com.upeu.mipes.dao.CargoDAO" id="cg" scope="page" ></jsp:useBean>
-
+        <%String esc = request.getParameter("n_escuela"); %>
             <div class="row">   
                 <h1 style="text-align:center; color: #26A69A">Registro Pareja Misionera</h1>
                 <form class="col s10 offset-s1">
@@ -53,13 +53,22 @@
                 <div id="iescuela" class="input-field col s12 m12">
                     <select name="n_escuela" id="escuela" >
                         <option value="" disabled selected >Elegir Escuela Sabática</option>
+                        
                     </select>
                     <label>Escuela Sabática</label>
                 </div>
                 <!----------------------------GRUPO PERSONA 1--------------------------------->
                 <div id="grupo" class="input-field col s12 m12" >
+                    <%ResultSet rsgp = dist.listar_Distritos("SELECT * FROM grupo where idescuela =" + esc + " and estado =1 order by nombre");%>
                     <select name="n_grupo" id="igrupo"  >
                         <option value="" disabled selected>Elegir Grupo Pequeño</option>
+                        <% 
+                            while (rsgp .next()) {
+                        %>
+                        <option value="<%= rsgp.getString("idGRUPO")%>"><%= rsgp .getString("NOMBRE")%></option>
+                        <%
+                            }
+                        %>
                     </select>
                     <label>Seleccione Grupo Pequeño</label>
                 </div>
