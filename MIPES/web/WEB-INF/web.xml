@@ -36,6 +36,10 @@
         <servlet-name>MainController</servlet-name>
         <servlet-class>com.upeu.mipes.controller.MainController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DistritoController</servlet-name>
+        <servlet-class>com.upeu.mipes.controller.DistritoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -75,6 +79,10 @@
     <welcome-file-list>
         <welcome-file>/login.jsp</welcome-file>
     </welcome-file-list>
+    <servlet-mapping>
+        <servlet-name>DistritoController</servlet-name>
+        <url-pattern>/distrito</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

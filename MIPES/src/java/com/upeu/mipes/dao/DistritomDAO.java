@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -110,6 +112,26 @@ public class DistritomDAO implements CrudInterface<DistritomDTO> {
         System.out.println(consulta);
         ResultSet rst = cx.RecibirDatos(consulta);
         return rst;
+    }
+    
+    public ArrayList<Map<String, Object>> listarDistrito() {
+        ArrayList<Map<String, Object>> list = new ArrayList<>();
+        sql = "SELECT * FROM DISTRITOM WHERE ESTADO='1'";
+        try {
+            cn=Conexion.getConexion();
+            rs = cn.prepareStatement(sql).executeQuery();
+            while (rs.next()) {
+                Map<String, Object> d= new HashMap<>();
+                d.put("idDISTRITOM", rs.getInt("idDISTRITOM"));
+                d.put("NOMBRE", rs.getString("NOMBRE"));
+                list.add(d);
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error al listar Distritom " + e);
+            return null;
+        }
+        return list;
     }
 
 }

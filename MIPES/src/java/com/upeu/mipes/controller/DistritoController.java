@@ -6,13 +6,10 @@
 package com.upeu.mipes.controller;
 
 import com.google.gson.Gson;
-import com.upeu.mipes.dao.AsistenciaDAO;
-import com.upeu.mipes.dao.EscuelaDAO;
+import com.upeu.mipes.dao.DistritomDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,16 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Andres
  */
-public class AsistenciaController extends HttpServlet {
-
-    public static final String ASINTEGRANTEGP = "asintgp";
-    public static final String ASGP = "asistencia";
-    public static final String lISTINTEGRANTEGP = "listintgp";
-    public static final String LISTESCUELA = "listes";
-    public static final String LISTGRUPO = "listgru";
-
-    private AsistenciaDAO adao = new AsistenciaDAO();
-    private EscuelaDAO edao= new EscuelaDAO();
+public class DistritoController extends HttpServlet {
+    DistritomDAO ddao= new DistritomDAO();
+    Map<String, Object> rpta= new HashMap<>();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,42 +35,21 @@ public class AsistenciaController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
+        String opc=request.getParameter("opc");
         PrintWriter out = response.getWriter();
-        Map<String, Object> r = new HashMap<>();
-        String opc = request.getParameter("opc");
-        if (opc != null) {
-
-            try {
-                /* TODO output your page here. You may use following sample code. */
-
-                if (opc.equals(ASINTEGRANTEGP)) {
-                    
-                }
-                if (opc.equals(ASGP)) {
-                    
-                }
-                if (opc.equals(lISTINTEGRANTEGP)) {
-                    List<Map<String, ?>> lista = adao.listaIntegranteGPEnable(1);
-                    r.put("lista", lista);
-                }
-                if (opc.equals(LISTESCUELA)) {
-                    int idd= Integer.parseInt(request.getParameter("iddistrito"));
-                    ArrayList<Map<String, Object>> lista=edao.listarEscuela(idd);
-                    r.put("lista", lista);
-                }
-
-            } catch (Exception e) {
-                r.put("error", e.getMessage());
+        try {
+            /* TODO output your page here. You may use following sample code. */
+            if (opc.equals("listar")) {
+                rpta.put("lista", ddao.listarDistrito());
             }
-            Gson gson = new Gson();
-            out.println(gson.toJson(r));
-            out.flush();
-            out.close();
-        } else {
-            out.print("<p style='color:red'>Error</p>");
+        }catch(Exception e){
+            e.printStackTrace();            
         }
+        Gson json= new Gson();
+        out.print(json.toJson(rpta));
+        out.flush();
+        out.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

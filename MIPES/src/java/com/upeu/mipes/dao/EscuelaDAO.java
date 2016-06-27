@@ -14,7 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -148,6 +150,25 @@ public class EscuelaDAO implements CrudInterface<EscuelaDTO> {
         System.out.println(consulta);
         ResultSet rst = cnn.RecibirDatos(consulta);
         return rst;
+    }
+    
+    public ArrayList<Map<String, Object>> listarEscuela(int iddistrito) {
+        ArrayList<Map<String, Object>> list = new ArrayList<>();
+        sql = "SELECT * FROM ESCUELA WHERE IDDISTRITOM="+iddistrito+" AND ESTADO='1'";
+        try {
+            cx=Conexion.getConexion();
+            rs = cx.prepareStatement(sql).executeQuery();
+            while (rs.next()) {
+                Map<String, Object> d= new HashMap<>();
+                d.put("idEscuela", rs.getInt("idEscuela"));
+                d.put("NOMBRE", rs.getString("NOMBRE"));
+                list.add(d);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al listar Escuela " + e);
+            return null;
+        }
+        return list;
     }
 
 }

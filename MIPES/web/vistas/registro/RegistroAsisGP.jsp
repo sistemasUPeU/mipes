@@ -38,28 +38,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <select title="Seleccione Distrito Misionero" class="selectpicker" data-live-search="true">
-                                <option value="1">Shadai</option>
-                                <option value="2">Kerigma</option>
-                                <option>Adonai</option>
-                                <option>Adultos</option>
-                            </select>
+                        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 CDistrito">
+                            <select title="Seleccione Distrito" class="selDis selectpicker" data-live-search="true"></select>
                         </div>
-                        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <select title="Seleccione Escuela Sabática" class="selectpicker" data-live-search="true">
-                                <option>hola</option>
-                                <option>que</option>
-                                <option>qtal</option>
-                                <option>jejeje</option>
-                            </select>
+                        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 CEscuela">
+                            <select title="Seleccione Escuela Sabática" class="selEs selectpicker" data-live-search="true"></select>
                         </div>
-                        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <select title="Seleccione Grupo Pequeño" class="selectpicker" data-live-search="true">
-                                <option>hola</option>
-                                <option>que</option>
-                                <option>qtal</option>
-                                <option>jejeje</option>
+                        <div class="col col-lg-4 col-md-4 col-sm-6 col-xs-12 CGrupo">
+                            <select title="Seleccione Grupo Pequeño" 
+                                    class="selGru selectpicker" data-live-search="true">
                             </select>
                         </div>
                     </div>
@@ -138,10 +125,58 @@
         <script>
             $(document).ready(function () {
                 $('#lista').DataTable({
-                    "pageLength": 100,
-                    "bLengthChange": false
-                });
+                 "pageLength": 100,
+                 "bLengthChange": false
+                 });
                 listar();
+
+                listarDistrito();
+                //Selectores anidados
+
+                $('.selEs').change();
+                $('.selGru').change();
+                //Listado de Selectores
+                function listarDistrito() {
+                    var url = "../../distrito?opc=listar";
+                    $.post(url, function (objJson) {
+                        var lista = objJson.lista;
+                        var t = "<option value=''>[Seleccione Distrito]</option>";
+                        for (var i = 0; i < lista.length; i++) {
+                            t += "<option value='" + lista[i].idDISTRITOM + "'>" + lista[i].NOMBRE + "</option>";
+                        }
+                        $('.CDistrito').empty();
+                        $('.CDistrito').append('<select title="Seleccione Distrito" class="selDis selectpicker" data-live-search="true"></select>');
+                        $('.selDis').append(t);
+                        $('.selDis').addClass("selectpicker");
+                        $('.selDis').attr("data-live-search", true);
+                        $('.selectpicker').selectpicker();
+                        $('.selDis').change(function () {
+                            listarEscuela($(this).val());
+                        });
+                    });
+
+                }
+                function listarEscuela(idDistrito) {
+                    var url = "../../Asistencia?opc=listes&iddistrito=" + idDistrito;
+                    $.post(url, function (objJson) {
+                        var lista = objJson.lista;
+                        var t = "<option value=''>[Seleccione Escuela]</option>";
+                        for (var i = 0; i < lista.length; i++) {
+                            t += "<option value='" + lista[i].idEscuela + "'>" + lista[i].NOMBRE + "</option>";
+                        }
+                        $('.CEscuela').empty();
+                        $('.CEscuela').append('<select title="Seleccione Escuela Sabática" class="selEs selectpicker" data-live-search="true"></select>');
+                        $('.selEs').empty();
+                        $('.selEs').append(t);
+                        $('.selEs').addClass("selectpicker");
+                        $('.selEs').attr("data-live-search", true);
+                        $('.selectpicker').selectpicker();
+                    });
+                }
+                function listarGrupo(idEscuela) {
+
+                }
+
                 function listar() {
 
                     var url = "../../Asistencia?opc=listintgp";
@@ -160,7 +195,7 @@
                                 t += '<td><center><label style="width: auto" ';
                                 t += 'class="mdl-switch mdl-js-switch mdl-js-ripple-effect"';
                                 t += 'for="switch-' + i + '">';
-                                t += '<input type="checkbox" id="switch-' + i + '" class="mdl-switch__input chk">';
+                                t += '<input type="checkbox" id="switch-' + i + '" class="chk">';
                                 t += '</label></center></td>';
                                 t += "</tr>";
                             }
@@ -171,11 +206,12 @@
                                 "pageLength": 100,
                                 "bLengthChange": false
                             });
-                            $('.chk').click(function (){
+                            $('.chk').addClass("mdl-switch__input");
+                            $('.chk').click(function () {
                                 alert($(this).attr("id"));
-                                
+
                             });
-                            
+
                         } else {
                             alert('0');
                         }
