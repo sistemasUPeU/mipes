@@ -125,9 +125,9 @@
         <script>
             $(document).ready(function () {
                 $('#lista').DataTable({
-                 "pageLength": 100,
-                 "bLengthChange": false
-                 });
+                    "pageLength": 100,
+                    "bLengthChange": false
+                });
                 listar();
 
                 listarDistrito();
@@ -192,25 +192,23 @@
                                 t += "<td><center>" + list[i].APELLIDOS + "</center></td>";
                                 t += "<td class='hidden-sm hidden-xs'><center>" + list[i].FE_NACIMIENTO + "</center></td>";
                                 t += "<td class='hidden-sm hidden-xs'><center>B</center></td>";
-                                t += '<td><center><label style="width: auto" ';
-                                t += 'class="mdl-switch mdl-js-switch mdl-js-ripple-effect"';
-                                t += 'for="switch-' + i + '">';
-                                t += '<input type="checkbox" id="switch-' + i + '" class="chk">';
-                                t += '</label></center></td>';
+                                t += '<td><center>';
+                                t += '<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">';
+                                t += '<input type="checkbox" id="switch-1" class="mdl-switch__input" checked>';
+                                t += '<span class="mdl-switch__label"></span></label>';
+                                t += '</center></td>';
                                 t += "</tr>";
                             }
                             $('.contLista').empty();
                             $('.contLista').append(cargarTabla());
                             $('.listaBody').append(t);
-                            $('#lista').DataTable({
-                                "pageLength": 100,
-                                "bLengthChange": false
-                            });
-                            $('.chk').addClass("mdl-switch__input");
                             $('.chk').click(function () {
-                                alert($(this).attr("id"));
 
                             });
+                            /*$('#lista').DataTable({
+                             "pageLength": 100,
+                             "bLengthChange": false
+                             });*/
 
                         } else {
                             alert('0');
