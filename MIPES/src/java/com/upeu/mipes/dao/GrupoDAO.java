@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -24,6 +26,7 @@ public class GrupoDAO implements CrudInterface<GrupoDTO> {
     private Statement st;
     private String sql;
     private Connection cnn;
+    private ResultSet rs;
 
     
     @Override
@@ -113,5 +116,24 @@ public class GrupoDAO implements CrudInterface<GrupoDTO> {
         System.out.println(consulta);
         ResultSet rst = cx.RecibirDatos(consulta);
         return rst;
+    }
+    
+    public ArrayList<Map<String, Object>> listarGrupo(int id){
+        ArrayList<Map<String, Object>> lista = new ArrayList<>();
+        sql="SELECT IDGRUPO, NOMBRE FROM GRUPO WHERE ESTADO='1' AND IDESCUELA="+id;
+        try {
+            cnn= Conexion.getConexion();
+            rs=cnn.prepareStatement(sql).executeQuery();
+            while (rs.next()) {                
+                Map<String, Object> m= new HashMap<>();
+                m.put("idGrupo", rs.getInt("idgrupo"));
+                m.put("NOMBRE", rs.getString("nombre"));
+                lista.add(m);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return lista;
     }
 }

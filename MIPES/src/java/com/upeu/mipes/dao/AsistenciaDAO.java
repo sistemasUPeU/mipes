@@ -10,6 +10,7 @@ import com.upeu.mipes.dto.CargoDTO;
 import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -21,50 +22,25 @@ import java.util.Map;
  *
  * @author Andrew
  */
-public class AsistenciaDAO implements CrudInterface<CargoDTO>{
-    
+public class AsistenciaDAO {
+
     private String sql;
     private Connection cx;
     private PreparedStatement ps;
     private CallableStatement cs;
     private ResultSet rs;
 
-    @Override
-    public boolean agregar(CargoDTO e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean editar(CargoDTO e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean eliminar(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<CargoDTO> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public CargoDTO buscar(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     //Asistencia Integrante GP
-    public ArrayList<Map<String,?>> listaIntegranteGPEnable(Object idGrupo){
-        sql="{CALL LIST_ASISTENCIA(?)}";
-        ArrayList<Map<String,?>> lista= new ArrayList<>();
+    public ArrayList<Map<String, ?>> listaIntegranteGPEnable(Object idGrupo) {
+        sql = "{CALL LIST_ASISTENCIA(?)}";
+        ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cx=Conexion.getConexion();
-            cs= cx.prepareCall(sql);
+            cx = Conexion.getConexion();
+            cs = cx.prepareCall(sql);
             cs.setInt(1, Integer.parseInt(idGrupo.toString()));
-            rs=cs.executeQuery();
-            while (rs.next()) {                
-                Map<String,Object> m= new HashMap<>();
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                Map<String, Object> m = new HashMap<>();
                 m.put("idintgp", rs.getInt("IDDET_INT_GP"));
                 m.put("idGrupo", rs.getInt("idGrupo"));
                 m.put("idPERSONA", rs.getInt("idPERSONA"));
@@ -75,23 +51,64 @@ public class AsistenciaDAO implements CrudInterface<CargoDTO>{
                 lista.add(m);
             }
             //cx.close();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
-            return null;            
+            return null;
         }
         return lista;
     }
-    
-    public ArrayList<Map<String,?>> listaIntegranteGPAll(){
-        sql="SELECT * FROM VINTEGRANTE";
-        ArrayList<Map<String,?>> lista= new ArrayList<>();
+
+    public int regAsistenciaGP(int idGp, int presentes, int visitas, int faltas, String lugar) {
+        int idas = 0;
+        sql = "{CALL REG_ASISTENCIA_GP(?, ?, ?, ? ,?)}";
         try {
-            cx=Conexion.getConexion();
-            ps=cx.prepareStatement(sql);
-            rs=ps.executeQuery();
-            while (rs.next()) {                
-                Map<String,Object> m= new HashMap<>();
+            cx = Conexion.getConexion();
+            cs = cx.prepareCall(sql);
+            cs.setInt(1, idGp);
+            cs.setInt(2, presentes);
+            cs.setInt(3, visitas);
+            cs.setInt(4, faltas);
+            cs.setString(5, lugar);
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                idas = rs.getInt("IDASGP");
+            }
+            System.out.println("idasist "+idas);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+        return idas;
+    }
+
+    public int regAsistenciaIntegrante(int idIntegrante, int idAsistencia, String asistencia) {
+        int idas = 0;
+        sql = "{CALL REG_ASISTENCIA_INT(?, ?, ?)}";
+        try {
+            cx = Conexion.getConexion();
+            cs = cx.prepareCall(sql);
+            cs.setInt(1, idIntegrante);
+            cs.setInt(2, idAsistencia);
+            cs.setString(3, asistencia);
+            idas= cs.executeUpdate();
+            System.out.println(idas);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+        return idas;
+    }
+
+    public ArrayList<Map<String, ?>> listaIntegranteGPAll() {
+        sql = "SELECT * FROM VINTEGRANTE";
+        ArrayList<Map<String, ?>> lista = new ArrayList<>();
+        try {
+            cx = Conexion.getConexion();
+            ps = cx.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Map<String, Object> m = new HashMap<>();
                 m.put("idintegrantegp", rs.getInt("idintegrantegp"));
                 m.put("idGrupo", rs.getInt("idGrupo"));
                 m.put("nombre", rs.getString("nombre"));
@@ -111,12 +128,12 @@ public class AsistenciaDAO implements CrudInterface<CargoDTO>{
                 lista.add(m);
             }
             cx.close();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
-            return null;            
+            return null;
         }
         return lista;
     }
-    
+
 }

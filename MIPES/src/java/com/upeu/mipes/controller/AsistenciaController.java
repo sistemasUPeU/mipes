@@ -8,8 +8,10 @@ package com.upeu.mipes.controller;
 import com.google.gson.Gson;
 import com.upeu.mipes.dao.AsistenciaDAO;
 import com.upeu.mipes.dao.EscuelaDAO;
+import com.upeu.mipes.dao.GrupoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +34,8 @@ public class AsistenciaController extends HttpServlet {
     public static final String LISTGRUPO = "listgru";
 
     private AsistenciaDAO adao = new AsistenciaDAO();
-    private EscuelaDAO edao= new EscuelaDAO();
+    private EscuelaDAO edao = new EscuelaDAO();
+    private GrupoDAO gdao = new GrupoDAO();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,27 +54,44 @@ public class AsistenciaController extends HttpServlet {
         Map<String, Object> r = new HashMap<>();
         String opc = request.getParameter("opc");
         if (opc != null) {
-
             try {
                 /* TODO output your page here. You may use following sample code. */
 
                 if (opc.equals(ASINTEGRANTEGP)) {
-                    
+                    int idIntegrante = Integer.parseInt(request.getParameter("idintegrante"));
+                    int idAsistencia = Integer.parseInt(request.getParameter("idasist"));
+                    String asistencia = request.getParameter("asist");
+                    System.out.println("asistencia integrante");
+                    r.put("resp", adao.regAsistenciaIntegrante(idIntegrante, idAsistencia, asistencia));
                 }
                 if (opc.equals(ASGP)) {
-                    
+                    int presentes = Integer.parseInt(request.getParameter("presentes"));
+                    int faltas = Integer.parseInt(request.getParameter("faltas"));
+                    int visitas = Integer.parseInt(request.getParameter("visitas"));
+                    int idgrupo = Integer.parseInt(request.getParameter("idgrupo"));
+                    String lugar = request.getParameter("lugar");
+                    System.out.println("asistencia grupo");
+                    r.put("idasist", adao.regAsistenciaGP(idgrupo, presentes, visitas, faltas, lugar));
                 }
                 if (opc.equals(lISTINTEGRANTEGP)) {
-                    List<Map<String, ?>> lista = adao.listaIntegranteGPEnable(1);
+                    int idg = Integer.parseInt(request.getParameter("idgrupo"));
+                    List<Map<String, ?>> lista = adao.listaIntegranteGPEnable(idg);
                     r.put("lista", lista);
                 }
                 if (opc.equals(LISTESCUELA)) {
-                    int idd= Integer.parseInt(request.getParameter("iddistrito"));
-                    ArrayList<Map<String, Object>> lista=edao.listarEscuela(idd);
+                    int idd = Integer.parseInt(request.getParameter("iddistrito"));
+                    ArrayList<Map<String, Object>> lista = edao.listarEscuela(idd);
+                    r.put("lista", lista);
+                }
+
+                if (opc.equals(LISTGRUPO)) {
+                    int ide = Integer.parseInt(request.getParameter("idescuela"));
+                    ArrayList<Map<String, Object>> lista = gdao.listarGrupo(ide);
                     r.put("lista", lista);
                 }
 
             } catch (Exception e) {
+                e.printStackTrace();
                 r.put("error", e.getMessage());
             }
             Gson gson = new Gson();
