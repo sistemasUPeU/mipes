@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PersonaDAO implements CrudInterface<PersonaDTO> {
 
@@ -99,5 +100,27 @@ public class PersonaDAO implements CrudInterface<PersonaDTO> {
         System.out.println(consulta);
         ResultSet rst = cnn.RecibirDatos(consulta);
         return rst;
+    }
+    
+    public List<PersonaDTO> toList() {
+        List<PersonaDTO> lista = new ArrayList<>();
+        sql = "SELECT * FROM persona";
+       try {
+            cx = Conexion.getConexion();
+            st = cx.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                PersonaDTO u = new PersonaDTO();
+                u.setIdPersona(rs.getInt("idPERSONA"));
+                u.setNombres(rs.getString("NOMBRES"));
+                u.setApellidos(rs.getString("APELLIDOS"));
+                u.setTelefono(rs.getString("TELEFONO"));
+                u.setDireccion(rs.getString("DIRECCION"));
+                lista.add(u);
+            }
+        } catch (Exception e) {
+            System.out.println("Error listar Persona: " + e);
+        }
+        return lista;
     }
 }

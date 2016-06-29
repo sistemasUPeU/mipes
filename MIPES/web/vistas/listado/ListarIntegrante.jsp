@@ -5,11 +5,11 @@
 --%>
 
 <%@page import="java.sql.ResultSet"%>
-<jsp:useBean class="com.upeu.mipes.dao.PersonaDAO" id="per" scope="page"></jsp:useBean>
 <%@page import="com.upeu.mipes.dto.PersonaDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.upeu.mipes.dto.IntegranteDTO"%>
-<jsp:useBean id="list" scope="session" class="java.util.ArrayList"/>
+<jsp:useBean class="com.upeu.mipes.dao.PersonaDAO" id="per" scope="page"></jsp:useBean>
+<jsp:useBean id="lista" scope="session" class="java.util.ArrayList"/>
 <!DOCTYPE html5>
 <html>
     <head>
@@ -38,23 +38,23 @@
                         <th colspan="2">Operaciones</th>
                     </tr>
                 </thead>
+                <%
+                    for (int i = 0; i < lista.size(); i++) {
+                        PersonaDTO u = new PersonaDTO();
+                        u = (PersonaDTO) lista.get(i);
+                %>
                 <tbody>
-                    <%
-                        String sql = "SELECT * FROM persona ORDER BY NOMBRES";
-                        ResultSet rs = per.listarPersonas(sql);
-                        while(rs.next()) {
-                    %>
                     <tr>
-                        <td><%= rs.getString("idPERSONA")%></td>
-                        <td><%= rs.getString("NOMBRES")%></td>
-                        <td><%= rs.getString("APELLIDOS")%></td>
-                        <td><%= rs.getString("TELEFONO")%></td>
-                        <td><%= rs.getString("DIRECCION")%></td>
+                        <td><%= u.getIdPersona()%></td>
+                        <td><%= u.getNombres()%></td>
+                        <td><%= u.getApellidos()%></td>
+                        <td><%= u.getTelefono()%></td>
+                        <td><%= u.getDireccion()%></td>
                         <td>
-                            <a href="regPer?op=2&id=<%= rs.getString("idPERSONA") %>" class="btn btn-success">Editar</a>
+                            <a href="regPer?op=2&id=<%= u.getIdPersona()%>" class="btn btn-success">Editar</a>
                         </td>
                         <td>
-                            <a href="../../regPer?op=3&id=<%= rs.getString("idPERSONA") %>" class="btn btn-danger">Eliminar</a>
+                            <a href="regPer?op=3&id=<%= u.getIdPersona()%>" class="btn btn-danger">Eliminar</a>
                         </td>
                     </tr>
                     <%

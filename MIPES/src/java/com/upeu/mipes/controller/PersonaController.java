@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,7 +29,6 @@ public class PersonaController extends HttpServlet {
     Det_Int_GPDTO detIntDTO = new Det_Int_GPDTO();
     Det_Int_GPDAO detIntDAO = new Det_Int_GPDAO();
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -50,13 +50,10 @@ public class PersonaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         processRequest(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+        
+        HttpSession session = request.getSession(true);
 
         int op = Integer.parseInt(request.getParameter("op"));
         String pagina;
@@ -110,7 +107,19 @@ public class PersonaController extends HttpServlet {
                     dispatcher.forward(request, response);
                 }
                 break;
+            case 4://LIST
+                System.out.println("Entra a listar");
+                session.setAttribute("lista", perDAO.toList());
+                pagina = "/vistas/listado/ListarIntegrante.jsp";
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                dispatcher.forward(request, response);
+                break;
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
     }
 
     @Override
