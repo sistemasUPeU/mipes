@@ -55,7 +55,21 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String opc = request.getParameter("opc");
+        try {
+            if (opc == null) {
+                String pagina = "/login.jsp";
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+                dispatcher.forward(request, response);
+            } else {
+                if (opc.equals("logout")) {
+                    HttpSession session = request.getSession();
+                    session.invalidate();
+                    response.sendRedirect("login");
+                }
+            }
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -76,9 +90,9 @@ public class LoginController extends HttpServlet {
         a = request.getParameter("user");
         b = request.getParameter("pass");
         if (!a.equals("") && !b.equals("")) {
-            Map<String, Object> r= aO.validarUser(a, b);
-            if (r !=null) {
-                HttpSession session= request.getSession();
+            Map<String, Object> r = aO.validarUser(a, b);
+            if (r != null) {
+                HttpSession session = request.getSession();
                 session.setAttribute("idpersona", r.get("idpersona"));
                 session.setAttribute("iduser", r.get("iduser"));
                 session.setAttribute("idfoto", r.get("idfoto"));

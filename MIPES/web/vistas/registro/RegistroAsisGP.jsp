@@ -167,13 +167,22 @@
                             t += "<td class='hidden-sm hidden-xs'><center>" + getCumpleanios(new Date(list[i].CUMPLE)) + "</center></td>";
                             t += "<td class='hidden-xs'>";
                             t += '<div class="progress" style="margin-bottom:0px">';
-                            t += '<div class="progress-bar" role="progressbar"';
+                            var col="";
+                            if(list[i].PORCENTAJE < 25){
+                                col="progress-bar-danger";
+                            }else if(list[i].PORCENTAJE >= 25 && list[i].PORCENTAJE < 75){
+                                col="progress-bar-warning";
+                            }
+                            else if(list[i].PORCENTAJE >= 75){
+                                col="";
+                            }
+                            t += '<div class="progress-bar '+col+'" role="progressbar"';
                             t += 'aria-valuenow="' + list[i].PORCENTAJE + '" aria-valuemin="0" aria-valuemax="100"';
                             t += 'style="min-width: 2em;width: ' + list[i].PORCENTAJE + '%;">' + list[i].PORCENTAJE + '%</div></div>';
                             t += "</td>";
                             t += '<td><center>';
                             t += '<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-' + i + '">';
-                            t += '<input type="checkbox" id="switch-' + i + '" class="mdl-switch__input chk">';
+                            t += '<input type="checkbox" id="switch-' + i + '" class="mdl-switch__input chk" >';
                             t += '<span class="mdl-switch__label"></span></label>';
                             t += '</center></td>';
                             t += "</tr>";
@@ -328,84 +337,6 @@
                     listar();
                     listarDistrito("../../", $('.CDistrito'), $('.CEscuela'), $('.CGrupo'));
                 }
-
-                //Listado de Selectores
-                /*function listarDistrito() {
-                 var url = "../../distrito?opc=listar";
-                 $.post(url, function (objJson) {
-                 var lista = objJson.lista;
-                 var t = "";
-                 for (var i = 0; i < lista.length; i++) {
-                 t += "<option value='" + lista[i].idDISTRITOM + "'>" + lista[i].NOMBRE + "</option>";
-                 }
-                 $('.CDistrito').empty();
-                 $('.CDistrito').append('<select title="Seleccione Distrito" class="selDis selectpicker" data-live-search="true"></select>');
-                 $('.selDis').append(t);
-                 $('.selDis').addClass("selectpicker");
-                 $('.selDis').attr("data-live-search", true);
-                 $('.selectpicker').selectpicker({
-                 style: 'btn-success'
-                 });
-                 $('.selDis').change(function () {
-                 listarEscuela($(this).val());
-                 });
-                 });
-                 
-                 }
-                 function listarEscuela(idDistrito) {
-                 var url = "../../Asistencia?opc=listes&iddistrito=" + idDistrito;
-                 $.post(url, function (objJson) {
-                 var lista = objJson.lista;
-                 var t = "";
-                 for (var i = 0; i < lista.length; i++) {
-                 t += "<option value='" + lista[i].idEscuela + "'>" + lista[i].NOMBRE + "</option>";
-                 }
-                 $('.CEscuela').empty();
-                 $('.CEscuela').append('<select title="Seleccione Escuela Sabática" class="selEs selectpicker" data-live-search="true"></select>');
-                 $('.selEs').empty();
-                 $('.selEs').append(t);
-                 $('.selEs').addClass("selectpicker");
-                 $('.selEs').attr("data-live-search", true);
-                 $('.selectpicker').selectpicker({
-                 style: 'btn-success'
-                 });
-                 $('.selEs').change(function () {
-                 listarGrupo($(this).val());
-                 });
-                 });
-                 }
-                 function listarGrupo(idEscuela) {
-                 var url = "../../Asistencia?opc=listgru&idescuela=" + idEscuela;
-                 $.post(url, function (objJson) {
-                 var lista = objJson.lista;
-                 var t = "";
-                 for (var i = 0; i < lista.length; i++) {
-                 t += "<option value='" + lista[i].idGrupo + "'>" + lista[i].NOMBRE + "</option>";
-                 }
-                 $('.CGrupo').empty();
-                 $('.CGrupo').append('<select title="Seleccione Grupo Pequeño" class="selGru selectpicker" data-live-search="true"></select>');
-                 $('.selGru').empty();
-                 $('.selGru').append(t);
-                 $('.selGru').addClass("selectpicker");
-                 $('.selGru').attr("data-live-search", true);
-                 $('.selectpicker').selectpicker({
-                 style: 'btn-success'
-                 });
-                 $('.selGru').change(function () {
-                 idgrupo = $(this).val();
-                 listar(idgrupo);
-                 $('.titGrupo').text('Lista de Integrantes del Grupo Pequeño ' + $('.selGru').children().attr('title'));
-                 });
-                 
-                 });
-                 }*/
-
-
-
-
-
-
-
             });
 
         </script>

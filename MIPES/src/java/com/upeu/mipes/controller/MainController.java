@@ -45,12 +45,13 @@ public class MainController extends HttpServlet {
         }
     }
 
-    public static void validateSession(HttpServletRequest request, HttpServletResponse response)
+    public static boolean validateSession(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("iduser") == null) {
-            response.sendRedirect("login");
+            return false;
         }
+        return true;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -12,13 +12,18 @@
 <%@page import="com.upeu.mipes.controller.MainController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    MainController.validateSession(request, response);
     String nombre, apellido, usuario, nfoto, linkfoto;
-    nombre = request.getSession().getAttribute("nombres").toString();
-    apellido = request.getSession().getAttribute("apellidos").toString();
-    usuario = request.getSession().getAttribute("usuario").toString();
-    nfoto = request.getSession().getAttribute("nomfoto").toString();
-    linkfoto = request.getSession().getAttribute("linkfoto").toString();
+    nombre = "";
+    apellido = "";
+    usuario = "";
+    nfoto = "";
+    linkfoto = "";
+    if (MainController.validateSession(request, response)) {
+        nombre = request.getSession().getAttribute("nombres").toString();
+        apellido = request.getSession().getAttribute("apellidos").toString();
+        usuario = request.getSession().getAttribute("usuario").toString();
+        nfoto = request.getSession().getAttribute("nomfoto").toString();
+        linkfoto = request.getSession().getAttribute("linkfoto").toString();
 %>
 <!DOCTYPE html5>
 <html lang="es">
@@ -96,8 +101,8 @@
                                                 for (int j = 0; j < link.size(); j++) {
                                             %>
                                             <li>
-                                                <a href="<%=link.get(j).get("link") %>" target="frame">
-                                                    <i class="<%=link.get(j).get("icon") %>"></i><%=link.get(j).get("nombrelink") %>
+                                                <a href="<%=link.get(j).get("link")%>" target="frame">
+                                                    <i class="<%=link.get(j).get("icon")%>"></i><%=link.get(j).get("nombrelink")%>
                                                 </a>
                                             </li>
                                             <%}%>
@@ -253,7 +258,7 @@
                                         <li>
                                             <a href="javascript:;">Ayuda</a>
                                         </li>
-                                        <li><a href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Salir</a>
+                                        <li><a href="login?opc=logout"><i class="fa fa-sign-out pull-right"></i> Salir</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -294,7 +299,7 @@
                 </div>
                 <!-- contenido recargable -->
                 <div class="right_col" role="main" style="height: 100%;padding: 0;box-sizing: border-box;" >
-                    <iframe name="frame" id="idframe" style=" width:100% ;height:100%; border: none;overflow: hidden;">
+                    <iframe name="frame" src="inicio.jsp" id="idframe" style=" width:100% ;height:100%; border: none;overflow: hidden;">
                     </iframe>
                 </div>
                 <!-- /page content -->
@@ -416,6 +421,9 @@
             <!-- pace -->
             <script src="js/pace/pace.min.js"></script>
             <script>
+                if (history.forward(1)) {
+                    location.replace(history.forward(1));
+                }
                 $(function () {
                     $('#world-map-gdp').vectorMap({
                         map: 'world_mill_en',
@@ -579,3 +587,8 @@
     </body>
 
 </html>
+<%
+    } else {
+        response.sendRedirect("login");
+    }
+%>
