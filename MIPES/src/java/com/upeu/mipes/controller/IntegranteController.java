@@ -87,6 +87,20 @@ public class IntegranteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        String opc=request.getParameter("opc");
+        try {
+            if (opc.equals("regIntegrante")) {
+                                                
+            }
+            
+            if (opc.equals("buscarCoincidencias")) {
+                                                                
+            }
+                        
+        } catch (Exception e) {
+        }
         
     }
 
