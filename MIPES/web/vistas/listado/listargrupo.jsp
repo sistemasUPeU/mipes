@@ -38,8 +38,8 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody id="itbody">
-                    <% String sql = "SELECT * FROM grupo where idescuela =" + esc + " and estado =1 order by nombre";
+                <tbody>
+                    <% String sql = "SELECT * FROM grupo where idescuela =" + esc + " order by nombre";
                         ResultSet rs = gp.listar_grupos(sql);
                         while (rs.next()) {
                             String a = rs.getString("estado");
@@ -63,8 +63,8 @@
                 <td><center><span><%= rs.getString("COLOR")%></span></center></td>
                 <td><center><span><%= rs.getString("LEMA")%></span></center></td>
                 <td><center><a href="gp?opc=3&id=<%= rs.getString("idgrupo")%>" class="btn btn-success">Editar</a></center></td>
-                <td><center><a href="gp?opc=<%=opcion%>&id=<%= rs.getString("idgrupo")%>" class="btn btn-<%=clase%>" ><%=estado%></a></center></td>
-                <td><center><a href="gp?opc=6&id=<%= rs.getString("idgrupo")%>" class="btn btn-danger">Eliminar</a></center></td>
+                <td><center><a onclick="confirmDes(<%=opcion%>,<%= rs.getString("idgrupo")%>)" class="btn btn-<%=clase%>" ><%=estado%></a></center></td>
+                <td><center><a onclick="confirmDel(<%= rs.getString("idgrupo")%>)" class="btn btn-danger">Eliminar</a></center></td>
                 </tr>
                 <% }%>
                 </tbody>
@@ -72,6 +72,72 @@
         </div>
     </div>
 </div>
+<script>
+    function confirmDes(dir, id) {
+        var estado, es, est;
+        if (dir == 4) {
+            estado = "desactivar";
+            es = "desactivalo";
+            est = "desactivado";
+        } else {
+            estado = "activar";
+            es = "activalo";
+            est = "activado";
+        }
+        swal({
+            title: "¿Seguro que desea " + estado + " este Grupo Pequeño?",
+            text: "Se realizará cambios en el estado del Grupo Pequeño",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Sí, ¡" + es + "!",
+            cancelButtonText: "No, deseo cancenlar",
+            closeOnConfirm: false,
+            closeOnCancel: false},
+        function (isConfirm) {
+            if (isConfirm) {
+                swal({
+                    title: "¡Grupo Pequeño " + est + "!",
+                    text: "El Grupo Pequeño fue " + est + " correctamente",
+                    button: "success"},
+                function () {
+                    location.href = 'gp?opc=' + dir + '&id=' + id;
+                });
+
+            } else {
+                swal("Cancelado", "El Grupo Pequeñ no fue " + est + " ", "error");
+            }
+        });
+    }
+</script>             
+<script>
+    function confirmDel(dir) {
+        swal({
+            title: "¿Seguro que desea eliminar este Grupo Pequeño?",
+            text: "Se eliminará definitivamente este Grupo Pequeño",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Sí, ¡eliminalo!",
+            cancelButtonText: "No, deseo cancenlar",
+            closeOnConfirm: false,
+            closeOnCancel: false},
+        function (isConfirm) {
+            if (isConfirm) {
+                swal({
+                    title: "¡Grupo Pequeño eliminado!",
+                    text: "El Grupo Pequeño fue eliminado correctamente del sistema",
+                    button: "success"},
+                function () {
+                    location.href = 'gp?opc=6&id=' + dir;
+                });
+
+            } else {
+                swal("Eliminación cancelada", "La eliminación del Grupo Pequeño fue cancelada", "error");
+            }
+        });
+    }
+</script>
 <script>
     var handleDataTableButtons = function () {
         "use strict";

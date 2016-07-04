@@ -61,7 +61,7 @@
                 <center><a href="esc?opc=3&id=<%= rs.getString("idescuela")%>" class="btn btn-success">Editar</a></center>
                 </td>
                 <td>
-                <center><a href="esc?opc=<%=opcion%>&id=<%= rs.getString("idescuela")%>" class="btn btn-<%=clase%>" ><%=estado%></a></center>
+                <center><a onclick="confirmDes(<%=opcion%>,<%= rs.getString("idescuela")%>)" class="btn btn-<%=clase%>" ><%=estado%></a></center>
                 </td>
                 <td>
                 <center><a onclick="confirmDel(<%= rs.getString("idescuela")%>)" class="btn btn-danger">Eliminar</a></center>
@@ -77,6 +77,44 @@
         </div>
     </div>
 </div>
+<script>
+    function confirmDes(dir, id) {
+        var estado, es, est;
+        if (dir == 4) {
+            estado = "desactivar";
+            es = "desactivala";
+            est = "desactivada";
+        } else {
+            estado = "activar";
+            es = "activala";
+            est = "activada";
+        }
+        swal({
+            title: "¿Seguro que desea " + estado + " esta Escuela Sabática?",
+            text: "Se realizará cambios en el estado de la Escuela Sabática",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Sí, ¡" + es + "!",
+            cancelButtonText: "No, deseo cancenlar",
+            closeOnConfirm: false,
+            closeOnCancel: false},
+        function (isConfirm) {
+            if (isConfirm) {
+                swal({
+                    title: "¡Escuela Sabática " + est + "!",
+                    text: "La Escuela Sabática fue " + est + " correctamente",
+                    button: "success"},
+                function () {
+                    location.href = 'esc?opc=' + dir + '&id=' + id;
+                });
+
+            } else {
+                swal("Cancelado", "La Escuela Sabática no fue " + est + " ", "error");
+            }
+        });
+    }
+</script>  
 <script>
     function confirmDel(dir) {
         swal({

@@ -14,12 +14,12 @@
         <script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
         <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
         <jsp:include page="../../jspf/impmaterialize.jspf"></jsp:include>
-        <script>
-            $(document).ready(function () {
-                $('select').material_select();
+            <script>
+                $(document).ready(function () {
+                    $('select').material_select();
 
-            });
-        </script>
+                });
+            </script>
         <jsp:useBean class="com.upeu.mipes.dao.DistritomDAO" id="di" scope="page"></jsp:useBean>
 
             <title>Registro de ministerio</title>
@@ -41,23 +41,63 @@
                             }
                         %>
                     </select>
-                    <label>Distrito</label>
+                    <label id="dis">Distrito</label>
                 </div>
                 <div class="input-field col s6">
-                    <input id="i_min" name="n_min" type="text" class="validate">
+                    <input id="i_min" name="n_min" type="text" class="validate" onkeyup="validar(this.value, this.id)">
                     <label for="i_min" style="margin-top: 1%">Nombre del Ministerio</label>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea name="n_des" id="ides" class="materialize-textarea" length="250"></textarea>
-                        <label for="ides">Descripción</label>
+                        <textarea name="n_des" id="ides" class="materialize-textarea" placeholder="Ingrese una pequeña descripción sobre el ministerio" length="250"></textarea>
+                        <label id="i_des" for="ides">Descripción</label>
                     </div>
                 </div>
                 <br/>    
-                <button class="btn waves-effect waves-light" type="submit" name="action" style="float: right">Registrar
+                <button id="boton" class="btn waves-effect waves-light" type="button" onclick="ver()" name="action" style="float: right">Registrar
                     <i class="material-icons right">send</i>
                 </button>
             </form>
         </div>
+        <script>
+            function validar(texto, id) {
+                if (/^([a-zA-Z])*$/.test(texto)) {
+                    $('#' + id + '').attr("class", "validate");
+                    $('#boton').attr("type", "submit");
+                } else {
+                    $('#' + id + '').attr("class", "invalid");
+                    $('#boton').attr("type", "button");
+                }
+            }
+        </script>
+        <script>
+            function ver() {
+                dis = $('#distrito').val();
+                esc = $("#i_min").val();
+                des = $("#ides").val();
+                if (dis == null || esc == "" || des == "") {
+
+                    $('#boton').attr("type", "button");
+                    swal("¡Error!", "Debe completar todos los campos", "error");
+
+                    if (dis == null) {
+                        $("#dis").css("color", "red");
+                    } else {
+                        $("#dis").css("color", "#616161");
+                    }
+                    if (esc == "") {
+                        $("#i_min").attr("class", "invalid");
+                    }
+                    if (des == "") {
+                        $("#i_des").css("color", "red");
+                    }else{
+                        $("#i_des").css("color", "#616161");
+                    }
+                } else {
+                    $("#dis").css("color", "#616161");
+                    $('#boton').attr("type", "submit");
+                }
+            }
+        </script>
     </body>
 </html>

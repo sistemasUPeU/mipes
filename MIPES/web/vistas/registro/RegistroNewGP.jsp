@@ -33,86 +33,178 @@
         <jsp:useBean class="com.upeu.mipes.dao.DistritomDAO" id="di" scope="page" ></jsp:useBean>
             <div style="width:75%;margin: auto;">
                 <center><h2 style="margin: auto; color:#009688">Grupo Pequeño</h2></center>
-                <br/><br/><br/>
+                <br/>
                 <form method="post" action="gp">
-                    <h5>Datos Generales</h5>
+                    <h5 id="gp_dg">Datos Generales</h5>
                     <input type="hidden" name="opc" value="1">
-                    
-                    <div id="d_distrito" class="input-field col s12">
-                    <%ResultSet rs = di.listar_Distritos("SELECT * FROM distritom order by NOMBRE");%>
-                    <select name="n_distrito" id="distrito" onchange=" disesc()">
-                        <option value="" disabled selected>Elegir Distrito</option>
-                        <% while (rs.next()) {%>
-                        <option value="<%= rs.getString("idDISTRITOM")%>"><%= rs.getString("NOMBRE")%></option>
-                        <% }%>
-                    </select>
+                    <div class="row">
+                        <div id="d_distrito" class="input-field col s12 m6">
+                        <%ResultSet rs = di.listar_Distritos("SELECT * FROM distritom order by NOMBRE");%>
+                        <select name="n_distrito" id="distrito" onchange=" disesc()">
+                            <option value="" disabled selected>Elegir Distrito</option>
+                            <% while (rs.next()) {%>
+                            <option value="<%= rs.getString("idDISTRITOM")%>"><%= rs.getString("NOMBRE")%></option>
+                            <% }%>
+                        </select>
                     </div>
-                <div id="iescuela" class="input-field col s12">
-                    <select name="n_escuela" id="escuela">
-                        <option value="" disabled selected >Elegir Escuela Sabática</option>
-                    </select>
-                </div>
+                    <div id="iescuela" class="input-field col s12 m6">
+                        <select name="n_escuela" id="escuela">
+                            <option value="" disabled selected >Elegir Escuela Sabática</option>
+                        </select>
+                    </div>
 
 
 
-                <div class="input-field col s6">
-                    <input id="igp" name="n_grupo" type="text" class="validate">
-                    <label for="igp">Nombre del Grupo Pequeño</label>
-                </div>
-                <div>
+                    <div class="input-field col s12 m6">
+                        <input id="igp" name="n_grupo" type="text" class="validate" onkeyup="validar(this.value, this.id)">
+                        <label for="igp">Nombre del Grupo Pequeño</label>
+                    </div>
                     <label for="ifecha" >Fecha de Creación</label>
-                    <input name="fecha" id="ifecha" type="date">
+                    <div class="input-field col s12 m6">
+                        <input name="fecha" id="ifecha" type="date" class="validate" max="2090-01-01" onkeyup="val_fh(this.value,this.id)" >
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input placeholder="Color(es) distintivo del Grupo" id="icolor" name="n_color" type="text" class="validate" onkeyup="validar(this.value, this.id)">
+                        <label for="icolor">Color representativo</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input placeholder="Escriba el nombre del canto" name="n_canto" id="icanto" type="text" class="validate" onkeyup="val_fh(this.value,this.id)">
+                        <label for="icanto">Canto</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input placeholder="Escriba el lema representativo" id="ilema" name="n_lema" type="text" class="validate" onkeyup="val_fh(this.value,this.id)">
+                        <label for="ilema">Lema</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input placeholder="Escriba el versículo distintivo. Ej. Mateo 2:11" id="iver" name="n_ver" type="text" class="validate" onkeyup="val_fh(this.value,this.id)">
+                        <label for="iver">Versículo</label>
+                    </div>
                 </div>
-                <div class="input-field col s6">
-                    <input placeholder="Color(es) distintivo del Grupo" id="icolor" name="n_color" type="text" class="validate">
-                    <label for="icolor">Color representativo</label>
-                </div>
-                <div class="input-field col s6">
-                    <input placeholder="Escriba el nombre del canto" name="n_canto" id="icanto" type="text" class="validate">
-                    <label for="icanto">Canto</label>
-                </div>
-                <div class="input-field col s6">
-                    <input placeholder="Escriba el lema representativo" id="ilema" name="n_lema" type="text" class="validate">
-                    <label for="ilema">Lema</label>
-                </div>
-                <div class="input-field col s6">
-                    <input placeholder="Escriba el versículo distintivo. Ej. Mateo 2:11" id="iver" name="n_ver" type="text" class="validate">
-                    <label for="iver">Versículo</label>
+                <br/>
+                <h5 id="gp_dr">Datos oficiales de reunión</h5>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input id="ilreu" name="n_lugar" type="text" class="validate" onkeyup="val_fh(this.value, this.id)">
+                        <label for="ilreu">Lugar de Reunión</label>
+                    </div>
+                    <label for="ihora">Hora de Reunión</label>
+                    <div class="input-field col s12 m6">
+                        <input id="ihora" type="time"  name="n_hora" class="validate" onchange="val_fh(this.value,this.id)">                    
+                    </div>
+                    <div class="input-field col s12 m6" >
+                        <select id="idia" name="n_dia">
+                            <option disabled selected>Escoger un día</option>
+                            <option value="1">Domingo</option>
+                            <option value="2">Lunes</option>
+                            <option value="3">Martes</option>
+                            <option value="4">Miércoles</option>
+                            <option value="5">Jueves</option>
+                            <option value="6">Viernes</option>
+                            <option value="7">Sábado</option>
+                        </select>
+                        <label for="idia">Día de Reunión</label>
+                    </div>
+
                 </div>
                 <br/><br/>
-                <h5>Datos oficiales de reunión</h5>
-                <div class="input-field col s6">
-                    <input id="ilreu" name="n_lugar" type="text" class="validate">
-                    <label for="ilreu">Lugar de Reunión</label>
-                </div>
-                <div class="input-field col s6" >
-                    <select id="idia" name="n_dia">
-                        <option disabled selected>Escoger un día</option>
-                        <option value="1">Domingo</option>
-                        <option value="2">Lunes</option>
-                        <option value="3">Martes</option>
-                        <option value="4">Miércoles</option>
-                        <option value="5">Jueves</option>
-                        <option value="6">Viernes</option>
-                        <option value="7">Sábado</option>
-                    </select>
-                    <label for="idia">Día de Reunión</label>
-                </div>
-                <div>
-                    <label>Hora de Reunión</label>
-                    <input type="time"  name="n_hora" class="validate">                    
-                </div>
-                <br/><br/>
-                <button class="btn waves-effect waves-light" type="submit" name="action" style="float:right;">Registrar
+                <button onclick="validacion()" id="boton" class="btn waves-effect waves-light" type="button" name="action" style="float:right;">Registrar
                     <i class="material-icons right">send</i>
                 </button>
             </form>
         </div>
         <script>
             $(document).ready(function () {
-                // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
             });
         </script>
+        <script>
+            function validar(texto, id) {
+                //(/^([0-9]*$/.test(texto)) 
+
+                if (/^([a-zA-Z])*$/.test(texto)) {
+                    $('#' + id + '').attr("class", "validate");
+                    //$('#boton').attr("type", "submit");
+                } else {
+                    $('#' + id + '').attr("class", "invalid");
+                    $('#boton').attr("type", "button");
+                }
+
+            }
+        </script>
+        <script>
+            function val_fh(texto, id) {
+                if (texto == "") {
+                    $('#' + id + '').attr("class", "invalid");
+                }else{
+                    $('#' + id + '').attr("class", "valid");
+                }
+            }
+        </script>
+        <script>
+            function validacion() {
+                dis = $('#distrito').val();
+                esc = $("#escuela").val();
+                dia = $("#idia").val();
+                can = $("#icanto").val();
+                lem = $("#ilema").val();
+                ver = $("#iver").val();
+                reu = $("#ilreu").val();
+                hor = $("#ihora").val();
+                fec = $("#ifecha").val();
+                col = $("#icolor").val();
+                igp = $("#igp").val();
+
+                if (dis == null || esc == null || igp == "" || can == "" || dia == null || lem == "" || ver == "" || reu == "" || fec == "" || hor == "" || col == "") {
+
+                    $('#boton').attr("type", "button");
+                    swal("¡Error!", "Debe completar todos los campos para poder registrar", "error");
+
+                    if (dis == null || esc == null || can == "" || lem == "" || ver == "" || fec == "") {
+                        $("#gp_dg").css("color", "red");
+                        if (fec == "") {
+                            $('#ifecha').attr("class", "invalid");
+                        } else {
+                            $('#ifecha').attr("class", "valid");
+                        }
+                        if (can == "") {
+                            $('#icanto').attr("class", "invalid");
+                        }
+                        if (lem == "") {
+                            $('#ilema').attr("class", "invalid");
+                        }
+                        if (ver == "") {
+                            $('#iver').attr("class", "invalid");
+                        }
+                        if (col == "") {
+                            $('#icolor').attr("class", "invalid");
+                        }
+                        if (igp == "") {
+                            $('#igp').attr("class", "invalid");
+                        }
+                    } else {
+                        $("#gp_dg").css("color", "black");
+                    }
+                    if (dia == null || reu == "" || hor == "") {
+                        $("#gp_dr").css("color", "red");
+                        if (hor == "") {
+                            $('#ihora').attr("class", "invalid");
+                        } else {
+                            $('#ihora').attr("class", "valid");
+                        }
+                        if (reu == "") {
+                            $('#ilreu').attr("class", "invalid");
+                        }
+                    } else {
+                        $("#gp_dr").css("color", "black");
+                        $('#ihora').attr("class", "valid");
+                    }
+                } else {
+                    $('#boton').attr("type", "submit");
+                    $("#gp_dg").css("color", "black");
+                    $("#gp_dr").css("color", "black");
+                }
+            }
+        </script>
+
     </body>
 </html>

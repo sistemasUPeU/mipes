@@ -27,13 +27,13 @@
         </head>
         <body>
             <div style="width: 65%; margin: auto">
-                <form method="post" action="esc" id="data">
+                <form method="post" action="esc" id="data" onsubmit="validar()">
                     <input type="hidden" name="opc" value="1">
                     <center><h2 style="color:#00bfa5">Nueva Escuela Sabática</h2></center>
                     <br/><br/>
-                    <div class="input-field col s12" >
+                    <div class="input-field col s12">
                         <select name="n_distrito" id="distrito">
-                            <option value="0" disabled selected>Elegir Distrito</option>
+                            <option  disabled selected>Elegir Distrito</option>
                         <%
                             ResultSet rs = di.listar_Distritos("SELECT * FROM distritom order by NOMBRE");
                             while (rs.next()) {
@@ -43,18 +43,52 @@
                             }
                         %>
                     </select>
-                    <label>Distrito</label>
+                    <label id="dis">Distrito</label>
                 </div>
                 <div class="input-field col s6">
-                    <input id="i_es" name="n_es" type="text" class="validate">
+                    <input id="i_es" name="n_es" type="text" class="validate" onkeyup="validar(this.value, this.id)">
                     <label for="i_es" style="margin-top: 1%">Nombre de la Escuela Sabática</label>
                 </div>                
                 <br/><br/>
-                <button class="btn waves-effect waves-light" type="submit" name="action" style="float: right">Registrar
+                <button id="boton" class="btn waves-effect waves-light" type="button" onclick="ver()" name="action" style="float: right">Registrar
                     <i class="material-icons right">send</i>
                 </button>
             </form>
 
+
+            <script>
+                function validar(texto, id) {
+                    if (/^([a-zA-Z])*$/.test(texto)) {
+                        $('#' + id + '').attr("class", "validate");
+                        $('#boton').attr("type", "submit");
+                    } else {
+                        $('#' + id + '').attr("class", "invalid");
+                        $('#boton').attr("type", "button");
+                    }
+                }
+            </script>
+            <script>
+                function ver() {
+                    dis = $('#distrito').val();
+                    esc = $("#i_es").val();
+                    if (dis == null || esc == "") {
+
+                        $('#boton').attr("type", "button");
+                        swal("¡Error!", "Debe completar todos los campos", "error");
+
+                        if (dis == null) {
+                            $("#dis").css("color", "red");
+                        } else {
+                            $("#dis").css("color", "#616161");
+                        }
+                        if (esc == "") {
+                            $("#i_es").attr("class", "invalid");
+                        }
+                    } else {
+                        $("#dis").css("color", "#616161");
+                    }
+                }
+            </script>
         </div>
     </body>
 </html>

@@ -23,9 +23,12 @@
     <body>
         <div>
             <center>
-                <h1>¡Enhorabuena!</h1>
+                <h1>¡Felicidades!</h1>
                 <h2>Se ha registrado correctamente</h2>
-                <a href="index.jsp"><input type="button" class="btn waves-effect waves-light" value="Inicio"></a>
+                <h3>La operación ejecutada ha sido exitosa</h3>
+                <br/>
+                <a href="inicio.jsp" target="frame"><input type="button" class="btn waves-effect waves-light" value="Inicio"></a>
+                
             </center>
         </div>
     </body>

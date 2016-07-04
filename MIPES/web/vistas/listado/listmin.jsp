@@ -61,11 +61,11 @@
                 </td>
                 <td>
                 <center>
-                    <a href="min?opc=<%=opcion%>&id=<%= rs.getString("idministerio")%>" class="btn btn-<%=clase%>" ><%=estado%></a>
+                    <a onclick="confirmDes(<%=opcion%>,<%= rs.getString("idministerio")%>)" class="btn btn-<%=clase%>" ><%=estado%></a>
                 </center>
                 </td>
                 <td>
-                <center><a href="min?opc=6&id=<%= rs.getString("idministerio")%>" class="btn btn-danger">Eliminar</a></center>
+                <center><a onclick="confirmDel(<%= rs.getString("idministerio")%>)" class="btn btn-danger">Eliminar</a></center>
                 </td>
                 </tr>
                 <%
@@ -76,6 +76,72 @@
         </div>
     </div>
 </div>
+<script>
+    function confirmDes(dir, id) {
+        var estado,es,est;
+        if (dir == 4) {
+            estado="desactivar";
+            es="desactivalo";
+            est="desactivado";
+        }else{
+            estado="activar";
+            es="activalo";
+            est="activado";
+        }
+        swal({
+            title: "¿Seguro que desea "+estado+" este Ministerio?",
+            text: "Se realizará cambios en el estado del Ministerio",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Sí, ¡"+es+"!",
+            cancelButtonText: "No, deseo cancenlar",
+            closeOnConfirm: false,
+            closeOnCancel: false},
+        function (isConfirm) {
+            if (isConfirm) {
+                swal({
+                    title: "¡Ministerio "+est+"!",
+                    text: "El ministerio fue "+est+" correctamente",
+                    button: "success"},
+                function () {
+                    location.href = 'min?opc=' + dir + '&id=' + id;
+                });
+
+            } else {
+                swal("Cancelado", "El ministerio no fue "+est+" ", "error");
+            }
+        });
+    }
+</script>             
+<script>
+    function confirmDel(dir) {
+        swal({
+            title: "¿Seguro que desea eliminar este Ministerio?",
+            text: "Se eliminará definitivamente este Ministerio",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Sí, ¡eliminalo!",
+            cancelButtonText: "No, deseo cancenlar",
+            closeOnConfirm: false,
+            closeOnCancel: false},
+        function (isConfirm) {
+            if (isConfirm) {
+                swal({
+                    title: "¡Ministerio eliminado!",
+                    text: "El Ministerio fue eliminado correctamente del sistema",
+                    button: "success"},
+                function () {
+                    location.href = 'min?opc=6&id=' + dir;
+                });
+
+            } else {
+                swal("Eliminación cancelada", "La eliminación del Ministerio fue cancelada", "error");
+            }
+        });
+    }
+</script>
 <script>
     var handleDataTableButtons = function () {
         "use strict";
