@@ -164,19 +164,19 @@
                             t += "<td class='hidden-xs'>" + (i + 1) + "</td>";
                             t += "<td><center>" + list[i].NOMBRES + "</center></td>";
                             t += "<td><center>" + list[i].APELLIDOS + "</center></td>";
-                            t += "<td class='hidden-sm hidden-xs'><center>" + getCumpleanios(new Date(list[i].CUMPLE)) + "</center></td>";
+                            t += "<td class='hidden-sm hidden-xs'><center>" + getCumpleanios(list[i].CUMPLE) + "</center></td>";
                             t += "<td class='hidden-xs'>";
                             t += '<div class="progress" style="margin-bottom:0px">';
-                            var col="";
-                            if(list[i].PORCENTAJE < 25){
-                                col="progress-bar-danger";
-                            }else if(list[i].PORCENTAJE >= 25 && list[i].PORCENTAJE < 75){
-                                col="progress-bar-warning";
+                            var col = "";
+                            if (list[i].PORCENTAJE < 25) {
+                                col = "progress-bar-danger";
+                            } else if (list[i].PORCENTAJE >= 25 && list[i].PORCENTAJE < 75) {
+                                col = "progress-bar-warning";
                             }
-                            else if(list[i].PORCENTAJE >= 75){
-                                col="";
+                            else if (list[i].PORCENTAJE >= 75) {
+                                col = "";
                             }
-                            t += '<div class="progress-bar '+col+'" role="progressbar"';
+                            t += '<div class="progress-bar ' + col + '" role="progressbar"';
                             t += 'aria-valuenow="' + list[i].PORCENTAJE + '" aria-valuemin="0" aria-valuemax="100"';
                             t += 'style="min-width: 2em;width: ' + list[i].PORCENTAJE + '%;">' + list[i].PORCENTAJE + '%</div></div>';
                             t += "</td>";
@@ -210,7 +210,7 @@
                             }
                         });
                         $('#lista').DataTable({
-                            "pageLength": 25,
+                            "pageLength": 10,
                             "bLengthChange": false
                         });
 
@@ -274,7 +274,9 @@
             }
 
             function getCumpleanios(date) {
-                var month = date.getMonth() + 1;
+                //var month = date.getMonth() + 1;
+                var d= date.split("-");
+                var month = parseInt(d[1])+1;
                 var nmonth = "";
                 switch (month) {
                     case 1:
@@ -314,7 +316,7 @@
                         nmonth = "Diciembre";
                         break;
                 }
-                var day = date.getDate();
+                var day =d[0];
                 return day + " de " + nmonth;
             }
 
@@ -330,7 +332,7 @@
                 function initComponents() {
                     $('.contresumen').hide();
                     $('#lista').DataTable({
-                        "pageLength": 25,
+                        "pageLength": 10,
                         "bLengthChange": false
                     });
                     $('#lista_filter').addClass('pull-right');

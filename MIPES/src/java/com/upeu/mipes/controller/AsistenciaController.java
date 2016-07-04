@@ -76,6 +76,9 @@ public class AsistenciaController extends HttpServlet {
                 if (opc.equals(lISTINTEGRANTEGP)) {
                     int idg = Integer.parseInt(request.getParameter("idgrupo"));
                     List<Map<String, ?>> lista = adao.listaIntegranteGPEnable(idg);
+                    for (int i = 0; i < lista.size(); i++) {
+                        System.out.println(lista.get(i).get("APELLIDOS")+ " "+lista.get(i).get("CUMPLE"));
+                    }
                     r.put("lista", lista);
                 }
                 if (opc.equals(LISTESCUELA)) {
@@ -91,7 +94,6 @@ public class AsistenciaController extends HttpServlet {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
                 r.put("error", e.getMessage());
             }
             Gson gson = new Gson();

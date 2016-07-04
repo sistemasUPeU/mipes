@@ -14,7 +14,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,7 +48,12 @@ public class AsistenciaDAO {
                 m.put("idPERSONA", rs.getInt("idPERSONA"));
                 m.put("NOMBRES", rs.getString("NOMBRES"));
                 m.put("APELLIDOS", rs.getString("APELLIDOS"));
-                m.put("CUMPLE", rs.getDate("CUMPLEANIOS"));
+                Date date = rs.getDate("CUMPLEANIOS");
+                Calendar calendar= Calendar.getInstance();
+                calendar.setTime(date);
+                int dia=calendar.get(Calendar.DATE);
+                int mes=calendar.get(Calendar.MONTH);
+                m.put("CUMPLE",dia+"-"+mes);
                 m.put("PORCENTAJE", rs.getDouble("PORCENTAJE"));
                 lista.add(m);
             }
