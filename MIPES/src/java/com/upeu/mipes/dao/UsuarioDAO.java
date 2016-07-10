@@ -53,7 +53,7 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-        return null;
+        return r;
     }
     
     public ArrayList<Map<String, Object>> getLinks(Object idPrivilegio) {

@@ -69,7 +69,7 @@ public class GrupoController extends HttpServlet {
             case 3:
                 id = Integer.parseInt(request.getParameter("id"));
                 pagina = "/vistas/editar/EditarGP.jsp";
-                session.setAttribute("list_e", gD.listared(id));
+                //session.setAttribute("list_e", gD.listared(id));
                 dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
                 break;

@@ -18,7 +18,7 @@
     usuario = "";
     nfoto = "";
     linkfoto = "";
-    if (MainController.validateSession(request, response)) {
+    //if (MainController.validateSession(request, response)) {
         nombre = request.getSession().getAttribute("nombres").toString();
         apellido = request.getSession().getAttribute("apellidos").toString();
         usuario = request.getSession().getAttribute("usuario").toString();
@@ -588,7 +588,7 @@
 
 </html>
 <%
-    } else {
-        response.sendRedirect("login");
-    }
+    //} else {
+      //  response.sendRedirect("login");
+    //}
 %>
