@@ -19,11 +19,11 @@
     nfoto = "";
     linkfoto = "";
     //if (MainController.validateSession(request, response)) {
-        nombre = request.getSession().getAttribute("nombres").toString();
-        apellido = request.getSession().getAttribute("apellidos").toString();
-        usuario = request.getSession().getAttribute("usuario").toString();
-        nfoto = request.getSession().getAttribute("nomfoto").toString();
-        linkfoto = request.getSession().getAttribute("linkfoto").toString();
+    nombre = request.getSession().getAttribute("nombres").toString();
+    apellido = request.getSession().getAttribute("apellidos").toString();
+    usuario = request.getSession().getAttribute("usuario").toString();
+    nfoto = request.getSession().getAttribute("nomfoto").toString();
+    linkfoto = request.getSession().getAttribute("linkfoto").toString();
 %>
 <!DOCTYPE html5>
 <html lang="es">
@@ -155,7 +155,7 @@
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="distrito?opc=1" target="frame">Registrar Nuevo Distrito</a>
                                             </li>
-                                            <li><a href="esc?opc=2" target="frame">Lista de Escuelas Sabáticas</a>
+                                            <li><a href="distrito?opc=3" target="frame">Lista de Distritos Misioneros</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -163,16 +163,16 @@
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="igl?opc=1" target="frame">Registrar Nueva Iglesia</a>
                                             </li>
-                                            <li><a href="gp?opc=2" target="frame">Lista de Grupos Pequeños</a>
-                                            </li>
+
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-book"></i>Escuela Sabática<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="esc?opc=1" target="frame">Registrar Nueva Escuela Sabática</a>
                                             </li>
-                                            <li><a href="gp?opc=2" target="frame">Lista de Grupos Pequeños</a>
+                                            <li><a href="esc?opc=2" target="frame">Lista de Escuelas Sabáticas</a>
                                             </li>
+
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-users"></i>Grupo Pequeño<span class="fa fa-chevron-down"></span></a>
@@ -180,6 +180,8 @@
                                             <li><a href="gp?opc=1" target="frame">Registrar Nuevo Grupo Pequeño</a>
                                             </li>
                                             <li><a href="vistas/registro/RegistroAsisGP.jsp" target="frame">Registrar Asistencia</a>
+                                            </li>
+                                            <li><a href="gp?opc=2" target="frame">Lista de Grupos Pequeños</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -598,6 +600,6 @@
 </html>
 <%
     //} else {
-      //  response.sendRedirect("login");
+    //  response.sendRedirect("login");
     //}
 %>
