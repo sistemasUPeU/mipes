@@ -27,25 +27,27 @@ public class DistritomDAO implements CrudInterface<DistritomDTO> {
     private PreparedStatement ps;
     private ResultSet rs;
     private String sql;
+    private Statement st;
 
     
 
     @Override
     public boolean agregar(DistritomDTO d) {
 
-        sql = "INSERT INTO ASGRUPO (idDISTRITOM, NOMBRE, ESTADO) VALUES(null,?,?)";
+        sql = "INSERT INTO distritom (idDISTRITOM,NOMBRE,ESTADO) VALUES ("+d.getIdDistritom()+",'" + d.getNombre() + "','" + d.getEstado() +"')";
+        //,FECHA_CREACION,COLOR,LEMA    '"+u.getFecha()+"','"+u.getColor()+"','"+u.getLema()+"'
+        boolean p = false;
         try {
-            ps = cn.prepareStatement(sql);
-            ps.setInt(1, d.getIdDistritom());
-            ps.setString(2, d.getNombre());
-            ps.setString(3, d.getEstado());
-            int r = ps.executeUpdate();
-            cn.close();
-            return (r > 0);
+            cn = Conexion.getConexion();
+            st = cn.createStatement();
+            int a = st.executeUpdate(sql);
+            if (a > 0) {
+                p = true;
+            }
         } catch (Exception e) {
-            System.out.println("Error al agregar Distritom " + e);
-            return false;
+            System.out.println("Error Registrar Distrito Misionero: " + e);
         }
+        return p;
     }
 
     @Override

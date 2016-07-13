@@ -184,6 +184,24 @@ public class UsuarioDAO implements CrudInterface<UsuarioDTO> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public boolean validar(String user,String pass){
+        boolean m = false;
+        sql = "select * from usuario where USUARIO=? and CLAVE=?";
+        try {
+            cn = Conexion.getConexion();
+            ps = cn.prepareStatement(sql);
+            ps.setString(1, user);
+            ps.setString(2, pass);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                m = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Usuario no registrado "+e);
+        }
+        return m;
+    }
+    
     public static ResultSet listaDistritos(String consulta)  {
 
         ResultSet rst = null;

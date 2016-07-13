@@ -6,51 +6,45 @@
 package com.upeu.mipes.controller;
 
 import com.google.gson.Gson;
-import com.upeu.mipes.dao.DistritomDAO;
-import com.upeu.mipes.dto.DistritomDTO;
+import com.upeu.mipes.dao.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Andres
+ * @author USER
  */
-public class DistritoController extends HttpServlet {
-    DistritomDAO ddao= new DistritomDAO();
-    Map<String, Object> rpta= new HashMap<>();
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+public class UsuarioController extends HttpServlet {
+    
+    UsuarioDAO uA= new UsuarioDAO();
+    Map<String, Object> rpta = new HashMap<>();
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
-        String opc=request.getParameter("opc");
         PrintWriter out = response.getWriter();
+        String opc = request.getParameter("opc");
         try {
-            /* TODO output your page here. You may use following sample code. */
-            if (opc.equals("listar")) {
-                rpta.put("lista", ddao.listarDistrito());
+            
+            if (opc.equals("validar")) {
+                String usuario, clave;
+                usuario = request.getParameter("usuario");
+                clave = request.getParameter("clave");
+                boolean r = uA.validar(usuario,clave);
+                rpta.put("valid", r);
             }
-        }catch(Exception e){
-            e.printStackTrace();            
+        }catch (Exception e) {
+            e.printStackTrace();
         }
-        Gson json= new Gson();
-        out.print(json.toJson(rpta));
+        
+        Gson gson = new Gson();
+        out.println(gson.toJson(rpta));
         out.flush();
         out.close();
     }
@@ -67,33 +61,6 @@ public class DistritoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String pagina;
-        int id;
-        RequestDispatcher dispatcher;
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession(true);
-        String opc = request.getParameter("opc");
-        switch (Integer.parseInt(opc)) {
-            case 1:
-                pagina = "/vistas/registro/RegistroDistrito.jsp";
-                dispatcher = getServletContext().getRequestDispatcher(pagina);
-                dispatcher.forward(request, response);
-                break;
-            case 2:
-                String distrito=request.getParameter("dis");
-                DistritomDTO dM=new DistritomDTO();
-                dM.setNombre(distrito);
-                dM.setEstado("1");
-                if (ddao.agregar(dM)) {
-                    pagina = "/vistas/extras/CongNewES.jsp";
-                    dispatcher = getServletContext().getRequestDispatcher(pagina);
-                    dispatcher.forward(request, response);
-                }
-                break;
-        }
-        
-        
         processRequest(request, response);
     }
 

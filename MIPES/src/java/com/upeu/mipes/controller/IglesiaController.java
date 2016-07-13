@@ -5,13 +5,8 @@
  */
 package com.upeu.mipes.controller;
 
-import com.google.gson.Gson;
-import com.upeu.mipes.dao.DistritomDAO;
-import com.upeu.mipes.dto.DistritomDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,11 +16,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Andres
+ * @author USER
  */
-public class DistritoController extends HttpServlet {
-    DistritomDAO ddao= new DistritomDAO();
-    Map<String, Object> rpta= new HashMap<>();
+public class IglesiaController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,21 +31,10 @@ public class DistritoController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json;charset=UTF-8");
-        String opc=request.getParameter("opc");
-        PrintWriter out = response.getWriter();
-        try {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            if (opc.equals("listar")) {
-                rpta.put("lista", ddao.listarDistrito());
-            }
-        }catch(Exception e){
-            e.printStackTrace();            
         }
-        Gson json= new Gson();
-        out.print(json.toJson(rpta));
-        out.flush();
-        out.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -76,24 +58,12 @@ public class DistritoController extends HttpServlet {
         String opc = request.getParameter("opc");
         switch (Integer.parseInt(opc)) {
             case 1:
-                pagina = "/vistas/registro/RegistroDistrito.jsp";
+                pagina = "/vistas/registro/RegistroNewIgl.jsp";
                 dispatcher = getServletContext().getRequestDispatcher(pagina);
                 dispatcher.forward(request, response);
                 break;
-            case 2:
-                String distrito=request.getParameter("dis");
-                DistritomDTO dM=new DistritomDTO();
-                dM.setNombre(distrito);
-                dM.setEstado("1");
-                if (ddao.agregar(dM)) {
-                    pagina = "/vistas/extras/CongNewES.jsp";
-                    dispatcher = getServletContext().getRequestDispatcher(pagina);
-                    dispatcher.forward(request, response);
-                }
-                break;
+            
         }
-        
-        
         processRequest(request, response);
     }
 

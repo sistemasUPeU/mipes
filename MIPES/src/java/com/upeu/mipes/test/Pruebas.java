@@ -7,6 +7,7 @@ import com.upeu.mipes.dao.GrupoDAO;
 import com.upeu.mipes.dao.IntegranteDAO;
 import com.upeu.mipes.dao.PersonaDAO;
 import com.upeu.mipes.dao.UsuarioDAO;
+import com.upeu.mipes.dto.DistritomDTO;
 import com.upeu.mipes.dto.GrupoDTO;
 import com.upeu.mipes.dto.IntegranteDTO;
 import com.upeu.mipes.dto.PersonaDTO;
@@ -23,7 +24,7 @@ public class Pruebas {
     static PersonaDAO per = new PersonaDAO();
 
     public static void main(String[] args) {
-        listar();
+        insertardistrito();
     }
 
     static void conex() {
@@ -54,4 +55,19 @@ public class Pruebas {
     static PersonaDAO pA = new PersonaDAO();
     static IntegranteDAO intDAO = new IntegranteDAO();
 
+    public static void logearus(String usuario,String contra){
+        if (us.validar(usuario, contra)) {
+            System.out.println("Existe el Usuario");
+        }else{
+            System.out.println("No registrado");
+        }
+    }
+    public static void insertardistrito(){
+        DistritomDTO dA=new DistritomDTO("PRUEBA","0");
+        if (x.agregar(dA)) {
+            System.out.println("ok");
+        }else{
+            System.out.println("error");
+        }
+    }
 }

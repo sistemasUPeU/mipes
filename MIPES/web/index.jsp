@@ -131,14 +131,14 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-male"></i><i class="fa fa-female"></i>Pareja Misionera<span class="fa fa-chevron-down"></span></a>
+                                    <!--<li><a><i class="fa fa-male"></i><i class="fa fa-female"></i>Pareja Misionera<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="vistas/registro/RegistroParejaMisionera.jsp" target="frame">Registrar Pareja Misionera</a>
                                             </li>
                                             <li><a href="vistas/listado/ListarPM.jsp" target="frame">Listar Parejas Misioneras</a>
                                             </li>  
                                         </ul>
-                                    </li>
+                                    </li>-->
                                     <li><a><i class="fa fa-suitcase"></i> Trabajo Misionero<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
                                             <li><a href="vista/chartjs.html" target="frame">Agregar Trabajo Misionero</a>
@@ -153,8 +153,17 @@
                                     </li>
                                     <li><a><i class="fa fa-university"></i>Distrito Misionero<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
+                                            <li><a href="distrito?opc=1" target="frame">Registrar Nuevo Distrito</a>
+                                            </li>
                                             <li><a href="esc?opc=2" target="frame">Lista de Escuelas Sabáticas</a>
-
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-book"></i>Iglesia<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+                                            <li><a href="igl?opc=1" target="frame">Registrar Nueva Iglesia</a>
+                                            </li>
+                                            <li><a href="gp?opc=2" target="frame">Lista de Grupos Pequeños</a>
                                             </li>
                                         </ul>
                                     </li>
