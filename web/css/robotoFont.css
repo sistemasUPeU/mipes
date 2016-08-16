@@ -1,0 +1,77 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26/07/2016, 07:54:08 PM
+    Author     : Andres
+*/
+
+/**
+ * Include Roboto Condensed font in your project
+ * 
+ * Download Roboto Condensed ttf files from Google Fonts and place it in the same directory of this CSS file
+ * You can then use this font in your project by setting
+ * font-face: "Roboto Condensed", Helvetica, Arial, sans-serif;
+ *
+ * @author Mattia Migliorini (deshack)
+ * @license MIT
+ */
+
+/* Light */
+@font-face {
+	font-family: "Roboto Condensed";
+	font-style: normal;
+	font-weight: 300;
+	src: local('Roboto Condensed Light'),
+            local('RobotoCondensed-Light'),
+            url("../fonts/roboto/Roboto-Light.ttf") format('truetype');
+}
+@font-face {
+	font-family: "Roboto Condensed";
+	font-style: italic;
+	font-weight: 300;
+	src: local('Roboto Condensed Light Italic'),
+            local('RobotoCondensed-LightItalic'),
+            url("../fonts/roboto/Roboto-Light.ttf") format('truetype');
+}
+
+/* Normal */
+@font-face {
+	font-family: "Roboto Condensed";
+	font-style: normal;
+	font-weight: 400;
+	src: local('Roboto Condensed Regular'),
+            local('RobotoCondensed-Regular'),
+            url("../fonts/roboto/Roboto-Regular.ttf") format('truetype');
+}
+@font-face {
+	font-family: "Roboto Condensed";
+	font-style: italic;
+	font-weight: 400;
+	src: local('Roboto Condensed Italic'),
+            local('RobotoCondensed-Italic'),
+            url("../fonts/roboto/Roboto-Regular.ttf") format('truetype');
+}
+
+/* Bold */
+@font-face {
+	font-family: "Roboto Condensed";
+	font-style: normal;
+	font-weight: 700;
+	src: local('Roboto Condensed Bold'),
+            local('RobotoCondensed-Bold'),
+            url("../fonts/roboto/Roboto-Bold.ttf") format('truetype');
+}
+@font-face {
+	font-family: "Roboto Condensed";
+	font-style: italic;
+	font-weight: 700;
+	src: local('Roboto Condensed Bold Italic'),
+            local('RobotoCondensed-BoldItalic'),
+            url("../fonts/roboto/Roboto-Bold.ttf") format('truetype');
+}
+body{
+    font-family: "Roboto Condensed";
+}

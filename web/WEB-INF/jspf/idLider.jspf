@@ -1,0 +1,14 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<input type="hidden" id="idCampoUser" value="<%=session.getAttribute("idcampo")%>">
+<input type="hidden" id="idDistritoUser" value="<%=session.getAttribute("iddistrito")%>">
+<input type="hidden" id="idIglesiaUser" value="<%=session.getAttribute("idiglesia")%>">
+<input type="hidden" id="idEscuelaUser" value="<%=session.getAttribute("idescuela")%>">
+<input type="hidden" id="idGrupoUser" value="<%=session.getAttribute("idgrupo")%>">
+<input type="hidden" id="idMinisterioUser" value="<%=session.getAttribute("idministerio")%>">
+<input type="hidden" id="nCampoUser" value="<%=session.getAttribute("ncampo")%>">
+<input type="hidden" id="nDistritoUser" value="<%=session.getAttribute("ndistrito")%>">
+<input type="hidden" id="nIglesiaUser" value="<%=session.getAttribute("niglesia")%>">
+<input type="hidden" id="nEscuelaUser" value="<%=session.getAttribute("nescuela")%>">
+<input type="hidden" id="nGrupoUser" value="<%=session.getAttribute("ngrupo")%>">
+<input type="hidden" id="nMinisterioUser" value="<%=session.getAttribute("nministerio")%>">

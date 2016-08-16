@@ -1,0 +1,293 @@
+/* ==================================================
+   CSS Imports
+================================================== */
+
+@import url("reset.css");
+
+@import url("typography.css");
+
+/* ==================================================
+   Icon Fonts
+================================================== */
+
+@import url("fonts/fontawesome/font-awesome.css");
+
+/* ==================================================
+   Google Fonts
+================================================== */
+
+@import url("http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700");
+@import url("http://fonts.googleapis.com/css?family=Contrail+One");
+
+/* ==================================================
+   Global Styles
+================================================== */
+
+*
+{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html
+{
+	height: 100%;
+	overflow: auto;
+	
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+body
+{
+	font-family: "Open Sans Condensed";
+	font-size: 22px;
+	font-weight: 300;
+	color: #444;
+	background: #222;
+	line-height: 32px;
+	
+	text-rendering: optimizeLegibility;
+	vertical-align: baseline;
+}
+
+::selection
+{
+	background: #3498db;
+	color: #FFF;
+}
+
+::-moz-selection
+{
+	background: #3498db;
+	color: #FFF;
+}
+
+a
+{
+	color: #3498db;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #FFF;
+}
+
+img
+{
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+}
+
+/* ==================================================
+   Layout Styles
+================================================== */
+
+.container
+{
+	width: 100%;
+	min-width: 280px;
+}
+
+	.container .bodycontainer
+	{
+		width: 100%;
+		padding: 0 30px;
+		max-width: 980px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	
+/* ==================================================
+   Overlay
+================================================== */
+
+.overlay
+{
+	background: url("../images/overlay.png") repeat;
+}
+
+/* ==================================================
+   Button
+================================================== */
+	
+p .button
+{
+	position: relative;
+	display: inline-block;
+	padding: 6px 14px;
+	margin: 0;
+	width: auto;
+	font-size: 29px;
+	text-transform: uppercase;
+	font-weight: 300;
+	cursor: pointer;
+	background: none;
+	border: none;
+	outline: none;
+	font-style: normal;
+	text-align: left;
+	background: #3498db;
+	color: #FFF !important;
+}
+
+	p .button:after
+	{
+		content: '';
+		position: absolute;
+		z-index: -1;
+	}
+
+	p .button:hover
+	{
+		background: #2980b9;
+		color: #FFF !important;
+	}
+
+		p .button:active
+		{
+			top: 2px;
+		}
+
+/* ==================================================
+   Sections
+================================================== */
+
+#topcont
+{
+	width: 100%;
+	position: relative;
+	height: auto !important;
+	background: #FFF url("../images/bg-1.jpg") no-repeat top center fixed;
+	background-size: cover;
+	overflow: hidden;
+	color: #FFF;
+}
+
+	.block
+	{
+		width: 100%;
+		display: table;
+	}
+		
+		.centered
+		{
+			display: table-cell;
+			vertical-align: middle;
+			width: 100%;
+			padding: 30px 0;
+			margin: 0 auto;
+		}
+
+		#topcont h1
+		{
+			font-size: 70px;
+			line-height: 70px;
+			margin: 0 0 20px 0;
+			font-weight: 400;
+			text-transform: capitalize;
+			font-family: "Contrail One";
+		}
+		
+			#topcont h1 a
+			{
+				color: #FFF;
+			}
+		
+		#topcont #clock
+		{
+			font-size: 30px;
+			line-height: 30px;
+			margin: 0 0 20px 0;
+			text-transform: uppercase;
+			color: #999;
+			color: rgba(255, 255, 255, 0.5);
+		}
+		
+			#topcont #clock span
+			{
+				color: #FFF;
+			}
+			
+		#topcont #socialmedia ul
+		{
+			margin: 0;
+			padding: 10px 0 30px 0;
+		}
+	
+		#topcont #socialmedia ul li
+		{
+			display: inline-block;
+			list-style-type: none;
+			margin: 0 12px 0 0;
+			padding: 0;
+		}
+	
+			#topcont #socialmedia ul li a
+			{
+				font-size: 27px;
+				color: #FFF;
+			}
+			
+				#topcont #socialmedia ul li a:hover
+				{
+					color: #3498db;
+				}
+
+#bottomcont
+{
+	width: 100%;
+	position: relative;
+	height: auto !important;
+	background: #FFF url("../images/bg-2.png") repeat fixed;
+	overflow: hidden;
+	color: #999;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+/* ==================================================
+   Responsive Media Queries - Tablets
+================================================== */
+
+@media screen and (max-width: 768px)
+{
+	
+	#topcont h1
+	{
+		font-size: 50px;
+		line-height: 50px;
+		margin: 0 0 20px 0;
+	}
+	
+	#topcont #socialmedia ul li
+	{
+		margin: 0 10px 0 0;
+	}
+	
+	#bottomcont
+	{
+		text-align: left;
+	}
+	
+		#bottomcont a.scrolltop
+		{
+			margin: 20px 0 0 0;
+		}
+	
+}
+
+/* ==================================================
+   Responsive Media Queries - Mobiles
+================================================== */
+
+@media screen and (max-width: 480px)
+{		
+	
+	
+	
+}
+
