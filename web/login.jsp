@@ -18,6 +18,7 @@
         <title>MIPES</title>
         <jsp:include page="/css/jspf/impbt.jspf"></jsp:include>
         <link rel="icon" href="images/ico/Home-48.png">
+        <link href="css/login.css" rel="stylesheet" type="text/css"/>
         <link href="css/openSansFont.css" rel="stylesheet" type="text/css"/>
         <script>
             Meteor.startup(function () {
@@ -37,63 +38,6 @@
         </script>
     </head>
     <body>
-        <style>
-            html, body{
-                height: 100%;
-            }
-            body{
-                background:white;
-                min-width: 30px;
-            }
-            .container-fluid{
-                height: 100%;
-            }
-            .panel.panel-default{
-                border: none;
-                box-shadow: 0 1px 3px rgba(0,0,0, 0.12),0 1px 2px rgba(0,0,0, 0.24);
-                margin: 0 auto;
-                margin-top: 8%;
-                width: 30%;
-            }
-            .panel-default>.panel-heading{
-                border: none;
-                background-color: #16A085;
-                color: white;
-            }
-            .myfooter{
-                position: relative;
-                bottom: 0;
-                height: 240px;
-                clear: both;
-                margin: 0;
-                width: 100%;
-                //background-color: rgb(42, 63, 84);
-                //color:white;
-            }
-            .btn.btn-dark.btn-circle{
-                border-radius: 30px;
-                height: 40px;
-                width: 40px;
-                padding-top: 8px;
-            }
-            @media (min-width: 240px) and (max-width: 480px){
-                .panel.panel-default{
-                    width: 95%;
-                }               
-            }
-            @media (min-width: 480px) and (max-width: 768px){
-                .panel.panel-default{
-                    width: 80%;
-                }               
-            }
-            @media (min-width: 768px) and (max-width: 1024px){
-                .panel.panel-default{
-                    width: 50%;
-                }               
-            }
-
-
-        </style>
         <div class="container-fluid">
             <div class="row">
                 <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">

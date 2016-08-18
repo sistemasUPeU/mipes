@@ -270,20 +270,47 @@
                 <!-- footer content -->
                 <footer>
                     <div class="row">
-                        <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-3">
+                        <div class="col col-lg-2 col-md-2 col-sm-2 hidden-xs" style="margin-top: 30px;">
                             <center><img src="images/alphaLogo.png" width="96" height="60" alt="alphaLogo"/></center>
                         </div>
-                        <div class="col col-lg-10 col-md-9 col-sm-9 col-xs-9">
+                        <div class="col col-lg-10 col-md-10 col-sm-10 col-xs-12">
                             <div class="row">
-                                <div class="col col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <p>MIPES 1.0 Desarrollado por <a href="https://www.facebook.com/Soceis-931586496886002/" target="blank">Alpha Team</a>
-                                        , &copy; 2016. Todos los derechos reservados</p>
-                                </div>
-                                <div class="col col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-8">
                                     <ul class="list-unstyled">
-                                        <li>Contactenos:
-                                            <ul class="list-unstyled">
-                                                <li>Correo: <a href="mailto:imerrosas@upeu.edu.pe">imerrosas@upeu.edu.pe</a> |<a href="mailto:leandroburgos@upeu.edu.pe">leandroburgos@upeu.edu.pe</a></li>
+                                        <li>
+                                            <label>Alpha Team Developers</label>
+                                            <p>Somos un equipo de investigación de la Sociedad Científica de Estudiantes de 
+                                                Ingeniería de Sistemas, de la Universidad Peruana Union.</p>
+                                        </li>
+                                        <li>
+                                            <label>Sistema de Gestion de Grupos Pequeños y Trabajo Misionero</label>
+                                            <p>CRM DIGITAL 1.0 desarrolado por Alpha Team &copy; 2016. Todos los derechos reservados.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-4">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <label>Contáctenos:</label>
+                                            <ul class="list-unstyled list-inline">
+                                                <li>
+                                                    <a href="mailto:imerrosas@upeu.edu.pe" class="btn btn-dark btn-circle">
+                                                        <i class="fa fa-envelope"></i>
+                                                    </a>
+                                                    <span class="hidden-xs">imerrosas@upeu.edu.pe</span>
+                                                </li>
+                                                <li>
+                                                    <a href="mailto:leandroburgos@upeu.edu.pe" class="btn btn-dark btn-circle">
+                                                        <i class="fa fa-envelope"></i>
+                                                    </a>
+                                                    <span class="hidden-xs">leandroburgos@upeu.edu.pe</span>
+                                                </li>
+                                                <li>
+                                                    <a href="https://www.facebook.com/Soceis-931586496886002/" target="blank" class="btn btn-dark btn-circle">
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                    <span class="hidden-xs">SOCEIS</span>
+                                                </li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -311,7 +338,7 @@
                 location.replace(history.forward(1));
             }
         </script>
-        
+
     </body>
 </html>
 

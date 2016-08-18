@@ -1,0 +1,63 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17/08/2016, 09:59:05 PM
+    Author     : Andres
+*/
+
+html, body{
+    height: 100%;
+}
+body{
+    background:white;
+    min-width: 30px;
+}
+.container-fluid{
+    height: 100%;
+}
+.panel.panel-default{
+    border: none;
+    box-shadow: 0 1px 3px rgba(0,0,0, 0.12),0 1px 2px rgba(0,0,0, 0.24);
+    margin: 0 auto;
+    margin-top: 8%;
+    width: 30%;
+}
+.panel-default>.panel-heading{
+    border: none;
+    background-color: #16A085;
+    color: white;
+}
+.myfooter{
+    position: relative;
+    bottom: 0;
+    height: 240px;
+    clear: both;
+    margin: 0;
+    width: 100%;
+    //background-color: rgb(42, 63, 84);
+    //color:white;
+}
+.btn.btn-dark.btn-circle{
+    border-radius: 30px;
+    height: 40px;
+    width: 40px;
+    padding-top: 8px;
+}
+@media (min-width: 240px) and (max-width: 480px){
+    .panel.panel-default{
+        width: 95%;
+    }               
+}
+@media (min-width: 480px) and (max-width: 768px){
+    .panel.panel-default{
+        width: 80%;
+    }               
+}
+@media (min-width: 768px) and (max-width: 1024px){
+    .panel.panel-default{
+        width: 50%;
+    }               
+}
