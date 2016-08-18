@@ -334,12 +334,12 @@
         <!-- Custom Theme Scripts -->
         <script src="js/custom.js" type="text/javascript"></script>
         <script>
+            loadFrame();
                         function loadFrame() {
-                            if ($('#idframe').contents().get(0).location.href.endsWith("login")) {
-                                document.location.href=$('#idframe').contents().get(0).location.href;
+                            if ($('#idframe').contents().get(0).location.href.endsWith("/login")) {
+                                document.location.href = $('#idframe').contents().get(0).location.href;
                             }
                         }
-                        ;
         </script>
 
     </body>
