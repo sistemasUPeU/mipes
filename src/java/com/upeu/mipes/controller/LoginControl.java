@@ -67,7 +67,6 @@ public class LoginControl extends HttpServlet {
             } else {
                 if (opc.equals("logout")) {
                     HttpSession session = request.getSession(false);
-                    session.setAttribute("iduser", null);
                     session.invalidate();
                     response.sendRedirect("login");
                 }

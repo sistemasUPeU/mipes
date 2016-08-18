@@ -8,7 +8,7 @@
     nombre = "";
     apellido = "";
     usuario = "";
-    if (MainControl.validateSession(request, response)) {
+    if (MainControl.validateSession(request)) {
         nombre = request.getSession().getAttribute("nombres").toString();
         apellido = request.getSession().getAttribute("apellidos").toString();
         usuario = request.getSession().getAttribute("usuario").toString();
@@ -261,7 +261,7 @@
 
                 <!-- page content -->
                 <div class="right_col" role="main" style="height: 100%;margin-top: 0px;margin-bottom: 0px; padding: 0px;background: #fff">
-                    <iframe name="frame" id="idframe"
+                    <iframe name="frame" id="idframe" onload="loadFrame()"
                             style="height: 650px;width: 103%; border: none; overflow-y: hidden">
                     </iframe>
                 </div>
@@ -334,9 +334,12 @@
         <!-- Custom Theme Scripts -->
         <script src="js/custom.js" type="text/javascript"></script>
         <script>
-            if (history.forward(1)) {
-                location.replace(history.forward(1));
-            }
+                        function loadFrame() {
+                            if ($('#idframe').contents().get(0).location.href.endsWith("login")) {
+                                document.location.href=$('#idframe').contents().get(0).location.href;
+                            }
+                        }
+                        ;
         </script>
 
     </body>

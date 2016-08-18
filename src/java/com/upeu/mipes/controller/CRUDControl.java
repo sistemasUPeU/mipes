@@ -709,7 +709,7 @@ public class CRUDControl extends HttpServlet {
                 int iddi = 0;
                 int idt = 0;
                 int idl = 0;
-                int idd=0;
+                int idd = 0;
                 String nombre, estado;
                 Map<String, Object> l = new HashMap<>();
                 switch (opc) {
@@ -720,7 +720,7 @@ public class CRUDControl extends HttpServlet {
                     case 2:///Listar leccion por tipo de leccion
                         iddi = Integer.parseInt(request.getParameter("iddiscipulado"));
                         idt = Integer.parseInt(request.getParameter("idtipoleccion"));
-                        mp.put("lista", lA.listar(idt,iddi));
+                        mp.put("lista", lA.listar(idt, iddi));
                         break;
                     case 3://Agregar Tipo Leccion
                         nombre = request.getParameter("nombre");
@@ -792,7 +792,10 @@ public class CRUDControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        if (MainControl.validateSession(request)) {
+            processRequest(request, response);
+        }
+
     }
 
     /**
@@ -806,7 +809,9 @@ public class CRUDControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        if (MainControl.validateSession(request)) {
+            processRequest(request, response);
+        }
     }
 
     /**

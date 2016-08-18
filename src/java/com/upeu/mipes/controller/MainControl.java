@@ -41,8 +41,7 @@ public class MainControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            HttpSession session = request.getSession();
-            if (session.getAttribute("iduser") != null) {
+            if (validateSession(request)) {
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
                 dispatcher.forward(request, response);
             } else {
@@ -52,14 +51,9 @@ public class MainControl extends HttpServlet {
         }
     }
 
-    public static boolean validateSession(HttpServletRequest request, HttpServletResponse response)
+    public static boolean validateSession(HttpServletRequest request)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            return session.getAttribute("iduser") != null;
-        } else {
-            return false;
-        }
+        return request.getSession(false).getAttribute("iduser") != null;
     }
 
     public static boolean validateRol(String idrol, HttpSession session) {
@@ -104,7 +98,7 @@ public class MainControl extends HttpServlet {
             String ordenString = request.getParameter("orden");
             RequestDispatcher dispatcher;
             String pagina = "/vistas/error/error404.html";
-            if (opcString != null && ordenString != null) {
+            if (opcString != null && ordenString != null && validateSession(request)) {
                 opc = Integer.parseInt(opcString);
                 orden = Integer.parseInt(ordenString);
                 switch (orden) {
