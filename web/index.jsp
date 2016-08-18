@@ -20,6 +20,8 @@
         <!-- Meta, title, CSS, favicons, etc. -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Expires" content="0" /> 
+        <meta http-equiv="Pragma" content="no-cache" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>MIPES</title>
         <!-- Bootstrap -->
@@ -282,7 +284,6 @@
                                         <li>Contactenos:
                                             <ul class="list-unstyled">
                                                 <li>Correo: <a href="mailto:imerrosas@upeu.edu.pe">imerrosas@upeu.edu.pe</a> |<a href="mailto:leandroburgos@upeu.edu.pe">leandroburgos@upeu.edu.pe</a></li>
-                                                <li>Telefono: 941363445</li>
                                             </ul>
                                         </li>
                                     </ul>

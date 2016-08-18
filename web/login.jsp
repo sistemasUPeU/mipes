@@ -18,8 +18,7 @@
         <title>MIPES</title>
         <jsp:include page="/css/jspf/impbt.jspf"></jsp:include>
         <link rel="icon" href="images/ico/Home-48.png">
-
-
+        <link href="css/openSansFont.css" rel="stylesheet" type="text/css"/>
         <script>
             Meteor.startup(function () {
                 sAlert.config({
@@ -37,109 +36,221 @@
             });
         </script>
     </head>
+    <body>
+        <style>
+            html, body{
+                height: 100%;
+            }
+            body{
+                background:white;
+                min-width: 30px;
+            }
+            .container-fluid{
+                height: 100%;
+            }
+            .panel.panel-default{
+                border: none;
+                box-shadow: 0 1px 3px rgba(0,0,0, 0.12),0 1px 2px rgba(0,0,0, 0.24);
+                margin: 0 auto;
+                margin-top: 8%;
+                width: 30%;
+            }
+            .panel-default>.panel-heading{
+                border: none;
+                background-color: #16A085;
+                color: white;
+            }
+            .myfooter{
+                position: relative;
+                bottom: 0;
+                height: 240px;
+                clear: both;
+                margin: 0;
+                width: 100%;
+                //background-color: rgb(42, 63, 84);
+                //color:white;
+            }
+            .btn.btn-dark.btn-circle{
+                border-radius: 30px;
+                height: 40px;
+                width: 40px;
+                padding-top: 8px;
+            }
+            @media (min-width: 240px) and (max-width: 480px){
+                .panel.panel-default{
+                    width: 95%;
+                }               
+            }
+            @media (min-width: 480px) and (max-width: 768px){
+                .panel.panel-default{
+                    width: 80%;
+                }               
+            }
+            @media (min-width: 768px) and (max-width: 1024px){
+                .panel.panel-default{
+                    width: 50%;
+                }               
+            }
 
-    <body style="background:#F7F7F7;">
-        <header class="page-header">
-            <center><h3>Sistema de Gestion de Grupos Pequeños y Trabajo Misionero MIPES</h3></center>
-            <center><h4>Bienvenidos</h4></center>
-        </header>
-        <div class="container">
-            <a class="hiddenanchor" id="toregister"></a>
-            <a class="hiddenanchor" id="tologin"></a>
 
-            <div id="wrapper" style="margin: 0 auto">
-                <div id="login" class="animate form">
-                    <section class="login_content">
-                        <form id="validaForm" action="home" method="post">
-                            <h1>Iniciar Sesión</h1>
-                            <div class="form-group contUser">
-                                <input type="text" id="usuario" name="user" class="form-control" placeholder="Ingrese su DNI o Usuario" required >
-                                <input type="password" id="clave" name="pass" class="form-control" placeholder="Ingrese su Clave" required style="display: none">
-                            </div>
-                            <div class="form-group">
-                                <div class="alert alert-danger alert-dismissible fade in alertError" role="alert" style="display: none">
-                                    <strong>Error!</strong>El usuario ingresado no existe o es incorrecto.
+        </style>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden">
+                                    <center><img src="images/ico/Home-48.png" alt="..." width="48" height="48"></center>
                                 </div>
-                            </div>
-                            <div class="form-group contBtn">
-                                <a class="btn btn-info btnNext" onclick="prevalidate()" style="width:100%; ">Siguiente</a>
-                                <input type="hidden" name="opc" value="validate">
-                                <input type="submit" class="btn btn-success btn-block btnLogin" style="width:100%;display: none;margin-left: 0px" value="Entrar"/>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="separator">
-                                <p class="change_link">¿No estas registrado?
-                                    <a href="#toregister" class="btn btn-warning">Crear Cuenta</a>
-                                </p>
-                                <div class="clearfix"></div>
-                                <br />
-                                <div>
-                                    <h1><i class="fa fa-group"></i> MIPES</h1>
-                                    <p>©2016 Mipes v 1.0</p>
-                                </div>
-                            </div>
-                        </form>
-                        <!-- form -->
-                    </section>
-                    <!-- content -->
-                </div>
-                <div id="register" class="animate form">
-                    <section class="login_content">
-                        <h1>Registrarse</h1>
-                        <form id="regPer">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombres" required="required" />
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Apellidos" required="required"/>
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input type="text" id="dni" name="dni" class="form-control" placeholder="DNI" required="required" />
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input type="email" id="correo" name="correo" class="form-control" placeholder="Correo"/>
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Teléfono"/>
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input type="text" id="direccion" name="direccion" class="form-control" placeholder="Direccion"/>
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input  type="text" class="form-control has-feedback-left" id="single_cal2" placeholder="Fecha de Nacimiento" aria-describedby="inputSuccess2Status3">
-                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                                <span id="inputSuccess2Status3" class="sr-only">(success)</span>
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <button type="submit" class="btn btn-danger" id="send">Registrar</button>
-                            </div>
-                        </form>
-                        <div class="clearfix"></div>
-                        <div class="separator">
+                                <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px">
+                                    <center><span class="text-center" style="font-size: 14px">Sistema de Gestion de Grupos Pequeños y Trabajo Misionero</span></center>
 
-                            <p class="change_link">¿Ya es un miembro?
-                                <a href="#tologin" class="to_register">Ingresar</a>
-                            </p>
-                            <div class="clearfix"></div>
-                            <br />
-                            <div>
-                                <h1><i class="fa fa-paw" style="font-size: 26px;"></i> MIPES</h1>
-                                <p>©2016 Mipes v 1.0</p>
+                                </div>
                             </div>
                         </div>
-
-                        <!-- form -->
-                    </section>
-                    <!-- content -->
+                        <div class="panel-body">
+                            <center><span class="text-center" style="font-size: 18px;font-weight: 700">CRM Digital</span></center>
+                            <center><span class="text-center">Bienvenido(a)</span></center>
+                            <br>
+                            <div id="loginForm">
+                                <form id="validaForm" action="home" method="post">
+                                    <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                        <input type="text" id="usuario" name="user" class="form-control has-feedback-left" 
+                                               placeholder="Ingrese su DNI o Usuario" required >
+                                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                    </div>                                           
+                                    <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group has-feedback hidden">
+                                        <input type="password" id="clave" name="pass" class="form-control has-feedback-left" 
+                                               placeholder="Ingrese su Clave" required>
+                                        <span class="fa fa-key form-control-feedback left" aria-hidden="true"></span>
+                                    </div>                                           
+                                    <div class=" col col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                        <div class="alert alert-danger alert-dismissible fade in hidden alertError" role="alert">
+                                            <strong>Error!</strong>El usuario ingresado no existe o es incorrecto.
+                                        </div>
+                                    </div>
+                                    <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group contBtn">
+                                        <a class="btn btn-dark btnNext" onclick="prevalidate()" style="width:100%; ">Siguiente</a>
+                                        <input type="hidden" name="opc" value="validate">
+                                        <input type="submit" class="btn btn-success btn-block btnLogin" style="width:100%;display: none;margin-left: 0px" value="Entrar"/>
+                                    </div>
+                                    <a id="btnRegistro" class="btn btn-link pull-left">Regístrate</a>
+                                    <a id="btnLost" class="btn btn-link pull-right">¿Olvidaste tu contraseña?</a>
+                                </form>
+                            </div>
+                            <div id="regForm" class="hidden">
+                                <form id="regPer">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                        <input type="text" id="nombre" name="nombre" class="form-control has-feedback-left" 
+                                               placeholder="Nombres" required="required" />
+                                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                        <input type="text" id="apellido" name="apellido" class="form-control has-feedback-left"
+                                               placeholder="Apellidos" required="required"/>
+                                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                        <input type="text" id="dni" name="dni" class="form-control has-feedback-left"
+                                               placeholder="DNI" required="required" />
+                                        <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                        <input type="email" id="correo" name="correo" class="form-control has-feedback-left"
+                                               placeholder="Correo"/>
+                                        <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                        <input type="text" id="telefono" name="telefono" class="form-control has-feedback-left"
+                                               placeholder="Teléfono"/>
+                                        <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                        <input type="text" id="direccion" name="direccion" class="form-control has-feedback-left"
+                                               placeholder="Direccion"/>
+                                        <span class="fa fa-tag form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                        <input  type="text" class="form-control has-feedback-left" id="single_cal2" placeholder="Fecha de Nacimiento" aria-describedby="inputSuccess2Status3">
+                                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                        <span id="inputSuccess2Status3" class="sr-only">(success)</span>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <button type="submit" class="btn btn-danger btn-block" id="send">Registrarse</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
+        <hr>
+        <footer class="myfooter">
+            <div class="row">
+                <div class="col col-lg-2 col-md-2 col-sm-2 hidden-xs" style="margin-top: 30px;">
+                    <center><img src="images/AlphaLogo-black.png" width="96" height="60" alt="alphaLogo"/></center>
+                </div>
+                <div class="col col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                    <div class="row">
+                        <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-8">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <label>Alpha Team Developers</label>
+                                    <p>Somos un equipo de investigación de la Sociedad Científica de Estudiantes de 
+                                        Ingeniería de Sistemas, de la Universidad Peruana Union.</p>
+                                </li>
+                                <li>
+                                    <label>Sistema de Gestion de Grupos Pequeños y Trabajo Misionero</label>
+                                    <p>CRM DIGITAL 1.0 desarrolado por Alpha Team &copy; 2016. Todos los derechos reservados.</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-4">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <label>Contáctenos:</label>
+                                    <ul class="list-unstyled list-inline">
+                                        <li>
+                                            <a href="mailto:imerrosas@upeu.edu.pe" class="btn btn-dark btn-circle">
+                                                <i class="fa fa-envelope"></i>
+                                            </a>
+                                            <span class="hidden-xs">imerrosas@upeu.edu.pe</span>
+                                        </li>
+                                        <li>
+                                            <a href="mailto:leandroburgos@upeu.edu.pe" class="btn btn-dark btn-circle">
+                                                <i class="fa fa-envelope"></i>
+                                            </a>
+                                            <span class="hidden-xs">leandroburgos@upeu.edu.pe</span>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.facebook.com/Soceis-931586496886002/" target="blank" class="btn btn-dark btn-circle">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                            <span class="hidden-xs">SOCEIS</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
         <script>
             $(document).ready(function () {
                 $('#usuario').keypress(function (e) {
                     if (e.which === 13) {
                         prevalidate();
                     }
+                });
+                $('#btnRegistro').click(function () {
+                    $('#loginForm').hide();
+                    $('#regForm').removeClass('hidden');
                 });
             });
             function crear() {
@@ -177,14 +288,15 @@
                 });
             }
             function prevalidate() {
+                $('.alertError').removeClass('hidden');
                 $('.alertError').hide();
                 var url = "login?opc=prevalidate";
                 var data = "user=" + $('#usuario').val();
                 $.post(url, data, function (objJson) {
                     var respuesta = objJson.result;
                     if (respuesta === 'validar') {
-                        $('#usuario').hide();
-                        $('#clave').show();
+                        $('#usuario').parent().hide();
+                        $('#clave').parent().removeClass('hidden');
                         $('#clave').focus();
                         $('.btnNext').hide();
                         $('.btnLogin').show();
