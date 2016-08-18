@@ -87,32 +87,33 @@
                                 <form id="regPer">
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                         <input type="text" id="nombre" name="nombre" class="form-control has-feedback-left" 
-                                               placeholder="Nombres" required="required" />
+                                               placeholder="Nombres" required="required" maxlength="64"/>
                                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                         <input type="text" id="apellido" name="apellido" class="form-control has-feedback-left"
-                                               placeholder="Apellidos" required="required"/>
+                                               placeholder="Apellidos" required="required" maxlength="64"/>
                                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                        <input type="text" id="dni" name="dni" class="form-control has-feedback-left"
-                                               placeholder="DNI" required="required" />
+                                        <input type="number" id="dni" name="dni" class="form-control has-feedback-left"
+                                               placeholder="DNI" required="required" maxlength="10"
+                                               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                                         <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                         <input type="email" id="correo" name="correo" class="form-control has-feedback-left"
-                                               placeholder="Correo"/>
+                                               placeholder="Correo" maxlength="128"/>
                                         <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                        <input type="text" id="telefono" name="telefono" class="form-control has-feedback-left"
-                                               placeholder="Teléfono"/>
+                                        <input type="tel" id="telefono" name="telefono" class="form-control has-feedback-left"
+                                               placeholder="Teléfono" maxlength="15"/>
                                         <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                         <input type="text" id="direccion" name="direccion" class="form-control has-feedback-left"
-                                               placeholder="Direccion"/>
+                                               placeholder="Direccion" maxlength="255"/>
                                         <span class="fa fa-tag form-control-feedback left" aria-hidden="true"></span>
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">

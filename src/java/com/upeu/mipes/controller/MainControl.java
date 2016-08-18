@@ -51,9 +51,12 @@ public class MainControl extends HttpServlet {
         }
     }
 
-    public static boolean validateSession(HttpServletRequest request)
-            throws ServletException, IOException {
-        return request.getSession(false).getAttribute("iduser") != null;
+    public static boolean validateSession(HttpServletRequest request){
+        try {
+            return request.getSession(false).getAttribute("iduser") != null;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static boolean validateRol(String idrol, HttpSession session) {

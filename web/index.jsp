@@ -230,12 +230,6 @@
                             <div class="nav toggle">
                                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                             </div>
-
-
-                            <ul class="nav navbar-nav navbar-left">
-                                <li id="iframesize">                                    
-                                </li>
-                            </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -261,7 +255,7 @@
 
                 <!-- page content -->
                 <div class="right_col" role="main" style="height: 100%;margin-top: 0px;margin-bottom: 0px; padding: 0px;background: #fff">
-                    <iframe name="frame" id="idframe" onload="loadFrame()"
+                    <iframe name="frame" id="idframe" onload="loadFrame(this.contentWindow.location);"
                             style="height: 650px;width: 103%; border: none; overflow-y: hidden">
                     </iframe>
                 </div>
@@ -324,7 +318,7 @@
         </div>
 
         <!-- jQuery -->
-        <script src="js/jquery.min.js"></script>
+         <script src="js/jquery.min.js" type="text/javascript"></script>
         <!-- Bootstrap -->
         <script src="js/bootstrap.min.js"></script>
         <!-- FastClick 
@@ -334,14 +328,15 @@
         <!-- Custom Theme Scripts -->
         <script src="js/custom.js" type="text/javascript"></script>
         <script>
-            loadFrame();
-                        function loadFrame() {
-                            if ($('#idframe').contents().get(0).location.href.endsWith("/login")) {
-                                document.location.href = $('#idframe').contents().get(0).location.href;
+                        $(document).ready(function () {
+                            loadFrame();
+                        });
+                        function loadFrame(url) {
+                            if (url.toString().indexOf("login")!==-1) {
+                                document.location=url;
                             }
                         }
         </script>
-
     </body>
 </html>
 
