@@ -31,10 +31,11 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
-                        <a type="button" class="btn btn-primary btnDiscipulador"><i class="fa fa-plus-circle"></i> Asignar Discípulos</a>
+                        <a type="button" class="btn btn-primary btn-block btnDiscipulador" style="margin-top: 25px;">
+                            <i class="fa fa-plus-circle"></i> Asignar Discípulos</a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pull-right">
                     <div class="form-group">
                         <label>Seleccione Tipo de Discipulados:</label>
                         <select class="form-control" id="seltipo">

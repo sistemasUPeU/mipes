@@ -57,13 +57,16 @@
                 margin-top: 10px;
                 margin-bottom: 10px;
             }
+            .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+                border: none;
+            }
         </style>
         <br>
         <input type="hidden" id="tipoPagina" value="<%=tipo%>">
         <div class="container-fluid">
             <div class="row">
                 <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="col col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="panel panel-default">
                             <div class="panel-heading ph">
                                 <div class="row">
@@ -88,13 +91,30 @@
                                 <div class="row">
                                     <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <h3><strong>Datos Generales:</strong></h3>
-                                        <ul class="list-unstyled">
-                                            <li style="margin-bottom: 5px"><strong>DNI:</strong>&nbsp;&nbsp;<span id="dniUser"></span></li>
-                                            <li style="margin-bottom: 5px"><strong>Teléfono:</strong>&nbsp;&nbsp;<span id="telUser"></span></li>
-                                            <li style="margin-bottom: 5px"><strong>Correo:</strong>&nbsp;&nbsp;<span id="emailUser"></span></li>
-                                            <li style="margin-bottom: 5px"><strong>Direccion:</strong>&nbsp;&nbsp;<span id="dirUser"></span></li>
-                                            <li style="margin-bottom: 5px"><strong>Fecha de Nacimiento:</strong>&nbsp;&nbsp;<span id="feUser"></span></li>
-                                        </ul>
+                                        <table border="0" class="table table-hover">
+                                            <tbody>
+                                                <tr>
+                                                    <td><i class="fa fa-credit-card"></i>&nbsp;<strong>DNI:</strong></td>
+                                                    <td><span id="dniUser"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="fa fa-phone"></i>&nbsp;<strong>Teléfono:</strong></td>
+                                                    <td><span id="telUser"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="fa fa-envelope"></i>&nbsp;<strong>Correo:</strong></td>
+                                                    <td><span id="emailUser"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="fa fa-tag"></i>&nbsp;<strong>Direccion:</strong></td>
+                                                    <td><span id="dirUser"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><i class="fa fa-calendar"></i>&nbsp;<strong>Fecha de Nacimiento:</strong></td>
+                                                    <td><span id="feUser"></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                         <%if (tipo.equals("1")) {%>
                                         <a class="btn btn-success pull-right" href="#" id="btnMod"><i class="fa fa-pencil"></i><span> Modificar</span></a>
                                                 <%}%>
@@ -129,7 +149,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="col col-lg-8 col-md-8 col-sm-8 col-xs-12">
                         <div class="row">
                             <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="panel panel-default">
@@ -138,7 +158,7 @@
                                         <div class="alert alert-info" role="alert">
                                             <span>Todavia no está registrado en un Grupo Peque&ncaron;o, puede solicitar su registro con su lider.</span>
                                         </div>
-                                    </div>                           
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -154,27 +174,37 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="display: none">
+                        <div class="row">
                             <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">Informacion de Trabajo Misionero</div>
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="col col-lg-5 col-md-5 col-sm-5 col-xs-4">
-                                                    <h5><strong>Grupo: </strong>Palestina 1</h5>
-                                                    <h5><strong>Escuela: </strong>Palestina</h5>
-                                                    <h5><strong>Iglesia: </strong>Iglesia Joven</h5>
+                                                <div class="col col-lg-10 col-md-10 col-sm-10 col-xs-9">
+                                                    <table border="0" class="table table-hover table-condensed">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="col-lg-6"><i class="fa fa-users"></i>&nbsp;<strong>Total de Discípulos:</strong></td>
+                                                                <td><span>6</span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="col-lg-6"><i class="fa fa-users"></i>&nbsp;<strong>Discípulos Estudiando:</strong></td>
+                                                                <td><span></span>5</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="col-lg-6"><i class="fa fa-calendar"></i>&nbsp;<strong>Último trabajo registrado:</strong></td>
+                                                                <td><span>18/09/2016</span></td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
                                                 </div>
-                                                <div class="col col-lg-5 col-md-5 col-sm-5 col-xs-4">
-                                                    <h5><strong>Cantidad de Discipulos estudiando: </strong>5</h5>
-                                                    <h5><strong>Total de Discipulos: </strong>10</h5>
-                                                    <h5><strong>Ultimo Trabajo: </strong>05/09/2016</h5>
-                                                </div>
-                                                <div class="col col-lg-2 col-md-2 col-sm-2 col-xs-4">
-                                                    <span class="chart" data-percent="86" data-scale-color:="#fff">
-                                                        <span class="percent"></span>
-                                                    </span>
+                                                <div class="col col-lg-2 col-md-2 col-sm-2 col-xs-3">
+                                                    <center style="margin-bottom: 10px"><strong>Progreso</strong></center>
+                                                    <center><span class="chart" data-percent="86" data-scale-color:="#fff">
+                                                            <span class="percent"></span>
+                                                        </span></center>
                                                 </div>
 
                                             </div>
@@ -293,7 +323,7 @@
                             <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label>Clave:</label>
+                                        <label>Clave Actual:</label>
                                         <input class="form-control" type="password" name="apellidos" id="claveC">
                                     </div>                                    
                                 </div>
@@ -539,26 +569,41 @@
                     if (lista[0] !== undefined) {
                         for (var i = 0; i < lista.length; i++) {
                             t += '<div class="row">';
-                            t += '<div class = "col col-lg-12 col-md-12 col-sm-12 col-xs-12">';
-                            t += '<div class = "col col-lg-5 col-md-5 col-sm-5 col-xs-4">';
-                            t += '<h5> <strong> Grupo: </strong>' + lista[i].grupo;
+                            t += '<div class="col col-lg-10 col-md-10 col-sm-9 col-xs-9">';
+                            t += '<table border="0" class="table table-hover table-condensed">';
+                            t += '<tbody>';
+                            t += '<tr>';
+                            t += '<td class="col-lg-6"><i class="fa fa-home"></i>&nbsp;<strong>Grupo Pequeño:</strong></td>';
+                            t += '<td><span>'+lista[i].grupo;
                             if (lista[i].estado === '1') {
                                 t += ' <span class="label label-success">Actual</span>';
                             }
-                            t += '</h5>';
-                            t += '<h5> <strong> Escuela: </strong>' + lista[i].escuela + '</h5>';
-                            t += '<h5> <strong> Iglesia: </strong>' + lista[i].iglesia + '</h5>';
+                            t+='</span></td>';
+                            t += '</tr>';
+                            t += '<tr>';
+                            t += '<td class="col-lg-6"><i class="fa fa-university"></i>&nbsp;<strong>Escuela Sabática:</strong></td>';
+                            t += '<td><span>' + lista[i].escuela + '</span></td>';
+                            t += '</tr>';
+                            t += '<tr>';
+                            t += '<td class="col-lg-6"><i class="fa fa-cube"></i>&nbsp;<strong>Iglesia:</strong></td>';
+                            t += '<td><span>' + lista[i].iglesia + '</span></td>';
+                            t += '</tr>';
+                            t += '<tr>';
+                            t += '<td class="col-lg-6"><i class="fa fa-flash"></i>&nbsp;<strong>Cargo:</strong></td>';
+                            t += '<td><span>' + lista[i].cargo + '</span></td>';
+                            t += '</tr>';
+                            t += '<tr>';
+                            t += '<td class="col-lg-6"><i class="fa fa-calendar"></i>&nbsp;<strong>Fecha de Registro:</strong></td>';
+                            t += '<td><span>' + lista[i].fe_union + '</span></td>';
+                            t += '</tr>';
+                            t += '</tbody>';
+                            t += '</table>';
                             t += '</div>';
-                            t += '<div class = "col col-lg-5 col-md-5 col-sm-5 col-xs-4">';
-                            t += '<h5> <strong> Cargo: </strong>' + lista[i].cargo + '</h5>';
-                            t += '<h5> <strong> Fecha de Registro: </strong>' + lista[i].fe_union + '</h5>';
+                            t += '<div class="col col-lg-2 col-md-2 col-sm-3 col-xs-3">';
+                            t += '<center style="margin-bottom: 10px"><strong>Asistencia</strong></center>';
+                            t += '<center><span class="chart" data-percent="' + lista[i].porcentaje + '" data-scale-color:="#fff"><span class="percent"></span></span></center>';
                             t += '</div>';
-                            t += '<div class = "col col-lg-2 col-md-2 col-sm-2 col-xs-4">';
-                            t += '<span class = "chart" data-percent = "' + lista[i].porcentaje + '" data - scale - color: = "#fff">';
-                            t += '<span class = "percent"> </span>';
-                            t += '</span>';
-                            t += '</div>';
-                            t += '</div>';
+                            
                             t += '</div>';
                             if (i !== (lista.length - 1)) {
                                 t += '<hr class="hrseparator">';
