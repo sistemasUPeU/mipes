@@ -22,15 +22,12 @@ public class Conexion {
     private static final String user = "root";
     private static final String clave = "root";
     private static Connection conn = null;
-    public static Statement st = null;
-    public static ResultSet rst = null;
 
     public static final Connection getConexion() {
         try {
             Class.forName(driver);
             if (conn == null) {
                 conn = DriverManager.getConnection(url, user, clave);
-                st = conn.createStatement();
             }
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("error: " + e);
@@ -46,15 +43,5 @@ public class Conexion {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public ResultSet RecibirDatos(String consulta) {
-        try {
-            getConexion();
-            rst = st.executeQuery(consulta);
-        } catch (Exception e) {
-            System.out.println("Error de la consulta " + e.getMessage());
-        }
-        return rst;
     }
 }
