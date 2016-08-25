@@ -296,7 +296,7 @@ public class PersonaDAO implements CrudInterface {
             cn = Conexion.getConexion();
             ps = cn.prepareStatement(sql);
             rs = ps.executeQuery();
-            System.out.println(sql);
+            System.out.println("filtro:"+filtro+" :"+sql);
             while (rs.next()) {
                 Map<String, Object> m = new HashMap<>();
                 m.put("nya", rs.getString("NOMBRES") + " " + rs.getString("APELLIDOS"));

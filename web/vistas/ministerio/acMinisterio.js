@@ -205,7 +205,7 @@ function quitardegrupo(idRegistro, id, idministerio) {//EDITAR
 function abc() {
     var buscador = new BuscadorP();
     buscador.core.setContainer($('.buscadorC'));
-    buscador.core.parametros.setFiltroNull();
+    buscador.core.parametros.setFiltroMI();
     buscador.core.parametros.setUrl("rep?opc=buscarPersona");
     buscador.core.paramRegistro.setUrl("crud?ent=pers&opc=3");
     buscador.show();

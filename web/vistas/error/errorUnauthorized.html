@@ -10,6 +10,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="fonts/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/openSansFont.css" rel="stylesheet" type="text/css"/>
         <link rel="icon" href="images/ico/Home-48.png">
     </head>
@@ -22,14 +23,17 @@ and open the template in the editor.
                 <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="well">
                         <div class="row">
-                            <div class="col col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                                <img src="images/Lock-528.png" alt="unauthorized" width="128" height="128">
-                            </div>
                             <div class="col col-lg-10 col-md-10 col-sm-8 col-xs-8">
                                 <h3>Acceso Denegado</h3>
                                 <h5>Usted no tiene los privilegios suficientes para acceder a esta
                                     p&aacute;gina web, contactese con el Administrador del
-                                    sistema para mayor informacion. Muchas gracias por su comprension.</h5>
+                                    sistema para mayor informacion.</h5>
+                                <ul class="list-unstyled list-inline">
+                                    <li>Si desea, puede volver a <a class="btn btn-success" href="login?opc=logout"><i class="fa fa-user"></i>&nbsp;&nbsp;Iniciar Sesion</a></li>
+                                </ul>
+                            </div>
+                            <div class="col col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                                <img src="images/Lock-528.png" alt="unauthorized" width="96" height="96" style="height: auto;width: 100%;margin-top: 20px">
                             </div>
                         </div>
                     </div>

@@ -65,7 +65,6 @@ public class MainControl extends HttpServlet {
             if (roles != null) {
                 if (!roles.isEmpty()) {
                     for (int i = 0; i < roles.size(); i++) {
-                        System.out.println(roles.get(i).get("idrol")+"--"+idrol);
                         if (roles.get(i).get("idrol").toString().equals(idrol)) {
                             return true;
                         }

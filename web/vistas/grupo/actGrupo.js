@@ -161,7 +161,7 @@ function quitardegrupo(idRegistro, id, idgrupo) {
 function abc() {
     var buscador = new BuscadorP();
     buscador.core.setContainer($('.buscadorC'));
-    buscador.core.parametros.setFiltroNull();
+    buscador.core.parametros.setFiltroGP();
     buscador.core.parametros.setUrl("rep?opc=buscarPersona");
     buscador.core.paramRegistro.setUrl("crud?ent=pers&opc=3");
     buscador.show();

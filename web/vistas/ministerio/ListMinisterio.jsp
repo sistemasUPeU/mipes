@@ -18,7 +18,7 @@
         if (MainControl.validateRol("6", session)) {
             tip = "listard";
             cla = "hidden";
-            clm = request.getAttribute("idiglesia").toString();
+            clm = session.getAttribute("idiglesia").toString();
         }
     }
     if (enable) {%>
