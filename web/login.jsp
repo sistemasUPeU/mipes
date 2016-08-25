@@ -171,6 +171,12 @@
                                             <span class="hidden-xs">leandroburgos@upeu.edu.pe</span>
                                         </li>
                                         <li>
+                                            <a href="mailto:jeffreyvargas@upeu.edu.pe" class="btn btn-dark btn-circle">
+                                                <i class="fa fa-envelope"></i>
+                                            </a>
+                                            <span class="hidden-xs">jeffreyvargas@upeu.edu.pe</span>
+                                        </li>
+                                        <li>
                                             <a href="https://www.facebook.com/Soceis-931586496886002/" target="blank" class="btn btn-dark btn-circle">
                                                 <i class="fa fa-facebook"></i>
                                             </a>

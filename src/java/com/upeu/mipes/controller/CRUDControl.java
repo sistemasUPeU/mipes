@@ -472,6 +472,7 @@ public class CRUDControl extends HttpServlet {
                         mp.put("lista", pA.listar(idp));
                         break;
                     case 3://crear
+                        System.out.println("dsfsdf");
                         nombre = request.getParameter("nombres").toUpperCase();
                         apellidos = request.getParameter("apellidos").toUpperCase();
                         direccion = request.getParameter("direccion").toUpperCase();

@@ -8,23 +8,24 @@
 <%@page import="com.upeu.mipes.controller.MainControl"%>
 <%boolean enable = false;
     String op = "";
-    String cla="";
-    String clab="";
-    String clabt="";
-    if (MainControl.validateRol("10", session) || MainControl.validateRol("5", session)) {
-        if (MainControl.validateRol("10", session)) {
-            op="registrar";
-            cla="btn btn-danger hidden";
-            clab="btn btn-success";
-            clabt="btn btn-success hidden";
-        }
-        if (MainControl.validateRol("5", session)) {
-            op="registrarIg";
-            cla="btn btn-danger";
-            clab="btn btn-success hidden";
-            clabt="btn btn-success";
-        }
+    String cla = "";
+    String clab = "";
+    String clabt = "";
+    if (MainControl.validateRol("10", session)) {
+        op = "registrar";
+        cla = "btn btn-danger hidden";
+        clab = "btn btn-success";
+        clabt = "btn btn-success hidden";
         enable = true;
+        out.print(10);
+    }
+    if (MainControl.validateRol("5", session)) {
+        op = "registrarIg";
+        cla = "btn btn-danger";
+        clab = "btn btn-success hidden";
+        clabt = "btn btn-success";
+        enable = true;
+        out.print(5);
     }
     if (enable) {
         String us = session.getAttribute("iduser").toString();
@@ -119,49 +120,49 @@
                 <script src="vistas/grupo/aopGrupo.js"></script>
                 <script src="js/validator/validator.js"></script>
                 <script>
-                    // initialize the validator function
-                    validator.message['date'] = 'not a real date';
+                                                // initialize the validator function
+                                                validator.message['date'] = 'not a real date';
 
-                    // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
-                    $('form')
-                            .on('blur', 'input[required], input.optional, select.required', validator.checkField)
-                            .on('change', 'select.required', validator.checkField)
-                            .on('keypress', 'input[required][pattern]', validator.keypress);
+                                                // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+                                                $('form')
+                                                        .on('blur', 'input[required], input.optional, select.required', validator.checkField)
+                                                        .on('change', 'select.required', validator.checkField)
+                                                        .on('keypress', 'input[required][pattern]', validator.keypress);
 
-                    $('.multi.required')
-                            .on('keyup blur', 'input', function () {
-                                validator.checkField.apply($(this).siblings().last()[0]);
-                            });
+                                                $('.multi.required')
+                                                        .on('keyup blur', 'input', function () {
+                                                            validator.checkField.apply($(this).siblings().last()[0]);
+                                                        });
 
-                    // bind the validation to the form submit event
-                    //$('#send').click('submit');//.prop('disabled', true);
+                                                // bind the validation to the form submit event
+                                                //$('#send').click('submit');//.prop('disabled', true);
 
-                    $('form').submit(function (e) {
-                        e.preventDefault();
-                        var submit = true;
-                        // evaluate the form using generic validaing
-                        if (!validator.checkAll($(this))) {
-                            submit = false;
-                        }
+                                                $('form').submit(function (e) {
+                                                    e.preventDefault();
+                                                    var submit = true;
+                                                    // evaluate the form using generic validaing
+                                                    if (!validator.checkAll($(this))) {
+                                                        submit = false;
+                                                    }
 
-                        if (submit) {
-                            $("#send").attr("type", "button");
-                            agregarGrupo();
-                        }
+                                                    if (submit) {
+                                                        $("#send").attr("type", "button");
+                                                        agregarGrupo();
+                                                    }
 
-                        return false;
-                    });
+                                                    return false;
+                                                });
 
-                    /* FOR DEMO ONLY */
-                    $('#vfields').change(function () {
-                        $('form').toggleClass('mode2');
-                    }).prop('checked', false);
+                                                /* FOR DEMO ONLY */
+                                                $('#vfields').change(function () {
+                                                    $('form').toggleClass('mode2');
+                                                }).prop('checked', false);
 
-                    $('#alerts').change(function () {
-                        validator.defaults.alerts = (this.checked) ? false : true;
-                        if (this.checked)
-                            $('form .alert').remove();
-                    }).prop('checked', false);
+                                                $('#alerts').change(function () {
+                                                    validator.defaults.alerts = (this.checked) ? false : true;
+                                                    if (this.checked)
+                                                        $('form .alert').remove();
+                                                }).prop('checked', false);
                 </script>
 
             </div>
