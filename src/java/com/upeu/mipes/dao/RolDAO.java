@@ -129,6 +129,7 @@ public class RolDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> listar(int idUsuario) {
+        System.out.println(idUsuario);
         sql = "{CALL GET_ROL(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {

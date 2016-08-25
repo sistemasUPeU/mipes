@@ -809,7 +809,7 @@ public class CRUDControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (MainControl.validateSession(request)) {
+        if (MainControl.validateSession(request) || (request.getParameter("ent").equals("pers") && request.getParameter("opc").equals("3"))) {
             processRequest(request, response);
         }
     }

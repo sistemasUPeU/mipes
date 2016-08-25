@@ -122,7 +122,7 @@
                                         <span id="inputSuccess2Status3" class="sr-only">(success)</span>
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <button type="submit" class="btn btn-danger btn-block" id="send">Registrarse</button>
+                                        <button type="button" class="btn btn-danger btn-block" id="send">Registrarse</button>
                                     </div>
                                 </form>
                             </div>
@@ -260,8 +260,7 @@
             $('.multi.required').on('keyup blur', 'input', function () {
                 validator.checkField.apply($(this).siblings().last()[0]);
             });
-            $('#regPer').submit(function (e) {
-                e.preventDefault();
+            $('#send').click(function () {
                 var submit = true;
                 if (!validator.checkAll($(this))) {
                     submit = false;
