@@ -329,6 +329,7 @@ public class PersonaDAO implements CrudInterface {
             } else {
                 cs.setString(7, m.get("fecha").toString());
             }
+            System.out.println(m.get("fecha").toString()+"---");
             cs.setInt(8, Integer.parseInt(m.get("eslider").toString()));
             cs.setInt(9, Integer.parseInt(m.get("idtabla").toString()));
             rs = cs.executeQuery();
