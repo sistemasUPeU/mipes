@@ -19,11 +19,17 @@ function successMessage(messagge) {
 
 function showPnotify(message, type){
     PNotify.removeAll(); 
+    var title;
+    switch (type){
+        case "info":title="Info";break;
+        case "error":title="Error";break;
+        case "success":title="Success";break;
+    }
     var notice=new PNotify({
-        title: type+" Message",
+        title: title+" Message",
         text: message,
         type: type,
-        delay: "1500",
+        delay: "2500",
         hide:true
     });
     
