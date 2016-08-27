@@ -47,7 +47,7 @@
                         <!-- menu prile quick info -->
                         <div class="profile">
                             <div class="profile_pic">
-                                <img src="images/default.png" alt="..." class="img-circle profile_img">
+                                <img src="images/user.png" alt="..." class="img-circle profile_img">
                             </div>
                             <div class="profile_info">
                                 <span>Bienvenido(a)</span>
@@ -234,14 +234,11 @@
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                         <img src="images/default.png" alt="">
-                                        <%=usuario%>
+                                        <%=nombre%>
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                        <li><a href="javascript:;">Perfil</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">Ayuda</a>
+                                        <li><a href="home?orden=1&opc=1" target="frame">Perfil</a>
                                         </li>
                                         <li><a href="login?opc=logout"><i class="fa fa-sign-out pull-right"></i> Salir</a>
                                         </li>
@@ -255,7 +252,8 @@
 
                 <!-- page content -->
                 <div class="right_col" role="main" style="height: 100%;margin-top: 0px;margin-bottom: 0px; padding: 0px;background: #fff">
-                    <iframe name="frame" id="idframe" onload="loadFrame(this.contentWindow.location);"
+                    <iframe src="inicio.jsp"
+                        name="frame" id="idframe" onload="loadFrame(this.contentWindow.location);"
                             style="height: 650px;width: 103%; border: none; overflow-y: hidden">
                     </iframe>
                 </div>
