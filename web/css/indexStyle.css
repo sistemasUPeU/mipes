@@ -8,7 +8,36 @@ and open the template in the editor.
     Author     : Andres
 */
 
-footer{
-    height: 100px;
-    background: #2A3F54;
+@media screen and (max-width: 1024px){
+    .mdl-layout__header{
+        display: block !important;
+    }
+}
+@media screen and (min-width: 1024px){
+    .mdl-mega-footer--drop-down-section, .mdl-mega-footer--drop-down-section:nth-child(3), .mdl-mega-footer--drop-down-section:nth-child(4), .mdl-mega-footer__drop-down-section, .mdl-mega-footer__drop-down-section:nth-child(3), .mdl-mega-footer__drop-down-section:nth-child(4){
+        width: 33%;
+    }
+}
+hr{
+    margin-bottom: 3px;
+}
+
+.menu-title{
+    padding-left: 16px;
+    margin-bottom: 5px;
+    margin-top: 8px;
+    color: #666666;
+    font-size: small;
+    font-weight: bold;
+}
+
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link{
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-decoration: none;
+}
+.mdl-navigation__link:hover{
+    text-decoration: none;
 }
