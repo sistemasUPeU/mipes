@@ -60,7 +60,6 @@
                     <div class="mdl-layout-spacer"></div>
                     <!-- Navigation -->
                     <nav class="mdl-navigation">
-                        <a class="mdl-navigation__link" href="inicio.jsp" target="frame">Inicio</a>
                         <button id="demo-menu-lower-right"
                                 class="mdl-button mdl-js-button mdl-button--icon">
                             <i class="material-icons">person</i>
@@ -321,6 +320,8 @@
         <script>
                             $(document).ready(function () {
                                 loadFrame();
+                                var layout = document.querySelector('.mdl-layout');
+                                layout.MaterialLayout.toggleDrawer();
                             });
                             function loadFrame(url) {
                                 if (url.toString().indexOf("login") !== -1) {

@@ -4,6 +4,9 @@
     Author     : Andres
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Map"%>
+<%@page import="com.upeu.mipes.dao.UsuarioDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,67 +26,59 @@
         <link rel="icon" href="images/ico/Home-48.png">
         <link href="css/openSansFont.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>
+    <body style="background: #F7F7F7">
+        <style>
+            .btn-full{
+                width: 95%;
+                margin-bottom: 16px;
+                position: static;
+            }
+        </style>
         <br>
         <div class="container">
             <div class="row">
                 <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <center><h3>CRM Digital</h3></center>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="col col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
+                        <div class="panel panel-info">
                             <div class="panel-heading">Anuncios</div>
                             <div class="panel-body">
+                                <ul class="list-unstyled">
+                                    <li>Es necesario que realize el cambio a su clave de acceso. <a href="home?orden=1&opc=1" class="btn btn-success btn-xs pull-right">Click Aqui</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">Menú Principal</div>
                             <div class="panel-body">
-                                <img src="images/6d.jpg" alt="portada" style="width: 100%; height: auto;margin: 0 auto"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                <div class="row">
+                                    <%UsuarioDAO ud = new UsuarioDAO();
+                                        ArrayList<Map<String, Object>> lista = ud.getLinks(request.getSession().getAttribute("iduser"));
+                                    %>
+                                    <%for (int i = 0; i < lista.size(); i++) {
+                                    %>
+                                    <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <a class="btn btn-success btn-full" href="<%=lista.get(i).get("link")%>">
+                                            <i class="<%=lista.get(i).get("icon")%>"></i>
+                                            <p><%=lista.get(i).get("nombrelink")%></p>
+                                        </a>
+                                    </div>
+                                    <%}%>
 
-            </div>
-        </div>
-
-        <div class="modal fade adModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="adTitle">Urgente</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12" id="adContent">
-                                <div class="alert alert-success" role="alert">
-                                    <span>Es necesario que cambie su clave de acceso, si ya lo hizo, ignore este aviso</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <input type="hidden" id="isAd" value="1">
-                        <input type="button" value="Cerrar" class="btn btn-default pull-left" data-dismiss="modal">
-                        <a href="home?orden=1&opc=1" class="btn btn-primary pull-right"><i class="fa fa-lock"></i> Cambiar Clave</a>
-                    </div>
                 </div>
+
             </div>
         </div>
+
         <script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script>
             $(document).ready(function () {
-
-                if ($('#isAd').val() === '1') {
-                    $('.adModal').modal('show');
-                }
             });
         </script>
     </body>
