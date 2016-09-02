@@ -25,7 +25,6 @@
         clab = "btn btn-success hidden";
         clabt = "btn btn-success";
         enable = true;
-        out.print(5);
     }
     if (enable) {
         String us = session.getAttribute("iduser").toString();
