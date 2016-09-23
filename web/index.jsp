@@ -33,7 +33,7 @@
         <link href="css/openSansFont.css" rel="stylesheet" type="text/css"/>
         <link href="css/material.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/indexStyle.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="fonts/iconfont/material-icons.css" rel="stylesheet" type="text/css"/>
         <script src="js/material.min.js" type="text/javascript"></script>
     </head>
 
@@ -97,6 +97,9 @@
                     <nav class="mdl-navigation" style="color: white">
                         <%UsuarioDAO ud = new UsuarioDAO();
                             ArrayList<Map<String, Object>> lista = ud.getLinks(request.getSession().getAttribute("iduser"));
+                            for(int k=0;k<lista.size();k++){
+                                out.print(k+"--"+lista.get(k).get("nombrelink"));
+                            }
                         %>
                         <!--PERFIL: ORDEN 1-->
                         <%ArrayList<Map<String, Object>> l1 = ud.listOrden(lista, 1);

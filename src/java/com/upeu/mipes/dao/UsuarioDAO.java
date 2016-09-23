@@ -156,6 +156,7 @@ public class UsuarioDAO implements CrudInterface {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
             cs.setInt(1, Integer.parseInt(idPrivilegio.toString()));
+            System.out.println(idPrivilegio);
             rs = cs.executeQuery();
             while (rs.next()) {
                 Map<String, Object> r = new HashMap<>();

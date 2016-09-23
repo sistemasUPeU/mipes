@@ -274,6 +274,7 @@
                 });
             }
             function listarAllTipoLeccion(id) {
+                alert('hi');
                 var url = "crud?ent=leccion&opc=5";
                 $.post(url, function (objJson) {
                     var lista = objJson.lista;
