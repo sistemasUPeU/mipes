@@ -22,7 +22,16 @@ public class Conexion {
     private static final String user = "root";
     private static final String clave = "root";
     private static Connection conn = null;
-
+    /*private static final String url = "jdbc:mysql://138.68.55.39:3306/dbmipes";
+    private static final String driver = "com.mysql.jdbc.Driver";
+    private static final String user = "root";
+    private static final String clave = "V1llaDOup3u20160927";
+    private static Connection conn = null;*/
+    /*private static final String url = "jdbc:mysql://138.68.55.39:3306/villa2016";
+    private static final String driver = "com.mysql.jdbc.Driver";
+    private static final String user = "villa2016";
+    private static final String clave = "dbvill4:140916";
+    private static Connection conn = null;*/
     public static final Connection getConexion() {
         try {
             Class.forName(driver);
