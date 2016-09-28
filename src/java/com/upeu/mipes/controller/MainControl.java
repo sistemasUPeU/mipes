@@ -51,7 +51,7 @@ public class MainControl extends HttpServlet {
         }
     }
 
-    public static boolean validateSession(HttpServletRequest request){
+    public static boolean validateSession(HttpServletRequest request) {
         try {
             return request.getSession(false).getAttribute("iduser") != null;
         } catch (Exception e) {

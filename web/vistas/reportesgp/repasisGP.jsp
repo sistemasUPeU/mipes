@@ -91,6 +91,9 @@
     if (us == 4) {%>
 <%@include file="/vistas/reportesgp/repasisGPDIS.jsp" %> 
 <%  }
+    if (us == 7) { %>
+<%@include file="/vistas/reportesgp/repasisGPCA.jsp" %> 
+<% }
     } else { %>
 <%@include file="../error/errorUnauthorized.html" %>  
 <%    }
