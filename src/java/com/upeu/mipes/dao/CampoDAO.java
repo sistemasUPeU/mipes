@@ -31,7 +31,7 @@ public class CampoDAO implements CrudInterface {
 
     @Override
     public ArrayList<Map<String, ?>> listar() {
-        sql = "SELECT * FROM CAMPO";
+        sql = "SELECT * FROM campo";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -56,7 +56,7 @@ public class CampoDAO implements CrudInterface {
     @Override
     public boolean add(Object o) {
         boolean p = false;
-        sql = "INSERT INTO CAMPO (NOMBRE,idLIDER,ESTADO) VALUES(?,?,?)";
+        sql = "INSERT INTO campo (NOMBRE,idLIDER,ESTADO) VALUES(?,?,?)";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -78,7 +78,7 @@ public class CampoDAO implements CrudInterface {
     @Override
     public boolean edit(Object o) {
         boolean p = false;
-        sql = "UPDATE CAMPO SET NOMBRE=? WHERE idCAMPO=?";
+        sql = "UPDATE campo SET NOMBRE=? WHERE idCAMPO=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -99,7 +99,7 @@ public class CampoDAO implements CrudInterface {
     @Override
     public boolean delete(Object o) {
         boolean p = false;
-        sql = "DELETE FROM CAMPO WHERE IDCAMPO=?";
+        sql = "DELETE FROM campo WHERE IDCAMPO=?";
         try {
             cn = Conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -116,7 +116,7 @@ public class CampoDAO implements CrudInterface {
     }
 
     public boolean desactivar(int id) {
-        sql = "UPDATE CAMPO SET ESTADO='0' WHERE idCAMPO=" + id;
+        sql = "UPDATE campo SET ESTADO='0' WHERE idCAMPO=" + id;
         boolean p = false;
         try {
             cn = Conexion.getConexion();
@@ -132,7 +132,7 @@ public class CampoDAO implements CrudInterface {
     }
 
     public boolean activar(int id) {
-        sql = "UPDATE CAMPO SET ESTADO='1' WHERE idCAMPO=" + id;
+        sql = "UPDATE campo SET ESTADO='1' WHERE idCAMPO=" + id;
         boolean p = false;
         try {
             cn = Conexion.getConexion();
@@ -148,7 +148,7 @@ public class CampoDAO implements CrudInterface {
     }
     
     public ArrayList<Map<String, ?>> listarun(int id) {
-        sql = "SELECT * FROM CAMPO WHERE idCAMPO=" + id;
+        sql = "SELECT * FROM campo WHERE idCAMPO=" + id;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();

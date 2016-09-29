@@ -29,7 +29,7 @@ public class EscuelaDAO implements CrudInterface {
     
     @Override
     public ArrayList<Map<String, ?>> listar() {
-        sql = "SELECT * FROM ESCUELA";
+        sql = "SELECT * FROM escuela";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -51,7 +51,7 @@ public class EscuelaDAO implements CrudInterface {
 
     @Override
     public boolean add(Object o) {
-        sql = "INSERT INTO ESCUELA (idESCUELA, idIGLESIA, NOMBRE, ESTADO) VALUES(null,?,?,?)";
+        sql = "INSERT INTO escuela (idESCUELA, idIGLESIA, NOMBRE, ESTADO) VALUES(null,?,?,?)";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -69,7 +69,7 @@ public class EscuelaDAO implements CrudInterface {
 
     @Override
     public boolean edit(Object o) {
-        sql = "UPDATE ESCUELA SET NOMBRE=?, ESTADO=? WHERE IDESCUELA=?";
+        sql = "UPDATE escuela SET NOMBRE=?, ESTADO=? WHERE IDESCUELA=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -87,7 +87,7 @@ public class EscuelaDAO implements CrudInterface {
 
     @Override
     public boolean delete(Object o) {
-        sql = "DELETE FROM ESCUELA WHERE IDESCUELA=?";
+        sql = "DELETE FROM escuela WHERE IDESCUELA=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -102,7 +102,7 @@ public class EscuelaDAO implements CrudInterface {
     }
     
     public ArrayList<Map<String, ?>> listar(int idIglesia) {
-        sql = "{CALL GET_ESCUELA(?)}";
+        sql = "{CALL get_escuela(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();

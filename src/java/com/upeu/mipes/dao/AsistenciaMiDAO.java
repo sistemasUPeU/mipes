@@ -49,7 +49,7 @@ public class AsistenciaMiDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> listar(int idMinisterio) {
-        sql = "{CALL LIST_ASISTENCIAMI(?)}";
+        sql = "{CALL list_asistenciami(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -76,7 +76,7 @@ public class AsistenciaMiDAO implements CrudInterface {
     }
 
     public int regAsistenciaMin(Object o) {
-        sql = "{CALL REG_ASISTENCIA_MIN(?,?,?,?,?,?)}";
+        sql = "{CALL reg_asistencia_min(?,?,?,?,?,?)}";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -99,7 +99,7 @@ public class AsistenciaMiDAO implements CrudInterface {
     }
 
     public boolean regAsistenciaIntegrante(Object o) {
-        sql = "{CALL REG_ASISTENCIA_INT_MIN(?, ?, ?)}";
+        sql = "{CALL reg_asistencia_int_min(?, ?, ?)}";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -119,7 +119,7 @@ public class AsistenciaMiDAO implements CrudInterface {
     }
     
     public boolean puedeRegistrar(int idMinisterio) {
-        sql = "{CALL IS_ENABLE_AS_MI(?)}";
+        sql = "{CALL isenable_as_mi(?)}";
         try {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -138,7 +138,7 @@ public class AsistenciaMiDAO implements CrudInterface {
     }
     
     public ArrayList<Map<String, ?>> listaASISTENCIAS(String fechai, String fechaf, int id) {
-        sql = "SELECT * FROM ASISTENCIAMI WHERE FECHA BETWEEN '" + fechai + "' AND '" + fechaf + "' AND idMINISTERIO=" + id;
+        sql = "SELECT * FROM asistenciami WHERE FECHA BETWEEN '" + fechai + "' AND '" + fechaf + "' AND idMINISTERIO=" + id;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -165,7 +165,7 @@ public class AsistenciaMiDAO implements CrudInterface {
     }
     
     public ArrayList<Map<String, ?>> listaASISTENCIASIG(String fechai, String fechaf, int id) {
-        sql = "{CALL GET_DATOSASISMINIG(?,?,?)}";
+        sql = "{CALL get_datosasisminig(?,?,?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -193,7 +193,7 @@ public class AsistenciaMiDAO implements CrudInterface {
     }
     
     public ArrayList<Map<String, ?>> listaASISTENCIASDIS(String fechai, String fechaf, int id) {
-        sql = "{CALL GET_DATOSASISDIS(?,?,?)}";
+        sql = "{CALL get_datosasisdis(?,?,?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();

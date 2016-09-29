@@ -32,7 +32,7 @@ public class MinisterioDAO implements CrudInterface {
     @Override
     public boolean add(Object o) {
         boolean p = false;
-        sql = "INSERT INTO MINISTERIO (idIGLESIA,NOMBRE,FE_CREACION,US_CREADOR,idLIDER,ESTADO) VALUES(?,?,(SELECT SYSDATE()),?,?,?)";
+        sql = "INSERT INTO ministerio (idIGLESIA,NOMBRE,FE_CREACION,US_CREADOR,idLIDER,ESTADO) VALUES(?,?,(SELECT SYSDATE()),?,?,?)";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -56,7 +56,7 @@ public class MinisterioDAO implements CrudInterface {
     @Override
     public boolean edit(Object o) {
         boolean p = false;
-        sql = "UPDATE MINISTERIO SET NOMBRE=? WHERE IDMINISTERIO=?";
+        sql = "UPDATE ministerio SET NOMBRE=? WHERE IDMINISTERIO=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -77,7 +77,7 @@ public class MinisterioDAO implements CrudInterface {
     @Override
     public boolean delete(Object o) {
         boolean p = false;
-        sql = "DELETE FROM MINISTERIO WHERE IDMINISTERIO=?";
+        sql = "DELETE FROM ministerio WHERE IDMINISTERIO=?";
         try {
             cn = Conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -94,7 +94,7 @@ public class MinisterioDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> lista(int idIglesia) {
-        sql = "{CALL GET_MINISTERIO(?)}";
+        sql = "{CALL get_ministerio(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -121,7 +121,7 @@ public class MinisterioDAO implements CrudInterface {
     }
 
     public boolean desactivar(int id) {
-        sql = "UPDATE MINISTERIO SET ESTADO='0' WHERE idMINISTERIO=" + id;
+        sql = "UPDATE ministerio SET ESTADO='0' WHERE idMINISTERIO=" + id;
         boolean p = false;
         try {
             cn = Conexion.getConexion();
@@ -137,7 +137,7 @@ public class MinisterioDAO implements CrudInterface {
     }
 
     public boolean activar(int id) {
-        sql = "UPDATE MINISTERIO SET ESTADO='1' WHERE idMINISTERIO=" + id;
+        sql = "UPDATE ministerio SET ESTADO='1' WHERE idMINISTERIO=" + id;
         boolean p = false;
         try {
             cn = Conexion.getConexion();
@@ -153,7 +153,7 @@ public class MinisterioDAO implements CrudInterface {
     }
     
     public ArrayList<Map<String, ?>> listaun(int id) {
-        sql = "SELECT * FROM MINISTERIO WHERE IDMINISTERIO=" + id;
+        sql = "SELECT * FROM ministerio WHERE IDMINISTERIO=" + id;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();

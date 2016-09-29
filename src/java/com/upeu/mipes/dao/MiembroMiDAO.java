@@ -48,7 +48,7 @@ public class MiembroMiDAO implements CrudInterface {
     }
 
     public boolean AddIntg(int Per, int MIN) {
-        sql = "INSERT INTO MIEMBROMI (idPERSONA,idMINISTERIO,FE_UNION,ESTADO) VALUES (" + Per + "," + MIN + ",(SELECT SYSDATE()),1)";
+        sql = "INSERT INTO miembromi (idPERSONA,idMINISTERIO,FE_UNION,ESTADO) VALUES (" + Per + "," + MIN + ",(SELECT SYSDATE()),1)";
         boolean p = false;
         try {
             cn = Conexion.getConexion();
@@ -64,7 +64,7 @@ public class MiembroMiDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> EstIntGP(int Per) {
-        sql = "SELECT * FROM MIEMBROMI WHERE IDPERSONA= " + Per + " AND ESTADO=1";
+        sql = "SELECT * FROM miembromi WHERE IDPERSONA= " + Per + " AND ESTADO=1";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -88,7 +88,7 @@ public class MiembroMiDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> lista(int idMin) {
-        sql = "SELECT P.IDPERSONA,P.NOMBRES,P.APELLIDOS,P.DNI,P.TELEFONO,P.CORREO,M.IDMIEMBROMI,M.idMINISTERIO,M.ESTADO FROM PERSONA P,MIEMBROMI M WHERE M.IDPERSONA=P.IDPERSONA AND M.IDMINISTERIO=" + idMin + " AND M.ESTADO=1;";
+        sql = "SELECT P.IDPERSONA,P.NOMBRES,P.APELLIDOS,P.DNI,P.TELEFONO,P.CORREO,M.IDMIEMBROMI,M.idMINISTERIO,M.ESTADO FROM persona P,miembromi M WHERE M.IDPERSONA=P.IDPERSONA AND M.IDMINISTERIO=" + idMin + " AND M.ESTADO=1;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -116,7 +116,7 @@ public class MiembroMiDAO implements CrudInterface {
     }
 
     public boolean desvincular(int id) {
-        sql = "UPDATE MIEMBROMI SET ESTADO='0' WHERE idMIEMBROMI=" + id;
+        sql = "UPDATE miembromi SET ESTADO='0' WHERE idMIEMBROMI=" + id;
         boolean p = false;
         try {
             cn = Conexion.getConexion();
@@ -133,7 +133,7 @@ public class MiembroMiDAO implements CrudInterface {
 
     public ArrayList<Map<String, ?>> listaIG(int idIG) {
         sql = "SELECT DISTINCT(MN.NOMBRE) MINISTERIO,COUNT(M.IDMIEMBROMI) MIEMBROS "
-                + " FROM MIEMBROMI M,MINISTERIO MN,IGLESIA I "
+                + " FROM miembromi M,ministerio MN,iglesia I "
                 + " WHERE MN.IDIGLESIA=I.IDIGLESIA "
                 + " AND I.IDIGLESIA=" + idIG
                 + " AND M.ESTADO=1 "
@@ -159,7 +159,7 @@ public class MiembroMiDAO implements CrudInterface {
 
     public ArrayList<Map<String, ?>> listaDis(int idDis) {
         sql = "SELECT DISTINCT(I.NOMBRE) IGLESIA,COUNT(M.IDMIEMBROMI) MIEMBROS "
-                + " FROM MIEMBROMI M,MINISTERIO MN,IGLESIA I,DISTRITO D "
+                + " FROM miembromi M,ministerio MN,iglesia I,distrito D "
                 + " WHERE MN.IDIGLESIA=I.IDIGLESIA "
                 + " AND D.IDDISTRITO=I.IDDISTRITO "
                 + " AND D.IDDISTRITO="+idDis

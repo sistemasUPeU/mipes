@@ -32,7 +32,7 @@ public class LeccionDAO implements CrudInterface {
 
     @Override
     public ArrayList<Map<String, ?>> listar() {
-        sql="SELECT * FROM LECCION";
+        sql="SELECT * FROM leccion";
         try {
             cn=Conexion.getConexion();
             ps=cn.prepareStatement(sql);
@@ -46,7 +46,7 @@ public class LeccionDAO implements CrudInterface {
 
     @Override
     public boolean add(Object o) {
-        sql="INSERT INTO LECCION (idLECCION, idTIPOLECCION, NOMBRE, ESTADO) VALUES(NULL,?,?,?)";
+        sql="INSERT INTO leccion (idLECCION, idTIPOLECCION, NOMBRE, ESTADO) VALUES(NULL,?,?,?)";
         Map<String, Object> m=(Map<String, Object>) o;
         try {
             cn=Conexion.getConexion();
@@ -63,7 +63,7 @@ public class LeccionDAO implements CrudInterface {
 
     @Override
     public boolean edit(Object o) {
-        sql="UPDATE LECCION SET idTIPOLECCION=?, NOMBRE=?, ESTADO=? WHERE idLECCION=?";
+        sql="UPDATE leccion SET idTIPOLECCION=?, NOMBRE=?, ESTADO=? WHERE idLECCION=?";
         Map<String, Object> m=(Map<String, Object>) o;
         try {
             cn=Conexion.getConexion();
@@ -81,7 +81,7 @@ public class LeccionDAO implements CrudInterface {
 
     @Override
     public boolean delete(Object o) {
-        sql="DELETE FROM LECCION WHERE idLECCION=?";
+        sql="DELETE FROM leccion WHERE idLECCION=?";
         try {
             cn=Conexion.getConexion();
             ps=cn.prepareStatement(sql);
@@ -94,7 +94,7 @@ public class LeccionDAO implements CrudInterface {
     }
     
     public ArrayList<Map<String, ?>> listar(int idt,int idd) {
-        sql="{CALL GET_LECCION_DISCIPULO(?,?)}";
+        sql="{CALL get_leccion_discipulo(?,?)}";
         try {
             cn=Conexion.getConexion();
             cs=cn.prepareCall(sql);
@@ -108,7 +108,7 @@ public class LeccionDAO implements CrudInterface {
         }
     }
     public ArrayList<Map<String, ?>> listarTipo() {
-        sql="SELECT * FROM TIPOLECCION";
+        sql="SELECT * FROM tipoleccion";
         try {
             cn=Conexion.getConexion();
             ps=cn.prepareStatement(sql);
@@ -120,7 +120,7 @@ public class LeccionDAO implements CrudInterface {
         }
     }
     public ArrayList<Map<String, ?>> listarTipo(int iddiscipulado) {
-        sql="{CALL GET_TIPO_LECCION_DISCIPULO(?)}";
+        sql="{CALL get_tipo_leccion_discipulo(?)}";
         try {
             cn=Conexion.getConexion();
             cs=cn.prepareCall(sql);
@@ -133,7 +133,7 @@ public class LeccionDAO implements CrudInterface {
         }
     }
     public int addTipo(Object o) {
-        sql="{CALL ADD_TIPOLECCION(?,?)}";
+        sql="{CALL add_tipoleccion(?,?)}";
         Map<String, Object> m=(Map<String, Object>) o;
         try {
             cn=Conexion.getConexion();
@@ -148,7 +148,7 @@ public class LeccionDAO implements CrudInterface {
     }
     
     public boolean asignarLeccion(int idLeccion, int idDiscipulo) {
-        sql="INSERT INTO DETLECCION (idTIPOLECCION, idDISCIPULADO, ESTADO) VALUES(?,?,'1')";
+        sql="INSERT INTO detleccion (idTIPOLECCION, idDISCIPULADO, ESTADO) VALUES(?,?,'1')";
         try {
             cn=Conexion.getConexion();
             ps=cn.prepareStatement(sql);
@@ -161,7 +161,7 @@ public class LeccionDAO implements CrudInterface {
         }
     }
     public boolean regLeccion(int idLeccion, int idDiscipulo, int idd) {
-        sql="INSERT INTO TRABMISIONERO (idTRABMISIONERO, idLECCION, idDISCIPULADO, idDISCIPULADOR, FECHA) VALUES("
+        sql="INSERT INTO trabmisionero (idTRABMISIONERO, idLECCION, idDISCIPULADO, idDISCIPULADOR, FECHA) VALUES("
                 + "NULL, ?,?,?,NOW());";
         try {
             cn=Conexion.getConexion();

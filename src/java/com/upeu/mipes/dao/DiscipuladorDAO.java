@@ -31,7 +31,7 @@ public class DiscipuladorDAO implements CrudInterface {
 
     @Override
     public ArrayList<Map<String, ?>> listar() {
-        sql = "SELECT P.NOMBRES, P.APELLIDOS, D.* FROM PERSONA P, DISCIPULADOR D, MIEMBROGP M"
+        sql = "SELECT P.NOMBRES, P.APELLIDOS, D.* FROM persona P, discipulador D, miembrogp M"
                 + " WHERE P.IDPERSONA=M.IDPERSONA AND D.IDMIEMBROGP=M.IDMIEMBROGP;";
         try {
             cn = Conexion.getConexion();
@@ -46,7 +46,7 @@ public class DiscipuladorDAO implements CrudInterface {
 
     @Override
     public boolean add(Object o) {
-        sql = "INSERT INTO DISCIPULADOR (idDISCIPULADOR, idMIEMBROGP, idASOCIADO, FE_INICIO, ESTADO) VALUES(NULL,?,?,NOW(),'1');";
+        sql = "INSERT INTO discipulador (idDISCIPULADOR, idMIEMBROGP, idASOCIADO, FE_INICIO, ESTADO) VALUES(NULL,?,?,NOW(),'1');";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -67,7 +67,7 @@ public class DiscipuladorDAO implements CrudInterface {
 
     @Override
     public boolean delete(Object o) {
-        sql = "{CALL DEL_DISCIPULADOR(?)}";
+        sql = "{CALL del_discipulador(?)}";
         try {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -84,7 +84,7 @@ public class DiscipuladorDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> listar(int idGrupo) {
-        sql = "{CALL GET_DISCIPULADOR_GP(?)}";
+        sql = "{CALL get_discipulador(?)}";
         try {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -98,7 +98,7 @@ public class DiscipuladorDAO implements CrudInterface {
     }
 
     public boolean addDiscipulo(int idPersona, int idDiscipulador, String tipo) {
-        sql = "{CALL ADD_DISCIPULO(?,?,?)}";
+        sql = "{CALL add_discipulador(?,?,?)}";
         try {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -113,7 +113,7 @@ public class DiscipuladorDAO implements CrudInterface {
         }
     }
     public boolean addAsociado(int idDiscipulador, int idMiembro) {
-        sql = "{CALL ADD_ASOCIADO(?,?)}";
+        sql = "{CALL add_asociado(?,?)}";
         try {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -127,7 +127,7 @@ public class DiscipuladorDAO implements CrudInterface {
         }
     }
     public boolean delDiscipulo(int iddi, int idDiscipulador) {
-        sql = "DELETE FROM DETDISCIPULADOR WHERE IDDISCIPULADOR=? AND IDDISCIPULADO=?";
+        sql = "DELETE FROM detdiscipulador WHERE IDDISCIPULADOR=? AND IDDISCIPULADO=?";
         try {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -141,7 +141,7 @@ public class DiscipuladorDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> listDiscipulo(int idDiscipulador) {
-        sql = "{CALL GET_DISCIPULO(?)}";
+        sql = "{CALL get_discipulo(?)}";
         try {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -156,7 +156,7 @@ public class DiscipuladorDAO implements CrudInterface {
 
     public ArrayList<Map<String, ?>> getDiscipulador(int iddi) {
         sql = "SELECT P.NOMBRES, P.APELLIDOS, D.*\n"
-                + "FROM PERSONA P,DISCIPULADOR D, MIEMBROGP M\n"
+                + "FROM persona P,discipulador D, miembrogp M\n"
                 + "WHERE P.IDPERSONA=M.IDPERSONA\n"
                 + "AND D.IDMIEMBROGP=M.IDMIEMBROGP AND D.IDDISCIPULADOR="+iddi;
         try {
@@ -171,7 +171,7 @@ public class DiscipuladorDAO implements CrudInterface {
     }
     
     public int getIdDiscipulador(int idpersona){
-        sql = "SELECT IDDISCIPULADOR FROM DISCIPULADOR WHERE IDMIEMBROGP="
+        sql = "SELECT IDDISCIPULADOR FROM discipulador WHERE IDMIEMBROGP="
                 + "(SELECT IDMIEMBROGP FROM MIEMBROGP WHERE IDPERSONA=?)";
         try {
             cn = Conexion.getConexion();

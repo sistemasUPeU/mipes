@@ -25,7 +25,7 @@ public class DistritoDAO implements CrudInterface {
 
     @Override
     public ArrayList<Map<String, ?>> listar() {
-        sql = "SELECT * FROM DISTRITO";
+        sql = "SELECT * FROM distrito";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -48,7 +48,7 @@ public class DistritoDAO implements CrudInterface {
 
     @Override
     public boolean add(Object o) {
-        sql = "{CALL ADD_DISTRITO(?,?,?,?)}";
+        sql = "{CALL add_distrito(?,?,?,?)}";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -67,7 +67,7 @@ public class DistritoDAO implements CrudInterface {
 
     @Override
     public boolean edit(Object o) {
-        sql = "UPDATE DISTRITO SET NOMBRE=?,ESTADO=? WHERE IDDISTRITO=?";
+        sql = "UPDATE distrito SET NOMBRE=?,ESTADO=? WHERE IDDISTRITO=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -85,7 +85,7 @@ public class DistritoDAO implements CrudInterface {
 
     @Override
     public boolean delete(Object o) {
-        sql = "DELETE FROM DISTRITO WHERE IDDISTRITO=?";
+        sql = "DELETE FROM distrito WHERE IDDISTRITO=?";
         try {
             cn = Conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -99,7 +99,7 @@ public class DistritoDAO implements CrudInterface {
     }
     
     public ArrayList<Map<String, ?>> listar(int idCampo) {
-        sql = "{CALL GET_DISTRITO(?)}";
+        sql = "{CALL get_distrito(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();

@@ -37,7 +37,7 @@ public class GrupoDAO implements CrudInterface {
     @Override
     public boolean add(Object o) {
         boolean p = false;
-        sql = "INSERT INTO GRUPO (idESCUELA , NOMBRE , FE_CREACION , US_CREADOR , LUG_REUNION , idLIDER,ESTADO ) VALUES(?,?,(SELECT SYSDATE()),?,?,?,?)";
+        sql = "INSERT INTO grupo (idESCUELA , NOMBRE , FE_CREACION , US_CREADOR , LUG_REUNION , idLIDER,ESTADO ) VALUES(?,?,(SELECT SYSDATE()),?,?,?,?)";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -67,7 +67,7 @@ public class GrupoDAO implements CrudInterface {
     @Override
     public boolean edit(Object o) {
         boolean p = false;
-        sql = "UPDATE GRUPO SET NOMBRE=? WHERE idGRUPO=?";
+        sql = "UPDATE grupo SET NOMBRE=? WHERE idGRUPO=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -88,7 +88,7 @@ public class GrupoDAO implements CrudInterface {
     @Override
     public boolean delete(Object o) {
         boolean p = false;
-        sql = "DELETE FROM GRUPO WHERE idGRUPO=?";
+        sql = "DELETE FROM grupo WHERE idGRUPO=?";
         try {
             cn = Conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -105,7 +105,7 @@ public class GrupoDAO implements CrudInterface {
     }
 
     public boolean desactivar(int id) {
-        sql = "UPDATE GRUPO SET ESTADO='0' WHERE idGRUPO=" + id;
+        sql = "UPDATE grupo SET ESTADO='0' WHERE idGRUPO=" + id;
         boolean p = false;
         try {
             cn = Conexion.getConexion();
@@ -121,7 +121,7 @@ public class GrupoDAO implements CrudInterface {
     }
 
     public boolean activar(int id) {
-        sql = "UPDATE GRUPO SET ESTADO='1' WHERE idGRUPO=" + id;
+        sql = "UPDATE grupo SET ESTADO='1' WHERE idGRUPO=" + id;
         boolean p = false;
         try {
             cn = Conexion.getConexion();
@@ -137,7 +137,7 @@ public class GrupoDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> lista(int id) {
-        sql = "{CALL GET_GRUPO(?)}";
+        sql = "{CALL get_grupo(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -165,7 +165,7 @@ public class GrupoDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> listaun(int id) {
-        sql = "SELECT * FROM GRUPO WHERE idGRUPO=" + id;
+        sql = "SELECT * FROM grupo WHERE idGRUPO=" + id;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();

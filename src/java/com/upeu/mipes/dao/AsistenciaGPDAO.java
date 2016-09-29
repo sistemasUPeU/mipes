@@ -49,7 +49,7 @@ public class AsistenciaGPDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> listar(int idGrupo) {
-        sql = "{CALL LIST_ASISTENCIA(?)}";
+        sql = "{CALL list_asistencia(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -75,7 +75,7 @@ public class AsistenciaGPDAO implements CrudInterface {
     }
 
     public int regAsistenciaGP(Object o) {
-        sql = "{CALL REG_ASISTENCIA_GP(?, ?, ?, ?, ?)}";
+        sql = "{CALL reg_asistencia_gp(?, ?, ?, ?, ?)}";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -97,7 +97,7 @@ public class AsistenciaGPDAO implements CrudInterface {
     }
 
     public boolean regAsistenciaIntegrante(Object o) {
-        sql = "{CALL REG_ASISTENCIA_INT_GP(?, ?, ?)}";
+        sql = "{CALL reg_asistencia_int_gp(?, ?, ?)}";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -117,7 +117,7 @@ public class AsistenciaGPDAO implements CrudInterface {
     }
 
     public boolean puedeRegistrar(int idGrupo) {
-        sql = "{CALL IS_ENABLE_AS_GP(?)}";
+        sql = "{CALL is_enable_as_gp(?)}";
         try {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -136,7 +136,7 @@ public class AsistenciaGPDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> listaASISTENCIAS(String fechai, String fechaf, int id) {
-        sql = "SELECT * FROM ASISTENCIAGP WHERE FECHA BETWEEN '" + fechai + "' AND '" + fechaf + "' AND idGRUPO=" + id;
+        sql = "SELECT * FROM asistenciagp WHERE FECHA BETWEEN '" + fechai + "' AND '" + fechaf + "' AND idGRUPO=" + id;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -162,7 +162,7 @@ public class AsistenciaGPDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> listaASISTENCIASES(String fechai, String fechaf, int id) {
-        sql = "{CALL GET_DATOSASISES(?,?,?)}";
+        sql = "{CALL get_datosasises(?,?,?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -189,7 +189,7 @@ public class AsistenciaGPDAO implements CrudInterface {
     }
     
     public ArrayList<Map<String, ?>> listaASISTENCIASIG(String fechai, String fechaf, int id) {
-        sql = "{CALL GET_DATOSASISIG(?,?,?)}";
+        sql = "{CALL get_datosasisig(?,?,?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -217,7 +217,7 @@ public class AsistenciaGPDAO implements CrudInterface {
     }
     
     public ArrayList<Map<String, ?>> listaASISTENCIASDIS(String fechai, String fechaf, int id) {
-        sql = "{CALL GET_DATOSASISMINDIS(?,?,?)}";
+        sql = "{CALL get_datosasismindis(?,?,?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();

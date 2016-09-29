@@ -26,7 +26,7 @@ public class PersonaDAO implements CrudInterface {
 
     @Override
     public ArrayList<Map<String, ?>> listar() {
-        sql = "SELECT * FROM PERSONA ORDER BY NOMBRES";
+        sql = "SELECT * FROM persona ORDER BY NOMBRES";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -49,7 +49,7 @@ public class PersonaDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> listar(int idPersona) {
-        sql = "SELECT * FROM PERSONA WHERE IDPERSONA=" + idPersona;
+        sql = "SELECT * FROM persona WHERE IDPERSONA=" + idPersona;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -76,7 +76,7 @@ public class PersonaDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> getInfoGP(int idPersona) {
-        sql = "{CALL GET_INFO_GP(?)}";
+        sql = "{CALL get_info_gp(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -109,7 +109,7 @@ public class PersonaDAO implements CrudInterface {
         return lista;
     }
     public ArrayList<Map<String, ?>> getInfoMI(int idPersona) {
-        sql = "{CALL GET_INFO_MI(?)}";
+        sql = "{CALL get_info_mi(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -145,7 +145,7 @@ public class PersonaDAO implements CrudInterface {
     @Override
     public boolean edit(Object o) {
         boolean p = false;
-        sql = "UPDATE PERSONA SET NOMBRES=?,APELLIDOS=? WHERE IDPERSONA=?";
+        sql = "UPDATE persona SET NOMBRES=?,APELLIDOS=? WHERE IDPERSONA=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -167,7 +167,7 @@ public class PersonaDAO implements CrudInterface {
         boolean p = false;
         
         Map<String, Object> m = (Map<String, Object>) o;
-        sql = "UPDATE PERSONA SET NOMBRES=?, APELLIDOS=?, DIRECCION=?,"
+        sql = "UPDATE persona SET NOMBRES=?, APELLIDOS=?, DIRECCION=?,"
                 + " CORREO=?, TELEFONO=?, DNI=?, FE_NACIMIENTO='"+m.get("fecha").toString()+"' WHERE idPERSONA=?";
         try {
             cn = Conexion.getConexion();
@@ -194,7 +194,7 @@ public class PersonaDAO implements CrudInterface {
     @Override
     public boolean delete(Object o) {
         boolean p = false;
-        sql = "DELETE FROM PERSONA WHERE IDPERSONA=?";
+        sql = "DELETE FROM persona WHERE IDPERSONA=?";
         try {
             cn = Conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -213,9 +213,9 @@ public class PersonaDAO implements CrudInterface {
     public ArrayList<Map<String, ?>> buscar(String nombres, String apellidos, String dni, int filtro) {
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
 
-        sql = "SELECT P.IDPERSONA, P.NOMBRES, P.APELLIDOS, P.DNI FROM PERSONA P ";
+        sql = "SELECT P.IDPERSONA, P.NOMBRES, P.APELLIDOS, P.DNI FROM persona P ";
         if (filtro == 1) {
-            sql = "SELECT P.IDPERSONA, P.NOMBRES, P.APELLIDOS, P.DNI FROM PERSONA P ";
+            sql = "SELECT P.IDPERSONA, P.NOMBRES, P.APELLIDOS, P.DNI FROM persona P ";
             sql += "LEFT OUTER JOIN MIEMBROGP M ON P.IDPERSONA=M.IDPERSONA ";
             if (!nombres.equals("") || !apellidos.equals("") || !dni.equals("")) {
                 sql += "WHERE ";
@@ -241,7 +241,7 @@ public class PersonaDAO implements CrudInterface {
             }
             sql += "AND M.IDPERSONA IS NULL";
         } else if (filtro == 2) {
-            sql = "SELECT P.IDPERSONA, P.NOMBRES, P.APELLIDOS, P.DNI FROM PERSONA P ";
+            sql = "SELECT P.IDPERSONA, P.NOMBRES, P.APELLIDOS, P.DNI FROM persona P ";
             sql += "LEFT OUTER JOIN MIEMBROMI M ON P.IDPERSONA=M.IDPERSONA ";
             if (!nombres.equals("") || !apellidos.equals("") || !dni.equals("")) {
                 sql += "WHERE ";
@@ -267,7 +267,7 @@ public class PersonaDAO implements CrudInterface {
             }
             sql += "AND M.IDPERSONA IS NULL";
         } else if (filtro == 0) {
-            sql = "SELECT P.IDPERSONA, P.NOMBRES, P.APELLIDOS, P.DNI FROM PERSONA P ";
+            sql = "SELECT P.IDPERSONA, P.NOMBRES, P.APELLIDOS, P.DNI FROM persona P ";
             if (!nombres.equals("") || !apellidos.equals("") || !dni.equals("")) {
                 sql += "WHERE ";
             } else {
@@ -313,7 +313,7 @@ public class PersonaDAO implements CrudInterface {
     }
 
     public int addPersona(Object o) {
-        sql = "{CALL REG_PERSONA(?, ?, ?, ?, ?, ?, ?,?,?)}";
+        sql = "{CALL reg_persona(?, ?, ?, ?, ?, ?, ?,?,?)}";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -345,7 +345,7 @@ public class PersonaDAO implements CrudInterface {
     }
 
     public boolean regIdLider(int idPersona, int esLider, int idTabla) {
-        sql = "{CALL REG_IDLIDER(?,?,?)}";
+        sql = "{CALL reg_idlider(?,?,?)}";
         if (esLider < 1) {
             return false;
         }

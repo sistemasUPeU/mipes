@@ -35,7 +35,7 @@ public class IglesiaDAO implements CrudInterface {
     @Override
     public boolean add(Object o) {
         boolean p = false;
-        sql = "INSERT INTO IGLESIA (idDISTRITO,NOMBRE,ESTADO,IDLIDER) VALUES(?,?,1,0)";
+        sql = "INSERT INTO iglesia (idDISTRITO,NOMBRE,ESTADO,IDLIDER) VALUES(?,?,1,0)";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -56,7 +56,7 @@ public class IglesiaDAO implements CrudInterface {
     @Override
     public boolean edit(Object o) {
         boolean p = false;
-        sql = "UPDATE IGLESIA SET NOMBRE=? WHERE IDIGLESIA=?";
+        sql = "UPDATE iglesia SET NOMBRE=? WHERE IDIGLESIA=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -77,7 +77,7 @@ public class IglesiaDAO implements CrudInterface {
     @Override
     public boolean delete(Object o) {
         boolean p = false;
-        sql = "DELETE FROM IGLESIA WHERE IDIGLESIA=?";
+        sql = "DELETE FROM iglesia WHERE IDIGLESIA=?";
         try {
             cn = Conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -94,7 +94,7 @@ public class IglesiaDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> lista(int id) {
-        sql = "SELECT * FROM IGLESIA WHERE IDDISTRITO=" + id+" ORDER BY NOMBRE";
+        sql = "SELECT * FROM iglesia WHERE IDDISTRITO=" + id+" ORDER BY NOMBRE";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -118,7 +118,7 @@ public class IglesiaDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> listaun(int id) {
-        sql = "SELECT * FROM IGLESIA WHERE IDIGLESIA=" + id;
+        sql = "SELECT * FROM iglesia WHERE IDIGLESIA=" + id;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -142,7 +142,7 @@ public class IglesiaDAO implements CrudInterface {
     }
     
     public boolean desactivar(int id) {
-        sql = "UPDATE IGLESIA SET ESTADO='0' WHERE idIGLESIA=" + id;
+        sql = "UPDATE iglesia SET ESTADO='0' WHERE idIGLESIA=" + id;
         boolean p = false;
         try {
             cn = Conexion.getConexion();
@@ -158,7 +158,7 @@ public class IglesiaDAO implements CrudInterface {
     }
 
     public boolean activar(int id) {
-        sql = "UPDATE IGLESIA SET ESTADO='1' WHERE idIGLESIA=" + id;
+        sql = "UPDATE iglesia SET ESTADO='1' WHERE idIGLESIA=" + id;
         boolean p = false;
         try {
             cn = Conexion.getConexion();
@@ -174,7 +174,7 @@ public class IglesiaDAO implements CrudInterface {
     }
     
     public ArrayList<Map<String, ?>> listaDis(int idDis) {
-        sql = "SELECT * FROM DISTRITO WHERE IDDISTRITO="+idDis;
+        sql = "SELECT * FROM distrito WHERE IDDISTRITO="+idDis;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();

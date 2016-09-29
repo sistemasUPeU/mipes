@@ -34,7 +34,7 @@ public class UsuarioDAO implements CrudInterface {
 
     public Map<String, Object> validarUser(String user, String pass) {
         Map<String, Object> r = new HashMap<>();
-        sql = "{CALL LOGIN(?,?)}";
+        sql = "{CALL login(?,?)}";
         try {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -56,7 +56,7 @@ public class UsuarioDAO implements CrudInterface {
         return r;
     }
     public boolean validar(String user, String pass) {
-        sql = "SELECT COUNT(*) AS CANT FROM USUARIO WHERE USUARIO=? AND CLAVE=?";
+        sql = "SELECT COUNT(*) AS CANT FROM usuario WHERE USUARIO=? AND CLAVE=?";
         try {
             cn = Conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -75,7 +75,7 @@ public class UsuarioDAO implements CrudInterface {
         return false;
     }
     public boolean cambiarClave(String user, String pass, String neww) {
-        sql = "UPDATE USUARIO SET CLAVE=? WHERE IDUSUARIO=? AND CLAVE=?";
+        sql = "UPDATE usuario SET CLAVE=? WHERE IDUSUARIO=? AND CLAVE=?";
         try {
             cn = Conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -90,7 +90,7 @@ public class UsuarioDAO implements CrudInterface {
     }
     public Map<String, Object> getIdLider(String idPersona) {
         Map<String, Object> r = new HashMap<>();
-        sql = "{CALL GET_IDLIDER(?)}";
+        sql = "{CALL get_idlider(?)}";
         try {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -119,7 +119,7 @@ public class UsuarioDAO implements CrudInterface {
     }
     
     public String validaRol(String user) {
-        sql = "{CALL PRE_LOGIN(?)}";
+        sql = "{CALL pre_login(?)}";
         try {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -151,7 +151,7 @@ public class UsuarioDAO implements CrudInterface {
 
     public ArrayList<Map<String, Object>> getLinks(Object idPrivilegio) {
         ArrayList<Map<String, Object>> lista = new ArrayList<>();
-        sql = "{CALL GET_LINK(?)}";
+        sql = "{CALL get_link(?)}";
         try {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -176,7 +176,7 @@ public class UsuarioDAO implements CrudInterface {
     }
     public ArrayList<Map<String, Object>> getRol(Object idUser) {
         ArrayList<Map<String, Object>> lista = new ArrayList<>();
-        sql = "{CALL PRE_LOGIN(?)}";
+        sql = "{CALL pre_login(?)}";
         try {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -196,7 +196,7 @@ public class UsuarioDAO implements CrudInterface {
 
     public ArrayList<Map<String, Object>> getPriv(Object idUser) {
         ArrayList<Map<String, Object>> lista = new ArrayList<>();
-        sql = "{CALL GET_PRIV(?)}";
+        sql = "{CALL get_priv(?)}";
         try {
             cn = Conexion.getConexion();
             cs = cn.prepareCall(sql);
@@ -234,7 +234,7 @@ public class UsuarioDAO implements CrudInterface {
 
     @Override
     public boolean add(Object o) {
-        sql = "INSERT INTO USUARIO (idUSUARIO, idPERSONA, USUARIO, CLAVE, FE_CREACION, ESTADO)\n"
+        sql = "INSERT INTO usuario (idUSUARIO, idPERSONA, USUARIO, CLAVE, FE_CREACION, ESTADO)\n"
                 + "VALUES(NULL, ?, (SELECT DNI FROM PERSONA WHERE IDPERSONA=?)"
                 + ",(SELECT DNI FROM PERSONA WHERE IDPERSONA=?),\n"
                 + "NOW(),'1')";
@@ -255,7 +255,7 @@ public class UsuarioDAO implements CrudInterface {
 
     @Override
     public boolean edit(Object o) {
-        sql = "UPDATE USUARIO SET USUARIO=?, CLAVE=?, ESTADO=? WHERE IDUSUARIO=?";
+        sql = "UPDATE usuario SET USUARIO=?, CLAVE=?, ESTADO=? WHERE IDUSUARIO=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -274,7 +274,7 @@ public class UsuarioDAO implements CrudInterface {
 
     @Override
     public boolean delete(Object o) {
-        sql = "DELETE FROM USUARIO WHERE IDUSUARIO=?";
+        sql = "DELETE FROM usuario WHERE IDUSUARIO=?";
         try {
             cn = Conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -288,8 +288,8 @@ public class UsuarioDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> listar(int idPersona) {
-        sql = "SELECT P.NOMBRES, P.APELLIDOS, U.* FROM PERSONA P,"
-                + " USUARIO U WHERE P.IDPERSONA=U.IDPERSONA AND U.IDPERSONA=" + idPersona;
+        sql = "SELECT P.NOMBRES, P.APELLIDOS, U.* FROM persona P,"
+                + " usuario U WHERE P.IDPERSONA=U.IDPERSONA AND U.IDPERSONA=" + idPersona;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();

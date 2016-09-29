@@ -43,7 +43,7 @@ public class MiembroGpDAO implements CrudInterface {
     }
 
     public boolean AddIntg(int Per, int GP) {
-        sql = "INSERT INTO MIEMBROGP (idPERSONA,idGRUPO,FE_UNION,ESTADO) VALUES (" + Per + "," + GP + ",(SELECT SYSDATE()),1)";
+        sql = "INSERT INTO miembrogp (idPERSONA,idGRUPO,FE_UNION,ESTADO) VALUES (" + Per + "," + GP + ",(SELECT SYSDATE()),1)";
         boolean p = false;
         try {
             cn = Conexion.getConexion();
@@ -59,7 +59,7 @@ public class MiembroGpDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> EstIntGP(int Per) {
-        sql = "SELECT M.IDMIEMBROGP,M.IDPERSONA,M.IDGRUPO,M.FE_UNION,M.ESTADO,G.NOMBRE FROM MIEMBROGP M,GRUPO G WHERE M.IDPERSONA=" + Per + " AND M.IDGRUPO=G.IDGRUPO AND M.ESTADO=1;";
+        sql = "SELECT M.IDMIEMBROGP,M.IDPERSONA,M.IDGRUPO,M.FE_UNION,M.ESTADO,G.NOMBRE FROM miembrogp M,grupo G WHERE M.IDPERSONA=" + Per + " AND M.IDGRUPO=G.IDGRUPO AND M.ESTADO=1;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -84,7 +84,7 @@ public class MiembroGpDAO implements CrudInterface {
     }
 
     public ArrayList<Map<String, ?>> lista(int idGrupo) {
-        sql = "SELECT P.IDPERSONA,P.NOMBRES,P.APELLIDOS,P.DNI,P.TELEFONO,P.CORREO,M.IDMIEMBROGP,M.idGRUPO,M.ESTADO FROM PERSONA P,MIEMBROGP M WHERE M.IDPERSONA=P.IDPERSONA AND M.IDGRUPO=" + idGrupo + " AND M.ESTADO=1;";
+        sql = "SELECT P.IDPERSONA,P.NOMBRES,P.APELLIDOS,P.DNI,P.TELEFONO,P.CORREO,M.IDMIEMBROGP,M.idGRUPO,M.ESTADO FROM persona P,miembrogp M WHERE M.IDPERSONA=P.IDPERSONA AND M.IDGRUPO=" + idGrupo + " AND M.ESTADO=1;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -112,7 +112,7 @@ public class MiembroGpDAO implements CrudInterface {
     }
 
     public boolean desvincular(int id) {
-        sql = "UPDATE MIEMBROGP SET ESTADO='0' WHERE idMIEMBROGP=" + id;
+        sql = "UPDATE miembrogp SET ESTADO='0' WHERE idMIEMBROGP=" + id;
         boolean p = false;
         try {
             cn = Conexion.getConexion();
@@ -129,7 +129,7 @@ public class MiembroGpDAO implements CrudInterface {
 
     public ArrayList<Map<String, ?>> listaES(int idEs) {
         sql = "SELECT DISTINCT(G.NOMBRE) GRUPO,COUNT(M.IDMIEMBROGP) MIEMBROS "
-                + " FROM MIEMBROGP M,GRUPO G,ESCUELA E  "
+                + " FROM miembrogp M,grupo G,escuela E  "
                 + " WHERE M.IDGRUPO=G.IDGRUPO  "
                 + " AND G.IDESCUELA=E.IDESCUELA "
                 + " AND E.IDESCUELA=" + idEs + " "
@@ -156,7 +156,7 @@ public class MiembroGpDAO implements CrudInterface {
 
     public ArrayList<Map<String, ?>> listaIG(int idIG) {
         sql = "SELECT DISTINCT(E.NOMBRE) ESCUELA,COUNT(M.IDMIEMBROGP) MIEMBROS "
-                + " FROM MIEMBROGP M,GRUPO G,ESCUELA E,IGLESIA I "
+                + " FROM miembrogp M,grupo G,escuela E,iglesia I "
                 + " WHERE E.IDIGLESIA=I.IDIGLESIA "
                 + " AND M.IDGRUPO=G.IDGRUPO  "
                 + " AND G.IDESCUELA=E.IDESCUELA "
@@ -184,7 +184,7 @@ public class MiembroGpDAO implements CrudInterface {
 
     public ArrayList<Map<String, ?>> listaDis(int idDis) {
         sql = "SELECT DISTINCT(I.NOMBRE) IGLESIA,COUNT(M.IDMIEMBROGP) MIEMBROS "
-                + " FROM MIEMBROGP M,GRUPO G,ESCUELA E,IGLESIA I,DISTRITO D "
+                + " FROM miembrogp M,grupo G,escuela E,iglesia I,distrito D "
                 + " WHERE D.IDDISTRITO=I.IDDISTRITO "
                 + " AND E.IDIGLESIA=I.IDIGLESIA "
                 + " AND M.IDGRUPO=G.IDGRUPO  "

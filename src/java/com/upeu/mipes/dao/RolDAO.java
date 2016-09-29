@@ -29,7 +29,7 @@ public class RolDAO implements CrudInterface {
 
     @Override
     public ArrayList<Map<String, ?>> listar() {
-        sql = "SELECT * FROM ROL";
+        sql = "SELECT * FROM rol";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
@@ -52,7 +52,7 @@ public class RolDAO implements CrudInterface {
 
     @Override
     public boolean add(Object o) {
-        sql = "INSERT INTO ROL (idROL, NOMBRE, ESTADO) VALUES(NULL,?,'1')";
+        sql = "INSERT INTO rol (idROL, NOMBRE, ESTADO) VALUES(NULL,?,'1')";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -68,7 +68,7 @@ public class RolDAO implements CrudInterface {
 
     @Override
     public boolean edit(Object o) {
-        sql = "UPDATE ROL SET NOMBRE=?, ESTADO=? WHERE IDROL=?";
+        sql = "UPDATE rol SET NOMBRE=?, ESTADO=? WHERE IDROL=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -86,7 +86,7 @@ public class RolDAO implements CrudInterface {
 
     @Override
     public boolean delete(Object o) {
-        sql = "DELETE FROM ROL WHERE IDROL=?";
+        sql = "DELETE FROM rol WHERE IDROL=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
             cn = Conexion.getConexion();
@@ -100,7 +100,7 @@ public class RolDAO implements CrudInterface {
         }
     }
     public boolean asignar(int idUsuario, int idRol) {
-        sql = "INSERT INTO DETROL (idROL, idUSUARIO) VALUES(?,?)";
+        sql = "INSERT INTO detrol (idROL, idUSUARIO) VALUES(?,?)";
         try {
             cn = Conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -114,7 +114,7 @@ public class RolDAO implements CrudInterface {
         }
     }
     public boolean quitarRol(int idUsuario, int idRol) {
-        sql = "DELETE FROM DETROL WHERE idROL=? AND idUSUARIO=?";
+        sql = "DELETE FROM detrol WHERE idROL=? AND idUSUARIO=?";
         try {
             cn = Conexion.getConexion();
             ps = cn.prepareStatement(sql);
@@ -130,7 +130,7 @@ public class RolDAO implements CrudInterface {
 
     public ArrayList<Map<String, ?>> listar(int idUsuario) {
         System.out.println(idUsuario);
-        sql = "{CALL GET_ROL(?)}";
+        sql = "{CALL get_rol(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
             cn = Conexion.getConexion();
