@@ -22,7 +22,6 @@ import java.util.Map;
 public class MiembroMiDAO implements CrudInterface {
 
     private String sql;
-    private Connection cn;
     private PreparedStatement ps;
     private ResultSet rs;
     private Statement st;
@@ -51,14 +50,16 @@ public class MiembroMiDAO implements CrudInterface {
         sql = "INSERT INTO miembromi (idPERSONA,idMINISTERIO,FE_UNION,ESTADO) VALUES (" + Per + "," + MIN + ",(SELECT SYSDATE()),1)";
         boolean p = false;
         try {
-            cn = Conexion.getConexion();
-            st = cn.createStatement();
+
+            st = Conexion.getConexion().createStatement();
             int a = st.executeUpdate(sql);
             if (a > 0) {
                 p = true;
             }
         } catch (Exception e) {
             System.out.println("Error al Anexar Integrante al Ministerio " + e);
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -67,8 +68,7 @@ public class MiembroMiDAO implements CrudInterface {
         sql = "SELECT * FROM miembromi WHERE IDPERSONA= " + Per + " AND ESTADO=1";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> p = new HashMap<>();
@@ -83,6 +83,8 @@ public class MiembroMiDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Miembros Ministerio " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -91,8 +93,7 @@ public class MiembroMiDAO implements CrudInterface {
         sql = "SELECT P.IDPERSONA,P.NOMBRES,P.APELLIDOS,P.DNI,P.TELEFONO,P.CORREO,M.IDMIEMBROMI,M.idMINISTERIO,M.ESTADO FROM persona P,miembromi M WHERE M.IDPERSONA=P.IDPERSONA AND M.IDMINISTERIO=" + idMin + " AND M.ESTADO=1;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> p = new HashMap<>();
@@ -111,6 +112,8 @@ public class MiembroMiDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Integrantes del Ministerio " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -119,14 +122,15 @@ public class MiembroMiDAO implements CrudInterface {
         sql = "UPDATE miembromi SET ESTADO='0' WHERE idMIEMBROMI=" + id;
         boolean p = false;
         try {
-            cn = Conexion.getConexion();
-            st = cn.createStatement();
+            st = Conexion.getConexion().createStatement();
             int a = st.executeUpdate(sql);
             if (a > 0) {
                 p = true;
             }
         } catch (Exception e) {
             System.out.println("Error al desvincular persona del ministerio " + e);
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -140,8 +144,7 @@ public class MiembroMiDAO implements CrudInterface {
                 + " GROUP BY MN.IDMINISTERIO;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> p = new HashMap<>();
@@ -153,6 +156,8 @@ public class MiembroMiDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Integrantes del Ministerio por Iglesia " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -162,13 +167,12 @@ public class MiembroMiDAO implements CrudInterface {
                 + " FROM miembromi M,ministerio MN,iglesia I,distrito D "
                 + " WHERE MN.IDIGLESIA=I.IDIGLESIA "
                 + " AND D.IDDISTRITO=I.IDDISTRITO "
-                + " AND D.IDDISTRITO="+idDis
+                + " AND D.IDDISTRITO=" + idDis
                 + " AND M.ESTADO=1 "
                 + " GROUP BY I.IDIGLESIA;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> p = new HashMap<>();
@@ -180,6 +184,8 @@ public class MiembroMiDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Integrantes del Ministerio por Distrito " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }

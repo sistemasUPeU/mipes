@@ -8,7 +8,6 @@ package com.upeu.mipes.dao;
 import com.upeu.mipes.config.Conexion;
 import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +21,6 @@ import java.util.Map;
  */
 public class AsistenciaMiDAO implements CrudInterface {
 
-    private Connection cn;
     private PreparedStatement ps;
     private CallableStatement cs;
     private ResultSet rs;
@@ -52,8 +50,7 @@ public class AsistenciaMiDAO implements CrudInterface {
         sql = "{CALL list_asistenciami(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, idMinisterio);
             rs = cs.executeQuery();
             while (rs.next()) {
@@ -65,12 +62,14 @@ public class AsistenciaMiDAO implements CrudInterface {
                 m.put("porcentaje", rs.getInt("PORCENTAJE"));
                 m.put("dni", rs.getString("DNI"));
                 m.put("celular", rs.getString("TELEFONO"));
-                m.put("fecha",rs.getString("FE_NACIMIENTO"));
+                m.put("fecha", rs.getString("FE_NACIMIENTO"));
                 lista.add(m);
             }
         } catch (Exception e) {
             System.out.println("Error al listar Miembros de Ministerio " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -79,8 +78,7 @@ public class AsistenciaMiDAO implements CrudInterface {
         sql = "{CALL reg_asistencia_min(?,?,?,?,?,?)}";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, Integer.parseInt(m.get("idministerio").toString()));
             cs.setString(2, m.get("lugar").toString());
             cs.setString(3, m.get("descripcion").toString());
@@ -94,6 +92,8 @@ public class AsistenciaMiDAO implements CrudInterface {
         } catch (SQLException | NumberFormatException e) {
             e.printStackTrace();
             return -1;
+        } finally {
+            Conexion.cerrar();
         }
         return -1;
     }
@@ -102,8 +102,7 @@ public class AsistenciaMiDAO implements CrudInterface {
         sql = "{CALL reg_asistencia_int_min(?, ?, ?)}";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, Integer.parseInt(m.get("idmiembromi").toString()));
             cs.setInt(2, Integer.parseInt(m.get("idasistenciami").toString()));
             cs.setString(3, m.get("asistencia").toString());
@@ -114,35 +113,37 @@ public class AsistenciaMiDAO implements CrudInterface {
         } catch (SQLException | NumberFormatException e) {
             e.printStackTrace();
             return false;
+        } finally {
+            Conexion.cerrar();
         }
         return false;
     }
-    
+
     public boolean puedeRegistrar(int idMinisterio) {
         sql = "{CALL isenable_as_mi(?)}";
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, idMinisterio);
             rs = cs.executeQuery();
             while (rs.next()) {
-                if (rs.getInt("RESULT")>0) {
+                if (rs.getInt("RESULT") > 0) {
                     return true;
                 }
             }
         } catch (SQLException | NumberFormatException e) {
             e.printStackTrace();
             return false;
+        } finally {
+            Conexion.cerrar();
         }
         return false;
     }
-    
+
     public ArrayList<Map<String, ?>> listaASISTENCIAS(String fechai, String fechaf, int id) {
         sql = "SELECT * FROM asistenciami WHERE FECHA BETWEEN '" + fechai + "' AND '" + fechaf + "' AND idMINISTERIO=" + id;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
@@ -160,16 +161,17 @@ public class AsistenciaMiDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Asistencias al Trabajo Misionero " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
-    
+
     public ArrayList<Map<String, ?>> listaASISTENCIASIG(String fechai, String fechaf, int id) {
         sql = "{CALL get_datosasisminig(?,?,?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, id);
             cs.setString(2, fechai);
             cs.setString(3, fechaf);
@@ -177,7 +179,7 @@ public class AsistenciaMiDAO implements CrudInterface {
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
                 d.put("ministerio", rs.getString("NOMBRE"));
-                d.put("idministerio", rs.getInt("idMINISTERIO"));                
+                d.put("idministerio", rs.getInt("idMINISTERIO"));
                 d.put("presentes", rs.getInt("PRESENTES"));
                 d.put("faltas", rs.getInt("FALTAS"));
                 d.put("asistencias", rs.getInt("ASISTENCIAS"));
@@ -188,16 +190,17 @@ public class AsistenciaMiDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Asistencias al ministerio por Iglesia " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
-    
+
     public ArrayList<Map<String, ?>> listaASISTENCIASDIS(String fechai, String fechaf, int id) {
         sql = "{CALL get_datosasisdis(?,?,?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, id);
             cs.setString(2, fechai);
             cs.setString(3, fechaf);
@@ -205,7 +208,7 @@ public class AsistenciaMiDAO implements CrudInterface {
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
                 d.put("iglesia", rs.getString("NOMBRE"));
-                d.put("idiglesia", rs.getInt("idIGLESIA"));                
+                d.put("idiglesia", rs.getInt("idIGLESIA"));
                 d.put("presentes", rs.getInt("PRESENTES"));
                 d.put("faltas", rs.getInt("FALTAS"));
                 d.put("asistencias", rs.getInt("ASISTENCIAS"));
@@ -216,6 +219,8 @@ public class AsistenciaMiDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Asistencias por Distrito " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }

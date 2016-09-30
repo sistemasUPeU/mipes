@@ -18,7 +18,6 @@ import java.util.Map;
 public class MinisterioDAO implements CrudInterface {
 
     private String sql;
-    private Connection cn;
     private PreparedStatement ps;
     private ResultSet rs;
     private Statement st;
@@ -35,8 +34,7 @@ public class MinisterioDAO implements CrudInterface {
         sql = "INSERT INTO ministerio (idIGLESIA,NOMBRE,FE_CREACION,US_CREADOR,idLIDER,ESTADO) VALUES(?,?,(SELECT SYSDATE()),?,?,?)";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(m.get("idiglesia").toString()));
             ps.setString(2, m.get("nombre").toString());
             ps.setInt(3, Integer.parseInt(m.get("usuario").toString()));
@@ -49,6 +47,8 @@ public class MinisterioDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al agregar Ministerio " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -59,8 +59,7 @@ public class MinisterioDAO implements CrudInterface {
         sql = "UPDATE ministerio SET NOMBRE=? WHERE IDMINISTERIO=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, m.get("nombre").toString());
             ps.setInt(2, Integer.parseInt(m.get("idministerio").toString()));
             int r = ps.executeUpdate();
@@ -70,6 +69,8 @@ public class MinisterioDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Editar Ministerio " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -79,8 +80,7 @@ public class MinisterioDAO implements CrudInterface {
         boolean p = false;
         sql = "DELETE FROM ministerio WHERE IDMINISTERIO=?";
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(o.toString()));
             int r = ps.executeUpdate();
             if (r > 0) {
@@ -89,6 +89,8 @@ public class MinisterioDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Eliminar Ministerio " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -97,8 +99,7 @@ public class MinisterioDAO implements CrudInterface {
         sql = "{CALL get_ministerio(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, idIglesia);
             rs = cs.executeQuery();
             while (rs.next()) {
@@ -109,13 +110,15 @@ public class MinisterioDAO implements CrudInterface {
                 d.put("fecha", rs.getString("FE_CREACION"));
                 d.put("idlider", rs.getString("idLIDER"));
                 d.put("estado", rs.getString("ESTADO"));
-                d.put("lider", rs.getString("NOMBRES")+" "+rs.getString("APELLIDOS"));
+                d.put("lider", rs.getString("NOMBRES") + " " + rs.getString("APELLIDOS"));
                 lista.add(d);
             }
 
         } catch (Exception e) {
             System.out.println("Error al Listar Ministerios" + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -124,14 +127,15 @@ public class MinisterioDAO implements CrudInterface {
         sql = "UPDATE ministerio SET ESTADO='0' WHERE idMINISTERIO=" + id;
         boolean p = false;
         try {
-            cn = Conexion.getConexion();
-            st = cn.createStatement();
+            st = Conexion.getConexion().createStatement();
             int a = st.executeUpdate(sql);
             if (a > 0) {
                 p = true;
             }
         } catch (Exception e) {
             System.out.println("Error al Desactivar Ministerio" + e);
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -140,24 +144,24 @@ public class MinisterioDAO implements CrudInterface {
         sql = "UPDATE ministerio SET ESTADO='1' WHERE idMINISTERIO=" + id;
         boolean p = false;
         try {
-            cn = Conexion.getConexion();
-            st = cn.createStatement();
+            st = Conexion.getConexion().createStatement();
             int a = st.executeUpdate(sql);
             if (a > 0) {
                 p = true;
             }
         } catch (Exception e) {
             System.out.println("Error al Activar Ministerio" + e);
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
-    
+
     public ArrayList<Map<String, ?>> listaun(int id) {
         sql = "SELECT * FROM ministerio WHERE IDMINISTERIO=" + id;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
@@ -172,6 +176,8 @@ public class MinisterioDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Iglesias" + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }

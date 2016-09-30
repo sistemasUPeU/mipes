@@ -23,7 +23,6 @@ import java.util.Map;
 public class GrupoDAO implements CrudInterface {
 
     private String sql;
-    private Connection cn;
     private PreparedStatement ps;
     private ResultSet rs;
     private Statement st;
@@ -40,8 +39,8 @@ public class GrupoDAO implements CrudInterface {
         sql = "INSERT INTO grupo (idESCUELA , NOMBRE , FE_CREACION , US_CREADOR , LUG_REUNION , idLIDER,ESTADO ) VALUES(?,?,(SELECT SYSDATE()),?,?,?,?)";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(m.get("idescuela").toString()));
             ps.setString(2, m.get("nombre").toString());
             /*if (m.get("fecha").toString().equals("undefined")) {
@@ -60,6 +59,8 @@ public class GrupoDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al agregar Grupo " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -70,8 +71,8 @@ public class GrupoDAO implements CrudInterface {
         sql = "UPDATE grupo SET NOMBRE=? WHERE idGRUPO=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, m.get("nombre").toString());
             ps.setInt(2, Integer.parseInt(m.get("id").toString()));
             int r = ps.executeUpdate();
@@ -81,6 +82,8 @@ public class GrupoDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al editar Iglesia " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -90,8 +93,8 @@ public class GrupoDAO implements CrudInterface {
         boolean p = false;
         sql = "DELETE FROM grupo WHERE idGRUPO=?";
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(o.toString()));
             int r = ps.executeUpdate();
             if (r > 0) {
@@ -100,6 +103,8 @@ public class GrupoDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al eliminar GRUPO " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -108,14 +113,16 @@ public class GrupoDAO implements CrudInterface {
         sql = "UPDATE grupo SET ESTADO='0' WHERE idGRUPO=" + id;
         boolean p = false;
         try {
-            cn = Conexion.getConexion();
-            st = cn.createStatement();
+
+            st = Conexion.getConexion().createStatement();
             int a = st.executeUpdate(sql);
             if (a > 0) {
                 p = true;
             }
         } catch (Exception e) {
             System.out.println("Error al desactivar GRUPO" + e);
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -124,14 +131,16 @@ public class GrupoDAO implements CrudInterface {
         sql = "UPDATE grupo SET ESTADO='1' WHERE idGRUPO=" + id;
         boolean p = false;
         try {
-            cn = Conexion.getConexion();
-            st = cn.createStatement();
+
+            st = Conexion.getConexion().createStatement();
             int a = st.executeUpdate(sql);
             if (a > 0) {
                 p = true;
             }
         } catch (Exception e) {
             System.out.println("Error al activar GRUPO" + e);
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -140,8 +149,8 @@ public class GrupoDAO implements CrudInterface {
         sql = "{CALL get_grupo(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, id);
             rs = cs.executeQuery();
             while (rs.next()) {
@@ -153,13 +162,15 @@ public class GrupoDAO implements CrudInterface {
                 d.put("lugar", rs.getString("LUG_REUNION"));
                 d.put("idlider", rs.getInt("idLider"));
                 d.put("estado", rs.getString("ESTADO"));
-                d.put("lider", rs.getString("NOMBRES")+" "+rs.getString("APELLIDOS"));
+                d.put("lider", rs.getString("NOMBRES") + " " + rs.getString("APELLIDOS"));
                 lista.add(d);
             }
 
         } catch (Exception e) {
             System.out.println("Error al Listar GRUPO" + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -168,8 +179,8 @@ public class GrupoDAO implements CrudInterface {
         sql = "SELECT * FROM grupo WHERE idGRUPO=" + id;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
@@ -187,6 +198,8 @@ public class GrupoDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Grupo " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }

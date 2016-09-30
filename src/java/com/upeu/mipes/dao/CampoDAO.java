@@ -24,7 +24,6 @@ import java.util.Map;
 public class CampoDAO implements CrudInterface {
 
     private String sql;
-    private Connection cn;
     private PreparedStatement ps;
     private ResultSet rs;
     private Statement st;
@@ -34,8 +33,7 @@ public class CampoDAO implements CrudInterface {
         sql = "SELECT * FROM campo";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> c = new HashMap<>();
@@ -49,6 +47,8 @@ public class CampoDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Distritos" + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -59,8 +59,7 @@ public class CampoDAO implements CrudInterface {
         sql = "INSERT INTO campo (NOMBRE,idLIDER,ESTADO) VALUES(?,?,?)";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, m.get("nombre").toString());
             ps.setInt(2, Integer.parseInt(m.get("idlider").toString()));
             ps.setString(3, m.get("estado").toString());
@@ -71,6 +70,8 @@ public class CampoDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al agregar Campo " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -81,8 +82,8 @@ public class CampoDAO implements CrudInterface {
         sql = "UPDATE campo SET NOMBRE=? WHERE idCAMPO=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, m.get("nombre").toString());
             ps.setInt(2, Integer.parseInt(m.get("idcampo").toString()));
             int r = ps.executeUpdate();
@@ -92,6 +93,8 @@ public class CampoDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al editar CAMPO " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -101,8 +104,7 @@ public class CampoDAO implements CrudInterface {
         boolean p = false;
         sql = "DELETE FROM campo WHERE IDCAMPO=?";
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(o.toString()));
             int r = ps.executeUpdate();
             if (r > 0) {
@@ -111,6 +113,8 @@ public class CampoDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al eliminar Campo " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -119,14 +123,15 @@ public class CampoDAO implements CrudInterface {
         sql = "UPDATE campo SET ESTADO='0' WHERE idCAMPO=" + id;
         boolean p = false;
         try {
-            cn = Conexion.getConexion();
-            st = cn.createStatement();
+            st = Conexion.getConexion().createStatement();
             int a = st.executeUpdate(sql);
             if (a > 0) {
                 p = true;
             }
         } catch (Exception e) {
             System.out.println("Error al desactivar Campo" + e);
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -135,24 +140,24 @@ public class CampoDAO implements CrudInterface {
         sql = "UPDATE campo SET ESTADO='1' WHERE idCAMPO=" + id;
         boolean p = false;
         try {
-            cn = Conexion.getConexion();
-            st = cn.createStatement();
+            st = Conexion.getConexion().createStatement();
             int a = st.executeUpdate(sql);
             if (a > 0) {
                 p = true;
             }
         } catch (Exception e) {
             System.out.println("Error al activar Campo" + e);
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
-    
+
     public ArrayList<Map<String, ?>> listarun(int id) {
         sql = "SELECT * FROM campo WHERE idCAMPO=" + id;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
@@ -164,9 +169,10 @@ public class CampoDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar CAMPO" + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
-    
-    
+
 }

@@ -29,17 +29,20 @@ public class Conexion {
     private static final String user = "devmipes";
     private static final String clave = "peBjOmJP8ouWXNnz";
     private static Connection conn = null;
+
     /*private static final String url = "jdbc:mysql://138.68.55.39:3306/villa2016";
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String user = "villa2016";
     private static final String clave = "dbvill4:140916";
     private static Connection conn = null;*/
-    public static final Connection getConexion() {
+    public static Connection getConexion() {
         try {
             Class.forName(driver);
-            if (conn == null) {
+              System.out.println("Init Connection");
+           // if (conn == null) {
                 conn = DriverManager.getConnection(url, user, clave);
-            }
+                System.out.println("Conexion establecida");
+            //}
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("error: " + e);
         }

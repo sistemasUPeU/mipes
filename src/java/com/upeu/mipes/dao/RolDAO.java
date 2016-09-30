@@ -21,7 +21,6 @@ import java.util.Map;
  */
 public class RolDAO implements CrudInterface {
 
-    private Connection cn;
     private PreparedStatement ps;
     private CallableStatement cs;
     private ResultSet rs;
@@ -32,8 +31,7 @@ public class RolDAO implements CrudInterface {
         sql = "SELECT * FROM rol";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
@@ -46,6 +44,8 @@ public class RolDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Rol " + e);
             return null;
+       } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -55,14 +55,15 @@ public class RolDAO implements CrudInterface {
         sql = "INSERT INTO rol (idROL, NOMBRE, ESTADO) VALUES(NULL,?,'1')";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, m.get("nombre").toString());
             int r = ps.executeUpdate();
             return r > 0;
         } catch (Exception e) {
             System.out.println("Error al agregar Rol " + e);
             return false;
+          } finally {
+            Conexion.cerrar();
         }
     }
 
@@ -71,8 +72,7 @@ public class RolDAO implements CrudInterface {
         sql = "UPDATE rol SET NOMBRE=?, ESTADO=? WHERE IDROL=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, m.get("nombre").toString());
             ps.setString(2, m.get("estado").toString());
             ps.setInt(3, Integer.parseInt(m.get("idrol").toString()));
@@ -81,6 +81,8 @@ public class RolDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al editar Rol " + e);
             return false;
+        } finally {
+            Conexion.cerrar();
         }
     }
 
@@ -89,21 +91,21 @@ public class RolDAO implements CrudInterface {
         sql = "DELETE FROM rol WHERE IDROL=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(m.get("idrol").toString()));
             int r = ps.executeUpdate();
             return r > 0;
         } catch (Exception e) {
             System.out.println("Error al eliminar Rol " + e);
             return false;
+        } finally {
+            Conexion.cerrar();
         }
     }
     public boolean asignar(int idUsuario, int idRol) {
         sql = "INSERT INTO detrol (idROL, idUSUARIO) VALUES(?,?)";
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, idRol);
             ps.setInt(2, idUsuario);
             int r = ps.executeUpdate();
@@ -111,13 +113,14 @@ public class RolDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al asignar Rol " + e);
             return false;
+      } finally {
+            Conexion.cerrar();
         }
     }
     public boolean quitarRol(int idUsuario, int idRol) {
         sql = "DELETE FROM detrol WHERE idROL=? AND idUSUARIO=?";
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, idRol);
             ps.setInt(2, idUsuario);
             int r = ps.executeUpdate();
@@ -125,6 +128,8 @@ public class RolDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al quitar Rol " + e);
             return false;
+        } finally {
+            Conexion.cerrar();
         }
     }
 
@@ -133,8 +138,7 @@ public class RolDAO implements CrudInterface {
         sql = "{CALL get_rol(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, idUsuario);
             rs = cs.executeQuery();
             while (rs.next()) {
@@ -148,6 +152,8 @@ public class RolDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Rol " + e);
             return null;
+         } finally {
+            Conexion.cerrar();
         }
         return lista;
     }

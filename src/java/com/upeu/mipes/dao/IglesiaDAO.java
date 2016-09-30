@@ -22,7 +22,6 @@ import java.util.Map;
 public class IglesiaDAO implements CrudInterface {
 
     private String sql;
-    private Connection cn;
     private PreparedStatement ps;
     private ResultSet rs;
     private Statement st;
@@ -38,8 +37,8 @@ public class IglesiaDAO implements CrudInterface {
         sql = "INSERT INTO iglesia (idDISTRITO,NOMBRE,ESTADO,IDLIDER) VALUES(?,?,1,0)";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(m.get("iddis").toString()));
             ps.setString(2, m.get("nombre").toString());
             int r = ps.executeUpdate();
@@ -49,6 +48,8 @@ public class IglesiaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al agregar Iglesia " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -59,8 +60,8 @@ public class IglesiaDAO implements CrudInterface {
         sql = "UPDATE iglesia SET NOMBRE=? WHERE IDIGLESIA=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, m.get("nombre").toString());
             ps.setInt(2, Integer.parseInt(m.get("id").toString()));
             int r = ps.executeUpdate();
@@ -70,6 +71,8 @@ public class IglesiaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al editar Iglesia " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -79,8 +82,8 @@ public class IglesiaDAO implements CrudInterface {
         boolean p = false;
         sql = "DELETE FROM iglesia WHERE IDIGLESIA=?";
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(o.toString()));
             int r = ps.executeUpdate();
             if (r > 0) {
@@ -89,16 +92,18 @@ public class IglesiaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al eliminar Iglesia " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
 
     public ArrayList<Map<String, ?>> lista(int id) {
-        sql = "SELECT * FROM iglesia WHERE IDDISTRITO=" + id+" ORDER BY NOMBRE";
+        sql = "SELECT * FROM iglesia WHERE IDDISTRITO=" + id + " ORDER BY NOMBRE";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
@@ -113,6 +118,8 @@ public class IglesiaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Iglesias" + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -121,8 +128,8 @@ public class IglesiaDAO implements CrudInterface {
         sql = "SELECT * FROM iglesia WHERE IDIGLESIA=" + id;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
@@ -137,22 +144,26 @@ public class IglesiaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Iglesias" + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
-    
+
     public boolean desactivar(int id) {
         sql = "UPDATE iglesia SET ESTADO='0' WHERE idIGLESIA=" + id;
         boolean p = false;
         try {
-            cn = Conexion.getConexion();
-            st = cn.createStatement();
+
+            st = Conexion.getConexion().createStatement();
             int a = st.executeUpdate(sql);
             if (a > 0) {
                 p = true;
             }
         } catch (Exception e) {
             System.out.println("Error al desactivar Iglesia" + e);
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -161,24 +172,26 @@ public class IglesiaDAO implements CrudInterface {
         sql = "UPDATE iglesia SET ESTADO='1' WHERE idIGLESIA=" + id;
         boolean p = false;
         try {
-            cn = Conexion.getConexion();
-            st = cn.createStatement();
+
+            st = Conexion.getConexion().createStatement();
             int a = st.executeUpdate(sql);
             if (a > 0) {
                 p = true;
             }
         } catch (Exception e) {
             System.out.println("Error al activar Iglesia" + e);
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
-    
+
     public ArrayList<Map<String, ?>> listaDis(int idDis) {
-        sql = "SELECT * FROM distrito WHERE IDDISTRITO="+idDis;
+        sql = "SELECT * FROM distrito WHERE IDDISTRITO=" + idDis;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
@@ -191,6 +204,8 @@ public class IglesiaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar DistritosASDASDA" + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }

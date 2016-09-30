@@ -8,7 +8,6 @@ package com.upeu.mipes.dao;
 import com.upeu.mipes.config.Conexion;
 import com.upeu.mipes.interfaces.CrudInterface;
 import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +21,6 @@ import java.util.Map;
  */
 public class AsistenciaGPDAO implements CrudInterface {
 
-    private Connection cn;
     private PreparedStatement ps;
     private CallableStatement cs;
     private ResultSet rs;
@@ -52,8 +50,7 @@ public class AsistenciaGPDAO implements CrudInterface {
         sql = "{CALL list_asistencia(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, idGrupo);
             rs = cs.executeQuery();
             while (rs.next()) {
@@ -65,12 +62,15 @@ public class AsistenciaGPDAO implements CrudInterface {
                 m.put("porcentaje", rs.getDouble("PORCENTAJE"));
                 m.put("dni", rs.getString("DNI"));
                 m.put("celular", rs.getString("TELEFONO"));
-                m.put("fecha",rs.getString("FE_NACIMIENTO"));
+                m.put("fecha", rs.getString("FE_NACIMIENTO"));
                 lista.add(m);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            Conexion.cerrar();
         }
+
         return lista;
     }
 
@@ -78,8 +78,7 @@ public class AsistenciaGPDAO implements CrudInterface {
         sql = "{CALL reg_asistencia_gp(?, ?, ?, ?, ?)}";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, Integer.parseInt(m.get("idgrupo").toString()));
             cs.setString(2, m.get("lugar").toString());
             cs.setInt(3, Integer.parseInt(m.get("presentes").toString()));
@@ -92,7 +91,10 @@ public class AsistenciaGPDAO implements CrudInterface {
         } catch (SQLException | NumberFormatException e) {
             e.printStackTrace();
             return -1;
+        } finally {
+            Conexion.cerrar();
         }
+
         return -1;
     }
 
@@ -100,8 +102,7 @@ public class AsistenciaGPDAO implements CrudInterface {
         sql = "{CALL reg_asistencia_int_gp(?, ?, ?)}";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, Integer.parseInt(m.get("idmiembrogp").toString()));
             cs.setInt(2, Integer.parseInt(m.get("idasistenciagp").toString()));
             cs.setString(3, m.get("asistencia").toString());
@@ -112,15 +113,17 @@ public class AsistenciaGPDAO implements CrudInterface {
         } catch (SQLException | NumberFormatException e) {
             e.printStackTrace();
             return false;
+        } finally {
+            Conexion.cerrar();
         }
+
         return false;
     }
 
     public boolean puedeRegistrar(int idGrupo) {
         sql = "{CALL is_enable_as_gp(?)}";
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, idGrupo);
             rs = cs.executeQuery();
             while (rs.next()) {
@@ -131,7 +134,10 @@ public class AsistenciaGPDAO implements CrudInterface {
         } catch (SQLException | NumberFormatException e) {
             e.printStackTrace();
             return false;
+        } finally {
+            Conexion.cerrar();
         }
+
         return false;
     }
 
@@ -139,8 +145,7 @@ public class AsistenciaGPDAO implements CrudInterface {
         sql = "SELECT * FROM asistenciagp WHERE FECHA BETWEEN '" + fechai + "' AND '" + fechaf + "' AND idGRUPO=" + id;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
@@ -157,7 +162,10 @@ public class AsistenciaGPDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Asistencias" + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
+
         return lista;
     }
 
@@ -165,8 +173,7 @@ public class AsistenciaGPDAO implements CrudInterface {
         sql = "{CALL get_datosasises(?,?,?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, id);
             cs.setString(2, fechai);
             cs.setString(3, fechaf);
@@ -174,7 +181,7 @@ public class AsistenciaGPDAO implements CrudInterface {
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
                 d.put("grupo", rs.getString("NOMBRE"));
-                d.put("idgrupo", rs.getInt("idGRUPO"));                
+                d.put("idgrupo", rs.getInt("idGRUPO"));
                 d.put("presentes", rs.getInt("PRESENTES"));
                 d.put("faltas", rs.getInt("FALTAS"));
                 d.put("asistencias", rs.getInt("ASISTENCIAS"));
@@ -184,16 +191,18 @@ public class AsistenciaGPDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Asistencias por E.S. " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
+
         return lista;
     }
-    
+
     public ArrayList<Map<String, ?>> listaASISTENCIASIG(String fechai, String fechaf, int id) {
         sql = "{CALL get_datosasisig(?,?,?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, id);
             cs.setString(2, fechai);
             cs.setString(3, fechaf);
@@ -201,7 +210,7 @@ public class AsistenciaGPDAO implements CrudInterface {
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
                 d.put("escuela", rs.getString("NOMBRE"));
-                d.put("idescuela", rs.getInt("idESCUELA"));                
+                d.put("idescuela", rs.getInt("idESCUELA"));
                 d.put("presentes", rs.getInt("PRESENTES"));
                 d.put("faltas", rs.getInt("FALTAS"));
                 d.put("asistencias", rs.getInt("ASISTENCIAS"));
@@ -212,16 +221,18 @@ public class AsistenciaGPDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Asistencias por Iglesia " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
+
         return lista;
     }
-    
+
     public ArrayList<Map<String, ?>> listaASISTENCIASDIS(String fechai, String fechaf, int id) {
         sql = "{CALL get_datosasismindis(?,?,?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, id);
             cs.setString(2, fechai);
             cs.setString(3, fechaf);
@@ -229,7 +240,7 @@ public class AsistenciaGPDAO implements CrudInterface {
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
                 d.put("iglesia", rs.getString("NOMBRE"));
-                d.put("idiglesia", rs.getInt("idIGLESIA"));                
+                d.put("idiglesia", rs.getInt("idIGLESIA"));
                 d.put("presentes", rs.getInt("PRESENTES"));
                 d.put("faltas", rs.getInt("FALTAS"));
                 d.put("asistencias", rs.getInt("ASISTENCIAS"));
@@ -240,7 +251,10 @@ public class AsistenciaGPDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Asistencias por Distrito " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
+
         return lista;
     }
 

@@ -26,7 +26,6 @@ import java.util.logging.Logger;
  */
 public class UsuarioDAO implements CrudInterface {
 
-    private Connection cn;
     private PreparedStatement ps;
     private CallableStatement cs;
     private ResultSet rs;
@@ -36,8 +35,8 @@ public class UsuarioDAO implements CrudInterface {
         Map<String, Object> r = new HashMap<>();
         sql = "{CALL login(?,?)}";
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setString(1, user);
             cs.setString(2, pass);
             rs = cs.executeQuery();
@@ -52,48 +51,54 @@ public class UsuarioDAO implements CrudInterface {
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return r;
     }
+
     public boolean validar(String user, String pass) {
         sql = "SELECT COUNT(*) AS CANT FROM usuario WHERE USUARIO=? AND CLAVE=?";
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, user);
             ps.setString(2, pass);
             rs = ps.executeQuery();
             while (rs.next()) {
-                if (rs.getInt("CANT")>0) {
+                if (rs.getInt("CANT") > 0) {
                     return true;
                 }
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
+        } finally {
+            Conexion.cerrar();
         }
         return false;
     }
+
     public boolean cambiarClave(String user, String pass, String neww) {
         sql = "UPDATE usuario SET CLAVE=? WHERE IDUSUARIO=? AND CLAVE=?";
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, neww);
             ps.setInt(2, Integer.parseInt(user));
             ps.setString(3, pass);
-            return ps.executeUpdate()>0;
+            return ps.executeUpdate() > 0;
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
+        } finally {
+            Conexion.cerrar();
         }
     }
+
     public Map<String, Object> getIdLider(String idPersona) {
         Map<String, Object> r = new HashMap<>();
         sql = "{CALL get_idlider(?)}";
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, Integer.parseInt(idPersona));
             rs = cs.executeQuery();
             while (rs.next()) {
@@ -114,20 +119,21 @@ public class UsuarioDAO implements CrudInterface {
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return r;
     }
-    
+
     public String validaRol(String user) {
         sql = "{CALL pre_login(?)}";
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setString(1, user);
             rs = cs.executeQuery();
-            String r="validar";
-            List<String> roles= new ArrayList<>();
-            List<String> claves= new ArrayList<>();
+            String r = "validar";
+            List<String> roles = new ArrayList<>();
+            List<String> claves = new ArrayList<>();
             while (rs.next()) {
                 roles.add(rs.getString("NOMBRE"));
                 claves.add(rs.getString("CLAVE"));
@@ -136,9 +142,9 @@ public class UsuarioDAO implements CrudInterface {
                 return "error";
             }
             for (int i = 0; i < roles.size(); i++) {
-                if (roles.size()==1&&roles.get(i).toUpperCase().equals("MIEMBRO")) {
+                if (roles.size() == 1 && roles.get(i).toUpperCase().equals("MIEMBRO")) {
                     return claves.get(i);
-                }else{
+                } else {
                     return r;
                 }
             }
@@ -146,6 +152,8 @@ public class UsuarioDAO implements CrudInterface {
         } catch (SQLException ex) {
             ex.printStackTrace();
             return "error";
+        } finally {
+            Conexion.cerrar();
         }
     }
 
@@ -153,8 +161,7 @@ public class UsuarioDAO implements CrudInterface {
         ArrayList<Map<String, Object>> lista = new ArrayList<>();
         sql = "{CALL get_link(?)}";
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, Integer.parseInt(idPrivilegio.toString()));
             System.out.println(idPrivilegio);
             rs = cs.executeQuery();
@@ -171,15 +178,17 @@ public class UsuarioDAO implements CrudInterface {
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
+
     public ArrayList<Map<String, Object>> getRol(Object idUser) {
         ArrayList<Map<String, Object>> lista = new ArrayList<>();
         sql = "{CALL pre_login(?)}";
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, Integer.parseInt(idUser.toString()));
             rs = cs.executeQuery();
             while (rs.next()) {
@@ -190,6 +199,8 @@ public class UsuarioDAO implements CrudInterface {
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -198,8 +209,7 @@ public class UsuarioDAO implements CrudInterface {
         ArrayList<Map<String, Object>> lista = new ArrayList<>();
         sql = "{CALL get_priv(?)}";
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, Integer.parseInt(idUser.toString()));
             rs = cs.executeQuery();
             while (rs.next()) {
@@ -213,12 +223,14 @@ public class UsuarioDAO implements CrudInterface {
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
 
     public ArrayList<Map<String, Object>> listOrden(ArrayList<Map<String, Object>> lista, Object o) {
-        ArrayList<Map<String, Object>> listaR= new ArrayList<>();
+        ArrayList<Map<String, Object>> listaR = new ArrayList<>();
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).get("orden").toString().equals(o.toString())) {
                 listaR.add(lista.get(i));
@@ -240,8 +252,7 @@ public class UsuarioDAO implements CrudInterface {
                 + "NOW(),'1')";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(m.get("idpersona").toString()));
             ps.setInt(2, Integer.parseInt(m.get("idpersona").toString()));
             ps.setInt(3, Integer.parseInt(m.get("idpersona").toString()));
@@ -250,6 +261,8 @@ public class UsuarioDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al agregar Usuario " + e);
             return false;
+        } finally {
+            Conexion.cerrar();
         }
     }
 
@@ -258,8 +271,7 @@ public class UsuarioDAO implements CrudInterface {
         sql = "UPDATE usuario SET USUARIO=?, CLAVE=?, ESTADO=? WHERE IDUSUARIO=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, m.get("usuario").toString());
             ps.setString(2, m.get("clave").toString());
             ps.setString(3, m.get("estado").toString());
@@ -269,6 +281,8 @@ public class UsuarioDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al editar Usuario " + e);
             return false;
+        } finally {
+            Conexion.cerrar();
         }
     }
 
@@ -276,14 +290,15 @@ public class UsuarioDAO implements CrudInterface {
     public boolean delete(Object o) {
         sql = "DELETE FROM usuario WHERE IDUSUARIO=?";
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(o.toString()));
             int r = ps.executeUpdate();
             return r > 0;
         } catch (Exception e) {
             System.out.println("Error al eliminar Usuario " + e);
             return false;
+        } finally {
+            Conexion.cerrar();
         }
     }
 
@@ -292,8 +307,7 @@ public class UsuarioDAO implements CrudInterface {
                 + " usuario U WHERE P.IDPERSONA=U.IDPERSONA AND U.IDPERSONA=" + idPersona;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> d = new HashMap<>();
@@ -311,6 +325,8 @@ public class UsuarioDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Usuarios " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }

@@ -22,20 +22,19 @@ import java.util.Map;
 public class EscuelaDAO implements CrudInterface {
 
     private String sql;
-    private Connection cn;
     private PreparedStatement ps;
     private CallableStatement cs;
     private ResultSet rs;
-    
+
     @Override
     public ArrayList<Map<String, ?>> listar() {
         sql = "SELECT * FROM escuela";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            rs=cn.prepareStatement(sql).executeQuery();
-            while (rs.next()) {                
-                Map<String, Object> m= new HashMap<>();
+
+            rs = Conexion.getConexion().prepareStatement(sql).executeQuery();
+            while (rs.next()) {
+                Map<String, Object> m = new HashMap<>();
                 m.put("idescuela", rs.getInt("IDESCUELA"));
                 m.put("idiglesia", rs.getInt("IDIGLESIA"));
                 m.put("nombre", rs.getString("NOMBRE"));
@@ -45,6 +44,8 @@ public class EscuelaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al listar Escuela " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -54,8 +55,8 @@ public class EscuelaDAO implements CrudInterface {
         sql = "INSERT INTO escuela (idESCUELA, idIGLESIA, NOMBRE, ESTADO) VALUES(null,?,?,?)";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(m.get("idiglesia").toString()));
             ps.setString(2, m.get("nombre").toString());
             ps.setString(3, m.get("estado").toString());
@@ -64,6 +65,8 @@ public class EscuelaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al agregar Escuela " + e);
             return false;
+        } finally {
+            Conexion.cerrar();
         }
     }
 
@@ -72,8 +75,8 @@ public class EscuelaDAO implements CrudInterface {
         sql = "UPDATE escuela SET NOMBRE=?, ESTADO=? WHERE IDESCUELA=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, m.get("nombre").toString());
             ps.setString(2, m.get("estado").toString());
             ps.setInt(3, Integer.parseInt(m.get("idescuela").toString()));
@@ -82,6 +85,8 @@ public class EscuelaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al editar Escuela " + e);
             return false;
+        } finally {
+            Conexion.cerrar();
         }
     }
 
@@ -90,40 +95,44 @@ public class EscuelaDAO implements CrudInterface {
         sql = "DELETE FROM escuela WHERE IDESCUELA=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(m.get("idescuela").toString()));
             int r = ps.executeUpdate();
             return r > 0;
         } catch (Exception e) {
             System.out.println("Error al eliminar Escuela " + e);
             return false;
+        } finally {
+            Conexion.cerrar();
         }
     }
-    
+
     public ArrayList<Map<String, ?>> listar(int idIglesia) {
         sql = "{CALL get_escuela(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            cs=cn.prepareCall(sql);
+
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, idIglesia);
-            rs=cs.executeQuery();
-            while (rs.next()) {                
-                Map<String, Object> m= new HashMap<>();
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                Map<String, Object> m = new HashMap<>();
                 m.put("id", rs.getInt("IDESCUELA"));
                 m.put("idescuela", rs.getInt("IDESCUELA"));
                 m.put("idiglesia", rs.getInt("IDIGLESIA"));
                 m.put("nombre", rs.getString("NOMBRE"));
-                m.put("lider", rs.getString("NOMBRES")+" "+rs.getString("APELLIDOS"));
+                m.put("lider", rs.getString("NOMBRES") + " " + rs.getString("APELLIDOS"));
                 m.put("estado", rs.getString("ESTADO"));
                 lista.add(m);
             }
         } catch (Exception e) {
             System.out.println("Error al listar Escuela " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
-    
+
 }

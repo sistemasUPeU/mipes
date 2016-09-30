@@ -17,7 +17,6 @@ import java.util.Map;
 public class MiembroGpDAO implements CrudInterface {
 
     private String sql;
-    private Connection cn;
     private PreparedStatement ps;
     private ResultSet rs;
     private Statement st;
@@ -46,14 +45,16 @@ public class MiembroGpDAO implements CrudInterface {
         sql = "INSERT INTO miembrogp (idPERSONA,idGRUPO,FE_UNION,ESTADO) VALUES (" + Per + "," + GP + ",(SELECT SYSDATE()),1)";
         boolean p = false;
         try {
-            cn = Conexion.getConexion();
-            st = cn.createStatement();
+
+            st = Conexion.getConexion().createStatement();
             int a = st.executeUpdate(sql);
             if (a > 0) {
                 p = true;
             }
         } catch (Exception e) {
             System.out.println("Error al Anexar Integrante" + e);
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -62,8 +63,8 @@ public class MiembroGpDAO implements CrudInterface {
         sql = "SELECT M.IDMIEMBROGP,M.IDPERSONA,M.IDGRUPO,M.FE_UNION,M.ESTADO,G.NOMBRE FROM miembrogp M,grupo G WHERE M.IDPERSONA=" + Per + " AND M.IDGRUPO=G.IDGRUPO AND M.ESTADO=1;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> p = new HashMap<>();
@@ -79,6 +80,8 @@ public class MiembroGpDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Miembros de Grupo " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -87,8 +90,8 @@ public class MiembroGpDAO implements CrudInterface {
         sql = "SELECT P.IDPERSONA,P.NOMBRES,P.APELLIDOS,P.DNI,P.TELEFONO,P.CORREO,M.IDMIEMBROGP,M.idGRUPO,M.ESTADO FROM persona P,miembrogp M WHERE M.IDPERSONA=P.IDPERSONA AND M.IDGRUPO=" + idGrupo + " AND M.ESTADO=1;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> p = new HashMap<>();
@@ -107,6 +110,8 @@ public class MiembroGpDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Integrantes del GP " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -115,14 +120,16 @@ public class MiembroGpDAO implements CrudInterface {
         sql = "UPDATE miembrogp SET ESTADO='0' WHERE idMIEMBROGP=" + id;
         boolean p = false;
         try {
-            cn = Conexion.getConexion();
-            st = cn.createStatement();
+
+            st = Conexion.getConexion().createStatement();
             int a = st.executeUpdate(sql);
             if (a > 0) {
                 p = true;
             }
         } catch (Exception e) {
             System.out.println("Error al desvincular persona de grupo " + e);
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -137,8 +144,8 @@ public class MiembroGpDAO implements CrudInterface {
                 + " GROUP BY G.IDGRUPO ";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> p = new HashMap<>();
@@ -150,6 +157,8 @@ public class MiembroGpDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Integrantes del GP por E.S. " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -165,8 +174,8 @@ public class MiembroGpDAO implements CrudInterface {
                 + " GROUP BY E.IDESCUELA";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> p = new HashMap<>();
@@ -178,6 +187,8 @@ public class MiembroGpDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Integrantes del GP por Iglesia " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -189,13 +200,13 @@ public class MiembroGpDAO implements CrudInterface {
                 + " AND E.IDIGLESIA=I.IDIGLESIA "
                 + " AND M.IDGRUPO=G.IDGRUPO  "
                 + " AND G.IDESCUELA=E.IDESCUELA "
-                + " AND D.IDDISTRITO="+idDis
+                + " AND D.IDDISTRITO=" + idDis
                 + " AND M.ESTADO=1 "
                 + " GROUP BY I.IDIGLESIA;";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> p = new HashMap<>();
@@ -207,6 +218,8 @@ public class MiembroGpDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Integrantes del GP por Distrito " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }

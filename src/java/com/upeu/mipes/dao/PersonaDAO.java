@@ -18,7 +18,6 @@ import java.util.Map;
 public class PersonaDAO implements CrudInterface {
 
     private String sql;
-    private Connection cn;
     private PreparedStatement ps;
     private CallableStatement cs;
     private ResultSet rs;
@@ -29,8 +28,7 @@ public class PersonaDAO implements CrudInterface {
         sql = "SELECT * FROM persona ORDER BY NOMBRES";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> p = new HashMap<>();
@@ -44,6 +42,8 @@ public class PersonaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Personas " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -52,8 +52,7 @@ public class PersonaDAO implements CrudInterface {
         sql = "SELECT * FROM persona WHERE IDPERSONA=" + idPersona;
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Map<String, Object> p = new HashMap<>();
@@ -71,6 +70,8 @@ public class PersonaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Listar Personas " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -79,8 +80,7 @@ public class PersonaDAO implements CrudInterface {
         sql = "{CALL get_info_gp(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            cs=cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, idPersona);
             rs = cs.executeQuery();
             while (rs.next()) {
@@ -91,11 +91,11 @@ public class PersonaDAO implements CrudInterface {
                 p.put("fe_union", rs.getDate("FE_UNION"));
                 p.put("estado", rs.getString("ESTADO"));
                 p.put("grupo", rs.getString("GRUPO"));
-                if (rs.getInt("CARGO")==rs.getInt("IDPERSONA")) {
+                if (rs.getInt("CARGO") == rs.getInt("IDPERSONA")) {
                     p.put("cargo", "Lider");
-                }else{
+                } else {
                     p.put("cargo", "Miembro");
-                }                
+                }
                 p.put("escuela", rs.getString("ESCUELA"));
                 p.put("iglesia", rs.getString("IGLESIA"));
                 p.put("porcentaje", rs.getDouble("PORCENTAJE"));
@@ -105,15 +105,17 @@ public class PersonaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Get info GP " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
+
     public ArrayList<Map<String, ?>> getInfoMI(int idPersona) {
         sql = "{CALL get_info_mi(?)}";
         ArrayList<Map<String, ?>> lista = new ArrayList<>();
         try {
-            cn = Conexion.getConexion();
-            cs=cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, idPersona);
             rs = cs.executeQuery();
             while (rs.next()) {
@@ -133,6 +135,8 @@ public class PersonaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Get info Mi Personas " + e);
             return null;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -148,8 +152,7 @@ public class PersonaDAO implements CrudInterface {
         sql = "UPDATE persona SET NOMBRES=?,APELLIDOS=? WHERE IDPERSONA=?";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, m.get("nombres").toString());
             ps.setString(2, m.get("apellidos").toString());
             int r = ps.executeUpdate();
@@ -159,19 +162,20 @@ public class PersonaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Editar Persona " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
-    
+
     public boolean update(Object o) {
         boolean p = false;
-        
+
         Map<String, Object> m = (Map<String, Object>) o;
         sql = "UPDATE persona SET NOMBRES=?, APELLIDOS=?, DIRECCION=?,"
-                + " CORREO=?, TELEFONO=?, DNI=?, FE_NACIMIENTO='"+m.get("fecha").toString()+"' WHERE idPERSONA=?";
+                + " CORREO=?, TELEFONO=?, DNI=?, FE_NACIMIENTO='" + m.get("fecha").toString() + "' WHERE idPERSONA=?";
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, m.get("nombres").toString());
             ps.setString(2, m.get("apellidos").toString());
             ps.setString(3, m.get("direccion").toString());
@@ -187,6 +191,8 @@ public class PersonaDAO implements CrudInterface {
             e.printStackTrace();
             System.out.println("Error al Editar Persona " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -196,8 +202,7 @@ public class PersonaDAO implements CrudInterface {
         boolean p = false;
         sql = "DELETE FROM persona WHERE IDPERSONA=?";
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, Integer.parseInt(o.toString()));
             int r = ps.executeUpdate();
             if (r > 0) {
@@ -206,6 +211,8 @@ public class PersonaDAO implements CrudInterface {
         } catch (Exception e) {
             System.out.println("Error al Eliminar Persona " + e);
             p = false;
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
@@ -293,10 +300,9 @@ public class PersonaDAO implements CrudInterface {
 
         }
         try {
-            cn = Conexion.getConexion();
-            ps = cn.prepareStatement(sql);
+            ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
-            System.out.println("filtro:"+filtro+" :"+sql);
+            System.out.println("filtro:" + filtro + " :" + sql);
             while (rs.next()) {
                 Map<String, Object> m = new HashMap<>();
                 m.put("nya", rs.getString("NOMBRES") + " " + rs.getString("APELLIDOS"));
@@ -308,6 +314,8 @@ public class PersonaDAO implements CrudInterface {
         } catch (Exception e) {
             e.printStackTrace();
             return lista;
+        } finally {
+            Conexion.cerrar();
         }
         return lista;
     }
@@ -316,20 +324,19 @@ public class PersonaDAO implements CrudInterface {
         sql = "{CALL reg_persona(?, ?, ?, ?, ?, ?, ?,?,?)}";
         Map<String, Object> m = (Map<String, Object>) o;
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setString(1, m.get("nombres").toString());
             cs.setString(2, m.get("apellidos").toString());
             cs.setString(3, m.get("direccion").toString());
             cs.setString(4, m.get("correo").toString());
             cs.setString(5, m.get("telefono").toString());
             cs.setString(6, m.get("dni").toString());
-            if (m.get("fecha").equals("undefined")||m.get("fecha").equals("")) {
+            if (m.get("fecha").equals("undefined") || m.get("fecha").equals("")) {
                 cs.setString(7, null);
             } else {
                 cs.setString(7, m.get("fecha").toString());
             }
-            System.out.println(m.get("fecha").toString()+"---");
+            System.out.println(m.get("fecha").toString() + "---");
             cs.setInt(8, Integer.parseInt(m.get("eslider").toString()));
             cs.setInt(9, Integer.parseInt(m.get("idtabla").toString()));
             rs = cs.executeQuery();
@@ -340,6 +347,8 @@ public class PersonaDAO implements CrudInterface {
             e.printStackTrace();
             System.out.println("Error al Agregar Persona " + e);
             return -1;
+        } finally {
+            Conexion.cerrar();
         }
         return -1;
     }
@@ -350,8 +359,7 @@ public class PersonaDAO implements CrudInterface {
             return false;
         }
         try {
-            cn = Conexion.getConexion();
-            cs = cn.prepareCall(sql);
+            cs = Conexion.getConexion().prepareCall(sql);
             cs.setInt(1, idPersona);
             cs.setInt(2, esLider);
             cs.setInt(3, idTabla);
@@ -361,6 +369,8 @@ public class PersonaDAO implements CrudInterface {
             e.printStackTrace();
             System.out.println("Error al Registrar Lider " + e);
             return false;
+        } finally {
+            Conexion.cerrar();
         }
     }
 
@@ -368,14 +378,15 @@ public class PersonaDAO implements CrudInterface {
         sql = "SELECT * FROM persona WHERE DNI='" + dni + "'";
         boolean p = false;
         try {
-            cn = Conexion.getConexion();
-            st = cn.createStatement();
+            st = Conexion.getConexion().createStatement();
             rs = st.executeQuery(sql);
             while (rs.next()) {
                 p = true;
             }
         } catch (Exception e) {
             System.out.println("Error Validar Persona: " + e);
+        } finally {
+            Conexion.cerrar();
         }
         return p;
     }
