@@ -82,165 +82,165 @@
                     </nav>
                 </div>
             </header>
-            <div class="mdl-layout__drawer" style="border: none;background: #fff;">
-                <div style="background: rgb(42, 63, 84);">
-                    <div class="mdl-list">
-                        <div class="mdl-list__item">
-                            <span class="mdl-list__item-primary-content" style="color: white">
-                                <i class="material-icons mdl-list__item-avatar">person</i>
-                                <span><%=nombre + " " + apellido%></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <nav class="mdl-navigation" style="color: white">
-                        <%UsuarioDAO ud = new UsuarioDAO();
-                            ArrayList<Map<String, Object>> lista = ud.getLinks(request.getSession().getAttribute("iduser"));
-                            for(int k=0;k<lista.size();k++){
-                                out.print(k+"--"+lista.get(k).get("nombrelink"));
-                            }
-                        %>
-                        <!--PERFIL: ORDEN 1-->
-                        <%ArrayList<Map<String, Object>> l1 = ud.listOrden(lista, 1);
-                            if (!l1.isEmpty()) {
-                        %>
-                        <span class="menu-title">Perfil</span>
-                        <%for (int i = 0; i < l1.size(); i++) {%>
-                        <a class="mdl-navigation__link" href="<%=l1.get(i).get("link")%>" target="frame">
-                            <i class="<%=l1.get(i).get("icon")%>"></i>
-                            <span style="margin-left: 8px;"><%=l1.get(i).get("nombrelink")%></span>
-                        </a>
-                        <%}%>
-                        <%}%>
-                        <!--CAMPO ORDEN 2-->
-                        <%
-                            ArrayList<Map<String, Object>> l2 = ud.listOrden(lista, 2);
-                            if (!l2.isEmpty()) {
-                        %>
-                        <hr>
-                        <span class="menu-title">Campo</span>
-                        <%for (int i = 0; i < l2.size(); i++) {%>
-                        <a class="mdl-navigation__link" href="<%=l2.get(i).get("link")%>" target="frame">
-                            <i class="<%=l2.get(i).get("icon")%>"></i>
-                            <span style="margin-left: 8px;"><%=l2.get(i).get("nombrelink")%></span>
-                        </a>
-                        <%}%>
-                        <%}%>                        
-                        <!--DISTRITO ORDEN 3-->
-                        <%
-                            ArrayList<Map<String, Object>> l3 = ud.listOrden(lista, 3);
-                            if (!l3.isEmpty()) {
-                        %>
-                        <hr>
-                        <span class="menu-title">Distrito</span>
-                        <%for (int i = 0; i < l3.size(); i++) {%>
-                        <a class="mdl-navigation__link" href="<%=l3.get(i).get("link")%>" target="frame">
-                            <i class="<%=l3.get(i).get("icon")%>"></i>
-                            <span style="margin-left: 8px;"><%=l3.get(i).get("nombrelink")%></span>
-                        </a>
-                        <%}%>
-                        <%}%>                        
-                        <!--IGLESIA ORDEN 4-->
-                        <%
-                            ArrayList<Map<String, Object>> l4 = ud.listOrden(lista, 4);
-                            if (!l4.isEmpty()) {
-                        %>
-                        <hr>
-                        <span class="menu-title">Iglesia</span>
-                        <%for (int i = 0; i < l4.size(); i++) {%>
-                        <a class="mdl-navigation__link" href="<%=l4.get(i).get("link")%>" target="frame">
-                            <i class="<%=l4.get(i).get("icon")%>"></i>
-                            <span style="margin-left: 8px;"><%=l4.get(i).get("nombrelink")%></span>
-                        </a>
-                        <%}%>
-                        <%}%>                        
-                        <!--ESCUELA SABATICA ORDEN 5-->
-                        <%
-                            ArrayList<Map<String, Object>> l5 = ud.listOrden(lista, 5);
-                            if (!l5.isEmpty()) {
-                        %>
-                        <hr>
-                        <span class="menu-title">Escuela Sabática</span>
-                        <%for (int i = 0; i < l5.size(); i++) {%>
-                        <a class="mdl-navigation__link" href="<%=l5.get(i).get("link")%>" target="frame">
-                            <i class="<%=l5.get(i).get("icon")%>"></i>
-                            <span style="margin-left: 8px;"><%=l5.get(i).get("nombrelink")%></span>
-                        </a>
-                        <%}%>
-                        <%}%>                        
-                        <!--GRUPOS PEQUEÑOS ORDEN 6-->
-                        <%
-                            ArrayList<Map<String, Object>> l6 = ud.listOrden(lista, 6);
-                            if (!l6.isEmpty()) {
-                        %>
-                        <hr>
-                        <span class="menu-title">Grupos Pequeños</span>
-                        <%for (int i = 0; i < l6.size(); i++) {%>
-                        <a class="mdl-navigation__link" href="<%=l6.get(i).get("link")%>" target="frame">
-                            <i class="<%=l6.get(i).get("icon")%>"></i>
-                            <span style="margin-left: 8px;"><%=l6.get(i).get("nombrelink")%></span>
-                        </a>
-                        <%}%>
-                        <%}%>                        
-                        <!--MINISTERIOS ORDEN 7-->
-                        <%
-                            ArrayList<Map<String, Object>> l7 = ud.listOrden(lista, 7);
-                            if (!l7.isEmpty()) {
-                        %>
-                        <hr>
-                        <span class="menu-title">Ministerios</span>
-                        <%for (int i = 0; i < l7.size(); i++) {%>
-                        <a class="mdl-navigation__link" href="<%=l7.get(i).get("link")%>" target="frame">
-                            <i class="<%=l7.get(i).get("icon")%>"></i>
-                            <span style="margin-left: 8px;"><%=l7.get(i).get("nombrelink")%></span>
-                        </a>
-                        <%}%>
-                        <%}%>                        
-                        <!--TRABAJO MISIONERO ORDEN 8-->
-                        <%
-                            ArrayList<Map<String, Object>> l8 = ud.listOrden(lista, 8);
-                            if (!l8.isEmpty()) {
-                        %>
-                        <hr>
-                        <span class="menu-title">Trabajo Misionero</span>
-                        <%for (int i = 0; i < l8.size(); i++) {%>
-                        <a class="mdl-navigation__link" href="<%=l8.get(i).get("link")%>" target="frame">
-                            <i class="<%=l8.get(i).get("icon")%>"></i>
-                            <span style="margin-left: 8px;"><%=l8.get(i).get("nombrelink")%></span>
-                        </a>
-                        <%}%>
-                        <%}%>                        
-                        <!--REPORTES ORDEN 9-->
-                        <%
-                            ArrayList<Map<String, Object>> l9 = ud.listOrden(lista, 9);
-                            if (!l9.isEmpty()) {
-                        %>
-                        <hr>
-                        <span class="menu-title">Reportes</span>
-                        <%for (int i = 0; i < l9.size(); i++) {%>
-                        <a class="mdl-navigation__link" href="<%=l9.get(i).get("link")%>" target="frame">
-                            <i class="<%=l9.get(i).get("icon")%>"></i>
-                            <span style="margin-left: 8px;"><%=l9.get(i).get("nombrelink")%></span>
-                        </a>
-                        <%}%>
-                        <%}%>                        
-                        <!--USUARIO ORDEN 10-->
-                        <%
-                            ArrayList<Map<String, Object>> l10 = ud.listOrden(lista, 10);
-                            if (!l10.isEmpty()) {
-                        %>
-                        <hr>
-                        <span class="menu-title">Usuario</span>
-                        <%for (int i = 0; i < l10.size(); i++) {%>
-                        <a class="mdl-navigation__link" href="<%=l10.get(i).get("link")%>" target="frame">
-                            <i class="<%=l10.get(i).get("icon")%>"></i>
-                            <span style="margin-left: 8px;"><%=l10.get(i).get("nombrelink")%></span>
-                        </a>
-                        <%}%>
-                        <%}%>                        
-                    </nav>
-                </div>
+            <div class="mdl-layout__drawer" style="border: none;background: fff;">
+                            <div style="background: rgb(42, 63, 84);">
+                                <div class="mdl-list">
+                                    <div class="mdl-list__item">
+                                        <span class="mdl-list__item-primary-content" style="color: white">
+                                            <i class="material-icons mdl-list__item-avatar">person</i>
+                                            <span><%=nombre + " " + apellido%></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <nav class="mdl-navigation" style="color: white">
+                                    <%UsuarioDAO ud = new UsuarioDAO();
+                                        ArrayList<Map<String, Object>> lista = ud.getLinks(request.getSession().getAttribute("iduser"));
+                                        /*for (int k = 0; k < lista.size(); k++) {
+                                            out.print(k + "--" + lista.get(k).get("nombrelink"));
+                                        }*/
+                                    %>
+                                    <!--PERFIL: ORDEN 1-->
+                                    <%ArrayList<Map<String, Object>> l1 = ud.listOrden(lista, 1);
+                                        if (!l1.isEmpty()) {
+                                    %>
+                                    <span class="menu-title">Perfil</span>
+                                    <%for (int i = 0; i < l1.size(); i++) {%>
+                                    <a class="mdl-navigation__link" href="<%=l1.get(i).get("link")%>" target="frame">
+                                        <i class="<%=l1.get(i).get("icon")%>"></i>
+                                        <span style="margin-left: 8px;"><%=l1.get(i).get("nombrelink")%></span>
+                                    </a>
+                                    <%}%>
+                                    <%}%>
+                                    <!--CAMPO ORDEN 2-->
+                                    <%
+                                        ArrayList<Map<String, Object>> l2 = ud.listOrden(lista, 2);
+                                        if (!l2.isEmpty()) {
+                                    %>
+                                    <hr>
+                                    <span class="menu-title">Campo</span>
+                                    <%for (int i = 0; i < l2.size(); i++) {%>
+                                    <a class="mdl-navigation__link" href="<%=l2.get(i).get("link")%>" target="frame">
+                                        <i class="<%=l2.get(i).get("icon")%>"></i>
+                                        <span style="margin-left: 8px;"><%=l2.get(i).get("nombrelink")%></span>
+                                    </a>
+                                    <%}%>
+                                    <%}%>                        
+                                    <!--DISTRITO ORDEN 3-->
+                                    <%
+                                        ArrayList<Map<String, Object>> l3 = ud.listOrden(lista, 3);
+                                        if (!l3.isEmpty()) {
+                                    %>
+                                    <hr>
+                                    <span class="menu-title">Distrito</span>
+                                    <%for (int i = 0; i < l3.size(); i++) {%>
+                                    <a class="mdl-navigation__link" href="<%=l3.get(i).get("link")%>" target="frame">
+                                        <i class="<%=l3.get(i).get("icon")%>"></i>
+                                        <span style="margin-left: 8px;"><%=l3.get(i).get("nombrelink")%></span>
+                                    </a>
+                                    <%}%>
+                                    <%}%>                        
+                                    <!--IGLESIA ORDEN 4-->
+                                    <%
+                                        ArrayList<Map<String, Object>> l4 = ud.listOrden(lista, 4);
+                                        if (!l4.isEmpty()) {
+                                    %>
+                                    <hr>
+                                    <span class="menu-title">Iglesia</span>
+                                    <%for (int i = 0; i < l4.size(); i++) {%>
+                                    <a class="mdl-navigation__link" href="<%=l4.get(i).get("link")%>" target="frame">
+                                        <i class="<%=l4.get(i).get("icon")%>"></i>
+                                        <span style="margin-left: 8px;"><%=l4.get(i).get("nombrelink")%></span>
+                                    </a>
+                                    <%}%>
+                                    <%}%>                        
+                                    <!--ESCUELA SABATICA ORDEN 5-->
+                                    <%
+                                        ArrayList<Map<String, Object>> l5 = ud.listOrden(lista, 5);
+                                        if (!l5.isEmpty()) {
+                                    %>
+                                    <hr>
+                                    <span class="menu-title">Escuela Sabática</span>
+                                    <%for (int i = 0; i < l5.size(); i++) {%>
+                                    <a class="mdl-navigation__link" href="<%=l5.get(i).get("link")%>" target="frame">
+                                        <i class="<%=l5.get(i).get("icon")%>"></i>
+                                        <span style="margin-left: 8px;"><%=l5.get(i).get("nombrelink")%></span>
+                                    </a>
+                                    <%}%>
+                                    <%}%>                        
+                                    <!--GRUPOS PEQUEÑOS ORDEN 6-->
+                                    <%
+                                        ArrayList<Map<String, Object>> l6 = ud.listOrden(lista, 6);
+                                        if (!l6.isEmpty()) {
+                                    %>
+                                    <hr>
+                                    <span class="menu-title">Grupos Pequeños</span>
+                                    <%for (int i = 0; i < l6.size(); i++) {%>
+                                    <a class="mdl-navigation__link" href="<%=l6.get(i).get("link")%>" target="frame">
+                                        <i class="<%=l6.get(i).get("icon")%>"></i>
+                                        <span style="margin-left: 8px;"><%=l6.get(i).get("nombrelink")%></span>
+                                    </a>
+                                    <%}%>
+                                    <%}%>                        
+                                    <!--MINISTERIOS ORDEN 7-->
+                                    <%
+                                        ArrayList<Map<String, Object>> l7 = ud.listOrden(lista, 7);
+                                        if (!l7.isEmpty()) {
+                                    %>
+                                    <hr>
+                                    <span class="menu-title">Ministerios</span>
+                                    <%for (int i = 0; i < l7.size(); i++) {%>
+                                    <a class="mdl-navigation__link" href="<%=l7.get(i).get("link")%>" target="frame">
+                                        <i class="<%=l7.get(i).get("icon")%>"></i>
+                                        <span style="margin-left: 8px;"><%=l7.get(i).get("nombrelink")%></span>
+                                    </a>
+                                    <%}%>
+                                    <%}%>                        
+                                    <!--TRABAJO MISIONERO ORDEN 8-->
+                                    <%
+                                        ArrayList<Map<String, Object>> l8 = ud.listOrden(lista, 8);
+                                        if (!l8.isEmpty()) {
+                                    %>
+                                    <hr>
+                                    <span class="menu-title">Trabajo Misionero</span>
+                                    <%for (int i = 0; i < l8.size(); i++) {%>
+                                    <a class="mdl-navigation__link" href="<%=l8.get(i).get("link")%>" target="frame">
+                                        <i class="<%=l8.get(i).get("icon")%>"></i>
+                                        <span style="margin-left: 8px;"><%=l8.get(i).get("nombrelink")%></span>
+                                    </a>
+                                    <%}%>
+                                    <%}%>                        
+                                    <!--REPORTES ORDEN 9-->
+                                    <%
+                                        ArrayList<Map<String, Object>> l9 = ud.listOrden(lista, 9);
+                                        if (!l9.isEmpty()) {
+                                    %>
+                                    <hr>
+                                    <span class="menu-title">Reportes</span>
+                                    <%for (int i = 0; i < l9.size(); i++) {%>
+                                    <a class="mdl-navigation__link" href="<%=l9.get(i).get("link")%>" target="frame">
+                                        <i class="<%=l9.get(i).get("icon")%>"></i>
+                                        <span style="margin-left: 8px;"><%=l9.get(i).get("nombrelink")%></span>
+                                    </a>
+                                    <%}%>
+                                    <%}%>                        
+                                    <!--USUARIO ORDEN 10-->
+                                    <%
+                                        ArrayList<Map<String, Object>> l10 = ud.listOrden(lista, 10);
+                                        if (!l10.isEmpty()) {
+                                    %>
+                                    <hr>
+                                    <span class="menu-title">Usuario</span>
+                                    <%for (int i = 0; i < l10.size(); i++) {%>
+                                    <a class="mdl-navigation__link" href="<%=l10.get(i).get("link")%>" target="frame">
+                                        <i class="<%=l10.get(i).get("icon")%>"></i>
+                                        <span style="margin-left: 8px;"><%=l10.get(i).get("nombrelink")%></span>
+                                    </a>
+                                    <%}%>
+                                    <%}%>                        
+                                </nav>
+                            </div>
             </div>
             <main class="mdl-layout__content">
                 <iframe src="inicio.jsp"
